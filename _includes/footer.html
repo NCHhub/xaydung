@@ -4,4 +4,18 @@
     <p style="margin-top:6px;"><a href="{{ '/' | relative_url }}">Trang chủ</a> · <a href="{{ '/bai-viet/' | relative_url }}">Bài viết</a> · <a href="{{ '/cong-trinh/' | relative_url }}">Công trình</a></p>
   </div>
   <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script>
+    // Hiệu ứng fade-in khi cuộn — phong cách Apple
+    (function(){
+      document.body.classList.add('js-anim');
+      var els = document.querySelectorAll('section, .postcard, .card, .srv, .article .content img, .ctabox');
+      if(!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('appear'); }); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){ en.target.classList.add('appear'); io.unobserve(en.target); }
+        });
+      }, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+      els.forEach(function(e){ io.observe(e); });
+    })();
+  </script>
 </footer>

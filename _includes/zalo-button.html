@@ -1,5 +1,5 @@
 <!-- Nút Zalo nổi — hiển thị trên mọi trang -->
-<a class="zalo-float" href="https://zalo.me/0983601366" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo với Hải & Cộng sự">
+<a class="zalo-float" id="zaloFloat" href="https://zalo.me/0983601366" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo với Hải & Cộng sự">
   <svg viewBox="0 0 24 24" width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs><linearGradient id="zalo-grad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#2F9BFF"/><stop offset="1" stop-color="#0068FF"/>
@@ -12,4 +12,54 @@
     <path d="M21.6 25.2c0-1.7.4-3 1.2-4 .8-.9 1.9-1.4 3.2-1.4s2.4.5 3.2 1.4c.8 1 1.2 2.3 1.2 4 0 1.7-.4 3-1.2 4-.8.9-1.9 1.4-3.2 1.4s-2.4-.5-3.2-1.4c-.8-1-1.2-2.3-1.2-4zm2.4 0c0 1 .2 1.9.5 2.6.3.6.7.9 1.5.9s1.2-.3 1.5-.9c.4-.7.5-1.6.5-2.6 0-1-.2-1.9-.5-2.6-.3-.6-.7-.9-1.5-.9s-1.2.3-1.5.9c-.3.7-.5 1.6-.5 2.6z" fill="url(#zalo-grad)"/>
     <path d="M34 22.8h1.1l2.6 3.9h-1.8l-.5-.8h-2l-.6.8h-1.7l2.9-3.9zm1.2 2.1l-.6-1-.6 1h1.2z" fill="url(#zalo-grad)"/>
   </svg>
+  <span class="zalo-tip">Chat Zalo</span>
 </a>
+
+<script>
+(function(){
+  var btn = document.getElementById('zaloFloat');
+  if(!btn) return;
+  var loiNhan = "Hải, cùng gia tăng giá trị của nhau nhé.";
+  btn.addEventListener('click', function(e){
+    // Sao chép lời nhắn vào bộ nhớ để khách dán vào khung chat Zalo
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(loiNhan).then(function(){
+          hienToast('Đã sao chép lời nhắn. Dán vào ô chat và gửi giúp anh nhé! 💬');
+        });
+      } else {
+        // Dự phòng cho trình duyệt cũ
+        var ta = document.createElement('textarea');
+        ta.value = loiNhan;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); hienToast('Đã sao chép lời nhắn. Dán vào ô chat và gửi giúp anh nhé! 💬'); }
+        catch(err){}
+        document.body.removeChild(ta);
+      }
+    } catch(e){}
+  });
+
+  function hienToast(msg){
+    var t = document.getElementById('zaloToast');
+    if(!t){
+      t = document.createElement('div');
+      t.id = 'zaloToast';
+      t.style.cssText = 'position:fixed;left:50%;bottom:92px;transform:translateX(-50%) translateY(20px);background:rgba(15,23,42,.94);color:#fff;padding:12px 20px;border-radius:12px;font-size:.92rem;z-index:10000;opacity:0;transition:opacity .25s,transform .25s;max-width:calc(100vw - 40px);text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.25);';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    requestAnimationFrame(function(){
+      t.style.opacity = '1';
+      t.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function(){
+      t.style.opacity = '0';
+      t.style.transform = 'translateX(-50%) translateY(20px)';
+    }, 3200);
+  }
+})();
+</script>

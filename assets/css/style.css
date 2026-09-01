@@ -139,6 +139,10 @@ body{padding-bottom:96px;}
 .zalo-float{position:fixed;right:18px;bottom:18px;z-index:9999;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,104,255,.35);transition:transform .18s ease;}
 .zalo-float:hover{transform:scale(1.08);}
 .zalo-float .zalo-ico{width:58px;height:58px;display:block;}
+/* tooltip bên cạnh nút */
+.zalo-tip{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;background:rgba(15,23,42,.92);color:#fff;font-size:.82rem;font-weight:600;padding:7px 13px;border-radius:9px;opacity:0;pointer-events:none;transition:opacity .2s;}
+.zalo-tip::after{content:"";position:absolute;left:100%;top:50%;transform:translateY(-50%);border:6px solid transparent;border-left-color:rgba(15,23,42,.92);}
+.zalo-float:hover .zalo-tip{opacity:1;}
 /* vòng xoay nhẹ quanh nút để nổi bật */
 @keyframes zalo-ring{0%{box-shadow:0 0 0 0 rgba(0,104,255,.5)}70%{box-shadow:0 0 0 14px rgba(0,104,255,0)}100%{box-shadow:0 0 0 0 rgba(0,104,255,0)}}
 .zalo-float{animation:zalo-ring 2.4s infinite;}

@@ -1,0 +1,78 @@
+---
+layout: default
+title: "Hôm nay đăng gì? — Content sẵn cho môi giới"
+description: "Chủ đề đang được khách quan tâm + caption có sẵn cho Facebook và Zalo. Chọn bài, copy caption, gắn ảnh và đăng."
+---
+
+<div class="pagehead">
+  <div class="container">
+    <h1>📤 Hôm nay đăng gì?</h1>
+    <p>Không phải nghĩ "hôm nay viết gì" — chọn chủ đề khách thật đang quan tâm, copy caption có sẵn, gắn ảnh công trình thật của hệ thống và đăng.</p>
+  </div>
+</div>
+
+<div class="container" style="padding-top:56px;padding-bottom:90px;">
+  <div class="tabs" id="tabs2">
+    <button class="tab-btn active" data-f="all">Tất cả ({{ site.data.moi-gioi.hom-nay-dang-gi | size }})</button>
+    <button class="tab-btn" data-f="chu-nha">Chủ đề Chủ nhà quan tâm</button>
+    <button class="tab-btn" data-f="moi-gioi">Chủ đề Môi giới</button>
+  </div>
+
+  <div class="postlist" id="clist" style="grid-template-columns:1fr;gap:20px;">
+    {% for item in site.data.moi-gioi.hom-nay-dang-gi %}
+    {% assign post = site.blog | where: "slug", item.slug | first %}
+    {% if post %}
+    <div class="qcard" data-nhom="{{ post.nhom | slugify }}">
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start;">
+        {% if post.image %}
+        <a href="{{ post.url | relative_url }}" style="display:block;">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" style="width:200px;height:150px;object-fit:cover;border-radius:18px;">
+        </a>
+        {% endif %}
+        <div>
+          <span class="cat" style="font-size:.82rem;font-weight:600;color:var(--blue);letter-spacing:.02em;">{{ post.nhom }}</span>
+          <h3 style="font-size:1.25rem;font-weight:600;margin:8px 0 10px;"><a href="{{ post.url | relative_url }}" style="color:var(--text);">{{ post.title }}</a></h3>
+          <p style="color:var(--text-3);font-size:.88rem;margin-bottom:14px;">Caption đã chèn sẵn link bài &amp; ảnh minh họa — copy dán là đăng.</p>
+          <div class="capbox">
+            <pre style="white-space:pre-wrap;font-family:inherit;font-size:.98rem;line-height:1.6;color:var(--text-2);margin:0 0 14px;">{{ item.caption | replace: '[link bài viết]', post.url | absolute_url }}</pre>
+            <button class="btn btn-solid btn-sm copy-cap" data-text="{{ item.caption | replace: '[link bài viết]', post.url | absolute_url | escape }}" style="padding:10px 20px;font-size:.95rem;">📋 Copy caption</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+(function(){
+  var tabs = document.getElementById('tabs2');
+  if(tabs){
+    tabs.addEventListener('click', function(e){
+      var btn = e.target.closest('.tab-btn');
+      if(!btn) return;
+      document.querySelectorAll('#tabs2 .tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-f');
+      document.querySelectorAll('#clist .qcard').forEach(function(c){
+        var nhom = c.getAttribute('data-nhom');
+        c.style.display = (f === 'all' || nhom === f) ? '' : 'none';
+      });
+    });
+  }
+  document.querySelectorAll('.copy-cap').forEach(function(b){
+    b.addEventListener('click', function(){
+      var txt = b.getAttribute('data-text');
+      var done = function(){ var old = b.textContent; b.textContent = '✅ Đã copy caption'; setTimeout(function(){ b.textContent = old; }, 1600); };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); }catch(e){}
+        document.body.removeChild(ta); done();
+      }
+    });
+  });
+})();
+</script>

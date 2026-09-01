@@ -114,6 +114,14 @@ h2.section-h{font-size:clamp(1.9rem,4vw,3.2rem);font-weight:700;letter-spacing:-
 .postcard .date{display:none;}
 .article .post-date{display:none;}
 
+/* ===== TOOL CARDS (công cụ môi giới) ===== */
+.tool-card{display:block;}
+.qcard{background:var(--bg);border-radius:var(--radius-md);padding:28px;box-shadow:var(--shadow-sm);transition:box-shadow .3s ease;}
+.qcard:hover{box-shadow:var(--shadow-md);}
+.capbox{background:var(--bg-gray);border-radius:var(--radius-md);padding:20px;}
+.capbox pre{font-family:inherit;}
+.btn-sm{line-height:1.2;}
+
 /* ===== POST CARDS ===== */
 .postlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;padding-bottom:90px;}
 .postcard{border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .3s ease,box-shadow .3s ease;background:var(--bg);}

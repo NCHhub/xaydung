@@ -1,0 +1,116 @@
+# ============================================================
+# Nguồn dữ liệu 2 công cụ môi giới — xaydung.aladdin.vn/moi-gioi/
+# Viết theo công thức đã chứng minh:
+# CÂU HỎI THẬT → NỖI ĐAU → GIẢI THÍCH → BẰNG CHỨNG THẬT → HÀNH ĐỘNG NHỎ
+# CẤM con số bịa · CẤM nhân vật giả
+# ============================================================
+
+# ------------------------------------------------------------
+# CÔNG CỤ 1 — Khách đang hỏi gì?
+# Câu hỏi thật + câu trả lời ngắn môi giới có thể nói với khách.
+# ------------------------------------------------------------
+khach-hoi:
+  - cau_hoi: "Xây nhà lần đầu thì bắt đầu từ đâu?"
+    tra_loi: "Anh/chị cứ yên tâm, việc đầu tiên không phải là chọn nhà thầu. Bắt đầu bằng kiểm tra hồ sơ đất, quy hoạch và thủ tục xin phép trước. Sau đó đi xem 1–2 công trình thật, rồi mới so báo giá theo hạng mục. Em có đội kỹ thuật hướng dẫn từng bước miễn phí."
+    slug: "xay-nha-lan-dau-bat-dau-tu-viec-gi"
+  - cau_hoi: "Trọn gói hay tự mua vật tư, làm sao an tâm?"
+    tra_loi: "Nếu anh/chị không có thời gian, trọn gói là hợp lý — nhưng phải hỏi nhà thầu có ghi nhận kiểm tra vật tư khi nhập kho không. Nếu tự mua, tính cả công sức quản lý của chính mình. Em có thể cho anh/chị xem cách kiểm soát vật tư ở công trình thật."
+    slug: "tron-goi-hay-tu-mua-vat-tu"
+  - cau_hoi: "Hai báo giá chênh nhau nhiều, chọn bên nào?"
+    tra_loi: "Đừng chọn theo tổng tiền. So theo từng hạng mục: cùng danh sách hạng mục, hỏi cả hai bên điền giá rồi đối chiếu chỗ thiếu, chỗ mập mờ. Minh bạch quan trọng hơn rẻ. Gửi báo giá qua cho em, em chỉ cách soi từng hạng mục giúp."
+    slug: "hai-bao-gia-khac-nhau-dung-voi-chon-ben-re"
+  - cau_hoi: "Ký hợp đồng xây nhà làm sao tránh phát sinh?"
+    tra_loi: "Trước khi ký, hỏi nhà thầu 7 câu: giá gồm hạng mục nào, gì chưa bao gồm, vật tư kiểm tra thế nào, nghiệm thu giai đoạn ra sao, phát sinh ai quyết định, tiến độ thế nào, bảo hành ra sao. Em gửi checklist các giai đoạn cần nghiệm thu, dùng được với bất kỳ nhà thầu nào."
+    slug: "7-cau-hoi-truoc-khi-ky-hop-dong-xay-nha"
+  - cau_hoi: "Đi làm cả ngày, làm sao biết thợ làm đúng?"
+    tra_loi: "Không ai bắt mình phải bỏ việc ra trông thợ. Quan trọng là nhà thầu có ghi nhận bằng ảnh/video các công đoạn bịt kín không: vật tư nhập kho, thép trước khi đổ, điện nước trước khi trát. Hỏi đúng câu đó là biết ngay ai làm có hệ thống."
+    slug: "di-lam-ca-ngay-khong-the-trong-tho"
+  - cau_hoi: "Xây nhà có làm nứt nhà hàng xóm không?"
+    tra_loi: "Đó là rủi ro thật với nhà phố. Cách phòng là ghi nhận hiện trạng nhà liền kề trước khi khởi công, có chữ ký hai bên làm căn cứ. Nhà thầu nào chủ động lập biên bản này là biết họ làm nhiều công trình và nắm rủi ro nằm ở đâu."
+    slug: "ghi-nhan-hien-trang-nha-hang-xom-truoc-khi-phado"
+
+# ------------------------------------------------------------
+# CÔNG CỤ 2 — Hôm nay đăng gì?
+# Caption có sẵn cho từng bài (FB/Zalo) — nút copy 1 chạm.
+# ------------------------------------------------------------
+hom-nay-dang-gi:
+  - slug: "xay-nha-lan-dau-bat-dau-tu-viec-gi"
+    caption: |
+      Người sắp xây nhà lần đầu thấy "hàng trăm hàng ngàn việc" không biết bắt đầu từ đâu. 🏗️
+
+      Tin tốt: không cần bắt đầu bằng móng, bắt đầu bằng giấy tờ — kiểm tra hồ sơ đất, quy hoạch, thủ tục xin phép trước, rồi đi xem công trình thật, rồi mới so báo giá theo hạng mục.
+
+      ACE nào có khách đang chuẩn bị xây nhà, đọc bài này để trả lời khách đúng trọng tâm nhé 👇
+      [link bài viết]
+
+      #xaynha #xaynhalandau #tuvaanxaynha
+  - slug: "tron-goi-hay-tu-mua-vat-tu"
+    caption: |
+      Trọn gói sợ cắt chất lượng, tự mua thì quản lý mệt. 🙃
+
+      Cuộc giằng co này lặp lại trong rất nhiều hội nhóm. Chìa khóa không nằm ở "chọn bên nào" mà nằm ở câu hỏi: vật tư có được kiểm tra, ghi nhận khi nhập kho không?
+
+      Bấm xem bài viết để biết cách chọn đỡ hối tiếc 👇
+      [link bài viết]
+
+      #xaynha #vatlieuxaydung #tuvaanxaynha
+  - slug: "hai-bao-gia-khac-nhau-dung-voi-chon-ben-re"
+    caption: |
+      Hai báo giá cùng một ngôi nhà, chênh nhau rất nhiều — có nên chọn bên rẻ? 🤔
+
+      Kinh nghiệm người đã xây nhà: so báo giá đơn thuần gần như không hiệu quả, vì dịch vụ xây sửa nhà "thượng vàng hạ cám". Cách so đúng là so theo hạng mục, không so tổng tiền.
+
+      Cần mình soi giúp báo giá thì gửi qua nhé 👇
+      [link bài viết]
+
+      #xaynha #baogiaxaynha #kinhnghiemxaynha
+  - slug: "7-cau-hoi-truoc-khi-ky-hop-dong-xay-nha"
+    caption: |
+      Trước khi ký hợp đồng xây nhà, hỏi nhà thầu 7 câu này — tránh khoản "chưa nghĩ đến". ✍️
+
+      Không cần làm chuyên gia luật, chỉ cần hỏi: giá gồm hạng mục nào? Gì chưa bao gồm? Vật tư kiểm tra thế nào? Nghiệm thu giai đoạn ra sao?...
+
+      ACE lưu lại để dùng khi khách hỏi nhé 👇
+      [link bài viết]
+
+      #xaynha #hopdongxaynha #tuvaanxaynha
+  - slug: "di-lam-ca-ngay-khong-the-trong-tho"
+    caption: |
+      "Đi làm cả ngày, làm sao biết thợ làm đúng vật tư?" 💼
+
+      Nỗi đau thật nhất của chủ nhà có thu nhập ổn định. Câu trả lời: không cần bỏ việc ra trông thợ — cần nhà thầu có ảnh nghiệm thu các công đoạn bịt kín (vật tư, thép trước khi đổ, điện nước trước khi trát).
+
+      Bài viết có video nghiệm thu thật, xem để hiểu cách kiểm soát đúng chuẩn 👇
+      [link bài viết]
+
+      #xaynha #giamsatcongtrinh #nghiemthu
+  - slug: "ghi-nhan-hien-trang-nha-hang-xom-truoc-khi-phado"
+    caption: |
+      "Xây nhà có làm nứt nhà hàng xóm không?" 🏠
+
+      Đây là "quả bom" không kiểm soát được của nhà phố. Cách phòng duy nhất: ghi nhận hiện trạng nhà liền kề trước khi khởi công, có chữ ký hai bên.
+
+      Nhà thầu nào chủ động làm biên bản này là biết tay nghề tới đâu 👇
+      [link bài viết]
+
+      #xaynha #nhalienke #kinhnghiemxaynha
+  - slug: "5-ly-do-ace-moi-gioi"
+    caption: |
+      Khách vừa mua nhà cũ xong, hỏi "sửa có phiền không?" 🙋
+
+      Đừng chỉ trả lời qua loa. Đây chính là cơ hội: giới thiệu khách xây/sửa nhà = thêm thu nhập hoa hồng + tăng giá trị với khách cũ + mở cơ hội làm ăn lâu dài.
+
+      Đọc 5 lý do vì sao ACE nên hợp tác 👇
+      [link bài viết]
+
+      #moigioibds #congtacvien #hoahong
+  - slug: "chuan-bi-truoc-khi-xay-sua-nha"
+    caption: |
+      Sửa nhà cũ — chống thấm, trát lại, sửa nội thất... có cần xin phép không? 📋
+
+      Ngay cả việc nhỏ cũng khiến chủ nhà bối rối về thủ tục. Checklist này giúp chuẩn bị trước khi xây/sửa để không vướng pháp lý, không đội chi phí.
+
+      Lưu lại cho khách nào đang hỏi nhé 👇
+      [link bài viết]
+
+      #suachuanha #thutucxaydung #checklist

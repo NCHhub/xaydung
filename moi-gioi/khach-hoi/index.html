@@ -1,0 +1,55 @@
+---
+layout: default
+title: "Khách đang hỏi gì? — Câu trả lời cho môi giới"
+description: "Các câu hỏi thật khách đang hỏi về xây sửa nhà, kèm câu trả lời ngắn để ACE nói với khách, hoặc nhờ kỹ thuật gọi khách."
+---
+
+<div class="pagehead">
+  <div class="container">
+    <h1>🔥 Khách đang hỏi gì?</h1>
+    <p>Khách hỏi xây sửa nhà — lấy ngay câu trả lời ngắn để nói với khách. Không biến ACE thành kỹ sư, cho ACE một <strong>kỹ sư bỏ túi</strong>.</p>
+  </div>
+</div>
+
+<div class="container" style="padding-top:56px;padding-bottom:90px;">
+  <input id="qsearch" type="search" placeholder="🔎 Nhập câu khách đang hỏi (VD: báo giá, phát sinh, trọn gói...)" style="width:100%;max-width:640px;padding:16px 22px;border-radius:980px;border:1px solid var(--border);font-size:1.05rem;background:var(--bg-gray);margin:0 auto 40px;display:block;outline:none;">
+
+  <div class="postlist" id="qlist" style="grid-template-columns:1fr;gap:20px;">
+    {% for q in site.data.moi-gioi.khach-hoi %}
+    <div class="qcard" data-key="{{ q.cau_hoi | downcase }} {{ q.tra_loi | downcase }}">
+      <h3 style="font-size:1.25rem;font-weight:600;margin-bottom:12px;">{{ q.cau_hoi }}</h3>
+      <p style="color:var(--text-2);line-height:1.65;margin-bottom:18px;">{{ q.tra_loi }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <button class="btn btn-solid btn-sm copy-ans" data-text="{{ q.tra_loi | escape }}" style="padding:10px 20px;font-size:.95rem;">📋 Copy để gửi khách</button>
+        <a class="btn btn-outline btn-sm" href="https://zalo.me/0983601366" target="_blank" rel="noopener" style="padding:10px 20px;font-size:.95rem;color:#0f766e;border-color:#0f766e;background:transparent;">💬 Nhờ kỹ thuật gọi khách</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+(function(){
+  var box = document.getElementById('qsearch');
+  if(!box) return;
+  box.addEventListener('input', function(){
+    var k = box.value.toLowerCase().trim();
+    document.querySelectorAll('#qlist .qcard').forEach(function(c){
+      c.style.display = (!k || c.getAttribute('data-key').indexOf(k) > -1) ? '' : 'none';
+    });
+  });
+  document.querySelectorAll('.copy-ans').forEach(function(b){
+    b.addEventListener('click', function(){
+      var txt = b.getAttribute('data-text');
+      var done = function(){ var old = b.textContent; b.textContent = '✅ Đã copy'; setTimeout(function(){ b.textContent = old; }, 1600); };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done).catch(done);
+      } else {
+        var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); }catch(e){}
+        document.body.removeChild(ta); done();
+      }
+    });
+  });
+})();
+</script>

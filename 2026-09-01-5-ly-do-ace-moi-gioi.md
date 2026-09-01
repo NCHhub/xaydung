@@ -3,7 +3,7 @@ title: "5 lý do ACE môi giới nên cộng tác giới thiệu khách xây, s�
 nhom: "Dành cho Môi giới"
 date: 2026-09-01
 description: "Giới thiệu khách xây, sửa nhà không làm mất thời gian bán nhà, lại thêm nguồn thu nhập bền vững. Đọc ngay 5 lý do cụ thể."
-image: ""
+image: "/assets/img/cong-trinh/trai-bat-ve-sinh-2.jpg"
 ---
 
 Khách hàng của bạn — người mua, người bán nhà — có nhu cầu **xây hoặc sửa nhà** thường xuyên hơn bạn nghĩ. Mỗi nhu cầu đó là một cơ hội thu nhập thêm mà bạn không cần đầu tư gì.

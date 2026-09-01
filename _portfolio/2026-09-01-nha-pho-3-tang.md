@@ -4,7 +4,7 @@ loai: "Nhà phố"
 dia_diem: "Khu vực nội thành"
 date: 2026-09-01
 description: "Công trình nhà phố 3 tầng do Hải & Cộng sự thi công trọn gói từ xin phép đến bàn giao."
-image: ""
+image: "/assets/img/cong-trinh/ve-sinh-cuoi-ngay-2.jpg"
 ---
 
 Công trình nhà phố 3 tầng là một trong những dự án tiêu biểu của Hải &amp; Cộng sự.

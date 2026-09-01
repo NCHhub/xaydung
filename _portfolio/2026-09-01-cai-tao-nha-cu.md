@@ -4,7 +4,7 @@ loai: "Cải tạo"
 dia_diem: "Nhà cũ cải tạo trọn gói"
 date: 2026-09-01
 description: "Dịch vụ sửa chữa, cải tạo nhà cũ: nâng cấp không gian, gia cố kết cấu, sửa lại hệ thống điện nước."
-image: ""
+image: "/assets/img/cong-trinh/vat-tu-kiem-tra.jpg"
 ---
 
 Sửa chữa, cải tạo nhà cũ là lĩnh vực đòi hỏi kinh nghiệm thực tế và sự tỉ mỉ — bởi mỗi ngôi nhà cũ có cấu trúc, tình trạng khác nhau.

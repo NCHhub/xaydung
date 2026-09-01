@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACEs Giới Thiệu Khách Xây · Sửa Nhà — Hải &amp; Cộng sự</title>
+<meta name="description" content="Bạn giới thiệu khách có nhu cầu xây, sửa nhà — chúng tôi lo phần còn lại. Hoa hồng rõ ràng, công trình thật để tham khảo. Hải & Cộng sự: 0983.601.366">
+<style>
+  :root{
+    --primary:#0f766e;        /* teal đậm — tin cậy, công trình */
+    --primary-dark:#115e59;
+    --accent:#f59e0b;         /* cam — hoa hồng, thu nhập */
+    --dark:#0f172a;
+    --gray:#475569;
+    --light-bg:#f8fafc;
+    --border:#e2e8f0;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(15,23,42,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--dark);line-height:1.65;background:#fff;}
+  a{text-decoration:none;color:var(--primary);}
+  img{max-width:100%;display:block;}
+
+  .container{max-width:1080px;margin:0 auto;padding:0 20px;}
+
+  /* ===== HERO ===== */
+  .hero{background:linear-gradient(135deg,#0f172a 0%,var(--primary-dark) 55%,#0f766e 100%);color:#fff;padding:64px 0 56px;position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:rgba(245,158,11,.18);}
+  .hero .badge{display:inline-block;background:var(--accent);color:#111;font-weight:700;font-size:.78rem;padding:6px 14px;border-radius:999px;letter-spacing:.4px;margin-bottom:22px;}
+  .hero h1{font-size:clamp(1.7rem,4.5vw,2.9rem);font-weight:800;line-height:1.25;max-width:760px;}
+  .hero h1 span{color:#fbbf24;}
+  .hero p.lead{margin-top:18px;font-size:clamp(1rem,2vw,1.25rem);color:#e2e8f0;max-width:680px;}
+  .hero .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px;}
+  .btn{display:inline-block;padding:14px 26px;border-radius:12px;font-weight:700;font-size:1.02rem;transition:transform .15s,box-shadow .15s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-phone{background:var(--accent);color:#111;}
+  .btn-phone:hover{box-shadow:0 8px 20px rgba(245,158,11,.4);}
+  .btn-outline{border:2px solid rgba(255,255,255,.5);color:#fff;}
+  .btn-outline:hover{background:rgba(255,255,255,.12);}
+  .hero .meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:18px;color:#cbd5e1;font-size:.9rem;}
+  .hero .meta div{display:flex;align-items:center;gap:8px;}
+
+  /* ===== SECTIONS ===== */
+  section{padding:56px 0;}
+  .section-tag{color:var(--primary);font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;}
+  h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-top:8px;line-height:1.3;}
+  .sub{color:var(--gray);margin-top:10px;max-width:680px;}
+
+  /* Lợi ích cho ACE */
+  .benefits{background:var(--light-bg);}
+  .benefits .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:34px;}
+  .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow);}
+  .card .ico{width:52px;height:52px;border-radius:12px;background:#e6fffa;color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;}
+  .card h3{font-size:1.12rem;font-weight:700;margin-bottom:8px;}
+  .card p{color:var(--gray);font-size:.95rem;}
+
+  /* cam kết hoa hồng */
+  .commitment{background:var(--dark);color:#fff;text-align:center;}
+  .commitment h2{color:#fff;}
+  .commitment .sub{color:#94a3b8;margin:12px auto 0;}
+  .commitment .big{font-size:clamp(1.3rem,3vw,1.9rem);font-weight:800;color:#fbbf24;margin-top:26px;}
+  .commitment .points{margin-top:26px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
+  .pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:10px 18px;border-radius:999px;font-size:.95rem;color:#e2e8f0;}
+
+  /* dịch vụ lo kỹ */
+  .services .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:34px;}
+  .srv{border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;position:relative;background:#fff;}
+  .srv .num{font-size:2.2rem;font-weight:800;color:#e2e8f0;position:absolute;top:14px;right:20px;}
+  .srv h4{font-weight:700;font-size:1.06rem;color:var(--primary-dark);margin-bottom:8px;}
+  .srv p{color:var(--gray);font-size:.95rem;}
+
+  /* công trình thật */
+  .portfolio{background:var(--light-bg);}
+  .portfolio .cta-caption{margin-top:34px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px;text-align:center;box-shadow:var(--shadow);}
+  .portfolio .cta-caption p{color:var(--gray);max-width:640px;margin:0 auto;}
+  .portfolio .cta-caption .btn{margin-top:20px;}
+
+  /* final CTA */
+  .final{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;text-align:center;}
+  .final h2{color:#fff;}
+  .final .phone{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#fff;margin-top:18px;letter-spacing:1px;}
+  .final .phone a{color:#fbbf24;}
+  .final .note{margin-top:16px;color:#e2e8f0;max-width:560px;margin-left:auto;margin-right:auto;}
+
+  footer{background:var(--dark);color:#94a3b8;text-align:center;padding:28px 20px;font-size:.85rem;}
+  footer a{color:#cbd5e1;}
+
+  @media(max-width:640px){
+    .hero{padding:44px 0 40px;}
+    section{padding:44px 0;}
+    .hero .meta{flex-direction:column;gap:10px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <span class="badge">DÀNH CHO ACE MÔI GIỚI</span>
+    <h1>Bạn giới thiệu khách <span>có nhu cầu xây, sửa nhà</span> — chúng tôi lo phần còn lại</h1>
+    <p class="lead">Mỗi khách bạn giới thiệu thành công là một cơ hội thu nhập thêm. Vừa tăng giá trị với khách cũ, vừa có nguồn thu mới, vừa mở thêm cơ hội làm ăn lâu dài.</p>
+    <div class="cta">
+      <a class="btn btn-phone" href="tel:0983601366">📞 Gọi ngay 0983.601.366</a>
+      <a class="btn btn-outline" href="#lien-he">Xem cam kết hoa hồng</a>
+    </div>
+    <div class="meta">
+      <div>✅ Hoa hồng rõ ràng, minh bạch</div>
+      <div>✅ Công trình thật để dẫn khách xem</div>
+      <div>✅ Cam kết quyền lợi lâu dài</div>
+    </div>
+  </div>
+</header>
+
+<!-- LỢI ÍCH CHO ACE -->
+<section class="benefits">
+  <div class="container">
+    <span class="section-tag">Lợi ích</span>
+    <h2>Vì sao ACE nên giới thiệu khách xây · sửa nhà?</h2>
+    <p class="sub">Khi khách hàng của bạn có nhu cầu xây hoặc sửa nhà, đó không phải là việc "ngoài phạm vi" — mà là một cơ hội thu nhập thêm tự nhiên và bền vững.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">💰</div>
+        <h3>Thêm nguồn thu nhập</h3>
+        <p>Chỉ cần giới thiệu đúng người có nhu cầu, bạn có thêm một khoản thu nhập hoa hồng mà không phải đầu tư hay làm thêm gì.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🤝</div>
+        <h3>Tăng giá trị với khách cũ</h3>
+        <p>Giúp khách giải quyết trọn gói nhu cầu, khách nhớ đến bạn như người lo được nhiều việc — mối quan hệ càng bền chặt.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📈</div>
+        <h3>Cơ hội làm ăn lâu dài</h3>
+        <p>Mỗi khách giới thiệu là một cầu nối. Khi uy tín được khẳng định, cơ hội hợp tác với chúng tôi ngày càng nhiều và dài hạn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAM KẾT HOA HỒNG -->
+<section class="commitment" id="lien-he">
+  <div class="container">
+    <span class="section-tag" style="color:#fbbf24;">Cam kết</span>
+    <h2>Hải &amp; Cộng sự — cam kết rõ ràng quyền lợi và hoa hồng lâu dài</h2>
+    <p class="sub">Chúng tôi hiểu: để ACE yên tâm giới thiệu, điều quan trọng nhất là sự minh bạch về quyền lợi và sự tin tưởng về chất lượng công trình.</p>
+    <div class="big">0983.601.366</div>
+    <div class="points">
+      <span class="pill">Hoa hồng rõ ràng</span>
+      <span class="pill">Quyền lợi minh bạch</span>
+      <span class="pill">Hợp tác lâu dài</span>
+      <span class="pill">Bảo vệ mối quan hệ ACE–khách</span>
+    </div>
+  </div>
+</section>
+
+<!-- DỊCH VỤ LO KỸ -->
+<section class="services">
+  <div class="container">
+    <span class="section-tag">Chúng tôi lo</span>
+    <h2>Lo kỹ từ việc nhỏ đến việc lớn, để mọi người yên tâm</h2>
+    <p class="sub">Từ lúc xin phép cho đến khi bàn giao công trình, bên mình đều có kinh nghiệm thực tế xử lý mọi phát sinh.</p>
+    <div class="grid">
+      <div class="srv"><span class="num">01</span><h4>Xin phép xây dựng</h4><p>Hỗ trợ thủ tục, giấy tờ xin phép xây dựng đúng quy định để công trình không vướng pháp lý.</p></div>
+      <div class="srv"><span class="num">02</span><h4>Làm việc với hàng xóm</h4><p>Khéo léo xử lý mối quan hệ lân cận, hạn chế mâu thuẫn, phát sinh trong quá trình thi công.</p></div>
+      <div class="srv"><span class="num">03</span><h4>Xử lý phát sinh, rắc rối</h4><p>Kinh nghiệm thực tế xử lý các tình huống ngoài dự kiến để công trình tiến độ, không bế tắc.</p></div>
+      <div class="srv"><span class="num">04</span><h4>Thiết kế &amp; chất lượng công trình</h4><p>Thiết kế phù hợp nhu cầu, kiểm soát chất lượng thi công từ khâu nhỏ nhất.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CÔNG TRÌNH THẬT -->
+<section class="portfolio">
+  <div class="container">
+    <span class="section-tag">Bằng chứng thực tế</span>
+    <h2>Hình ảnh công trình thật — để ACE đưa khách đi xem</h2>
+    <p class="sub">Chúng tôi có những công trình đã và đang thi công, hình ảnh thật để ACE và khách tham khảo trực tiếp trước khi quyết định.</p>
+    <div class="cta-caption">
+      <p>Hãy liên hệ để sắp xếp lịch đi xem công trình thực tế. Có hình ảnh, có công trình thật để ACE yên tâm giới thiệu, chủ nhà yên tâm xây sửa.</p>
+      <a class="btn btn-phone" href="tel:0983601366">📞 Liên hệ 0983.601.366</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="dat-lich">
+  <div class="container">
+    <h2>Bạn có khách cần xây hoặc sửa nhà?</h2>
+    <p class="sub" style="color:#e2e8f0;">Chỉ cần một cuộc gọi — phần còn lại chúng tôi lo kỹ từ việc nhỏ đến việc lớn.</p>
+    <div class="phone"><a href="tel:0983601366">0983.601.366</a></div>
+    <p class="note">Hải &amp; Cộng sự · Chuyên xây dựng &amp; sửa chữa nhà ở · Hợp tác bền vững cùng ACE môi giới</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© <span id="yr"></span> Hải &amp; Cộng sự — xaydung.aladdin.vn · Liên hệ: <a href="tel:0983601366">0983.601.366</a></p>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

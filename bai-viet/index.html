@@ -1,0 +1,56 @@
+---
+layout: default
+title: "Bài viết cho môi giới & chủ nhà"
+description: "Kinh nghiệm thực tế, cẩm nang xây sửa nhà dành cho ACE môi giới và chủ nhà."
+---
+
+<div class="pagehead">
+  <div class="container">
+    <h1>Bài viết</h1>
+    <p>Kinh nghiệm thực tế và cẩm nang xây · sửa nhà dành cho ACE môi giới và chủ nhà.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tabs" id="tabs">
+    <button class="tab-btn active" data-f="all">Tất cả</button>
+    <button class="tab-btn" data-f="moi-gioi">Dành cho Môi giới</button>
+    <button class="tab-btn" data-f="chu-nha">Dành cho Chủ nhà</button>
+  </div>
+
+  <div class="postlist" id="postlist">
+    {% for post in site.blog %}
+    <div class="postcard" data-nhom="{{ post.nhom | slugify }}">
+      <a href="{{ post.url | relative_url }}">
+        <div class="thumb">
+          {% if post.image %}<img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">{% else %}<div class="ph">🏗️</div>{% endif %}
+        </div>
+      </a>
+      <div class="body">
+        <span class="cat">{{ post.nhom }}</span>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+        <div class="date">{{ post.date | date: "%d/%m/%Y" }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+(function(){
+  var tabs = document.getElementById('tabs');
+  if(!tabs) return;
+  tabs.addEventListener('click', function(e){
+    var btn = e.target.closest('.tab-btn');
+    if(!btn) return;
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    var f = btn.getAttribute('data-f');
+    document.querySelectorAll('#postlist .postcard').forEach(function(c){
+      var nhom = c.getAttribute('data-nhom');
+      c.style.display = (f === 'all' || nhom === f) ? '' : 'none';
+    });
+  });
+})();
+</script>

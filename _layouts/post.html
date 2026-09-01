@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<article class="article">
+  <span class="cat">{{ page.cat | default: page.categories | join: ", " }}</span>
+  <h1 class="title">{{ page.title }}</h1>
+  <div class="meta">
+    {% if page.date %}Ngày đăng: {{ page.date | date: "%d/%m/%Y" }} · {% endif %}
+    {% if page.nhom %}Nhóm: {{ page.nhom }}{% endif %}
+  </div>
+
+  {% if page.image %}
+    <img class="cover" src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+  {% else %}
+    <div class="cover-fallback">🏗️</div>
+  {% endif %}
+
+  <div class="content">
+    {{ content }}
+  </div>
+
+  <div class="ctabox">
+    <h3>Cần tư vấn xây hoặc sửa nhà?</h3>
+    <p>Gọi ngay cho chúng tôi để được hỗ trợ tận tình, từ khâu thiết kế đến bàn giao công trình.</p>
+    <div class="phone"><a href="tel:0983601366" style="color:#fbbf24;">0983.601.366</a></div>
+    <a class="btn btn-phone" href="tel:0983601366">📞 Gọi ngay</a>
+  </div>
+</article>

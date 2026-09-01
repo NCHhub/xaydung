@@ -1,0 +1,32 @@
+---
+layout: default
+title: "Công trình thi công thực tế"
+description: "Hình ảnh công trình xây, sửa nhà thực tế — bằng chứng để ACE đưa khách đi xem và tham khảo."
+---
+
+<div class="pagehead">
+  <div class="container">
+    <h1>Công trình</h1>
+    <p>Hình ảnh công trình xây · sửa nhà thực tế. Có công trình thật để ACE đưa khách đi xem và tham khảo trực tiếp.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="postlist" style="padding-top:34px;">
+    {% for p in site.portfolio %}
+    <div class="postcard">
+      <a href="{{ p.url | relative_url }}">
+        <div class="thumb">
+          {% if p.image %}<img src="{{ p.image | relative_url }}" alt="{{ p.title }}" loading="lazy">{% else %}<div class="ph">🏠</div>{% endif %}
+        </div>
+      </a>
+      <div class="body">
+        <span class="cat">{{ p.loai | default: "Công trình thực tế" }}</span>
+        <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+        <p class="excerpt">{{ p.excerpt | strip_html | truncatewords: 22 }}</p>
+        <div class="date">{{ p.date | date: "%d/%m/%Y" }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

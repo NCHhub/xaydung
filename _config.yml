@@ -1,0 +1,50 @@
+# Cấu hình Jekyll — web phụ xaydung.aladdin.vn
+# GitHub Pages tự build Jekyll; không cài máy local.
+
+title: "Hải & Cộng sự — Xây · Sửa nhà"
+email: nch@aladdin.vn
+description: >-
+  Giới thiệu khách xây, sửa nhà — mở thêm thu nhập cho ACE môi giới.
+  Công trình thật, hoa hồng rõ ràng, hợp tác lâu dài. 0983.601.366.
+baseurl: ""
+url: "https://xaydung.aladdin.vn"
+lang: vi
+
+# Collections — 2 loại nội dung chính
+collections:
+  blog:
+    output: true
+    permalink: /blog/:title/
+  portfolio:
+    output: true
+    permalink: /cong-trinh/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "blog"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "portfolio"
+    values:
+      layout: "post"
+
+# Only GitHub-supported settings (no external plugins)
+plugins: []
+
+# Permalink cho các page thường (index) mặc định theo file
+permalink: pretty
+
+# Build
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

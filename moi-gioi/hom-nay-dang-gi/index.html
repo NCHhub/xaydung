@@ -22,6 +22,7 @@ description: "Chủ đề đang được khách quan tâm + caption có sẵn ch
     {% for item in site.data.moi-gioi.hom-nay-dang-gi %}
     {% assign post = site.blog | where: "slug", item.slug | first %}
     {% if post %}
+    {% assign link = post.url | absolute_url %}
     <div class="qcard" data-nhom="{{ post.nhom | slugify }}">
       <div style="display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start;">
         {% if post.image %}
@@ -34,8 +35,8 @@ description: "Chủ đề đang được khách quan tâm + caption có sẵn ch
           <h3 style="font-size:1.25rem;font-weight:600;margin:8px 0 10px;"><a href="{{ post.url | relative_url }}" style="color:var(--text);">{{ post.title }}</a></h3>
           <p style="color:var(--text-3);font-size:.88rem;margin-bottom:14px;">Caption đã chèn sẵn link bài &amp; ảnh minh họa — copy dán là đăng.</p>
           <div class="capbox">
-            <pre style="white-space:pre-wrap;font-family:inherit;font-size:.98rem;line-height:1.6;color:var(--text-2);margin:0 0 14px;">{{ item.caption | replace: '[link bài viết]', post.url | absolute_url }}</pre>
-            <button class="btn btn-solid btn-sm copy-cap" data-text="{{ item.caption | replace: '[link bài viết]', post.url | absolute_url | escape }}" style="padding:10px 20px;font-size:.95rem;">📋 Copy caption</button>
+            <pre style="white-space:pre-wrap;font-family:inherit;font-size:.98rem;line-height:1.6;color:var(--text-2);margin:0 0 14px;">{{ item.caption | replace: '[link bài viết]', link }}</pre>
+            <button class="btn btn-solid btn-sm copy-cap" data-text="{{ item.caption | replace: '[link bài viết]', link | escape }}" style="padding:10px 20px;font-size:.95rem;">📋 Copy caption</button>
           </div>
         </div>
       </div>

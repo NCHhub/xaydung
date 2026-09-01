@@ -1,0 +1,119 @@
+---
+# Layout dashboard — AdminLTE v4 (MIT) + Bootstrap 5.3.8 qua CDN jsDelivr.
+# Chỉ áp dụng cho các trang công cụ môi giới (/moi-gioi/...), không đụng layout public (default.html).
+---
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#115e59">
+<title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- AdminLTE v4 + Bootstrap 5.3.8 (CDN jsDelivr — MIT, phù hợp GitHub Pages tĩnh) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/css/adminlte.min.css">
+<style>
+  :root{
+    --teal:#0f766e; --teal-hover:#115e59; --ink:#1d1d1f; --muted:#6e6e73;
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#f4f6f8;color:var(--ink);}
+  /* Brand */
+  .app-brand{font-weight:700;font-size:1.05rem;letter-spacing:-.01em;}
+  .app-brand .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,#7cffb2,#3cd0a5);margin-right:8px;box-shadow:0 0 10px rgba(60,208,165,.7);}
+  /* Nút hành động lớn (Mục 7.2 LỆNH TỔNG) */
+  .big-action{display:flex;flex-direction:column;gap:14px;height:100%;padding:26px;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;box-shadow:0 6px 18px rgba(0,0,0,.05);transition:all .2s ease;text-decoration:none;color:inherit;}
+  .big-action:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.12);text-decoration:none;color:inherit;}
+  .big-action .ic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;}
+  .big-action h3{font-size:1.12rem;font-weight:700;margin:0;}
+  .big-action p{color:var(--muted);font-size:.88rem;margin:0;flex:1;}
+  .big-action .go{color:var(--teal);font-weight:600;font-size:.9rem;}
+  /* Card nhỏ */
+  .mini-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px 20px;}
+  .status-line{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:.92rem;}
+  .status-line:last-child{border-bottom:none;}
+  /* Sidebar (AdminLTE) */
+  .app-sidebar .nav-link{color:#cbd5e1;border-radius:12px;margin:2px 10px;}
+  .app-sidebar .nav-link:hover{color:#fff;background:rgba(255,255,255,.06);}
+  .app-sidebar .nav-link.active{color:#fff;background:var(--teal);}
+  .btn-main{background:var(--teal);border:none;}
+  .btn-main:hover{background:var(--teal-hover);}
+  .text-muted2{color:var(--muted);}
+  @media (max-width: 991px){
+    .app-sidebar .nav-link{padding:.55rem .9rem;font-size:.95rem;}
+  }
+</style>
+</head>
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+
+<div class="app-wrapper">
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="app-sidebar bg-dark bg-opacity-75" data-bs-theme="dark">
+    <div class="sidebar-brand">
+      <a href="{{ '/' | relative_url }}" class="app-brand text-white">
+        <span class="dot"></span>Hải &amp; Cộng sự
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <nav class="mt-2">
+        <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="{{ '/moi-gioi/' | relative_url }}" class="nav-link active">
+              <i class="nav-icon bi bi-house"></i><span>Hôm nay</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ '/moi-gioi/khach-hoi/' | relative_url }}" class="nav-link">
+              <i class="nav-icon bi bi-chat-dots"></i><span>Khách đang hỏi gì?</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ '/moi-gioi/hom-nay-dang-gi/' | relative_url }}" class="nav-link">
+              <i class="nav-icon bi bi-megaphone"></i><span>Hôm nay đăng gì?</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN74cicm1qQWxBBi1FIJIo6UNq14SFKQOxRKGqbSXn0OP16g/viewform" target="_blank" rel="noopener" class="nav-link">
+              <i class="nav-icon bi bi-person-plus"></i><span>Giới thiệu khách</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://zalo.me/0983601366" target="_blank" rel="noopener" class="nav-link">
+              <i class="nav-icon bi bi-telephone"></i><span>Góp ý / Zalo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- ===== Header ===== -->
+  <main class="app-main">
+    <div class="app-content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6"><h3 class="mb-0">{{ page.title | default: "Bộ công cụ" }}</h3></div>
+          <div class="col-sm-6 d-none d-sm-flex justify-content-sm-end align-items-center gap-2">
+            <span class="badge text-bg-light border">0983.601.366</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-content">
+      <div class="container-fluid">
+        {{ content }}
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/js/adminlte.min.js"></script>
+</body>
+</html>

@@ -1,56 +1,71 @@
 ---
-layout: default
-title: "Bộ công cụ kiếm tiền cho môi giới"
-description: "Khách hỏi → có người trả lời. Cần content → có cái để đăng. Giới thiệu khách xây sửa nhà → nhìn thấy quyền lợi."
+layout: dashboard
+title: "Hôm nay"
+description: "Khách hỏi → có người trả lời. Cần content → có cái để đăng. Giới thiệu khách xây sửa nhà → có người xử lý, quyền lợi rõ ràng."
 ---
 
-<div class="pagehead">
-  <div class="container">
-    <span class="badge" style="display:inline-flex;margin-bottom:20px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);color:#f5f5f7;padding:7px 18px;border-radius:980px;font-size:.85rem;">DÀNH CHO ACE MÔI GIỚI</span>
-    <h1>Công cụ giúp ACE <span style="background:linear-gradient(120deg,#2997ff,#7cffb2);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">tăng giá trị với khách</span></h1>
-    <p>Khách hỏi → có người trả lời. Cần content → có cái để đăng. Giới thiệu khách xây sửa → nhìn thấy quyền lợi rõ ràng.</p>
+<!-- Dashboard "Hôm nay" — LỆNH TỔNG Mục 7.2: câu hỏi + 3 hành động lớn trong vùng nhìn đầu tiên -->
+<div class="row mb-4">
+  <div class="col-12">
+    <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-.02em;">Hôm nay anh/chị cần gì?</h2>
   </div>
 </div>
 
-<div class="container" style="padding-top:64px;padding-bottom:90px;">
+<div class="row g-3 g-lg-4">
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-
-    <!-- Ô 1: KHÁCH ĐANG HỎI GÌ? -->
-    <a href="{{ '/moi-gioi/khach-hoi/' | relative_url }}" class="card tool-card" style="text-decoration:none;display:block;">
-      <div class="ico" style="background:linear-gradient(135deg,#e6f1ff,#d0e8ff);">🔥</div>
-      <h3 style="margin-bottom:10px;">Khách đang hỏi gì?</h3>
-      <p>Khách hỏi xây nhà bắt đầu từ đâu, trọn gói hay tự mua, báo giá chênh nhau... Lấy ngay câu trả lời ngắn để nói với khách, hoặc nhờ kỹ thuật gọi khách.</p>
-      <span class="btn btn-solid" style="margin-top:20px;">Tra câu trả lời →</span>
+  <!-- 1. KHÁCH ĐANG HỎI GÌ? -->
+  <div class="col-md-4">
+    <a class="big-action" href="{{ '/moi-gioi/khach-hoi/' | relative_url }}">
+      <div class="ic" style="background:#e6f1ff;color:#0071e3;">🗣️</div>
+      <h3>Khách đang hỏi gì?</h3>
+      <p>Xây nhà bắt đầu từ đâu, trọn gói hay tự mua, báo giá chênh nhau… Lấy câu trả lời ngắn gửi khách, hoặc nhờ kỹ thuật gọi khách.</p>
+      <span class="go">Tra câu trả lời →</span>
     </a>
-
-    <!-- Ô 2: HÔM NAY ĐĂNG GÌ? -->
-    <a href="{{ '/moi-gioi/hom-nay-dang-gi/' | relative_url }}" class="card tool-card" style="text-decoration:none;display:block;">
-      <div class="ico" style="background:linear-gradient(135deg,#e6f7f0,#d1efea);">📤</div>
-      <h3 style="margin-bottom:10px;">Hôm nay đăng gì?</h3>
-      <p>Chủ đề đang được quan tâm + caption có sẵn cho Facebook và Zalo. Chọn bài, copy caption, đăng — mất chưa tới 1 phút.</p>
-      <span class="btn btn-solid" style="margin-top:20px;">Chọn bài để đăng →</span>
-    </a>
-
-    <!-- Ô 3: GIỚI THIỆU KHÁCH -->
-    <div class="card tool-card" style="display:block;">
-      <div class="ico" style="background:linear-gradient(135deg,#f5f5f7,#e8e8ed);">💰</div>
-      <h3 style="margin-bottom:10px;">Giới thiệu khách</h3>
-      <p>Gửi khách cần xây/sửa nhà. Điền nhanh thông tin (dưới 1 phút) hoặc gửi trực tiếp qua Zalo. Aladdin nhận khách, ghi rõ người giới thiệu và cập nhật tiến độ về ACE.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN74cicm1qQWxBBi1FIJIo6UNq14SFKQOxRKGqbSXn0OP16g/viewform" target="_blank" rel="noopener" class="btn btn-solid" style="margin-top:20px;">Điền thông tin khách →</a>
-      <a href="https://zalo.me/0983601366" target="_blank" rel="noopener" class="btn btn-sm" style="margin-top:10px;color:var(--teal);border:1px solid rgba(15,118,110,.3);">Hoặc gửi Zalo: 0983.601.366</a>
-    </div>
-
   </div>
 
-  <section style="margin-top:72px;text-align:center;">
-    <h2 class="section-h" style="margin:0 auto;">Vì sao có bộ công cụ này?</h2>
-    <p class="sub" style="margin-left:auto;margin-right:auto;">Khảo sát hơn 600 môi giới BĐS Việt Nam cho thấy thách thức lớn nhất của ACE là <strong>marketing</strong> và <strong>uy tín với khách</strong>. Bộ công cụ này ra đời để trả lời hai nỗi đau đó — không phải để bán cho ACE thứ gì.</p>
-    <div class="points" style="margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-      <span class="pill">Khách hỏi → có người trả lời</span>
-      <span class="pill">Cần content → có cái để đăng</span>
-      <span class="pill">Khách cần xây sửa → có người xử lý</span>
-    </div>
-  </section>
+  <!-- 2. HÔM NAY ĐĂNG GÌ? -->
+  <div class="col-md-4">
+    <a class="big-action" href="{{ '/moi-gioi/hom-nay-dang-gi/' | relative_url }}">
+      <div class="ic" style="background:#e6f7f0;color:#0f766e;">📤</div>
+      <h3>Hôm nay đăng gì?</h3>
+      <p>Chủ đề đang được quan tâm + caption có sẵn cho Facebook và Zalo. Copy, đăng — chưa tới 1 phút, khách thấy ACE luôn cập nhật.</p>
+      <span class="go">Chọn bài để đăng →</span>
+    </a>
+  </div>
 
+  <!-- 3. TÔI CÓ KHÁCH CẦN HỖ TRỢ -->
+  <div class="col-md-4">
+    <div class="big-action" style="cursor:default;">
+      <div class="ic" style="background:#fff7e6;color:#f59e0b;">💰</div>
+      <h3>Tôi có khách cần hỗ trợ</h3>
+      <p>Gửi khách cần xây/sửa nhà. Điền form nhanh dưới 1 phút hoặc gửi Zalo — Aladdin ghi rõ người giới thiệu và cập nhật tiến độ về ACE.</p>
+      <div class="d-flex flex-wrap gap-2 mt-2">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN74cicm1qQWxBBi1FIJIo6UNq14SFKQOxRKGqbSXn0OP16g/viewform" target="_blank" rel="noopener" class="btn btn-main btn-sm text-white" style="padding:.55rem 1.1rem;">Điền thông tin khách</a>
+        <a href="https://zalo.me/0983601366" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary" style="padding:.55rem 1.1rem;">Gửi Zalo 0983.601.366</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Góp ý nhanh — đóng vòng phản hồi (LỆNH TỔNG 8.6, Phase 1) -->
+<div class="row g-3 mt-3">
+  <div class="col-lg-7">
+    <div class="mini-card">
+      <h4 style="font-size:1rem;font-weight:700;margin-bottom:6px;">Anh/chị thấy công cụ này sao?</h4>
+      <p class="text-muted2" style="font-size:.88rem;margin-bottom:12px;">1 chạm góp ý — Aladdin đọc và cải thiện từng tuần. Khách của ACE vẫn là khách của ACE.</p>
+      <div class="d-flex flex-wrap gap-2">
+        <a href="https://zalo.me/0983601366" target="_blank" rel="noopener" class="btn btn-sm btn-outline-success">👍 Có ích — tôi sẽ dùng tiếp</a>
+        <a href="https://zalo.me/0983601366" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary">👎 Chưa đúng nhu cầu — gửi góp ý</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="mini-card">
+      <h4 style="font-size:1rem;font-weight:700;margin-bottom:6px;">Cam kết với ACE</h4>
+      <div class="status-line"><span class="badge text-bg-success">✓</span> Hoa hồng rõ ràng, ghi nhận người giới thiệu</div>
+      <div class="status-line"><span class="badge text-bg-success">✓</span> Khách của ACE vẫn là khách của ACE</div>
+      <div class="status-line"><span class="badge text-bg-success">✓</span> Công trình thật, không bịa số liệu</div>
+    </div>
+  </div>
 </div>

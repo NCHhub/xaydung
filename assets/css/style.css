@@ -110,6 +110,10 @@ h2.section-h{font-size:clamp(1.9rem,4vw,3.2rem);font-weight:700;letter-spacing:-
 .tab-btn.active{background:var(--dark);color:#fff;border-color:var(--dark);}
 .tab-btn:not(.active):hover{background:var(--bg-gray);}
 
+/* Tạm thời ẩn ngày đăng bài (ẩn CSS, markup giữ nguyên để dễ khôi phục) */
+.postcard .date{display:none;}
+.article .post-date{display:none;}
+
 /* ===== POST CARDS ===== */
 .postlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;padding-bottom:90px;}
 .postcard{border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .3s ease,box-shadow .3s ease;background:var(--bg);}

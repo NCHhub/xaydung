@@ -14,7 +14,7 @@ lang: vi
 collections:
   blog:
     output: true
-    permalink: /blog/:title/
+    permalink: /bai-viet/:title/
   portfolio:
     output: true
     permalink: /cong-trinh/:title/

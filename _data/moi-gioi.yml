@@ -30,6 +30,58 @@ khach-hoi:
     slug: "ghi-nhan-hien-trang-nha-hang-xom-truoc-khi-phado"
 
 # ------------------------------------------------------------
+# BẢNG GIÁ CHUẨN — TÍNH TỨC THÌ (mọi ngôi nhà dùng cùng công thức)
+# Đơn giá VNĐ/m² sàn. Người dùng điền thông số → web tính ngay, không chờ AI.
+# Đây là nền thị trường chung 2026. Diamond bổ sung giá riêng kinh nghiệm 21 năm
+# bằng cách sửa các con số bên dưới (nguồn kiến thức riêng của Hải).
+# ------------------------------------------------------------
+bang-gia:
+  don-vi: "VNĐ/m² sàn"
+  ghi-chu: "Giá tham khảo thị trường 2026. Chưa gồm đất, xin phép, thiết kế, dự phòng. Cần khảo sát thực tế để báo giá chính xác."
+
+  xay-moi:
+    # Chi phí xây mới nhà ở dân dụng (thô + hoàn thiện cơ bản)
+    khong-gian:
+      "Hà Nội": 15000000        # 15tr/m²
+      "TP.HCM": 15500000
+      "Đà Nẵng": 13500000
+      "Tỉnh khác": 12500000
+    theo-vat-lieu:            # hệ số nhân theo chất lượng vật liệu
+      "Phổ thông": 1.0
+      "Khá": 1.2
+      "Cao cấp": 1.5
+
+  sua-chua:
+    # Chi phí sửa chữa theo mức độ, đơn giá/m² sàn hiện trạng
+    muc-do:
+      "Sửa nhẹ (sơn, sửa nhỏ, thay nội thất)": 2500000     # 2.5tr/m²
+      "Sửa vừa (cải tạo, chống thấm, điện nước, trát)": 5000000
+      "Sửa lớn (thay kết cấu, nâng tầng, cải tạo triệt để)": 9000000
+
+  son:
+    "Trong nhà": 35000        # /m² tường
+    "Ngoài nhà": 55000
+    "chu-trong": 20000         # /m² hệ số phần sơn trong
+
+  vat-tu-xi-mang:
+    # Số bao xi măng 50kg cho 1m² sàn xây mới (thô cơ bản)
+    mac-100: 2.2
+    mac-250: 2.6
+    mac-300: 3.0
+
+  he-so-tang:                  # hệ số theo số tầng cho tổng diện tích sàn
+    "1": 1.0
+    "2": 1.15
+    "3": 1.25
+    "4": 1.35
+    "5+": 1.45
+
+  phi-phu:
+    "Vật liệu phải khuân tay (ngõ xe máy/ngõ nhỏ)": 0.12   # +12% vận chuyển thủ công
+    "Đất nền yếu cần xử lý nền": 0.10
+    "Khu vực xa/khó tiếp cận": 0.08
+
+# ------------------------------------------------------------
 # CÔNG CỤ 2 — Hôm nay đăng gì?
 # Caption có sẵn cho từng bài (FB/Zalo) — nút copy 1 chạm.
 # ------------------------------------------------------------

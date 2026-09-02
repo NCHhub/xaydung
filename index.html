@@ -141,7 +141,9 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
 
 <!-- ★ JAVASCRIPT — Bridge ↔ Web -->
 <script>
-const BRIDGE = localStorage.getItem('aladdin-bridge') || '';
+/* Bridge URL: ưu tiên localStorage (Diamond override), fallback mặc định tunnel hiện tại.
+   Khi tunnel đổi URL → set localStorage: localStorage.setItem('aladdin-bridge','URL') */
+const BRIDGE = localStorage.getItem('aladdin-bridge') || 'https://muslim-warcraft-discounted-municipality.trycloudflare.com';
 
 /* Dấu vết người dùng: anonymous id bền trong localStorage
    → mỗi người dùng có 1 hội thoại riêng (liền mạch, có bộ nhớ) trên bridge */

@@ -24,7 +24,7 @@ OPENCODE_BIN = os.getenv("OPENCODE_BIN", "opencode")
 app = FastAPI(title="Hải Bridge", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://X.aladDin.vn", "http://localhost:4000"],
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )

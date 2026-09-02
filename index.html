@@ -1,12 +1,15 @@
 ---
 layout: default
-title: "Công cụ môi giới — tư vấn xây/sửa nhà"
-description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Nguyễn Cao Hải — ước tính, soi báo giá, tính vật tư."
+title: "Trợ lý môi giới đầu khách mua — tính chi phí & kiểm tra nhà trước khi mua"
+description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ tốn thêm bao nhiêu, cần kiểm tra gì trước khi đặt cọc — báo cáo mang tên anh/chị, gửi khách qua Zalo."
 ---
 
 <!-- ================================================================
-     TRANG CHỦ = CÔNG CỤ CỦA MÔI GIỚI
-     LỆNH TỔNG V2 — Mục 0.2: ô hỏi + 4 nút lớn, mobile-first, Apple
+     ALADDIN — TRỢ LÝ MÔI GIỚI ĐẦU KHÁCH MUA (XOAY TRỤC theo PR/FAQ)
+     "Màn hình đầu tiên" (PR/FAQ Mục 4):
+       1 câu hỏi lớn + ô nhập → 3 hành động: tính tiền / kiểm tra cọc / nhờ kỹ sư
+       KHÔNG hiện dashboard/menu/danh sách công cụ trước khi nhận giá trị.
+     Bộ công cụ tối giản, ưu tiên mobile (môi giới tư vấn khách bằng điện thoại).
      ================================================================ -->
 
 <style>
@@ -96,45 +99,41 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
 .offline-msg a{color:#b45309;font-weight:600;text-decoration:underline;}
 </style>
 
-<!-- ★ VÙNG NHÌN ĐẦU TIÊN — CÔNG CỤ -->
+<!-- ★ VÙNG NHÌN ĐẦU TIÊN — CÂU HỎI LỚN + 3 HÀNH ĐỘNG -->
 <section class="tool-section">
   <div class="container">
-    <span class="badge-top">Công cụ môi giới · xây &amp; sửa nhà</span>
-    <h1>Anh/chị đang cần tính<br>hoặc kiểm tra việc gì cho căn nhà?</h1>
-    <p class="subtitle">Nhập câu hỏi — Nguyễn Cao Hải và Cộng sự sẽ tư vấn ngay. Kısa gọn, rõ ràng, có thể gửi khách liền.</p>
+    <span class="badge-top">Trợ lý môi giới · đầu khách mua</span>
+    <h1>Khách của anh/chị đang cân nhắc căn nhà nào?</h1>
+    <p class="subtitle">Nhập thông tin căn nhà khách đang định mua — nhận ngay ước tính chi phí sửa &amp; checklist trước khi đặt cọc, mang tên anh/chị, gửi khách qua Zalo.</p>
 
-    <!-- ★ Ô HỎI -->
+    <!-- ★ Ô NHẬP — căn nhà khách đang xem -->
     <div class="input-box">
-      <input type="text" id="tool-input" placeholder="VD: Nhà 45m² muốn sửa để bán, cần bao nhiêu?" autocomplete="off" maxlength="500">
+      <input type="text" id="tool-input" placeholder="VD: Nhà 42m², 4 tầng, ngõ 1,8m ở Đống Đa; khách muốn sửa để ở" autocomplete="off" maxlength="500">
       <button class="ask-btn" id="tool-ask" onclick="askFromInput()">Hỏi →</button>
     </div>
 
-    <!-- ★ 4 NÚT LỚN -->
+    <!-- ★ 3 HÀNH ĐỘNG CHÍNH — môi giới đầu khách mua -->
     <div class="tool-grid">
-      <button class="tool-btn" onclick="askTool('estimate_cost','Ước tính chi phí xây/sửa nhà')">
+      <button class="tool-btn" onclick="goCalc()" id="btn-tinh-tien">
         <span class="t-icon" style="background:#e6f7f0;color:#0f766e;">💰</span>
-        <span class="t-label">Tính chi phí<br>xây/sửa</span>
+        <span class="t-label">Tính tiền cần thêm<br>sau khi mua</span>
       </button>
-      <button class="tool-btn" onclick="askTool('audit_quote','Soi báo giá còn thiếu hạng mục nào')">
+      <button class="tool-btn" onclick="goChecklist()">
         <span class="t-icon" style="background:#e6f1ff;color:#0071e3;">🔍</span>
-        <span class="t-label">Soi báo giá<br>còn thiếu gì</span>
+        <span class="t-label">Kiểm tra<br>trước khi đặt cọc</span>
       </button>
-      <button class="tool-btn" onclick="askTool('calculate_material','Tính vật tư cần thiết cho công trình')">
-        <span class="t-icon" style="background:#fff7e6;color:#b45309;">🧮</span>
-        <span class="t-label">Tính<br>vật tư</span>
-      </button>
-      <button class="tool-btn" onclick="askTool('diagnose_issue','Xử lý thấm/nứt nhà')">
-        <span class="t-icon" style="background:#f3f0ff;color:#7c3aed;">🔧</span>
-        <span class="t-label">Xử lý<br>thấm/nứt</span>
+      <button class="tool-btn" onclick="askTool('request_expert','Khách muốn nhờ kỹ sư khảo sát. Tôi cần gửi yêu cầu gì?')">
+        <span class="t-icon" style="background:#fff7e6;color:#b45309;">🛠️</span>
+        <span class="t-label">Nhờ kỹ sư<br>khảo sát</span>
       </button>
     </div>
 
-    <!-- ★ FORM DỰ TOÁN TOÀN DIỆN (điền thông số → tính ngay) -->
-    <div class="calc-box">
+    <!-- ★ FORM TÍNH TỨC THÌ — "Tính tiền cần thêm sau khi mua" (điền thông số → tính ngay, không cần AI) -->
+    <div class="calc-box" id="calc-box">
       <div class="calc-head">
         <span class="calc-ico">⚡</span>
-        <div class="calc-title">Dự toán toàn diện</div>
-        <div class="calc-sub">Điền thông tin căn nhà → bấm <b>Tính ngay</b> → ra bảng dự toán chi tiết.</div>
+        <div class="calc-title">Tính tiền cần thêm sau khi mua</div>
+        <div class="calc-sub">Điền thông tin căn nhà → bấm <b>Tính ngay</b> → ra khoảng chi phí xây/sửa để gửi khách.</div>
       </div>
       <div class="calc-form">
         <!-- BƯỚC 1: LOẠI CÔNG VIỆC -->
@@ -256,6 +255,35 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
       </div>
       <!-- Kết quả tính -->
       <div class="calc-result" id="calc-result"></div>
+      <button class="calc-btn" id="btn-gui-baocao" style="display:none;margin-top:12px;background:#115e59;" onclick="goGuiBaoCao()">📤 Gửi báo cáo mang tên tôi (Zalo)</button>
+    </div>
+
+    <!-- ★ KIỂM TRA TRƯỚC KHI ĐẶT CỌC — checklist tối giản -->
+    <div class="calc-box" id="checklist-box" style="display:none;">
+      <div class="calc-head">
+        <span class="calc-ico">🔍</span>
+        <div class="calc-title">Kiểm tra trước khi đặt cọc</div>
+        <div class="calc-sub">Tick trạng thái từng mục → hệ thống phân loại: tiếp tục tìm hiểu / cần hỏi thêm / nên khảo sát chuyên gia.</div>
+      </div>
+      <div class="calc-form">
+        <div class="calc-step">Hiện trạng nhà</div>
+        <label class="calc-check"><input type="radio" name="cl-nut" value="ok"> Vết nứt tường, lún, nghiêng — bình thường / chưa thấy</label>
+        <label class="calc-check"><input type="radio" name="cl-nut" value="warn"> Có vết nứt lớn / lún / nghiêng rõ</label>
+        <label class="calc-check"><input type="radio" name="cl-nut" value="unknown"> Chưa quan sát được kỹ</label>
+
+        <div class="calc-step">Thấm, dột, vệ sinh</div>
+        <label class="calc-check"><input type="radio" name="cl-tham" value="ok"> Không thấy thấm, dột, mùi hôi</label>
+        <label class="calc-check"><input type="radio" name="cl-tham" value="warn"> Có vết thấm / dột / mùi hôi vệ sinh</label>
+        <label class="calc-check"><input type="radio" name="cl-tham" value="unknown"> Chưa quan sát được</label>
+
+        <div class="calc-step">Lối thi công & nhà liền kề</div>
+        <label class="calc-check"><input type="radio" name="cl-loi" value="ok"> Ngõ ô tô / thuận lợi cho xe, máy móc</label>
+        <label class="calc-check"><input type="radio" name="cl-loi" value="warn"> Ngõ nhỏ / xe máy, sát nhà liền kề (khó thi công)</label>
+        <label class="calc-check"><input type="radio" name="cl-loi" value="unknown"> Chưa biết rõ ngõ xóm</label>
+
+        <button class="calc-btn" onclick="checklistNow()">🔍 Xem phân loại</button>
+        <div class="calc-result" id="checklist-result" style="margin-top:14px;"></div>
+      </div>
     </div>
 
     <!-- ★ LOADING -->
@@ -295,13 +323,13 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
   </div>
 </section>
 
-<!-- ★ CAM KẾT — ngắn gọn ngay dưới công cụ -->
+<!-- ★ CAM KẾT CỘNG SINH — ngắn gọn ngay dưới công cụ -->
 <section style="padding:0 0 40px;">
   <div class="container" style="text-align:center;">
     <div style="display:inline-flex;flex-wrap:wrap;gap:8px;justify-content:center;">
-      <span style="font-size:.82rem;font-weight:600;color:var(--teal);background:rgba(15,118,110,.06);border-radius:980px;padding:8px 16px;">✓ Hoa hồng rõ ràng</span>
+      <span style="font-size:.82rem;font-weight:600;color:var(--teal);background:rgba(15,118,110,.06);border-radius:980px;padding:8px 16px;">✓ Báo cáo mang tên anh/chị</span>
       <span style="font-size:.82rem;font-weight:600;color:var(--teal);background:rgba(15,118,110,.06);border-radius:980px;padding:8px 16px;">✓ Khách của ACE vẫn là khách của ACE</span>
-      <span style="font-size:.82rem;font-weight:600;color:var(--teal);background:rgba(15,118,110,.06);border-radius:980px;padding:8px 16px;">✓ Công trình thật · 0983.601.366</span>
+      <span style="font-size:.82rem;font-weight:600;color:var(--teal);background:rgba(15,118,110,.06);border-radius:980px;padding:8px 16px;">✓ Quyền lợi giới thiệu minh bạch · 0983.601.366</span>
     </div>
   </div>
 </section>
@@ -497,8 +525,60 @@ function calcNow(){
   }
 
   box.innerHTML = html;
+  document.getElementById('btn-gui-baocao').style.display = 'block';
+  window._lastAnswer = 'DỰ TOÁN ' + (document.getElementById('calc-result').innerText || '');
 }
 calcToggle();
+
+/* ===== ĐIỀU HƯỚNG 3 HÀNH ĐỘNG (môi giới đầu khách mua) ===== */
+function goCalc(){
+  // Cuộn xuống form tính tiền, focus diện tích
+  document.getElementById('calc-box').scrollIntoView({behavior:'smooth',block:'center'});
+  document.getElementById('c-area').focus();
+}
+function goChecklist(){
+  // Hiện + cuộn tới checklist trước khi cọc
+  document.getElementById('checklist-box').style.display = 'block';
+  document.getElementById('checklist-box').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function goGuiBaoCao(){
+  const text = window._lastAnswer || document.getElementById('calc-result').innerText || '';
+  const url = 'https://zalo.me/0983601366?text=' + encodeURIComponent('Gửi báo cáo nhà cho khách:\n' + text.slice(0,1500));
+  window.open(url,'_blank');
+}
+
+/* ===== CHECKLIST TRƯỚC KHI CỌC ===== */
+function checklistNow(){
+  const box = document.getElementById('checklist-result');
+  const get = name => {
+    const el = document.querySelector('input[name="'+name+'"]:checked');
+    return el ? el.value : null;
+  };
+  const nut = get('cl-nut'), tham = get('cl-tham'), loi = get('cl-loi');
+  let warns = [], unknowns = [];
+  if (nut === 'warn') warns.push('Vết nứt/lún/nghiêng rõ — nên khảo sát kỹ thuật trước khi cọc.');
+  if (tham === 'warn') warns.push('Có thấm/dột/mùi hôi vệ sinh — xem mức độ nặng, có thể tăng chi phí sửa.');
+  if (loi === 'warn') warns.push('Ngõ nhỏ / sát nhà liền kề — khó thi công, chi phí cao hơn.');
+  if (nut === 'unknown') unknowns.push('Chưa quan sát được hiện trạng — cần xem kỹ vết nứt, lún.');
+  if (tham === 'unknown') unknowns.push('Chưa biết tình trạng thấm — nên hỏi chủ nhà / quan sát tường, trần.');
+  if (loi === 'unknown') unknowns.push('Chưa rõ ngõ xóm — kiểm tra điều kiện tiếp cận khi vận chuyển vật tư.');
+
+  if (!nut && !tham && !loi){
+    box.innerHTML = '<div class="calc-warn">⚠️ Vui lòng chọn trạng thái ít nhất 1 mục để xem phân loại.</div>';
+    return;
+  }
+  let cls = 'BÌNH THƯỜNG — có thể tiếp tục tìm hiểu';
+  let badge = 'success';
+  if (warns.length) { cls = 'NÊN KHẢO SÁT CHUYÊN GIA'; badge = 'danger'; }
+  else if (unknowns.length) { cls = 'CẦN HỎI THÊM / XEM KỸ'; badge = 'warning'; }
+  box.innerHTML =
+    '<div style="padding:10px 14px;border-radius:12px;font-weight:800;font-size:1rem;background:'+(badge==='danger'?'#fee2e2;color:#b91c1c':badge==='warning'?'#fff7e6;color:#92400e':'#e6f7f0;color:#0f766e')+'">🔍 Kết luận sơ bộ: '+cls+'</div>' +
+    (warns.length? '<ul style="margin:10px 0 0;padding-left:18px;font-size:.88rem;color:#b91c1c;">' + warns.map(w=>'<li>⚠️ '+w+'</li>').join('') + '</ul>' : '') +
+    (unknowns.length? '<ul style="margin:10px 0 0;padding-left:18px;font-size:.88rem;color:#92400e;">' + unknowns.map(w=>'<li>❓ '+w+'</li>').join('') + '</ul>' : '') +
+    '<div style="margin-top:12px;font-size:.78rem;color:var(--text-3);">Không kết luận kết cấu/pháp lý thay người có thẩm quyền. Nếu có dấu hiệu rủi ro, nên mời kỹ sư khảo sát trước khi cọc.</div>' +
+    '<button class="btn" style="margin-top:10px;width:100%;background:#b45309;color:#fff;border:none;border-radius:12px;padding:12px;font-weight:700;" onclick="askTool(\'request_expert\',\'Căn nhà có dấu hiệu cần kiểm tra kỹ. Tôi muốn nhờ kỹ sư khảo sát.\')">🛠️ Nhờ kỹ sư khảo sát</button>';
+  box.classList.add('show');
+}
 
 /* Dấu vết người dùng: anonymous id bền trong localStorage
    → mỗi người dùng có 1 hội thoại riêng (liền mạch, có bộ nhớ) trên bridge */

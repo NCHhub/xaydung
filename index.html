@@ -646,3 +646,42 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
 (async()=>{if(!BRIDGE){document.getElementById('offline').style.display='block';return}try{const r=await fetch(BRIDGE+'/health',{signal:AbortSignal.timeout(5000)});if(!r.ok)document.getElementById('offline').style.display='block'}catch{document.getElementById('offline').style.display='block'}})();
 </script>
 
+<!-- ★ GIỚI THIỆU — Nguyễn Cao Hải và Cộng sự -->
+<section class="about" style="padding-top:56px;">
+  <div class="container">
+    <span class="section-tag">Về chúng tôi</span>
+    <h2 class="section-h">Nguyễn Cao Hải và Cộng sự</h2>
+    <div style="max-width:720px;margin:0 auto;text-align:center;color:var(--text-2);font-size:.95rem;line-height:1.7;">
+      <p style="margin:0 0 14px;">Chúng tôi là <b>phòng kỹ thuật phía sau</b> của ACE môi giới — giúp anh/chị trả lời khách về chi phí, rủi ro và bước tiếp theo của căn nhà khách đang cân nhắc, ngay trên điện thoại, đúng lúc đang tư vấn.</p>
+      <p style="margin:0 0 14px;"><b>Nguyễn Cao Hải</b> — 21 năm kinh nghiệm thiết kế &amp; thi công, 11 năm kinh nghiệm quy hoạch pháp lý đầu tư. Đội ngũ kỹ sư khảo sát hiện trường, báo cáo rõ ràng, đúng cam kết.</p>
+      <p style="margin:0;">Hợp tác lâu dài với ACE môi giới: <b>báo cáo mang tên anh/chị</b>, <b>khách của anh/chị vẫn là của anh/chị</b>, quyền lợi giới thiệu minh bạch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ★ BÀI VIẾT — kiến thức cho môi giới (một phần trên trang duy nhất) -->
+<section class="benefits" style="padding-top:48px;">
+  <div class="container">
+    <span class="section-tag">Bài viết</span>
+    <h2 class="section-h">Kiến thức xây sửa nhà cho môi giới</h2>
+    <p class="sub">Kinh nghiệm thực tế, cẩm nang và câu hỏi khách hay hỏi.</p>
+    <div class="postlist" style="margin-top:28px;">
+      {% for post in site.blog limit:6 %}
+      <div class="postcard">
+        <a href="{{ post.url | relative_url }}">
+          <div class="thumb">
+            {% if post.image %}<img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">{% else %}<div class="ph">🏗️</div>{% endif %}
+          </div>
+        </a>
+        <div class="body">
+          <span class="cat">{{ post.nhom }}</span>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+          <div class="date">{{ post.date | date: "%d/%m/%Y" }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+

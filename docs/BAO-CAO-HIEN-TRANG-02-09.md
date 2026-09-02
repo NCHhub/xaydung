@@ -1,4 +1,4 @@
-# BÁO CÁO HIỆN TRẠNG — xaydung.aladdin.vn
+# BÁO CÁO HIỆN TRẠNG — X.aladDin.vn
 _Ngày: 02/09/2026 — Khảo sát theo LỆNH TỔNG Mục 5 & 20_
 
 ---
@@ -9,7 +9,7 @@ _Ngày: 02/09/2026 — Khảo sát theo LỆNH TỔNG Mục 5 & 20_
 |---|---|
 | **Framework** | Jekyll 4 (static site) trên GitHub Pages |
 | **Hosting** | GitHub Pages — tự build trên push to `main`, ~40s/build |
-| **Domain** | `xaydung.aladdin.vn` (custom domain, HTTPS cert đang pending) |
+| **Domain** | `X.aladDin.vn` (custom domain, HTTPS cert đang pending) |
 | **Frontend** | HTML/CSS/JS thuần + Bootstrap 5.3.8 + AdminLTE v4 (CDN) |
 | **Backend / Database** | **Không có** |
 | **Auth** | **Không có** |

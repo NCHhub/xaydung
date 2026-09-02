@@ -1,4 +1,4 @@
-# Cấu hình Jekyll — web phụ xaydung.aladdin.vn
+# Cấu hình Jekyll — web X.aladDin.vn
 # GitHub Pages tự build Jekyll; không cài máy local.
 
 title: "Hải & Cộng sự — Xây · Sửa nhà"
@@ -7,7 +7,7 @@ description: >-
   Giới thiệu khách xây, sửa nhà — mở thêm thu nhập cho ACE môi giới.
   Công trình thật, hoa hồng rõ ràng, hợp tác lâu dài. 0983.601.366.
 baseurl: ""
-url: "https://xaydung.aladdin.vn"
+url: "https://X.aladDin.vn"
 lang: vi
 
 # Collections — 2 loại nội dung chính

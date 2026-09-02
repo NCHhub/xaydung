@@ -24,7 +24,7 @@ OPENCODE_BIN = os.getenv("OPENCODE_BIN", "opencode")
 app = FastAPI(title="Hải Bridge", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://xaydung.aladdin.vn", "http://localhost:4000"],
+    allow_origins=["https://X.aladDin.vn", "http://localhost:4000"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -99,38 +99,64 @@ Luôn ưu tiên tạo giá trị cho môi giới: giúp họ trả lời khách 
 Không bịa số liệu, không tự tạo giá, không tự hứa."""
 
 async def call_advisor(task: AdvisorTask) -> AdvisorResult:
-    """Gọi OpenCode CLI với task và knowledge pack."""
+    """Gọi OpenCode CLI (opencode run) với task và knowledge pack."""
+    import re
     knowledge = get_knowledge()
     
-    user_msg = f"""Câu hỏi từ môi giới:
+    # System instruction gửi kèm
+    system = """Bạn là trợ lý tư vấn xây sửa nhà của Nguyễn Cao Hải và Cộng sự. Trả lời NGẮN GỌN tiếng Việt phổ thông. KHÔNG dùng markdown. Chỉ trả lời nội dung tư vấn. Nếu cần chuyên gia thì nói rõ. Luôn kết thúc bằng 1 dòng JSON trên cùng 1 dòng:
+{"shortAnswer":"...","assumptions":["..."],"risks":[{"level":"low|medium|high","message":"..."}],"nextActions":["copy","request_expert"]}
+Giá trị trong shortAnswer phải là câu trả lời đầy đủ cho môi giới gửi khách.
+Giá trị trong assumptions: giả định bạn đang dùng.
+Risks: rủi ro cần lưu ý.
+nextActions: các bước tiếp theo gợi ý.
+KHÔNG giải thích gì thêm ngoài nội dung tư vấn + JSON cuối cùng."""
+
+    user_msg = f"""{system}
+
+Câu hỏi từ môi giới:
 {task.question}
 
-Đầu vào: {json.dumps(task.houseContext, ensure_ascii=False) if task.houseContext else 'Không có'}
-
 Kiến thức tham khảo:
-{knowledge[:8000]}"""
+{knowledge[:6000]}"""
     
     try:
-        # Gọi opencode CLI (non-interactive, dùng --print hoặc qua SDK)
+        # Gọi opencode run (non-interactive, stdin pipe)
         result = subprocess.run(
-            [OPENCODE_BIN, "--print", "--model", "ollama-cloud/gemma4:31b-cloud"],
+            ["opencode", "run"],
             input=user_msg,
             capture_output=True,
             text=True,
-            timeout=60,
+            timeout=90,
             cwd=str(Path(__file__).parent.parent),
-            env={**os.environ, "OPENCODE_INSTRUCTIONS": str(Path(__file__).parent / "advisor-agents.md")}
         )
         
         raw = result.stdout.strip()
         
-        # Parse JSON từ output (advisor được hướng dẫn trả JSON)
-        try:
-            # Tìm JSON trong output (có thể có text trước/sau)
-            start = raw.find("{")
-            end = raw.rfind("}") + 1
-            if start >= 0 and end > start:
-                data = json.loads(raw[start:end])
+        # Strip ANSI escape codes
+        raw = re.sub(r'\x1b\[[0-9;]*m', '', raw)
+        raw = re.sub(r'\[0m', '', raw)
+        raw = re.sub(r'\[[\w\s·]+\]', '', raw)  # Remove "[0m" etc
+        
+        # Remove model info line "> build · big-pickle" etc
+        raw = re.sub(r'^>.*$', '', raw, flags=re.MULTILINE).strip()
+        
+        # Remove metadata sections (## Objective, ## Important, ## Work State, etc)
+        meta_idx = raw.find('## Objective')
+        if meta_idx > 0:
+            raw = raw[:meta_idx].strip()
+        meta_idx2 = raw.find('## Work State')
+        if meta_idx2 > 0:
+            raw = raw[:meta_idx2].strip()
+        
+        if not raw:
+            return _fallback(task.id, "Hệ thống tạm thời không trả lời được. Vui lòng nhắn Zalo 0983.601.366.")
+        
+        # Try to extract JSON from end of response
+        json_match = re.search(r'\{[^{}]*"shortAnswer"[^{}]*\}', raw, re.DOTALL)
+        if json_match:
+            try:
+                data = json.loads(json_match.group())
                 return AdvisorResult(
                     taskId=task.id,
                     status="completed",
@@ -140,40 +166,35 @@ Kiến thức tham khảo:
                     nextActions=data.get("nextActions", ["copy", "request_expert"]),
                     sources=[{"title": "Nguyễn Cao Hải và Cộng sự (AI sơ bộ)", "ref": "knowledge_v0.1"}]
                 )
-        except json.JSONDecodeError:
-            pass
+            except json.JSONDecodeError:
+                pass
         
-        # Fallback: dùng raw text làm shortAnswer
+        # Fallback: use raw text (clean) as shortAnswer
+        # Remove trailing JSON-like noise
+        clean = re.sub(r'\{[^{}]*"shortAnswer".*\}$', '', raw, flags=re.DOTALL).strip()
         return AdvisorResult(
             taskId=task.id,
             status="completed",
-            shortAnswer=raw[:1000] if raw else "Xin lỗi, hệ thống tạm thời không trả lời được. Vui lòng thử lại hoặc nhắn Zalo 0983.601.366.",
-            assumptions=["Kết quả từ AI sơ bộ, chưa được chuyên gia kiểm duyệt"],
-            risks=[{"level": "medium", "message": "Đây là tư vấn AI sơ bộ. Cần khảo sát thực tế."}],
+            shortAnswer=clean[:1500] if clean else raw[:1500],
+            assumptions=["Đây là tư vấn sơ bộ. Cần khảo sát thực tế."],
+            risks=[{"level": "medium", "message": "Kết quả từ AI sơ bộ, chưa được chuyên gia kiểm duyệt."}],
             nextActions=["copy", "request_expert"],
             sources=[{"title": "Nguyễn Cao Hải và Cộng sự (AI sơ bộ)", "ref": "knowledge_v0.1"}]
         )
     except subprocess.TimeoutExpired:
-        return AdvisorResult(
-            taskId=task.id, status="needs_expert",
-            shortAnswer="Hệ thống đang bận. Vui lòng thử lại sau hoặc nhắn Zalo 0983.601.366 để nhờ chuyên gia hỗ trợ.",
-            risks=[{"level": "low", "message": "Timeout — hệ thống quá tải"}],
-            nextActions=["request_expert"]
-        )
+        return _fallback(task.id, "Hệ thống đang bận. Vui lòng thử lại sau hoặc nhắn Zalo 0983.601.366.")
     except FileNotFoundError:
-        return AdvisorResult(
-            taskId=task.id, status="rejected",
-            shortAnswer="OpenCode chưa được cài trên hệ thống. Liên hệ quản trị.",
-            risks=[{"level": "high", "message": "OpenCode binary not found"}],
-            nextActions=["request_expert"]
-        )
+        return _fallback(task.id, "OpenCode chưa được cài. Liên hệ quản trị.")
     except Exception as e:
-        return AdvisorResult(
-            taskId=task.id, status="rejected",
-            shortAnswer=f"Lỗi hệ thống: {str(e)[:200]}",
-            risks=[{"level": "high", "message": str(e)[:200]}],
-            nextActions=["request_expert"]
-        )
+        return _fallback(task.id, f"Lỗi hệ thống: {str(e)[:200]}")
+
+def _fallback(task_id, msg):
+    return AdvisorResult(
+        taskId=task_id, status="rejected" if "Lỗi" in msg or "chưa được cài" in msg else "needs_expert",
+        shortAnswer=msg,
+        risks=[{"level": "medium", "message": "Hệ thống không thể xử lý tự động."}],
+        nextActions=["request_expert"]
+    )
 
 # ===== ENDPOINTS =====
 @app.get("/health")

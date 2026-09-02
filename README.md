@@ -1,4 +1,4 @@
-# Web phụ xaydung.aladdin.vn — Hải & Cộng sự
+# Web phụ X.aladDin.vn — Hải & Cộng sự
 
 Trang giới thiệu dịch vụ **xây dựng & sửa chữa nhà ở** dành cho **ACE môi giới** và **chủ nhà**.
 Nền tảng: **GitHub Pages + Jekyll** — tự động hoàn toàn bằng lệnh, không cần bấm web.
@@ -74,7 +74,7 @@ xaydung/
 ├── assets/
 │   ├── css/style.css    ← toàn bộ giao diện
 │   └── img/             ← ảnh bài viết & công trình
-└── CNAME                ← tên miền xaydung.aladdin.vn
+└── CNAME                ← tên miền X.aladDin.vn
 ```
 
 ---

@@ -121,87 +121,142 @@ bang-gia:
     "Khu vực xa/khó tiếp cận": 0.08
 
 # ------------------------------------------------------------
-# CÔNG CỤ 2 — Hôm nay đăng gì?
-# Caption có sẵn cho từng bài (FB/Zalo) — nút copy 1 chạm.
+# CÔNG CỤ 3 — QUY TRÌNH CÔNG TRÌNH (Diamond 02-09, bắt đầu nhỏ: làm ngay, dùng ngay)
+# Môi giới điền nhanh loại công trình + diện tích → sinh QUY TRÌNH chi tiết:
+#   checklist từng bước + chi phí + thời gian + kinh nghiệm. Chạy ngay, không chờ AI.
+# Diamond/Hải bổ sung kinh nghiệm 21 năm vào từng bước theo thực tế.
 # ------------------------------------------------------------
-hom-nay-dang-gi:
-  - slug: "xay-nha-lan-dau-bat-dau-tu-viec-gi"
-    caption: |
-      Người sắp xây nhà lần đầu thấy "hàng trăm hàng ngàn việc" không biết bắt đầu từ đâu. 🏗️
+quy-trinh:
+  # Mỗi loại công trình = 1 quy trình: tổng thời gian + ước chi phí tham khảo + danh sách GIAI ĐOẠN.
+  # Mỗi giai đoạn: tiêu đề + thời lượng + danh sách BƯỚC (checklist) kèm thời gian & kinh nghiệm.
+  # Nguồn: kinh nghiệm 21 năm Nguyễn Cao Hải. Diamond/Hải bổ sung chỉnh sửa theo thực tế.
+  "Xây mới":
+    tong-thoi-gian: "6–12 tháng"
+    chi-phi: "tham-khao bang-gia xay-moi"
+    giai-doan:
+      - ten: "Khảo sát & thủ tục"
+        thoi-gian: "2–4 tuần"
+        buoc:
+          - ten: "Kiểm tra hồ sơ đất, quy hoạch, hiện trạng"
+            thoi-gian: "1 tuần"
+            kinh-nghiem: "Phải làm TRƯỚC khi chọn nhà thầu. Xem thửa đất có nằm trong quy hoạch không, đất có đủ điều kiện xây không."
+          - ten: "Xin phép xây dựng (nếu cần)"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Sổ hồng + bản vẽ thiết kế + đơn. Với nhà sửa kết cấu cũng cần xin phép. Thời gian tùy quận/huyện."
+      - ten: "Thiết kế & báo giá"
+        thoi-gian: "3–6 tuần"
+        buoc:
+          - ten: "Chọn thiết kế kiến trúc & kết cấu"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Thiết kế tốt giúp tiết kiệm xây dựng. Không nên cắt khâu này."
+          - ten: "So báo giá theo hạng mục (không so tổng tiền)"
+            thoi-gian: "1–2 tuần"
+            kinh-nghiem: "Cùng 1 danh sách hạng mục, yêu cầu 2–3 nhà thầu điền giá rồi đối chiếu chỗ thiếu/chỗ mập mờ."
+      - ten: "Thi công"
+        thoi-gian: "3–9 tháng"
+        buoc:
+          - ten: "Móng & phần thô"
+            thoi-gian: "1,5–3 tháng"
+            kinh-nghiem: "Ghi nhận ảnh thép trước khi đổ bê tông, nghiệm thu móng trước khi lấp."
+          - ten: "Xây tô, điện nước trong tường"
+            thoi-gian: "1–2 tháng"
+            kinh-nghiem: "Chụp ảnh điện nước TRƯỚC khi trát — sau này muốn sửa rất khó."
+          - ten: "Hoàn thiện: sơn, nền, cửa, vệ sinh"
+            thoi-gian: "1–2,5 tháng"
+            kinh-nghiem: "Nghiệm thu từng phòng trước khi bàn giao, lập biên bản bảo hành."
+    note: "Vướng móng cọc, ngõ khuân tay, mua vật tư chậm → kéo dài thêm."
 
-      Tin tốt: không cần bắt đầu bằng móng, bắt đầu bằng giấy tờ — kiểm tra hồ sơ đất, quy hoạch, thủ tục xin phép trước, rồi đi xem công trình thật, rồi mới so báo giá theo hạng mục.
+  "Sửa nhẹ":
+    tong-thoi-gian: "3–5 tuần"
+    chi-phi: "tham-khao bang-gia sua-chua muc-do 'Sửa nhẹ'"
+    giai-doan:
+      - ten: "Khảo sát & chuẩn bị"
+        thoi-gian: "1–2 tuần"
+        buoc:
+          - ten: "Xác định hạng mục sửa, khảo sát hiện trạng"
+            thoi-gian: "1 tuần"
+            kinh-nghiem: "Chụp ảnh hiện trạng, liệt kê đủ hạng mục để tránh phát sinh."
+          - ten: "Chuẩn bị vật tư, sắp xếp chỗ ở tạm nếu cần"
+            thoi-gian: "1 tuần"
+            kinh-nghiem: "Sửa trong khi ở lại → lên kế hoạch khu vực thi công trước."
+      - ten: "Thi công"
+        thoi-gian: "1–3 tuần"
+        buoc:
+          - ten: "Sơn, sửa nhỏ, chống thấm"
+            thoi-gian: "1–2 tuần"
+            kinh-nghiem: "Sơn trong nhà cần trám vết nứt, sơn lót đủ. Chống thấm sân thượng phải xử lý kỹ gốc rễ."
+          - ten: "Nghiệm thu & dọn dẹp"
+            thoi-gian: "3–7 ngày"
+            kinh-nghiem: "Kiểm tra lại chỗ thấm sau mưa trước khi thanh toán hết."
+    note: "Phát sinh mở ra mới biết là bình thường (20–30%)."
 
-      ACE nào có khách đang chuẩn bị xây nhà, đọc bài này để trả lời khách đúng trọng tâm nhé 👇
-      [link bài viết]
+  "Sửa vừa (cải tạo)":
+    tong-thoi-gian: "1,5–3 tháng"
+    chi-phi: "tham-khao bang-gia sua-chua muc-do 'Sửa vừa'"
+    giai-doan:
+      - ten: "Khảo sát & chuẩn bị"
+        thoi-gian: "1–3 tuần"
+        buoc:
+          - ten: "Khảo sát kết cấu + hạng mục cải tạo"
+            thoi-gian: "1–2 tuần"
+            kinh-nghiem: "Cải tạo thường đụng kết cấu → khảo sát kỹ trước, đừng đoán."
+          - ten: "Xin phép nếu thay kết cấu, lên báo giá chi tiết"
+            thoi-gian: "1–3 tuần"
+            kinh-nghiem: "Có xây sửa kết cấu là cần xin phép; làm trước để không bị đình chỉ."
+      - ten: "Thi công"
+        thoi-gian: "1–2 tháng"
+        buoc:
+          - ten: "Phá dỡ + ghi nhận hiện trạng nhà liền kề"
+            thoi-gian: "1–2 tuần"
+            kinh-nghiem: "Lập biên bản hiện trạng nhà hàng xóm, có chữ ký 2 bên trước khi phá dỡ — tránh tranh chấp nứt vỡ."
+          - ten: "Điện nước, trát, chống thấm"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Điện nước trong tường phải chụp ảnh trước khi trát."
+          - ten: "Hoàn thiện & nghiệm thu"
+            thoi-gian: "2–3 tuần"
+            kinh-nghiem: "Nghiệm thu từng phần, đối chiếu đúng danh mục báo giá."
+    note: "Đụng kết cấu/thay tầng → có thể 3–6 tháng."
 
-      #xaynha #xaynhalandau #tuvaanxaynha
-  - slug: "tron-goi-hay-tu-mua-vat-tu"
-    caption: |
-      Trọn gói sợ cắt chất lượng, tự mua thì quản lý mệt. 🙃
+  "Sửa lớn (thay kết cấu, nâng tầng)":
+    tong-thoi-gian: "4–8 tháng"
+    chi-phi: "tham-khao bang-gia sua-chua muc-do 'Sửa lớn'"
+    giai-doan:
+      - ten: "Khảo sát & thủ tục"
+        thoi-gian: "1–2 tháng"
+        buoc:
+          - ten: "Khảo sát địa chất + kết cấu hiện hữu"
+            thoi-gian: "1–3 tuần"
+            kinh-nghiem: "Nâng tầng/thay kết cấu phải khảo sát để tính toán chính xác."
+          - ten: "Xin phép xây dựng, thiết kế kết cấu"
+            thoi-gian: "1–2 tháng"
+            kinh-nghiem: "Bắt buộc có thiết kế kết cấu của kỹ sư, xin phép đúng quy định."
+      - ten: "Thi công"
+        thoi-gian: "3–6 tháng"
+        buoc:
+          - ten: "Gia cố, thi công kết cấu mới"
+            thoi-gian: "1,5–3 tháng"
+            kinh-nghiem: "Theo dõi sát kỹ thuật thi công, nghiệm thu móng/cột/dầm."
+          - ten: "Xây tô, điện nước, hoàn thiện"
+            thoi-gian: "1,5–3 tháng"
+            kinh-nghiem: "Ghi nhận ảnh các công đoạn bịt kín — thứ sau này không nhìn lại được."
+    note: "Là công trình nặng → nên để đội kỹ thuật giám sát."
 
-      Cuộc giằng co này lặp lại trong rất nhiều hội nhóm. Chìa khóa không nằm ở "chọn bên nào" mà nằm ở câu hỏi: vật tư có được kiểm tra, ghi nhận khi nhập kho không?
-
-      Bấm xem bài viết để biết cách chọn đỡ hối tiếc 👇
-      [link bài viết]
-
-      #xaynha #vatlieuxaydung #tuvaanxaynha
-  - slug: "hai-bao-gia-khac-nhau-dung-voi-chon-ben-re"
-    caption: |
-      Hai báo giá cùng một ngôi nhà, chênh nhau rất nhiều — có nên chọn bên rẻ? 🤔
-
-      Kinh nghiệm người đã xây nhà: so báo giá đơn thuần gần như không hiệu quả, vì dịch vụ xây sửa nhà "thượng vàng hạ cám". Cách so đúng là so theo hạng mục, không so tổng tiền.
-
-      Cần mình soi giúp báo giá thì gửi qua nhé 👇
-      [link bài viết]
-
-      #xaynha #baogiaxaynha #kinhnghiemxaynha
-  - slug: "7-cau-hoi-truoc-khi-ky-hop-dong-xay-nha"
-    caption: |
-      Trước khi ký hợp đồng xây nhà, hỏi nhà thầu 7 câu này — tránh khoản "chưa nghĩ đến". ✍️
-
-      Không cần làm chuyên gia luật, chỉ cần hỏi: giá gồm hạng mục nào? Gì chưa bao gồm? Vật tư kiểm tra thế nào? Nghiệm thu giai đoạn ra sao?...
-
-      ACE lưu lại để dùng khi khách hỏi nhé 👇
-      [link bài viết]
-
-      #xaynha #hopdongxaynha #tuvaanxaynha
-  - slug: "di-lam-ca-ngay-khong-the-trong-tho"
-    caption: |
-      "Đi làm cả ngày, làm sao biết thợ làm đúng vật tư?" 💼
-
-      Nỗi đau thật nhất của chủ nhà có thu nhập ổn định. Câu trả lời: không cần bỏ việc ra trông thợ — cần nhà thầu có ảnh nghiệm thu các công đoạn bịt kín (vật tư, thép trước khi đổ, điện nước trước khi trát).
-
-      Bài viết có video nghiệm thu thật, xem để hiểu cách kiểm soát đúng chuẩn 👇
-      [link bài viết]
-
-      #xaynha #giamsatcongtrinh #nghiemthu
-  - slug: "ghi-nhan-hien-trang-nha-hang-xom-truoc-khi-phado"
-    caption: |
-      "Xây nhà có làm nứt nhà hàng xóm không?" 🏠
-
-      Đây là "quả bom" không kiểm soát được của nhà phố. Cách phòng duy nhất: ghi nhận hiện trạng nhà liền kề trước khi khởi công, có chữ ký hai bên.
-
-      Nhà thầu nào chủ động làm biên bản này là biết tay nghề tới đâu 👇
-      [link bài viết]
-
-      #xaynha #nhalienke #kinhnghiemxaynha
-  - slug: "5-ly-do-ace-moi-gioi"
-    caption: |
-      Khách vừa mua nhà cũ xong, hỏi "sửa có phiền không?" 🙋
-
-      Đừng chỉ trả lời qua loa. Đây chính là cơ hội: giới thiệu khách xây/sửa nhà = thêm thu nhập hoa hồng + tăng giá trị với khách cũ + mở cơ hội làm ăn lâu dài.
-
-      Đọc 5 lý do vì sao ACE nên hợp tác 👇
-      [link bài viết]
-
-      #moigioibds #congtacvien #hoahong
-  - slug: "chuan-bi-truoc-khi-xay-sua-nha"
-    caption: |
-      Sửa nhà cũ — chống thấm, trát lại, sửa nội thất... có cần xin phép không? 📋
-
-      Ngay cả việc nhỏ cũng khiến chủ nhà bối rối về thủ tục. Checklist này giúp chuẩn bị trước khi xây/sửa để không vướng pháp lý, không đội chi phí.
-
-      Lưu lại cho khách nào đang hỏi nhé 👇
-      [link bài viết]
-
-      #suachuanha #thutucxaydung #checklist
+  "Sơn & chống thấm":
+    tong-thoi-gian: "1–3 tuần"
+    chi-phi: "tham-khao bang-gia son"
+    giai-doan:
+      - ten: "Chuẩn bị"
+        thoi-gian: "1 tuần"
+        buoc:
+          - ten: "Khảo sát bề mặt, trám vết nứt, vệ sinh tường"
+            thoi-gian: "2–4 ngày"
+            kinh-nghiem: "Sơn đẹp phụ thuộc khâu chuẩn bị bề mặt, không phải khâu quét sơn."
+      - ten: "Thi công"
+        thoi-gian: "1–2 tuần"
+        buoc:
+          - ten: "Sơn lót + sơn phủ"
+            thoi-gian: "1 tuần"
+            kinh-nghiem: "Đủ 2 lớp phủ, đúng thời gian khô giữa các lớp."
+          - ten: "Chống thấm (nếu có) + nghiệm thu"
+            thoi-gian: "3–5 ngày"
+            kinh-nghiem: "Chống thấm test sau mưa mới chắc."

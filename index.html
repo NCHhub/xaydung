@@ -58,6 +58,13 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
 .calc-total .amt{font-size:1.15rem;}
 .calc-result-sec{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--text-3);margin:12px 0 4px;padding-top:10px;border-top:1px solid rgba(0,0,0,.08);}
 .calc-result-sec:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+/* Quy trình công trình */
+.qt-step{padding:10px 12px;border:1px solid rgba(0,0,0,.08);border-radius:12px;margin-top:8px;background:#fff;}
+.qt-step-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.qt-num{flex:none;width:24px;height:24px;border-radius:50%;background:#0f766e;color:#fff;font-size:.72rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;}
+.qt-time{margin-left:auto;font-size:.72rem;font-weight:700;color:#0f766e;background:#e6f7f0;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.qt-kinh{margin-top:6px;font-size:.78rem;line-height:1.5;color:var(--text-2);}
+.qt-note{padding:10px 12px;background:#eef4ff;border-radius:10px;margin:8px 0;font-size:.8rem;line-height:1.5;color:#1e3a8a;}
 .calc-range{font-size:.85rem;color:var(--text-2);margin-top:8px;text-align:right;}
 .calc-check{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--text);padding:10px 12px;background:var(--bg-gray);border-radius:10px;cursor:pointer;border:1.5px solid transparent;transition:border .15s,background .15s;}
 .calc-check:hover{border-color:rgba(15,118,110,.25);}
@@ -89,8 +96,7 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
 .result-footer{margin-top:12px;font-size:.78rem;color:var(--text-3);}
 
 /* Loading */
-.loading-wrap{max-width:640px;margin:0 auto 24px;display:none;text-align:center;padding:32px 0;}
-.spinner{width:28px;height:28px;border:3px solid rgba(15,118,110,.15);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;}
+.loading-wrap{max-width:640px;margin:0 auto 24px;display:none;text-align:center;padding:32px 0;}.spinner{width:28px;height:28px;border:3px solid rgba(15,118,110,.15);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
 /* Offline */
@@ -258,6 +264,35 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
       <button class="calc-btn" id="btn-gui-baocao" style="display:none;margin-top:12px;background:#115e59;" onclick="goGuiBaoCao()">📤 Gửi báo cáo mang tên tôi (Zalo)</button>
     </div>
 
+    <!-- ★ QUY TRÌNH CÔNG TRÌNH — checklist + chi phí + thời gian + kinh nghiệm (Diamond 02-09, làm ngay dùng ngay) -->
+    <div class="calc-box" id="quytrinh-box">
+      <div class="calc-head">
+        <span class="calc-ico">📋</span>
+        <div class="calc-title">Quy trình công trình chi tiết</div>
+        <div class="calc-sub">Chọn loại công trình + diện tích → nhận <b>checklist từng bước + chi phí + thời gian + kinh nghiệm</b> để nói với khách ngay.</div>
+      </div>
+      <div class="calc-form">
+        <div class="calc-row">
+          <label class="calc-field">
+            <span class="calc-label">Loại công trình</span>
+            <select id="qt-loai">
+              <option value="Xây mới" selected>🏗️ Xây mới</option>
+              <option value="Sửa nhẹ">🪄 Sửa nhẹ (sơn, sửa nhỏ)</option>
+              <option value="Sửa vừa (cải tạo)">🔧 Sửa vừa (cải tạo)</option>
+              <option value="Sửa lớn (thay kết cấu, nâng tầng)">🏗️ Sửa lớn (nâng tầng, kết cấu)</option>
+              <option value="Sơn & chống thấm">🎨 Sơn &amp; chống thấm</option>
+            </select>
+          </label>
+          <label class="calc-field">
+            <span class="calc-label">Diện tích sàn (m²)</span>
+            <input type="number" id="qt-area" inputmode="numeric" placeholder="VD: 80" min="10" max="2000">
+          </label>
+        </div>
+        <button class="calc-btn" onclick="quyTrinh()">📋 Xem quy trình</button>
+        <div class="calc-result" id="quytrinh-result" style="margin-top:14px;"></div>
+      </div>
+    </div>
+
     <!-- ★ KIỂM TRA TRƯỚC KHI ĐẶT CỌC — checklist tối giản -->
     <div class="calc-box" id="checklist-box" style="display:none;">
       <div class="calc-head">
@@ -362,6 +397,7 @@ if(!localStorage.getItem('aladdin-bridge')) localStorage.setItem('aladdin-bridge
    Sửa giá → sửa trong _data/moi-gioi.yml bang-gia → rebuild.
    ============================================================ */
 const PRICING = {{ site.data.moi-gioi.bang-gia | jsonify }};
+const QUYTRINH = {{ site.data.moi-gioi.quy-trinh | jsonify }};
 
 function fmt(n){ return Math.round(n).toLocaleString('vi-VN'); }
 function fmtTrieu(n){
@@ -576,8 +612,73 @@ function checklistNow(){
     (warns.length? '<ul style="margin:10px 0 0;padding-left:18px;font-size:.88rem;color:#b91c1c;">' + warns.map(w=>'<li>⚠️ '+w+'</li>').join('') + '</ul>' : '') +
     (unknowns.length? '<ul style="margin:10px 0 0;padding-left:18px;font-size:.88rem;color:#92400e;">' + unknowns.map(w=>'<li>❓ '+w+'</li>').join('') + '</ul>' : '') +
     '<div style="margin-top:12px;font-size:.78rem;color:var(--text-3);">Không kết luận kết cấu/pháp lý thay người có thẩm quyền. Nếu có dấu hiệu rủi ro, nên mời kỹ sư khảo sát trước khi cọc.</div>' +
-    '<button class="btn" style="margin-top:10px;width:100%;background:#b45309;color:#fff;border:none;border-radius:12px;padding:12px;font-weight:700;" onclick="askTool(\'request_expert\',\'Căn nhà có dấu hiệu cần kiểm tra kỹ. Tôi muốn nhờ kỹ sư khảo sát.\')">🛠️ Nhờ kỹ sư khảo sát</button>';
+/* ===== QUY TRÌNH CÔNG TRÌNH CHI TIẾT =====
+   Điền loại công trình + diện tích → sinh checklist từng bước + chi phí + thời gian + kinh nghiệm.
+   Chạy ngay client-side (không chờ AI), dùng knowledge 21 năm của Hải trong _data/moi-gioi.yml. */
+function quyTrinh(){
+  const box = document.getElementById('quytrinh-result');
+  const loai = document.getElementById('qt-loai').value;
+  const area = parseFloat(document.getElementById('qt-area').value);
   box.classList.add('show');
+
+  if (!area || area < 10 || area > 2000){
+    box.innerHTML = '<div class="calc-warn">⚠️ Vui lòng nhập diện tích sàn hợp lệ (10–2000 m²).</div>';
+    return;
+  }
+
+  const q = QUYTRINH[loai];
+  if (!q || !q['giai-doan']){ box.innerHTML = '<div class="calc-warn">⚠️ Chưa có quy trình cho loại này.</div>'; return; }
+
+  // --- 1. Ước tính chi phí tham khảo (theo từng loại, dùng bang-gia) ---
+  let chiPhi = '';
+  const P = PRICING;
+  const vung = 'Hà Nội';
+  if (loai === 'Xây mới'){
+    const dg = P['xay-moi']['khong-gian'][vung] || 15000000;
+    let total = dg * area;
+    chiPhi = `<div class="calc-row-result"><span class="k">Ước xây mới (${fmt(area)} m²)</span><span class="v">${fmtTrieu(total)} tr (1 tầng, chưa hệ số)</span></div>`;
+  } else {
+    const muc = P['sua-chua']['muc-do'];
+    let gia = null;
+    if (loai === 'Sửa nhẹ') gia = muc['Sửa nhẹ (sơn, sửa nhỏ, thay nội thất)'];
+    else if (loai === 'Sửa vừa (cải tạo)') gia = muc['Sửa vừa (cải tạo, chống thấm, điện nước, trát)'];
+    else if (loai === 'Sửa lớn (thay kết cấu, nâng tầng)') gia = muc['Sửa lớn (thay kết cấu, nâng tầng, cải tạo triệt để)'];
+    else if (loai === 'Sơn & chống thấm'){
+      const dg = P['son']['Trong nhà'] || 35000;
+      chiPhi = `<div class="calc-row-result"><span class="k">Sơn tường (~${fmt(area*2.5)} m²)</span><span class="v">${fmtTrieu(dg*area*2.5)} tr</span></div>`;
+    }
+    if (gia) chiPhi = `<div class="calc-row-result"><span class="k">Ước ${loai} (${fmt(area)} m²)</span><span class="v">${fmtTrieu(gia*area)} tr</span></div>`;
+    if (!chiPhi) chiPhi = `<div class="calc-row-result"><span class="k">Chi phí</span><span class="v">tham khảo bảng giá (khảo sát thực tế)</span></div>`;
+  }
+
+  // --- 2. Quy trình: lặp từng GIAI ĐOẠN + từng BƯỚC (checklist, thời gian, kinh nghiệm) ---
+  let gdHtml = '';
+  let stt = 0;
+  q['giai-doan'].forEach(gd => {
+    gdHtml += `<div class="calc-result-sec">📋 <b>${gd['ten']}</b> <span style="float:right;font-weight:600;">${gd['thoi-gian']}</span></div>`;
+    (gd['buoc'] || []).forEach(b => {
+      stt++;
+      gdHtml += `<div class="qt-step">
+          <div class="qt-step-head"><span class="qt-num">${stt}</span><b>${b['ten']}</b><span class="qt-time">${b['thoi-gian']}</span></div>
+          <div class="qt-kinh">💡 ${b['kinh-nghiem'] || ''}</div>
+        </div>`;
+    });
+  });
+
+  box.innerHTML = `
+    <h4>📋 QUY TRÌNH — ${loai}</h4>
+    <div class="qt-note">⏱️ Tổng thời gian điển hình: <b>${q['tong-thoi-gian'] || '—'}</b></div>
+    ${chiPhi}
+    ${gdHtml}
+    <div class="calc-warn">⚠️ Chi phí &amp; thời gian tham khảo thị trường 2026, dựa trên kinh nghiệm 21 năm. Cần khảo sát thực tế để chính xác.</div>
+    <button class="btn" style="margin-top:12px;width:100%;background:#115e59;color:#fff;border:none;border-radius:12px;padding:12px;font-weight:700;" onclick="qtGuiZalo()">📤 Gửi quy trình cho khách (Zalo)</button>`;
+}
+
+/* Gửi quy trình vừa sinh cho khách qua Zalo (môi giới mở → gửi luôn) */
+function qtGuiZalo(){
+  const text = document.getElementById('quytrinh-result').innerText || '';
+  const url = 'https://zalo.me/0983601366?text=' + encodeURIComponent('Quy trình công trình:\n' + text.slice(0, 1800));
+  window.open(url, '_blank');
 }
 
 /* Dấu vết người dùng: anonymous id bền trong localStorage

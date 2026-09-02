@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
 .DS_Store
-conversations/*.json
 # Dữ liệu người dùng QUÝ GIÁ — chỉ backup nội bộ (PC + Google Drive), KHÔNG push GitHub công khai
+# Chặn MỌI vị trí conversations (gốc + bridge/) + toàn bộ data người dùng
+**/conversations/*.json
+**/data/
+conversations/
 bridge/data/

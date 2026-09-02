@@ -56,6 +56,9 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
 .calc-result-sec{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--text-3);margin:12px 0 4px;padding-top:10px;border-top:1px solid rgba(0,0,0,.08);}
 .calc-result-sec:first-of-type{border-top:none;padding-top:0;margin-top:0;}
 .calc-range{font-size:.85rem;color:var(--text-2);margin-top:8px;text-align:right;}
+.calc-check{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--text);padding:10px 12px;background:var(--bg-gray);border-radius:10px;cursor:pointer;border:1.5px solid transparent;transition:border .15s,background .15s;}
+.calc-check:hover{border-color:rgba(15,118,110,.25);}
+.calc-check input{width:18px;height:18px;accent-color:var(--teal);flex-shrink:0;}
 .calc-warn{margin-top:10px;font-size:.74rem;color:#92400e;background:#fff7e6;border-radius:10px;padding:9px 12px;line-height:1.5;}
 
 /* 4 nút lớn — 2×2 mobile, 4×1 desktop */
@@ -232,14 +235,17 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
           </select>
         </div>
 
-        <!-- Thông số riêng theo loại -->
-        <div id="c-sua-wrap" class="calc-field" style="display:none;">
-          <span class="calc-label">Mức độ sửa (đơn giá/m² sàn hiện trạng)</span>
-          <select id="c-mucdo">
-            <option value="2500000" selected>Sửa nhẹ — sơn, sửa nhỏ, thay nội thất</option>
-            <option value="5000000">Sửa vừa — cải tạo, chống thấm, điện nước, trát</option>
-            <option value="9000000">Sửa lớn — thay kết cấu, nâng tầng, cải tạo triệt để</option>
-          </select>
+        <!-- Thông số riêng theo loại: SỬA THEO HẠNG MỤC -->
+        <div id="c-sua-wrap" class="calc-form" style="display:none;padding:0;gap:8px;">
+          <span class="calc-step" style="border-top:none;padding-top:0;margin-top:0;">Sửa theo hạng mục — tick những mục cần làm</span>
+          <label class="calc-check"><input type="checkbox" id="hm-son" checked> Sơn lại toàn bộ tường</label>
+          <label class="calc-check"><input type="checkbox" id="hm-chongtham" checked> Chống thấm (sân thượng, tường, vệ sinh)</label>
+          <label class="calc-check"><input type="checkbox" id="hm-diennucoc"> Thay mới điện nước cơ bản</label>
+          <label class="calc-check"><input type="checkbox" id="hm-oplat"> Ốp lát lại nền, tường vệ sinh</label>
+          <label class="calc-check"><input type="checkbox" id="hm-cua"> Thay cửa</label>
+          <label class="calc-check"><input type="checkbox" id="hm-tran"> Làm lại trần thạch cao</label>
+          <label class="calc-check"><input type="checkbox" id="hm-wc"> Vệ sinh WC làm mới</label>
+          <label class="calc-check"><input type="checkbox" id="hm-ketcau"> Sửa kết cấu / gia cố (phá dỡ, móng, dầm)</label>
         </div>
         <div id="c-son-wrap" class="calc-field" style="display:none;">
           <span class="calc-label">Diện tích tường cần sơn (m²)</span>
@@ -338,7 +344,7 @@ function fmtTrieu(n){
 
 function calcToggle(){
   const type = document.getElementById('c-type').value;
-  document.getElementById('c-tang-wrap').style.display = (type==='xay-moi') ? 'flex' : 'none';
+  document.getElementById('c-tang-wrap').style.display = (type==='xay-moi'||type==='sua') ? 'flex' : 'none';
   document.getElementById('c-xay-opts').style.display = (type==='xay-moi') ? 'flex' : 'none';
   document.getElementById('c-xph-ep-wrap').style.display = (type==='xay-moi'||type==='sua') ? 'flex' : 'none';
   document.getElementById('c-sua-wrap').style.display = (type==='sua') ? 'flex' : 'none';
@@ -418,16 +424,51 @@ function calcNow(){
       <div class="calc-warn">⚠️ Giá tham khảo thị trường 2026, chưa gồm đất. Móng cọc / đất yếu / ngõ xe máy khuân tay làm tăng chi phí. Bắt buộc khảo sát thực tế để có báo giá chính xác.</div>`;
   }
   else if (type === 'sua'){
-    const mucdo = parseFloat(document.getElementById('c-mucdo').value); // đơn giá VNĐ/m² (VD 5000000)
-    const mucdoName = document.getElementById('c-mucdo').selectedOptions[0].text;
-    const total = mucdo * area; // VNĐ
+    const tang = parseInt(document.getElementById('c-tang').value);
+    const tongSan = area * tang;
+    const dieukien = parseFloat(document.getElementById('c-dieukien').value);
+    const PX = P['sua-chua'];               // bang-gia sua-chua
+    const PXK = PX['hang-muc'];
+    const duPhongSua = PX['du-phong-sua'] || 0.25;
+
+    // Map checkbox id -> tên hạng mục trong yml
+    const map = { 'hm-son':'Sơn lại toàn bộ tường', 'hm-chongtham':'Chống thấm (sân thượng, tường, vệ sinh)',
+      'hm-diennucoc':'Thay mới điện nước cơ bản', 'hm-oplat':'Ốp lát lại nền, tường vệ sinh', 'hm-cua':'Thay cửa (all tầng)',
+      'hm-tran':'Làm lại trần thạch cao', 'hm-wc':'Vệ sinh WC làm mới', 'hm-ketcau':'Sửa kết cấu / gia cố'};
+
+    let rows = '', sub = 0;
+    for (const [id, name] of Object.entries(map)){
+      if (!document.getElementById(id).checked) continue;
+      const spec = PXK[name];
+      if (!spec) continue;
+      let tien = 0, dien = '';
+      if (spec['theo-tang']){ tien = spec['gia'] * tang; dien = tang + ' tầng'; }
+      else {
+        const hs = spec['he-so-tuong'] || spec['he-so-diện'] || 1;
+        const dienTich = tongSan * hs;
+        tien = spec['gia'] * dienTich;
+        dien = (dienTich).toLocaleString('vi-VN',{maximumFractionDigits:0}) + ' đơn vị';
+      }
+      sub += tien;
+      rows += `<div class="calc-row-result"><span class="k">${name}</span><span class="v">${dien} → ${fmtTrieu(tien)} tr</span></div>`;
+    }
+    const phiDieuKien = sub * dieukien;
+    const duPhong = (sub + phiDieuKien) * duPhongSua;
+    const phiXinPhep = parseFloat(document.getElementById('c-xinphep').value);
+    const total = sub + phiDieuKien + duPhong + phiXinPhep;
+    const min = total * 0.85, max = total * 1.15;
+
     html = `
-      <h4>🔧 Ước tính sửa chữa (${vungName})</h4>
-      <div class="calc-row-result"><span class="k">Mức độ</span><span class="v">${mucdoName}</span></div>
-      <div class="calc-row-result"><span class="k">Diện tích sàn</span><span class="v">${fmt(area)} m²</span></div>
-      <div class="calc-row-result"><span class="k">Đơn giá</span><span class="v">${fmtTrieu(mucdo)} triệu/m²</span></div>
-      <div class="calc-total"><span>Dự kiến tổng</span><span class="amt">${fmtTrieu(total)} triệu</span></div>
-      <div class="calc-warn">⚠️ Chưa gồm xin phép (nâng tầng/thay kết cấu cần xin), thiết kế, dự phòng 10–15% phát sinh khi phá dỡ. Bắt buộc khảo sát thực tế.</div>`;
+      <h4>🔧 DỰ TOÁN SỬA CHỮA — ${tang} tầng, ${vungName}</h4>
+      <div class="calc-row-result"><span class="k">Tổng diện tích sàn</span><span class="v">${tongSan} m² (${area}m² × ${tang})</span></div>
+      ${rows || '<div class="calc-row-result"><span class="k">Chưa chọn hạng mục</span><span class="v">—</span></div>'}
+      <div class="calc-result-sec">📋 CÁC KHOẢN PHỤ</div>
+      ${dieukien>0?`<div class="calc-row-result"><span class="k">Ngõ xe máy / khuân tay (+${Math.round(dieukien*100)}%)</span><span class="v">${fmtTrieu(phiDieuKien)} tr</span></div>`:''}
+      <div class="calc-row-result"><span class="k">Xin phép xây dựng/thay kết cấu</span><span class="v">${fmtTrieu(phiXinPhep||0)} tr</span></div>
+      <div class="calc-row-result"><span class="k">Dự phòng phát sinh (+${Math.round(duPhongSua*100)}%)</span><span class="v">${fmtTrieu(duPhong)} tr</span></div>
+      <div class="calc-total"><span>Tổng ước tính</span><span class="amt">${fmtTrieu(total)} triệu</span></div>
+      <div class="calc-range">Biên độ thực tế: <b>${fmtTrieu(min)} – ${fmtTrieu(max)} triệu</b></div>
+      <div class="calc-warn">⚠️ Chi phí sửa phụ thuộc hạng mục chọn. Nhà cũ thường phát sinh khi mở ra mới biết (20–30%). Ngõ xe máy tăng chi phí vận chuyển. Bắt buộc khảo sát thực tế.</div>`;
   }
   else if (type === 'son'){
     const sonArea = parseFloat(document.getElementById('c-son-area').value);

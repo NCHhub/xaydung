@@ -83,6 +83,19 @@ bang-gia:
       "Sửa nhẹ (sơn, sửa nhỏ, thay nội thất)": 2500000     # 2.5tr/m²
       "Sửa vừa (cải tạo, chống thấm, điện nước, trát)": 5000000
       "Sửa lớn (thay kết cấu, nâng tầng, cải tạo triệt để)": 9000000
+    # ---- DỰ TOÁN SỬA THEO HẠNG MỤC (cách tính thực tế của Hải) ----
+    # Người dùng tick hạng mục cần sửa → cộng tiền từng mục → tổng.
+    # Đơn giá là hằng số (VNĐ) hoặc theo đơn vị riêng; "*SAN" = nhân diện tích sàn.
+    hang-muc:
+      "Sơn lại toàn bộ tường": { "don-vi": "đ/m² tường", "gia": 35000, "he-so-tuong": 2.5 }   # diện tích tường ≈ sàn × 2.5
+      "Chống thấm (sân thượng, tường, vệ sinh)": { "don-vi": "đ/m²", "gia": 180000, "he-so-diện": 0.15 }  # ≈ 15% diện tích sàn
+      "Thay mới điện nước cơ bản": { "don-vi": "đ/m² sàn", "gia": 350000 }                     # nhân toàn sàn
+      "Ốp lát lại nền, tường vệ sinh": { "don-vi": "đ/m²", "gia": 350000, "he-so-diện": 0.4 } # ốp 40% diện tích
+      "Thay cửa (all tầng)": { "don-vi": "đ/bộ/tầng", "gia": 8000000, "theo-tang": true }      # mỗi tầng 1 bộ chính
+      "Làm lại trần thạch cao": { "don-vi": "đ/m²", "gia": 220000, "he-so-diện": 0.6 }          # trần 60% sàn
+      "Vệ sinh WC làm mới": { "don-vi": "đ/phòng", "gia": 15000000, "theo-tang": true }         # mỗi tầng 1 phòng
+      "Sửa kết cấu / gia cố": { "don-vi": "đ/m² sàn", "gia": 800000 }                          # tùy chọn thêm
+    du-phong-sua: 0.25          # +25% dự phòng phát sinh khi sửa nhà cũ (mở ra mới biết)
 
   son:
     "Trong nhà": 35000        # /m² tường

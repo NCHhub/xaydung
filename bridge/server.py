@@ -55,6 +55,101 @@ class AdvisorResult(BaseModel):
     nextActions: List[str] = []
     knowledgeVersion: str = "0.1.0"
 
+# ===== DATA LAYER NỀN TẢNG (chạy ngầm, không đổi) =====
+# Nguyên tắc: "Dữ liệu là cực kỳ quý giá" → ghi dấu vết + hồ sơ người dùng luôn bền,
+# đồng bộ + backup an toàn. KHÔNG phá luồng trả lời hiện tại.
+DATA_DIR = Path(__file__).parent / "data"
+USERS_FILE = DATA_DIR / "users.json"        # hồ sơ người dùng (dữ liệu quý)
+EVENTS_FILE = DATA_DIR / "events.jsonl"     # dấu chân tương tác (append-only)
+DATA_LOCK = asyncio.Lock()
+
+def _data_load(path: Path) -> dict:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+def _data_save(path: Path, data: dict):
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+def _user_profile(userId: str) -> dict:
+    """Lấy (hoặc khởi tạo) hồ sơ người dùng. An toàn, không bao giờ lỗi."""
+    users = _data_load(USERS_FILE)
+    now = time.time()
+    now_iso = time.strftime("%Y-%m-%dT%H:%M:%S+07:00")
+    if userId not in users:
+        users[userId] = {
+            "id": userId,
+            "firstSeen": now_iso,
+            "lastSeen": now_iso,
+            "deviceHint": "",
+            "role": "moi-gioi",            # mặc định; sau có thể nâng cấp theo hành vi
+            "questionCount": 0,
+            "reportSeenCount": 0,
+            "topIntents": {},              # intent -> số lần
+            "lastQuestion": "",
+            "tags": [],
+            "lastPlan": None,
+        }
+    _data_save(USERS_FILE, users)
+    return users[userId]
+
+def _touch_profile(userId: str, intent: str | None = None, question: str = ""):
+    """Cập nhật dấu vết người dùng mỗi lần tương tác. Fire-and-forget an toàn."""
+    try:
+        users = _data_load(USERS_FILE)
+        now_iso = time.strftime("%Y-%m-%dT%H:%M:%S+07:00")
+        if userId not in users:
+            users[userId] = {
+                "id": userId, "firstSeen": now_iso, "lastSeen": now_iso,
+                "deviceHint": "", "role": "moi-gioi", "questionCount": 0,
+                "reportSeenCount": 0, "topIntents": {}, "lastQuestion": "",
+                "tags": [], "lastPlan": None,
+            }
+        u = users[userId]
+        u["lastSeen"] = now_iso
+        u["questionCount"] = u.get("questionCount", 0) + 1
+        if intent:
+            u["topIntents"][intent] = u["topIntents"].get(intent, 0) + 1
+        if question:
+            u["lastQuestion"] = question[:300]
+        _data_save(USERS_FILE, users)
+    except Exception as e:
+        print(f"[data] touch profile lỗi: {e}", flush=True)
+
+def _log_event(userId: str, event: str, **extra):
+    """Ghi 1 dòng dấu chân tương tác (append-only, không bao giờ mất dữ liệu cũ)."""
+    try:
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S+07:00"),
+               "uid": userId, "event": event, **extra}
+        with open(EVENTS_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    except Exception as e:
+        print(f"[data] log event lỗi: {e}", flush=True)
+
+def _suggest_hidden_features(profile: dict) -> list:
+    """TỰ BỔ SUNG tính năng ngầm quan trọng theo hành vi thật (không tốn prompt).
+       Đầu ra: danh sách tính năng gợi ý chạy ngầm cho user. Chạy rẻ, crawl số liệu."""
+    n = profile.get("questionCount", 0)
+    intents = profile.get("topIntents", {})
+    tags = set(profile.get("tags", []))
+    ideas = []
+    # 1. Môi giới lặp lại cùng mảng → tính năng "tự nhớ theo vùng"
+    if n >= 3 and len(intents) <= 1:
+        ideas.append("auto_zone_memory")
+    # 2. Hỏi nhiều → gợi ý tính năng "lưu hồ sơ khách kèm căn nhà" để qua ca sau không hỏi lại
+    if n >= 2 and "create_client_report" not in intents:
+        ideas.append("ai_hint_save_profile")
+    # 3. Nhiều câu về chi phí → gợi ý "cảnh báo ngân sách vượt"
+    if intents.get("estimate_cost", 0) >= 2 or intents.get("answer_construction_question", 0) >= 2:
+        ideas.append("budget_guardrail")
+    # 4. Có dấu hiệu cần chuyên gia → gợi ý theo dõi ca giới thiệu
+    if "request_expert" in profile.get("tags", []) or "risk" in str(profile.get("lastPlan", "")):
+        ideas.append("referral_tracker")
+    return ideas
+
 # ===== KNOWLEDGE PACK =====
 def load_knowledge() -> str:
     """Gộp knowledge pack từ YAML + markdown blog."""
@@ -331,18 +426,60 @@ def _fallback(task_id, msg):
 # ===== ENDPOINTS =====
 @app.get("/health")
 async def health():
-    return {"healthy": True, "version": "0.1.0", "uptime": time.time() - START_TIME}
+    return {"healthy": True, "version": "0.2.0", "uptime": time.time() - START_TIME}
 
 @app.post("/task", response_model=AdvisorResult)
 async def create_task(task: AdvisorTask):
-    """Nhận task từ web → gọi Advisor → trả kết quả."""
+    """Nhận task từ web → gọi Advisor → trả kết quả.
+       Luôn ghi dấu vết người dùng (hồ sơ + event log) ở hậu trường — không đổi luồng trả lời."""
     if not task.question or len(task.question.strip()) < 5:
         raise HTTPException(400, "Câu hỏi quá ngắn. Vui lòng nhập chi tiết hơn.")
     if len(task.question) > 2000:
         raise HTTPException(400, "Câu hỏi quá dài. Vui lòng rút gọn.")
-    
+
+    key = _user_key(task)
+    _touch_profile(key, task.toolIntent or "answer_construction_question", task.question)
+    _log_event(key, "task", intent=task.toolIntent or "question", question=task.question[:200])
+
     result = await call_advisor(task)
+    _log_event(key, "result", status=result.status)
     return result
+
+@app.post("/profile")
+async def record_profile(payload: dict):
+    """Web gửi dấu chân bổ sung (mở trang, xem công cụ, muốn giới thiệu) — tăng cường dữ liệu người dùng.
+       KHÔNG chứa thông tin nhận dạng cá nhân cụ thể, chỉ hành vi. Ghi ngầm, an toàn."""
+    uid = payload.get("userId") or "anonymous"
+    ev = payload.get("event", "view")
+    _touch_profile(uid)
+    _log_event(uid, ev, page=payload.get("page", ""), tool=payload.get("tool", ""))
+    # Nếu người dùng chủ động muốn kết nối (đặt cược cộng sinh) → đánh dấu tag để ưu tiên
+    if payload.get("optin"):
+        users = _data_load(USERS_FILE)
+        if uid in users:
+            tags = list(users[uid].setdefault("tags", []))
+            if "optin_contact" not in tags:
+                tags.append("optin_contact")
+            users[uid]["tags"] = tags
+            users[uid]["zalo"] = payload.get("zalo", "")
+            _data_save(USERS_FILE, users)
+    return {"ok": True}
+
+@app.get("/users")
+async def list_users():
+    """Trả về danh sách người dùng đã ghi dấu (chỉ admin/PC nội bộ — quý giá, không public tới web)."""
+    users = _data_load(USERS_FILE)
+    # Không lộ toàn bộ; trả tổng quan + các user
+    summary = {uid: {k: u.get(k) for k in ("firstSeen","lastSeen","questionCount","role","tags")}
+               for uid, u in users.items()}
+    return {"total": len(users), "users": summary}
+
+@app.get("/suggestions/{userId}")
+async def user_suggestions(userId: str):
+    """Tự bổ sung tính năng ngầm cho 1 user dựa trên hành vi (đã ghi)."""
+    users = _data_load(USERS_FILE)
+    profile = users.get(userId, _user_profile(userId))
+    return {"userId": userId, "hiddenFeatures": _suggest_hidden_features(profile), "questionCount": profile.get("questionCount", 0)}
 
 @app.get("/capabilities")
 async def list_capabilities():

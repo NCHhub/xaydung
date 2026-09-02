@@ -593,6 +593,29 @@ function getUserId(){
 
 document.getElementById('tool-input').addEventListener('keydown', e => { if (e.key === 'Enter') askFromInput(); });
 
+/* ===== DẤU VẾT NGƯỜI DÙNG (chạy ngầm, không chặn) =====
+   Gửi beacon hành vi → /profile để bridge ghi hồ sơ + event log (dữ liệu quý).
+   Không gửi thông tin cá nhân cụ thể, chỉ hành vi anonymous. */
+function beacon(event, extra={}){
+  try {
+    const body = Object.assign({ userId: getUserId(), event, page: location.pathname }, extra);
+    fetch(BRIDGE + '/profile', { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(body), signal: AbortSignal.timeout(4000) }).catch(()=>{});
+  } catch(e){}
+}
+// Beacon ngầm: mở trang + khi bấm từng công cụ chính (theo dõi dấu chân)
+window.addEventListener('load', () => beacon('visit'));
+function wireBeacon(elId, tool){
+  const el = document.getElementById(elId);
+  if (el) el.addEventListener('click', () => beacon('tool_use', { tool }));
+}
+wireBeacon('btn-tinh-tien', 'tinh-tien-sau-mua');
+// Gửi beacon cho 2 nút còn lại qua query selector an toàn
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('.tool-btn');
+  if (b) beacon('tool_use', { tool: b.textContent.trim().slice(0, 40) });
+});
+
 function askFromInput() {
   const q = document.getElementById('tool-input').value.trim();
   if (!q || q.length < 5) { document.getElementById('tool-input').focus(); return; }

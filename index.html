@@ -1,90 +1,210 @@
 ---
 layout: default
-title: "Giới thiệu khách xây, sửa nhà — mở thêm thu nhập cho ACE môi giới"
+title: "Công cụ môi giới — tư vấn xây/sửa nhà"
+description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Nguyễn Cao Hải — ước tính, soi báo giá, tính vật tư."
 ---
 
-<!-- HERO -->
-<header class="hero">
-  <div class="container">
-    <span class="badge">DÀNH CHO ACE MÔI GIỚI</span>
-    <h1>Bạn giới thiệu khách <span>có nhu cầu xây, sửa nhà</span> — chúng tôi lo phần còn lại</h1>
-    <p class="lead">Mỗi khách bạn giới thiệu thành công là một cơ hội thu nhập thêm. Vừa tăng giá trị với khách cũ, vừa có nguồn thu mới, vừa mở thêm cơ hội làm ăn lâu dài.</p>
-    <div class="cta">
-      <a class="btn btn-phone" href="tel:0983601366">📞 Gọi ngay 0983.601.366</a>
-      <a class="btn btn-outline" href="#lien-he">Xem cam kết hoa hồng</a>
-    </div>
-    <div class="meta">
-      <div>✅ Hoa hồng rõ ràng, minh bạch</div>
-      <div>✅ Công trình thật để dẫn khách xem</div>
-      <div>✅ Cam kết quyền lợi lâu dài</div>
-    </div>
-  </div>
-</header>
+<!-- ================================================================
+     TRANG CHỦ = CÔNG CỤ CỦA MÔI GIỚI
+     LỆNH TỔNG V2 — Mục 0.2: ô hỏi + 4 nút lớn, mobile-first, Apple
+     ================================================================ -->
 
-<!-- LỢI ÍCH CHO ACE -->
-<section class="benefits">
+<style>
+/* ===== CÔNG CỤ — Apple mobile-first ===== */
+.tool-section{padding:40px 0 24px;text-align:center;}
+.tool-section .badge-top{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--teal);background:rgba(15,118,110,.08);border-radius:980px;padding:6px 14px;margin-bottom:16px;}
+.tool-section h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--text);margin:0 0 8px;}
+.tool-section .subtitle{font-size:.92rem;color:var(--text-3);margin:0 0 28px;max-width:460px;margin-left:auto;margin-right:auto;}
+
+/* Ô hỏi */
+.input-box{max-width:600px;margin:0 auto 24px;position:relative;}
+.input-box input{width:100%;font-size:1rem;padding:16px 18px;border:1.5px solid rgba(0,0,0,.10);border-radius:16px;outline:none;transition:border .2s,box-shadow .2s;font-family:var(--font);background:#fff;}
+.input-box input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.12);}
+.input-box input::placeholder{color:var(--text-3);}
+.input-box .ask-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:var(--teal);color:#fff;border:none;border-radius:12px;padding:10px 20px;font-weight:700;font-size:.92rem;cursor:pointer;transition:background .15s;}
+.input-box .ask-btn:hover{background:var(--teal-hover);}
+
+/* 4 nút lớn — 2×2 mobile, 4×1 desktop */
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:600px;margin:0 auto 28px;}
+@media(min-width:640px){.tool-grid{grid-template-columns:repeat(4,1fr);}}
+.tool-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px;background:#fff;border:1.5px solid rgba(0,0,0,.06);border-radius:18px;cursor:pointer;transition:all .15s ease;text-align:center;}
+.tool-btn:hover{border-color:var(--teal);box-shadow:0 6px 20px rgba(15,118,110,.10);transform:translateY(-2px);}
+.tool-btn:active{transform:scale(.97);}
+.tool-btn .t-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.tool-btn .t-label{font-size:.82rem;font-weight:600;color:var(--text);line-height:1.3;}
+@media(max-width:380px){.tool-btn{padding:14px 8px;} .tool-btn .t-icon{width:38px;height:38px;font-size:1.1rem;}}
+
+/* Kết quả */
+.result-wrap{max-width:640px;margin:0 auto 32px;display:none;}
+.result-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;padding:22px 24px;box-shadow:0 8px 28px rgba(0,0,0,.06);text-align:left;}
+.result-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.result-badge{font-size:.7rem;font-weight:700;}
+.result-body{font-size:1rem;line-height:1.75;color:var(--text);}
+.result-section{margin:14px 0;padding:12px 16px;background:var(--bg-gray);border-radius:14px;}
+.result-section h5{font-size:.78rem;font-weight:700;margin:0 0 6px;color:var(--text-3);text-transform:uppercase;letter-spacing:.02em;}
+.result-section ul{margin:0;padding-left:18px;font-size:.88rem;line-height:1.5;}
+.result-section li{margin-bottom:3px;}
+.result-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(0,0,0,.06);}
+.result-actions .btn{font-size:.82rem;padding:8px 16px;border-radius:12px;}
+.result-footer{margin-top:12px;font-size:.78rem;color:var(--text-3);}
+
+/* Loading */
+.loading-wrap{max-width:640px;margin:0 auto 24px;display:none;text-align:center;padding:32px 0;}
+.spinner{width:28px;height:28px;border:3px solid rgba(15,118,110,.15);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* Offline */
+.offline-wrap{max-width:640px;margin:0 auto 20px;display:none;}
+.offline-msg{background:#fff7e6;border:1px solid rgba(180,83,9,.15);border-radius:14px;padding:14px 18px;font-size:.88rem;color:#92400e;display:flex;align-items:flex-start;gap:10px;}
+.offline-msg a{color:#b45309;font-weight:600;text-decoration:underline;}
+</style>
+
+<!-- ★ VÙNG NHÌN ĐẦU TIÊN — CÔNG CỤ -->
+<section class="tool-section">
   <div class="container">
-    <span class="section-tag">Lợi ích</span>
-    <h2 class="section-h">Vì sao ACE nên giới thiệu khách xây · sửa nhà?</h2>
-    <p class="sub">Khi khách hàng của bạn có nhu cầu xây hoặc sửa nhà, đó không phải là việc "ngoài phạm vi" — mà là một cơ hội thu nhập thêm tự nhiên và bền vững.</p>
-    <div class="grid-3">
-      <div class="card">
-        <div class="ico">💰</div>
-        <h3>Thêm nguồn thu nhập</h3>
-        <p>Chỉ cần giới thiệu đúng người có nhu cầu, bạn có thêm một khoản thu nhập hoa hồng mà không phải đầu tư hay làm thêm gì.</p>
+    <span class="badge-top">Công cụ môi giới · xây &amp; sửa nhà</span>
+    <h1>Anh/chị đang cần tính<br>hoặc kiểm tra việc gì cho căn nhà?</h1>
+    <p class="subtitle">Nhập câu hỏi — Nguyễn Cao Hải và Cộng sự sẽ tư vấn ngay. Kısa gọn, rõ ràng, có thể gửi khách liền.</p>
+
+    <!-- ★ Ô HỎI -->
+    <div class="input-box">
+      <input type="text" id="tool-input" placeholder="VD: Nhà 45m² muốn sửa để bán, cần bao nhiêu?" autocomplete="off" maxlength="500">
+      <button class="ask-btn" id="tool-ask" onclick="askFromInput()">Hỏi →</button>
+    </div>
+
+    <!-- ★ 4 NÚT LỚN -->
+    <div class="tool-grid">
+      <button class="tool-btn" onclick="askTool('estimate_cost','Ước tính chi phí xây/sửa nhà')">
+        <span class="t-icon" style="background:#e6f7f0;color:#0f766e;">💰</span>
+        <span class="t-label">Tính chi phí<br>xây/sửa</span>
+      </button>
+      <button class="tool-btn" onclick="askTool('audit_quote','Soi báo giá còn thiếu hạng mục nào')">
+        <span class="t-icon" style="background:#e6f1ff;color:#0071e3;">🔍</span>
+        <span class="t-label">Soi báo giá<br>còn thiếu gì</span>
+      </button>
+      <button class="tool-btn" onclick="askTool('calculate_material','Tính vật tư cần thiết cho công trình')">
+        <span class="t-icon" style="background:#fff7e6;color:#b45309;">🧮</span>
+        <span class="t-label">Tính<br>vật tư</span>
+      </button>
+      <button class="tool-btn" onclick="askTool('diagnose_issue','Xử lý thấm/nứt nhà')">
+        <span class="t-icon" style="background:#f3f0ff;color:#7c3aed;">🔧</span>
+        <span class="t-label">Xử lý<br>thấm/nứt</span>
+      </button>
+    </div>
+
+    <!-- ★ LOADING -->
+    <div class="loading-wrap" id="loading">
+      <div class="spinner"></div>
+      <p style="font-size:.88rem;color:var(--text-3);">Hải đang xem xét câu hỏi…</p>
+    </div>
+
+    <!-- ★ OFFLINE -->
+    <div class="offline-wrap" id="offline">
+      <div class="offline-msg">
+        <span>🔌</span>
+        <span>Hệ thống đang tạm nghỉ. Anh/chị nhắn <a href="https://zalo.me/0983601366" target="_blank">Zalo 0983.601.366</a> để được hỗ trợ trực tiếp.</span>
       </div>
-      <div class="card">
-        <div class="ico">🤝</div>
-        <h3>Tăng giá trị với khách cũ</h3>
-        <p>Giúp khách giải quyết trọn gói nhu cầu, khách nhớ đến bạn như người lo được nhiều việc — mối quan hệ càng bền chặt.</p>
-      </div>
-      <div class="card">
-        <div class="ico">📈</div>
-        <h3>Cơ hội làm ăn lâu dài</h3>
-        <p>Mỗi khách giới thiệu là một cầu nối. Khi uy tín được khẳng định, cơ hội hợp tác với chúng tôi ngày càng nhiều và dài hạn.</p>
+    </div>
+
+    <!-- ★ KẾT QUẢ -->
+    <div class="result-wrap" id="result">
+      <div class="result-card">
+        <div class="result-head">
+          <span class="result-badge badge" id="r-badge">AI sơ bộ</span>
+          <span id="r-status" style="font-size:.72rem;color:var(--text-3);"></span>
+        </div>
+        <div class="result-body" id="r-answer"></div>
+        <div class="result-section" id="r-assumptions" style="display:none;"><h5>📌 Giả định</h5><ul id="r-assumptions-list"></ul></div>
+        <div class="result-section" id="r-risks" style="display:none;"><h5>⚠️ Lưu ý quan trọng</h5><ul id="r-risks-list"></ul></div>
+        <div class="result-section" id="r-sources" style="display:none;"><h5>📚 Nguồn</h5><ul id="r-sources-list"></ul></div>
+        <div class="result-actions">
+          <button class="btn btn-main text-white" onclick="copyResult()" id="copy-btn">📋 Sao chép để gửi khách</button>
+          <a class="btn btn-outline" href="https://zalo.me/0983601366" target="_blank" style="border:1.5px solid rgba(0,0,0,.12);">💬 Nhắn Zalo nhờ chuyên gia</a>
+          <button class="btn btn-outline" onclick="resetTool()" style="border:1.5px solid rgba(0,0,0,.12);">↩️ Hỏi lại</button>
+        </div>
+        <div class="result-footer">Kết quả từ AI sơ bộ · Cần khảo sát thực tế · Nguyễn Cao Hải và Cộng sự · 09/2026</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CAM KẾT HOA HỒNG -->
-<section class="commitment" id="lien-he">
-  <div class="container">
-    <span class="section-tag">Cam kết</span>
-    <h2 class="section-h">Hải &amp; Cộng sự — cam kết rõ ràng quyền lợi và hoa hồng lâu dài</h2>
-    <p class="sub">Chúng tôi hiểu: để ACE yên tâm giới thiệu, điều quan trọng nhất là sự minh bạch về quyền lợi và sự tin tưởng về chất lượng công trình.</p>
-    <div class="big">0983.601.366</div>
-    <div class="points">
-      <span class="pill">Hoa hồng rõ ràng</span>
-      <span class="pill">Quyền lợi minh bạch</span>
-      <span class="pill">Hợp tác lâu dài</span>
-      <span class="pill">Bảo vệ mối quan hệ ACE – khách</span>
+<!-- ★ CAM KẾT — ngắn gọn ngay dưới công cụ -->
+<section style="padding:0 0 40px;">
+  <div class="container" style="text-align:center;">
+    <div style="display:inline-flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+      <span style="font-size:.82rem;font-weight:600;color:var(--teal);background:rgba(15,118,110,.06);border-radius:980px;padding:8px 16px;">✓ Hoa hồng rõ ràng</span>
+      <span style="font-size:.82rem;font-weight:600;color:var(--teal);background:rgba(15,118,110,.06);border-radius:980px;padding:8px 16px;">✓ Khách của ACE vẫn là khách của ACE</span>
+      <span style="font-size:.82rem;font-weight:600;color:var(--teal);background:rgba(15,118,110,.06);border-radius:980px;padding:8px 16px;">✓ Công trình thật · 0983.601.366</span>
     </div>
   </div>
 </section>
 
-<!-- DỊCH VỤ LO KỸ -->
-<section class="services">
-  <div class="container">
-    <span class="section-tag">Chúng tôi lo</span>
-    <h2 class="section-h">Lo kỹ từ việc nhỏ đến việc lớn, để mọi người yên tâm</h2>
-    <p class="sub">Từ lúc xin phép cho đến khi bàn giao công trình, bên mình đều có kinh nghiệm thực tế xử lý mọi phát sinh.</p>
-    <div class="grid">
-      <div class="srv"><span class="num">01</span><h4>Xin phép xây dựng</h4><p>Hỗ trợ thủ tục, giấy tờ xin phép xây dựng đúng quy định để công trình không vướng pháp lý.</p></div>
-      <div class="srv"><span class="num">02</span><h4>Làm việc với hàng xóm</h4><p>Khéo léo xử lý mối quan hệ lân cận, hạn chế mâu thuẫn, phát sinh trong quá trình thi công.</p></div>
-      <div class="srv"><span class="num">03</span><h4>Xử lý phát sinh, rắc rối</h4><p>Kinh nghiệm thực tế xử lý các tình huống ngoài dự kiến để công trình tiến độ, không bế tắc.</p></div>
-      <div class="srv"><span class="num">04</span><h4>Thiết kế &amp; chất lượng công trình</h4><p>Thiết kế phù hợp nhu cầu, kiểm soát chất lượng thi công từ khâu nhỏ nhất.</p></div>
-    </div>
-  </div>
-</section>
+<!-- ★ JAVASCRIPT — Bridge ↔ Web -->
+<script>
+const BRIDGE = localStorage.getItem('aladdin-bridge') || '';
 
-<!-- BÀI VIẾT MỚI -->
-<section class="benefits">
+document.getElementById('tool-input').addEventListener('keydown', e => { if (e.key === 'Enter') askFromInput(); });
+
+function askFromInput() {
+  const q = document.getElementById('tool-input').value.trim();
+  if (!q || q.length < 5) { document.getElementById('tool-input').focus(); return; }
+  doAsk(q, 'answer_construction_question');
+}
+
+function askTool(intent, fallback) {
+  const q = document.getElementById('tool-input').value.trim() || fallback;
+  document.getElementById('tool-input').value = q;
+  doAsk(q, intent);
+}
+
+async function doAsk(question, intent) {
+  if (!BRIDGE) { document.getElementById('offline').style.display = 'block'; return; }
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('offline').style.display = 'none';
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 30000);
+    const r = await fetch(BRIDGE + '/task', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({toolIntent:intent,question,locale:'vi-VN'}), signal:ctrl.signal });
+    clearTimeout(t);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    render(await r.json());
+  } catch(e) {
+    render({ status:'rejected', shortAnswer:'Không kết nối được. Vui lòng thử lại hoặc nhắn Zalo 0983.601.366.', risks:[{level:'high',message:e.message}], nextActions:['request_expert'] });
+  } finally { document.getElementById('loading').style.display = 'none'; }
+}
+
+function render(d) {
+  document.getElementById('r-answer').innerHTML = '<p>' + esc(d.shortAnswer || 'Chưa có kết quả.') + '</p>';
+  const st = {completed:'AI sơ bộ',needs_expert:'Cần chuyên gia',needs_more_input:'Cần thêm thông tin',rejected:'Không xử lý được'};
+  const cl = {completed:'text-bg-info',needs_expert:'text-bg-warning',needs_more_input:'text-bg-secondary',rejected:'text-bg-danger'};
+  document.getElementById('r-badge').textContent = st[d.status] || d.status;
+  document.getElementById('r-badge').className = 'result-badge badge ' + (cl[d.status] || 'text-bg-secondary');
+  document.getElementById('r-status').textContent = d.knowledgeVersion ? 'v'+d.knowledgeVersion : '';
+  showList('r-assumptions','r-assumptions-list', d.assumptions);
+  if (d.risks && d.risks.length) {
+    document.getElementById('r-risks').style.display = 'block';
+    document.getElementById('r-risks-list').innerHTML = d.risks.map(r => '<li><span class="badge '+(r.level==='high'?'text-bg-danger':r.level==='medium'?'text-bg-warning':'text-bg-light')+' me-1">'+r.level+'</span>'+esc(r.message)+'</li>').join('');
+  } else document.getElementById('r-risks').style.display = 'none';
+  showList('r-sources','r-sources-list', d.sources ? d.sources.map(s=>s.title+(s.ref?' ('+s.ref+')':'')) : []);
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+  window._lastAnswer = d.shortAnswer || '';
+}
+function showList(sec,list,items){const s=document.getElementById(sec);if(items&&items.length){s.style.display='block';document.getElementById(list).innerHTML=items.map(i=>'<li>'+esc(typeof i==='string'?i:JSON.stringify(i))+'</li>').join('')}else s.style.display='none'}
+function resetTool(){document.getElementById('result').style.display='none';document.getElementById('tool-input').value='';document.getElementById('tool-input').focus()}
+function copyResult(){navigator.clipboard.writeText(window._lastAnswer||'').then(()=>{const b=document.getElementById('copy-btn'),o=b.textContent;b.textContent='✅ Đã sao chép!';setTimeout(()=>b.textContent=o,2000)})}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+(async()=>{if(!BRIDGE){document.getElementById('offline').style.display='block';return}try{const r=await fetch(BRIDGE+'/health',{signal:AbortSignal.timeout(5000)});if(!r.ok)document.getElementById('offline').style.display='block'}catch{document.getElementById('offline').style.display='block'}})();
+</script>
+
+<!-- ★ BÀI VIẾT MỚI — SEO, bên dưới công cụ -->
+<section class="benefits" style="padding-top:48px;">
   <div class="container">
     <span class="section-tag">Bài viết</span>
-    <h2 class="section-h">Bài viết dành cho môi giới &amp; chủ nhà</h2>
-    <p class="sub">Kinh nghiệm thực tế, cẩm nang xây sửa nhà và những câu chuyện hợp tác thành công.</p>
-    <div class="postlist" style="margin-top:34px;">
+    <h2 class="section-h">Kiến thức xây sửa nhà cho môi giới</h2>
+    <p class="sub">Kinh nghiệm thực tế, cẩm nang và câu hỏi khách hay hỏi.</p>
+    <div class="postlist" style="margin-top:28px;">
       {% for post in site.blog limit:3 %}
       <div class="postcard">
         <a href="{{ post.url | relative_url }}">
@@ -104,13 +224,13 @@ title: "Giới thiệu khách xây, sửa nhà — mở thêm thu nhập cho ACE
   </div>
 </section>
 
-<!-- CÔNG TRÌNH TIÊU BIỂU -->
-<section class="services">
+<!-- ★ CÔNG TRÌNH -->
+<section class="services" style="padding-top:48px;">
   <div class="container">
     <span class="section-tag">Công trình</span>
-    <h2 class="section-h">Công trình thi công thật — để ACE đưa khách đi xem</h2>
-    <p class="sub">Hình ảnh thực tế những công trình đã và đang thi công, giúp ACE và chủ nhà tham khảo trực tiếp trước khi quyết định.</p>
-    <div class="postlist" style="margin-top:34px;">
+    <h2 class="section-h">Công trình thật — để ACE dẫn khách đi xem</h2>
+    <p class="sub">Hình ảnh thực tế, thi công chuẩn mực.</p>
+    <div class="postlist" style="margin-top:28px;">
       {% for p in site.portfolio limit:3 %}
       <div class="postcard">
         <a href="{{ p.url | relative_url }}">
@@ -127,15 +247,5 @@ title: "Giới thiệu khách xây, sửa nhà — mở thêm thu nhập cho ACE
       </div>
       {% endfor %}
     </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final" id="dat-lich">
-  <div class="container">
-    <h2 class="section-h">Bạn có khách cần xây hoặc sửa nhà?</h2>
-    <p class="sub" style="color:#e2e8f0;">Chỉ cần một cuộc gọi — phần còn lại chúng tôi lo kỹ từ việc nhỏ đến việc lớn.</p>
-    <div class="phone"><a href="tel:0983601366">0983.601.366</a></div>
-    <p class="note">Hải &amp; Cộng sự · Chuyên xây dựng &amp; sửa chữa nhà ở · Hợp tác bền vững cùng ACE môi giới</p>
   </div>
 </section>

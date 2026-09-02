@@ -31,6 +31,8 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
 .calc-title{font-size:1.05rem;font-weight:800;color:var(--text);}
 .calc-sub{font-size:.8rem;color:var(--text-3);margin-top:2px;}
 .calc-form{display:flex;flex-direction:column;gap:12px;}
+.calc-step{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--teal);margin-top:4px;padding-top:12px;border-top:1px dashed rgba(15,118,110,.18);}
+.calc-step:first-child{border-top:none;padding-top:0;}
 .calc-field{display:flex;flex-direction:column;gap:5px;}
 .calc-label{font-size:.78rem;font-weight:600;color:var(--text-3);}
 .calc-form select,.calc-form input[type=number]{width:100%;font-size:.95rem;padding:12px 14px;border:1.5px solid rgba(0,0,0,.10);border-radius:12px;outline:none;background:#fff;font-family:var(--font);transition:border .15s,box-shadow .15s;}
@@ -51,6 +53,9 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
 .calc-row-result .v{font-weight:700;color:var(--text);}
 .calc-total{margin-top:12px;padding:12px 14px;background:#e6f7f0;border-radius:12px;font-size:.98rem;font-weight:800;color:#0f766e;display:flex;justify-content:space-between;align-items:center;}
 .calc-total .amt{font-size:1.15rem;}
+.calc-result-sec{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--text-3);margin:12px 0 4px;padding-top:10px;border-top:1px solid rgba(0,0,0,.08);}
+.calc-result-sec:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+.calc-range{font-size:.85rem;color:var(--text-2);margin-top:8px;text-align:right;}
 .calc-warn{margin-top:10px;font-size:.74rem;color:#92400e;background:#fff7e6;border-radius:10px;padding:9px 12px;line-height:1.5;}
 
 /* 4 nút lớn — 2×2 mobile, 4×1 desktop */
@@ -121,14 +126,16 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
       </button>
     </div>
 
-    <!-- ★ FORM TÍNH TỨC THÌ (điền thông số → tính ngay, không chờ AI) -->
+    <!-- ★ FORM DỰ TOÁN TOÀN DIỆN (điền thông số → tính ngay) -->
     <div class="calc-box">
       <div class="calc-head">
         <span class="calc-ico">⚡</span>
-        <div class="calc-title">Tính nhanh ngay tại đây</div>
-        <div class="calc-sub">Điền thông số rồi bấm <b>Tính ngay</b> — có kết quả liền, không cần chờ.</div>
+        <div class="calc-title">Dự toán toàn diện</div>
+        <div class="calc-sub">Điền thông tin căn nhà → bấm <b>Tính ngay</b> → ra bảng dự toán chi tiết.</div>
       </div>
       <div class="calc-form">
+        <!-- BƯỚC 1: LOẠI CÔNG VIỆC -->
+        <div class="calc-step">1 · Loại công việc</div>
         <label class="calc-field">
           <span class="calc-label">Loại công việc</span>
           <select id="c-type" onchange="calcToggle()">
@@ -138,39 +145,93 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
             <option value="vat-tu">🧱 Vật tư xi măng</option>
           </select>
         </label>
-        <label class="calc-field">
-          <span class="calc-label">Diện tích sàn (m²) <span style="color:var(--text-3);font-weight:400;">· 1 tầng</span></span>
-          <input type="number" id="c-area" min="10" max="2000" placeholder="VD: 80" inputmode="numeric">
-        </label>
-        <div id="c-tang-wrap" class="calc-field" style="display:none;">
-          <span class="calc-label">Số tầng (xây mới)</span>
-          <select id="c-tang">
-            <option value="1">1 tầng</option>
-            <option value="2">2 tầng</option>
-            <option value="3">3 tầng</option>
-            <option value="4" selected>4 tầng</option>
-            <option value="5">5+ tầng</option>
-          </select>
+
+        <!-- BƯỚC 2: DIỆN TÍCH & KẾT CẤU -->
+        <div class="calc-step">2 · Diện tích &amp; kết cấu</div>
+        <div class="calc-row">
+          <label class="calc-field">
+            <span class="calc-label">Diện tích sàn / tầng (m²)</span>
+            <input type="number" id="c-area" min="10" max="2000" placeholder="VD: 80" inputmode="numeric">
+          </label>
+          <label class="calc-field" id="c-tang-wrap" style="display:none;">
+            <span class="calc-label">Số tầng</span>
+            <select id="c-tang">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4" selected>4</option>
+              <option value="5">5</option>
+            </select>
+          </label>
         </div>
+        <div id="c-xay-opts" class="calc-form" style="display:none;padding:0;">
+          <div class="calc-row">
+            <label class="calc-field">
+              <span class="calc-label">Loại hình</span>
+              <select id="c-loaihinh">
+                <option value="Nhà phố/Nhà ống" selected>Nhà phố / Nhà ống</option>
+                <option value="Nhà cấp 4">Nhà cấp 4</option>
+                <option value="Biệt thự">Biệt thự</option>
+              </select>
+            </label>
+            <label class="calc-field">
+              <span class="calc-label">Loại móng</span>
+              <select id="c-mong">
+                <option value="Móng băng" selected>Móng băng</option>
+                <option value="Móng đơn giản">Móng đơn giản</option>
+                <option value="Móng cọc (đất yếu)">Móng cọc (đất yếu)</option>
+              </select>
+            </label>
+          </div>
+          <div class="calc-row">
+            <label class="calc-field">
+              <span class="calc-label">Kết cấu mái</span>
+              <select id="c-mai">
+                <option value="Mái bê tông" selected>Mái bê tông</option>
+                <option value="Mái tôn">Mái tôn</option>
+                <option value="Mái thái">Mái thái</option>
+              </select>
+            </label>
+            <label class="calc-field">
+              <span class="calc-label">Chất lượng</span>
+              <select id="c-vatlieu">
+                <option value="Phổ thông" selected>Phổ thông</option>
+                <option value="Khá">Khá</option>
+                <option value="Cao cấp">Cao cấp</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <!-- BƯỚC 3: ĐIỀU KIỆN & PHÍ PHỤ -->
+        <div class="calc-step">3 · Điều kiện &amp; khu vực</div>
         <div class="calc-row">
           <label class="calc-field">
             <span class="calc-label">Khu vực</span>
             <select id="c-vung">
-              <option value="HN">Hà Nội</option>
-              <option value="HCM">TP.HCM</option>
-              <option value="DN">Đà Nẵng</option>
-              <option value="KHAC" selected>Tỉnh khác</option>
+              <option value="Hà Nội">Hà Nội</option>
+              <option value="TP.HCM">TP.HCM</option>
+              <option value="Đà Nẵng">Đà Nẵng</option>
+              <option value="Tỉnh khác" selected>Tỉnh khác</option>
             </select>
           </label>
-          <label class="calc-field" id="c-vatlieu-wrap">
-            <span class="calc-label">Chất lượng</span>
-            <select id="c-vatlieu">
-              <option value="1.0" selected>Phổ thông</option>
-              <option value="1.2">Khá</option>
-              <option value="1.5">Cao cấp</option>
+          <label class="calc-field">
+            <span class="calc-label">Điều kiện tiếp cận</span>
+            <select id="c-dieukien">
+              <option value="0" selected>Ngõ ô tô / thuận lợi</option>
+              <option value="0.12">Ngõ xe máy — phải khuân tay</option>
+              <option value="0.08">Khu vực xa / khó tiếp cận</option>
             </select>
           </label>
         </div>
+        <div id="c-xph-ep-wrap" class="calc-field" style="display:none;">
+          <span class="calc-label">Xin phép xây dựng / thay đổi kết cấu</span>
+          <select id="c-xinphep">
+            <option value="15000000">Có — cần xin phép (khu đô thị)</option>
+            <option value="0" selected>Không</option>
+          </select>
+        </div>
+
         <!-- Thông số riêng theo loại -->
         <div id="c-sua-wrap" class="calc-field" style="display:none;">
           <span class="calc-label">Mức độ sửa (đơn giá/m² sàn hiện trạng)</span>
@@ -180,11 +241,9 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
             <option value="9000000">Sửa lớn — thay kết cấu, nâng tầng, cải tạo triệt để</option>
           </select>
         </div>
-        <div id="c-son-wrap" class="calc-row" style="display:none;">
-          <label class="calc-field">
-            <span class="calc-label">Diện tích tường cần sơn (m²)</span>
-            <input type="number" id="c-son-area" min="20" placeholder="VD: 250">
-          </label>
+        <div id="c-son-wrap" class="calc-field" style="display:none;">
+          <span class="calc-label">Diện tích tường cần sơn (m²)</span>
+          <input type="number" id="c-son-area" min="20" placeholder="VD: 250">
         </div>
         <button class="calc-btn" onclick="calcNow()">⚡ Tính ngay</button>
         <p class="calc-note">Kết quả ước tính nhanh, mang tính tham khảo. Bắt buộc khảo sát thực tế để có báo giá chính xác.</p>
@@ -271,12 +330,17 @@ if(!localStorage.getItem('aladdin-bridge')) localStorage.setItem('aladdin-bridge
 const PRICING = {{ site.data.moi-gioi.bang-gia | jsonify }};
 
 function fmt(n){ return Math.round(n).toLocaleString('vi-VN'); }
-function fmtTrieu(n){ return (n/1000000).toFixed(1); }
+function fmtTrieu(n){
+  const t = n/1000000;
+  // Gọn: 400 thay vì 400.0; giữ 1 số lẻ khi cần (VD 12.5)
+  return (Math.round(t*10)/10).toLocaleString('vi-VN');
+}
 
 function calcToggle(){
   const type = document.getElementById('c-type').value;
   document.getElementById('c-tang-wrap').style.display = (type==='xay-moi') ? 'flex' : 'none';
-  document.getElementById('c-vatlieu-wrap').style.display = (type==='xay-moi') ? 'flex' : 'none';
+  document.getElementById('c-xay-opts').style.display = (type==='xay-moi') ? 'flex' : 'none';
+  document.getElementById('c-xph-ep-wrap').style.display = (type==='xay-moi'||type==='sua') ? 'flex' : 'none';
   document.getElementById('c-sua-wrap').style.display = (type==='sua') ? 'flex' : 'none';
   document.getElementById('c-son-wrap').style.display = (type==='son') ? 'flex' : 'none';
 }
@@ -292,34 +356,71 @@ function calcNow(){
     return;
   }
 
-  const vungMap = {HN:'Hà Nội',HCM:'TP.HCM',DN:'Đà Nẵng',KHAC:'Tỉnh khác'};
-  const vung = document.getElementById('c-vung').value;
-  const vungName = vungMap[vung];
+  const vungName = document.getElementById('c-vung').value; // giờ là tên đầy đủ: Hà Nội...
   const P = PRICING; // từ _data/moi-gioi.yml bang-gia
   let html = '';
 
   if (type === 'xay-moi'){
-    const tang = document.getElementById('c-tang').value;
+    const tang = parseInt(document.getElementById('c-tang').value);
     const vatlieuName = document.getElementById('c-vatlieu').selectedOptions[0].text;
+    const loaihinh = document.getElementById('c-loaihinh').value;
+    const mong = document.getElementById('c-mong').value;
+    const mai = document.getElementById('c-mai').value;
+    const dieukien = parseFloat(document.getElementById('c-dieukien').value);
+
     const dongiaBase = P['xay-moi']['khong-gian'][vungName];
-    // Diện tích sàn thực thi = diện tích nền × số tầng (mọi nhà cùng công thức này)
-    const tongSan = area * parseInt(tang);
     const heSoVatLieu = P['xay-moi']['theo-vat-lieu'][vatlieuName];
-    const dongia = dongiaBase * heSoVatLieu;
-    const phiKhuantay = P['phi-phu']['Vật liệu phải khuân tay (ngõ xe máy/ngõ nhỏ)'];
-    const total = dongia * tongSan * (1 + phiKhuantay);
+    const heSoLoaiHinh = P['xay-moi']['he-so-loai-hinh'][loaihinh];
+    const heSoMai = P['xay-moi']['he-so-mai'][mai];
+    const heSoMong = P['xay-moi']['he-so-mong'][mong];
+
+    // Diện tích sàn thực thi = diện tích nền × số tầng
+    const tongSan = area * tang;
+
+    // Đơn giá trọn gói điều chỉnh theo loại hình + chất lượng
+    const dongiaGoc = dongiaBase * heSoVatLieu * heSoLoaiHinh;
+    // Tách phần thô / hoàn thiện (tỉ trọng từ yml)
+    const phanTho = dongiaGoc * P['xay-moi']['ti-trong-tho'] * heSoMai * heSoMong;
+    const phanHoanThien = dongiaGoc * P['xay-moi']['ti-trong-hoan-thien'];
+
+    const tienTho = phanTho * tongSan;
+    const tienHoanThien = phanHoanThien * tongSan;
+    // Phí xin phép + thiết kế
+    const phiXinPhep = parseFloat(document.getElementById('c-xinphep').value);
+    const phiThietKe = P['xay-moi']['phi-thiet-ke'];
+    // Phụ phí tiếp cận
+    const phiDieuKien = dieukien; // 0 / 0.12 / 0.08
+    const phiDieuKienTien = (tienTho + tienHoanThien) * phiDieuKien;
+    // Tiền xây trước dự phòng
+    const tienXay = tienTho + tienHoanThien + phiXinPhep + phiThietKe + phiDieuKienTien;
+    // Dự phòng
+    const duPhong = tienXay * P['xay-moi']['du-phong'];
+    const total = tienXay + duPhong;
+    const min = total * 0.85, max = total * 1.15;
+
     html = `
-      <h4>🏗️ Ước tính xây mới (${tang} tầng, ${vungName})</h4>
+      <h4>🏗️ DỰ TOÁN XÂY MỚI — ${tang} tầng, ${vungName}</h4>
+      <div class="calc-row-result"><span class="k">Loại hình / Chất lượng</span><span class="v">${loaihinh} · ${vatlieuName}</span></div>
       <div class="calc-row-result"><span class="k">Diện tích sàn thực thi</span><span class="v">${fmt(tongSan)} m² (${area}m² × ${tang} tầng)</span></div>
-      <div class="calc-row-result"><span class="k">Đơn giá (${vatlieuName})</span><span class="v">${fmt(dongia)} đ/m² · ${fmtTrieu(dongia)}tr/m²</span></div>
-      <div class="calc-row-result"><span class="k">Khuân tay (ngõ xe máy)</span><span class="v">+${Math.round(phiKhuantay*100)}%</span></div>
-      <div class="calc-total"><span>Dự kiến tổng</span><span class="amt">${fmtTrieu(total)} triệu</span></div>
-      <div class="calc-warn">⚠️ Giá tham khảo thị trường 2026, chưa gồm đất, xin phép, thiết kế, dự phòng 10–15%. Ngõ xe máy — vật liệu khuân tay làm tăng chi phí. Bắt buộc khảo sát thực tế.</div>`;
+      <div class="calc-row-result"><span class="k">Đơn giá gốc</span><span class="v">${fmtTrieu(dongiaGoc)} tr/m² (điều chỉnh ${loaihinh})</span></div>
+      <div class="calc-result-sec">🏗️ PHẦN THÔ — móng, khung, mái, tường</div>
+      <div class="calc-row-result"><span class="k">Móng (${mong}) / Mái (${mai})</span><span class="v">có áp dụng hệ số</span></div>
+      <div class="calc-row-result"><span class="k">Chi phí phần thô</span><span class="v">${fmtTrieu(tienTho)} triệu</span></div>
+      <div class="calc-result-sec">🎨 PHẦN HOÀN THIỆN — sơn, nền, cửa, vệ sinh, điện nước</div>
+      <div class="calc-row-result"><span class="k">Chi phí hoàn thiện</span><span class="v">${fmtTrieu(tienHoanThien)} triệu</span></div>
+      <div class="calc-result-sec">📋 CÁC KHOẢN PHỤ</div>
+      <div class="calc-row-result"><span class="k">Xin phép xây dựng</span><span class="v">${fmtTrieu(phiXinPhep||0)} triệu</span></div>
+      <div class="calc-row-result"><span class="k">Thiết kế kiến trúc</span><span class="v">${fmtTrieu(phiThietKe)} triệu</span></div>
+      <div class="calc-row-result"><span class="k">Tiếp cận ${dieukien>0?'(phải khuân tay)':'thuận lợi'}</span><span class="v">${dieukien>0?('+'+Math.round(dieukien*100)+'% · '+fmtTrieu(phiDieuKienTien)+' tr'):'0'}</span></div>
+      <div class="calc-row-result"><span class="k">Dự phòng phát sinh (+${Math.round(P['xay-moi']['du-phong']*100)}%)</span><span class="v">${fmtTrieu(duPhong)} triệu</span></div>
+      <div class="calc-total"><span>Tổng ước tính</span><span class="amt">${fmtTrieu(total)} triệu</span></div>
+      <div class="calc-range">Biên độ thực tế: <b>${fmtTrieu(min)} – ${fmtTrieu(max)} triệu</b></div>
+      <div class="calc-warn">⚠️ Giá tham khảo thị trường 2026, chưa gồm đất. Móng cọc / đất yếu / ngõ xe máy khuân tay làm tăng chi phí. Bắt buộc khảo sát thực tế để có báo giá chính xác.</div>`;
   }
   else if (type === 'sua'){
-    const mucdo = parseFloat(document.getElementById('c-mucdo').value); // triệu
+    const mucdo = parseFloat(document.getElementById('c-mucdo').value); // đơn giá VNĐ/m² (VD 5000000)
     const mucdoName = document.getElementById('c-mucdo').selectedOptions[0].text;
-    const total = mucdo * 1000000 * area;
+    const total = mucdo * area; // VNĐ
     html = `
       <h4>🔧 Ước tính sửa chữa (${vungName})</h4>
       <div class="calc-row-result"><span class="k">Mức độ</span><span class="v">${mucdoName}</span></div>

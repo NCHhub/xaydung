@@ -3,10 +3,7 @@
     <a class="brand" href="{{ '/' | relative_url }}">Hải <span>&amp;</span> Cộng sự</a>
     <button class="menu-btn" onclick="document.getElementById('nav-menu').classList.toggle('open')" aria-label="Mở menu">☰</button>
     <ul id="nav-menu">
-      <li><a href="{{ '/' | relative_url }}" {% if page.layout == 'home' %}class="active"{% endif %}>Trang chủ</a></li>
-      <li><a href="{{ '/bai-viet/' | relative_url }}" {% if page.url contains '/bai-viet/' or page.collection == 'blog' %}class="active"{% endif %}>Bài viết</a></li>
-      <li><a href="{{ '/cong-trinh/' | relative_url }}" {% if page.url contains '/cong-trinh/' or page.collection == 'portfolio' %}class="active"{% endif %}>Công trình</a></li>
-      <li><a href="{{ '/moi-gioi/' | relative_url }}" {% if page.url contains '/moi-gioi/' %}class="active"{% endif %}>Công cụ ACE</a></li>
+      <li><a href="{{ '/' | relative_url }}" class="active">Công cụ môi giới</a></li>
       <li><a class="cta" href="tel:0983601366">📞 0983.601.366</a></li>
     </ul>
   </div>

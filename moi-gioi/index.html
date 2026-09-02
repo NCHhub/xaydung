@@ -7,39 +7,53 @@ description: "Khách hỏi → có người trả lời. Cần content → có c
 <!-- Dashboard "Hôm nay" — LỆNH TỔNG Mục 7.2: câu hỏi + 3 hành động lớn trong vùng nhìn đầu tiên -->
 <div class="row mb-4">
   <div class="col-12">
-    <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-.02em;">Hôm nay anh/chị cần gì?</h2>
+    <div class="d-flex flex-wrap gap-2 mb-2">
+      <span class="badge text-bg-success rounded-pill" style="font-weight:600;">Bộ công cụ môi giới</span>
+      <span class="badge bg-white text-muted rounded-pill border" style="font-weight:500;">xây &amp; sửa nhà</span>
+    </div>
+    <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-.02em;margin:0;">Chào ACE môi giới 👋 Hôm nay mình giúp ACE được gì?</h2>
+    <p class="text-muted2" style="font-size:.92rem;margin:6px 0 0;">3 việc có sẵn — mỗi việc dưới 1 phút, làm xong là có thứ quay lại với khách.</p>
   </div>
 </div>
 
 <div class="row g-3 g-lg-4">
 
-  <!-- 1. KHÁCH ĐANG HỎI GÌ? -->
+  <!-- 1. KHÁCH ĐANG HỎI GÌ? — 30 giây -->
   <div class="col-md-4">
     <a class="big-action" href="{{ '/moi-gioi/khach-hoi/' | relative_url }}">
-      <div class="ic" style="background:#e6f1ff;color:#0071e3;">🗣️</div>
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="ic" style="background:#e6f1ff;color:#0071e3;">🗣️</div>
+        <span class="tag">⏱ 30 giây</span>
+      </div>
       <h3>Khách đang hỏi gì?</h3>
-      <p>Xây nhà bắt đầu từ đâu, trọn gói hay tự mua, báo giá chênh nhau… Lấy câu trả lời ngắn gửi khách, hoặc nhờ kỹ thuật gọi khách.</p>
-      <span class="go">Tra câu trả lời →</span>
+      <p>Khách hỏi xây nhà bắt đầu từ đâu, trọn gói hay tự mua… Mình có ngay câu trả lời ngắn gọn — khách thấy mình là người có kiến thức.</p>
+      <span class="go">Xem câu hỏi + trả lời →</span>
     </a>
   </div>
 
-  <!-- 2. HÔM NAY ĐĂNG GÌ? -->
+  <!-- 2. HÔM NAY ĐĂNG GÌ? — 1 phút -->
   <div class="col-md-4">
     <a class="big-action" href="{{ '/moi-gioi/hom-nay-dang-gi/' | relative_url }}">
-      <div class="ic" style="background:#e6f7f0;color:#0f766e;">📤</div>
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="ic" style="background:#e6f7f0;color:#0f766e;">📤</div>
+        <span class="tag">⏱ 1 phút</span>
+      </div>
       <h3>Hôm nay đăng gì?</h3>
-      <p>Chủ đề đang được quan tâm + caption có sẵn cho Facebook và Zalo. Copy, đăng — chưa tới 1 phút, khách thấy ACE luôn cập nhật.</p>
+      <p>Caption viết sẵn theo đúng chủ đề khách đang quan tâm. Copy → dán → đăng lên Facebook/Zalo, ngày nào cũng có bài mới trong tay nghề.</p>
       <span class="go">Chọn bài để đăng →</span>
     </a>
   </div>
 
-  <!-- 3. TÔI CÓ KHÁCH CẦN HỖ TRỢ -->
+  <!-- 3. TÔI CÓ KHÁCH CẦN HỖ TRỢ — KIẾM TIỀN -->
   <div class="col-md-4">
-    <div class="big-action" style="cursor:default;">
-      <div class="ic" style="background:#fff7e6;color:#f59e0b;">💰</div>
-      <h3>Tôi có khách cần hỗ trợ</h3>
-      <p>Gửi khách cần xây/sửa nhà. Điền form nhanh dưới 1 phút hoặc gửi Zalo — Aladdin ghi rõ người giới thiệu và cập nhật tiến độ về ACE.</p>
-      <div class="d-flex flex-wrap gap-2 mt-2">
+    <div class="big-action hot" style="cursor:default;">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="ic" style="background:#fff7e6;color:#b45309;">💰</div>
+        <span class="tag tag-gold">Hoa hồng rõ ràng</span>
+      </div>
+      <h3>Tôi có khách cần xây/sửa</h3>
+      <p>Gửi khách qua form dưới 1 phút hoặc Zalo. Aladdin ghi rõ người giới thiệu, cập nhật tiến độ về ACE — khách của ACE vẫn là khách của ACE.</p>
+      <div class="d-flex flex-wrap gap-2 mt-1">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfN74cicm1qQWxBBi1FIJIo6UNq14SFKQOxRKGqbSXn0OP16g/viewform" target="_blank" rel="noopener" class="btn btn-main btn-sm text-white" style="padding:.55rem 1.1rem;">Điền thông tin khách</a>
         <a href="https://zalo.me/0983601366" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary" style="padding:.55rem 1.1rem;">Gửi Zalo 0983.601.366</a>
       </div>
@@ -52,8 +66,11 @@ description: "Khách hỏi → có người trả lời. Cần content → có c
 <div class="row g-3 mt-3">
   <div class="col-lg-7">
     <div class="mini-card">
-      <h4 style="font-size:1rem;font-weight:700;margin-bottom:6px;">Anh/chị thấy công cụ này sao?</h4>
-      <p class="text-muted2" style="font-size:.88rem;margin-bottom:12px;">1 chạm góp ý — Aladdin đọc và cải thiện từng tuần. Khách của ACE vẫn là khách của ACE.</p>
+      <div class="d-flex align-items-center justify-content-between gap-2 mb-1" style="flex-wrap:wrap;">
+        <h4 style="font-size:1rem;font-weight:700;margin:0;">Anh/chị thấy công cụ này sao?</h4>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWTfpkI_9LAYmDVczcdEMEA0zxB5zvEMd54NloBj_11Vi7GA/viewform" target="_blank" rel="noopener" class="btn btn-sm btn-main text-white" style="padding:.4rem .9rem;">📝 Góp ý 1 câu (không tên)</a>
+      </div>
+      <p class="text-muted2" style="font-size:.88rem;margin-bottom:12px;">1 chạm góp ý — Aladdin đọc và cải thiện từng tuần.</p>
       <div class="d-flex flex-wrap gap-2">
         <a href="https://zalo.me/0983601366" target="_blank" rel="noopener" class="btn btn-sm btn-outline-success">👍 Có ích — tôi sẽ dùng tiếp</a>
         <a href="https://zalo.me/0983601366" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary">👎 Chưa đúng nhu cầu — gửi góp ý</a>

@@ -611,7 +611,10 @@ function checklistNow(){
     '<div style="padding:10px 14px;border-radius:12px;font-weight:800;font-size:1rem;background:'+(badge==='danger'?'#fee2e2;color:#b91c1c':badge==='warning'?'#fff7e6;color:#92400e':'#e6f7f0;color:#0f766e')+'">🔍 Kết luận sơ bộ: '+cls+'</div>' +
     (warns.length? '<ul style="margin:10px 0 0;padding-left:18px;font-size:.88rem;color:#b91c1c;">' + warns.map(w=>'<li>⚠️ '+w+'</li>').join('') + '</ul>' : '') +
     (unknowns.length? '<ul style="margin:10px 0 0;padding-left:18px;font-size:.88rem;color:#92400e;">' + unknowns.map(w=>'<li>❓ '+w+'</li>').join('') + '</ul>' : '') +
-    '<div style="margin-top:12px;font-size:.78rem;color:var(--text-3);">Không kết luận kết cấu/pháp lý thay người có thẩm quyền. Nếu có dấu hiệu rủi ro, nên mời kỹ sư khảo sát trước khi cọc.</div>' +
+    '<div style="margin-top:12px;font-size:.78rem;color:var(--text-3);">Không kết luận kết cấu/pháp lý thay người có thẩm quyền. Nếu có dấu hiệu rủi ro, nên mời kỹ sư khảo sát trước khi cọc.</div>';
+  box.classList.add('show');
+}
+
 /* ===== QUY TRÌNH CÔNG TRÌNH CHI TIẾT =====
    Điền loại công trình + diện tích → sinh checklist từng bước + chi phí + thời gian + kinh nghiệm.
    Chạy ngay client-side (không chờ AI), dùng knowledge 21 năm của Hải trong _data/moi-gioi.yml. */

@@ -143,6 +143,17 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
 <script>
 const BRIDGE = localStorage.getItem('aladdin-bridge') || '';
 
+/* Dấu vết người dùng: anonymous id bền trong localStorage
+   → mỗi người dùng có 1 hội thoại riêng (liền mạch, có bộ nhớ) trên bridge */
+function getUserId(){
+  let id = localStorage.getItem('aladdin-uid');
+  if (!id) {
+    id = 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+    localStorage.setItem('aladdin-uid', id);
+  }
+  return id;
+}
+
 document.getElementById('tool-input').addEventListener('keydown', e => { if (e.key === 'Enter') askFromInput(); });
 
 function askFromInput() {
@@ -165,7 +176,7 @@ async function doAsk(question, intent) {
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), 30000);
-    const r = await fetch(BRIDGE + '/task', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({toolIntent:intent,question,locale:'vi-VN'}), signal:ctrl.signal });
+    const r = await fetch(BRIDGE + '/task', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({toolIntent:intent,question,userId:getUserId(),locale:'vi-VN'}), signal:ctrl.signal });
     clearTimeout(t);
     if (!r.ok) throw new Error('HTTP ' + r.status);
     render(await r.json());

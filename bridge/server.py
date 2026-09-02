@@ -108,62 +108,113 @@ async def call_advisor(task: AdvisorTask) -> AdvisorResult:
     return await _call_proxy(task)
 
 # ===== 1. CHORUS — ChatGPT miễn phí không giới hạn =====
+# Mỗi người dùng (userId) = 1 hội thoại riêng (Chorus session) để LIỀN MẠCH + CÓ BỘ NHỚ.
+# Prompt LUÔN gắn knowledge pack + persona Hải (trí tuệ của chúng ta).
+CHORUS_API = os.getenv("CHORUS_API", "http://127.0.0.1:4747")
 CHORUS_PLATFORM = os.getenv("ADVISOR_CHORUS_PLATFORM", "chatgpt")
-CHORUS_ASK = os.getenv("CHORUS_ASK", f"{Path.home()}/empire/shared/tu-van-ngoai/chorus_ask.py")
+
+# Conversation store: userId -> {"sid": <chorus session id>, "updated": ts}
+CONV_DIR = Path(__file__).parent / "conversations"
+CONV_FILE = CONV_DIR / "conversations.json"
+CONV_LOCK = asyncio.Lock()
+
+def _conv_load() -> Dict[str, Dict[str, Any]]:
+    try:
+        return json.loads(CONV_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+def _conv_save(data: Dict[str, Dict[str, Any]]):
+    CONV_DIR.mkdir(parents=True, exist_ok=True)
+    CONV_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+def _user_key(task: AdvisorTask) -> str:
+    """userId > brokerId > 'anonymous'. Dấu vết người dùng để giữ hội thoại riêng."""
+    return task.userId or task.brokerId or "anonymous"
+
+def _build_system_prompt() -> str:
+    """Prompt nền = trí tuệ + dữ liệu của chúng ta (persona Hải + knowledge pack)."""
+    return (
+        "BẠN LÀ: 'Nguyễn Cao Hải và Cộng sự' — trợ lý tư vấn xây/sửa nhà cho môi giới BĐS Việt Nam. "
+        "Bạn giúp môi giới trả lời khách, ước tính chi phí, soi báo giá, tính vật tư, xử lý thấm/nứt.\n\n"
+        "PHONG CÁCH HẢI: ngắn gọn, tiếng Việt phổ thông lớp 5 hiểu được, thân thiện, thực tế, "
+        "không bịa số, không hứa giá chính thức, luôn nhắc cần khảo sát thực tế.\n\n"
+        "DỮ LIỆU + TRÍ TUỆ CỦA CHÚNG TA (knowledge pack) — dùng làm nền, ưu tiên hơn kiến thức chung:\n"
+        f"{get_knowledge()[:8000]}\n\n"
+        "NHIỆM VỤ: trả lời câu hỏi của môi giới sao cho họ có thể gửi khách ngay. "
+        "Có số cụ thể (triệu/m²) khi ước tính. Luôn ghi chú cần khảo sát thực tế."
+    )
+
+# HTTP helper đồng bộ (chạy trong thread pool)
+def _chorus_http(method: str, path: str, payload: dict | None = None, timeout: int = 90) -> dict:
+    import urllib.request
+    req = urllib.request.Request(
+        f"{CHORUS_API}{path}",
+        data=json.dumps(payload).encode() if payload is not None else None,
+        headers={"Content-Type": "application/json"} if payload is not None else {},
+        method=method)
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read())
+
+def _get_chorus_answer(sid: str, max_wait: int = 90) -> str:
+    """Poll session cho tới khi complete, trả về response của platform đích."""
+    import time as _t
+    deadline = _t.time() + max_wait
+    while _t.time() < deadline:
+        data = _chorus_http("GET", f"/api/sessions/{sid}", timeout=15)
+        if data.get("status") == "complete":
+            resp = data.get("responses", {}).get(CHORUS_PLATFORM)
+            if isinstance(resp, dict) and resp.get("error"):
+                return ""
+            return str(resp) if resp and "[No response" not in str(resp) else ""
+        _t.sleep(3)
+    return ""
 
 async def _call_chorus(task: AdvisorTask) -> Optional[AdvisorResult]:
-    """Gọi chorus_ask.py (browser automation) — return None nếu fail."""
-    import re
-    questions = {
-        "estimate_cost": "Ước tính chi phí xây/sửa nhà",
-        "audit_quote": "Soi báo giá còn thiếu hạng mục nào",
-        "calculate_material": "Tính vật tư cần thiết cho công trình",
-        "diagnose_issue": "Xử lý thấm/nứt nhà",
-    }
-    intent_hint = questions.get(task.toolIntent, "")
-    prompt = (
-        "Bạn là trợ lý tư vấn xây sửa nhà của Nguyễn Cao Hải và Cộng sự tại Việt Nam. "
-        "Trả lời NGẮN GỌN tiếng Việt phổ thông, thân thiện, có số cụ thể (triệu/m²). "
-        "Luôn lưu ý cần khảo sát thực tế. Không hứa hẹn giá chính thức.\n"
-        f"Công việc: {intent_hint}.\n"
-        f"Câu hỏi từ môi giới: {task.question}\n"
-        "Trả lời:"
-    )
+    """Duy trì 1 hội thoại Chorus riêng theo userId; follow-up để giữ bộ nhớ."""
+    import functools
+    async with CONV_LOCK:
+        convs = _conv_load()
+        key = _user_key(task)
+        conv = convs.get(key, {})
+        sid = conv.get("sid")
+    
     try:
-        proc = await asyncio.create_subprocess_exec(
-            sys.executable, CHORUS_ASK, prompt, "-p", CHORUS_PLATFORM,
-            cwd=str(Path(CHORUS_ASK).parent),
-            stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
-        stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=120)
-        out = stdout.decode("utf-8", "ignore")
-        if proc.returncode != 0 or ("OK" not in out and "xong" not in out):
-            return None
-        # Tìm đường dẫn thư mục tra-loi mới nhất từ output
-        m = re.search(r'(/home/[^\s]+/tra-loi/\d{8}-\d{6})', out)
-        if not m:
-            return None
-        answer = _read_latest_chorus(m.group(1))
+        system_prompt = _build_system_prompt()
+        user_q = f"{system_prompt}\n\n===== CÂU HỎI MỚI TỪ MÔI GIỚI =====\n{task.question}"
+        
+        if sid:
+            # Đã có hội thoại → follow-up (ChatGPT nhớ bối cảnh, liền mạch)
+            await asyncio.to_thread(
+                _chorus_http, "POST", f"/api/sessions/{sid}/followup",
+                {"prompt": user_q}, 120)
+        else:
+            # Lần đầu → tạo hội thoại riêng cho người dùng
+            sess = await asyncio.to_thread(
+                _chorus_http, "POST", "/api/query",
+                {"prompt": user_q, "platforms": [CHORUS_PLATFORM]}, 120)
+            sid = sess.get("session_id")
+            if not sid:
+                return None
+            async with CONV_LOCK:
+                convs = _conv_load()
+                convs[key] = {"sid": sid, "updated": time.time()}
+                _conv_save(convs)
+        
+        # Poll kết quả
+        answer = await asyncio.to_thread(_get_chorus_answer, sid, 90)
         if not answer:
             return None
         return AdvisorResult(
             taskId=task.id, status="completed",
-            shortAnswer=_strip_md(answer)[:1500],
-            assumptions=["Tư vấn AI sơ bộ. Cần khảo sát thực tế."],
+            shortAnswer=_strip_md(answer)[:1800],
+            assumptions=["Tư vấn AI sơ bộ dựa trên knowledge pack. Cần khảo sát thực tế."],
             risks=[{"level": "medium", "message": "Kết quả từ AI sơ bộ, chưa được chuyên gia kiểm duyệt."}],
             nextActions=["copy", "request_expert"],
             sources=[{"title": f"{CHORUS_PLATFORM.capitalize()} qua Nguyễn Cao Hải và Cộng sự (AI sơ bộ)", "ref": "knowledge_v0.1"}])
-    except Exception:
+    except Exception as e:
+        print(f"[chorus] error: {e}", flush=True)
         return None
-
-def _read_latest_chorus(dirpath: str) -> str:
-    """Đọc file tra-loi-<platform>.md mới nhất trong thư mục trả lời."""
-    import glob
-    for f in sorted(glob.glob(f"{dirpath}/tra-loi-{CHORUS_PLATFORM}.md")):
-        text = open(f, encoding="utf-8").read()
-        # Bỏ phần header meta (---...---)
-        body = text.split("---", 2)
-        return body[2].strip() if len(body) >= 3 else text
-    return ""
 
 # ===== 2. PROXY OpenCode (fallback) =====
 async def _call_proxy(task: AdvisorTask) -> AdvisorResult:

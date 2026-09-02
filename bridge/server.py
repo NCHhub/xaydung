@@ -128,6 +128,20 @@ def _conv_save(data: Dict[str, Dict[str, Any]]):
     CONV_DIR.mkdir(parents=True, exist_ok=True)
     CONV_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
+def _sync_backup_sync():
+    """Đồng bộ conversations → PC backup + Google Drive (ổ G). Chạy nền, không chặn."""
+    try:
+        script = Path(__file__).parent / "sync_backup.sh"
+        if script.exists():
+            subprocess.run([str(script)], timeout=60,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
+
+async def _sync_backup_async():
+    """Fire-and-forget: chạy sync backup nền để không chặn response."""
+    await asyncio.to_thread(_sync_backup_sync)
+
 def _user_key(task: AdvisorTask) -> str:
     """userId > brokerId > 'anonymous'. Dấu vết người dùng để giữ hội thoại riêng."""
     return task.userId or task.brokerId or "anonymous"
@@ -200,6 +214,8 @@ async def _call_chorus(task: AdvisorTask) -> Optional[AdvisorResult]:
                 convs = _conv_load()
                 convs[key] = {"sid": sid, "updated": time.time()}
                 _conv_save(convs)
+            # Đồng bộ dữ liệu người dùng lên PC + Google Drive (không chặn response)
+            asyncio.create_task(_sync_backup_async())
         
         # Poll kết quả
         answer = await asyncio.to_thread(_get_chorus_answer, sid, 90)

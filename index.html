@@ -621,7 +621,15 @@ function checklistNow(){
 function quyTrinh(){
   const box = document.getElementById('quytrinh-result');
   const loai = document.getElementById('qt-loai').value;
-  const area = parseFloat(document.getElementById('qt-area').value);
+  let area = parseFloat(document.getElementById('qt-area').value);
+  // Tự lấy diện tích từ form Tính tiền nếu ô quy trình đang trống (tiết kiệm thao tác, không phá)
+  if (!area){
+    const c = parseFloat(document.getElementById('c-area').value);
+    if (c && c >= 10 && c <= 2000){
+      area = c;
+      document.getElementById('qt-area').value = c;
+    }
+  }
   box.classList.add('show');
 
   if (!area || area < 10 || area > 2000){

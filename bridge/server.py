@@ -99,98 +99,99 @@ Luôn ưu tiên tạo giá trị cho môi giới: giúp họ trả lời khách 
 Không bịa số liệu, không tự tạo giá, không tự hứa."""
 
 async def call_advisor(task: AdvisorTask) -> AdvisorResult:
-    """Gọi OpenCode CLI (opencode run) với task và knowledge pack."""
-    import re
-    knowledge = get_knowledge()
+    """Gọi OpenCode qua proxy API (port 4096) với task."""
+    import re, urllib.request
     
-    # System instruction gửi kèm
-    system = """Bạn là trợ lý tư vấn xây sửa nhà của Nguyễn Cao Hải và Cộng sự. Trả lời NGẮN GỌN tiếng Việt phổ thông. KHÔNG dùng markdown. Chỉ trả lời nội dung tư vấn. Nếu cần chuyên gia thì nói rõ. Luôn kết thúc bằng 1 dòng JSON trên cùng 1 dòng:
-{"shortAnswer":"...","assumptions":["..."],"risks":[{"level":"low|medium|high","message":"..."}],"nextActions":["copy","request_expert"]}
-Giá trị trong shortAnswer phải là câu trả lời đầy đủ cho môi giới gửi khách.
-Giá trị trong assumptions: giả định bạn đang dùng.
-Risks: rủi ro cần lưu ý.
-nextActions: các bước tiếp theo gợi ý.
-KHÔNG giải thích gì thêm ngoài nội dung tư vấn + JSON cuối cùng."""
-
-    user_msg = f"""{system}
-
-Câu hỏi từ môi giới:
-{task.question}
-
-Kiến thức tham khảo:
-{knowledge[:6000]}"""
+    system = (
+        "Bạn là trợ lý tư vấn xây sửa nhà của Nguyễn Cao Hải và Cộng sự. "
+        "Trả lời NGẮN GỌN tiếng Việt phổ thông, thân thiện. "
+        "Ước tính chi phí phải có số cụ thể (triệu/m²). "
+        "Luôn lưu ý cần khảo sát thực tế. "
+        "Kết thúc bằng 1 dòng JSON trên cùng 1 dòng:\n"
+        '{"shortAnswer":"...","assumptions":["..."],"risks":[{"level":"low|medium|high","message":"..."}],"nextActions":["copy","request_expert"]}'
+    )
+    user_msg = f"{system}\n\nCâu hỏi từ môi giới:\n{task.question}"
+    
+    PROXY = os.getenv("ADVISOR_PROXY", "http://127.0.0.1:4096")
     
     try:
-        # Gọi opencode run (non-interactive, stdin pipe)
-        result = subprocess.run(
-            ["opencode", "run"],
-            input=user_msg,
-            capture_output=True,
-            text=True,
-            timeout=90,
-            cwd=str(Path(__file__).parent.parent),
-        )
+        # 1. Tạo session
+        req = urllib.request.Request(
+            f"{PROXY}/session", data=b"{}",
+            headers={"Content-Type": "application/json"}, method="POST")
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            session_id = json.loads(resp.read())["id"]
         
-        raw = result.stdout.strip()
+        # 2. Gửi message
+        req = urllib.request.Request(
+            f"{PROXY}/session/{session_id}/message",
+            data=json.dumps({"content": user_msg}).encode(),
+            headers={"Content-Type": "application/json"}, method="POST")
+        with urllib.request.urlopen(req, timeout=10):
+            pass
         
-        # Strip ANSI escape codes
-        raw = re.sub(r'\x1b\[[0-9;]*m', '', raw)
-        raw = re.sub(r'\[0m', '', raw)
-        raw = re.sub(r'\[[\w\s·]+\]', '', raw)  # Remove "[0m" etc
+        # 3. Poll response (tối đa 90s)
+        start = time.time()
+        answer = ""
+        while time.time() - start < 90:
+            await asyncio.sleep(3)
+            req = urllib.request.Request(f"{PROXY}/session/{session_id}/message")
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                messages = json.loads(resp.read())
+            for m in messages:
+                if m.get("info", {}).get("role") == "assistant":
+                    parts = m.get("parts", [])
+                    txt = "".join(p.get("text", "") for p in parts if isinstance(p, dict) and p.get("type") == "text")
+                    if txt.strip():
+                        answer = txt.strip()
+                        break
+            if answer:
+                break
         
-        # Remove model info line "> build · big-pickle" etc
-        raw = re.sub(r'^>.*$', '', raw, flags=re.MULTILINE).strip()
+        if not answer:
+            return _fallback(task.id, "Hệ thống đang xử lý chậm. Vui lòng thử lại sau hoặc nhắn Zalo 0983.601.366.")
         
-        # Remove metadata sections (## Objective, ## Important, ## Work State, etc)
-        meta_idx = raw.find('## Objective')
-        if meta_idx > 0:
-            raw = raw[:meta_idx].strip()
-        meta_idx2 = raw.find('## Work State')
-        if meta_idx2 > 0:
-            raw = raw[:meta_idx2].strip()
-        
-        if not raw:
-            return _fallback(task.id, "Hệ thống tạm thời không trả lời được. Vui lòng nhắn Zalo 0983.601.366.")
-        
-        # Try to extract JSON from end of response
-        json_match = re.search(r'\{[^{}]*"shortAnswer"[^{}]*\}', raw, re.DOTALL)
+        # 4. Parse: ưu tiên JSON cuối, fallback text sạch
+        json_match = re.search(r'\{[^{}]*"shortAnswer"[^{}]*\}', answer, re.DOTALL)
         if json_match:
             try:
-                data = json.loads(json_match.group())
+                d = json.loads(json_match.group())
                 return AdvisorResult(
-                    taskId=task.id,
-                    status="completed",
-                    shortAnswer=data.get("shortAnswer", raw[:500]),
-                    assumptions=data.get("assumptions", []),
-                    risks=data.get("risks", []),
-                    nextActions=data.get("nextActions", ["copy", "request_expert"]),
-                    sources=[{"title": "Nguyễn Cao Hải và Cộng sự (AI sơ bộ)", "ref": "knowledge_v0.1"}]
-                )
+                    taskId=task.id, status="completed",
+                    shortAnswer=d.get("shortAnswer", "").strip() or _strip_md(answer),
+                    assumptions=d.get("assumptions", []),
+                    risks=d.get("risks", []),
+                    nextActions=d.get("nextActions", ["copy", "request_expert"]),
+                    sources=[{"title": "Nguyễn Cao Hải và Cộng sự (AI sơ bộ)", "ref": "knowledge_v0.1"}])
             except json.JSONDecodeError:
                 pass
         
-        # Fallback: use raw text (clean) as shortAnswer
-        # Remove trailing JSON-like noise
-        clean = re.sub(r'\{[^{}]*"shortAnswer".*\}$', '', raw, flags=re.DOTALL).strip()
+        clean = _strip_md(answer)
         return AdvisorResult(
-            taskId=task.id,
-            status="completed",
-            shortAnswer=clean[:1500] if clean else raw[:1500],
+            taskId=task.id, status="completed",
+            shortAnswer=clean[:1500],
             assumptions=["Đây là tư vấn sơ bộ. Cần khảo sát thực tế."],
             risks=[{"level": "medium", "message": "Kết quả từ AI sơ bộ, chưa được chuyên gia kiểm duyệt."}],
             nextActions=["copy", "request_expert"],
-            sources=[{"title": "Nguyễn Cao Hải và Cộng sự (AI sơ bộ)", "ref": "knowledge_v0.1"}]
-        )
-    except subprocess.TimeoutExpired:
-        return _fallback(task.id, "Hệ thống đang bận. Vui lòng thử lại sau hoặc nhắn Zalo 0983.601.366.")
-    except FileNotFoundError:
-        return _fallback(task.id, "OpenCode chưa được cài. Liên hệ quản trị.")
+            sources=[{"title": "Nguyễn Cao Hải và Cộng sự (AI sơ bộ)", "ref": "knowledge_v0.1"}])
     except Exception as e:
         return _fallback(task.id, f"Lỗi hệ thống: {str(e)[:200]}")
 
+def _strip_md(s: str) -> str:
+    """Làm sạch markdown để hiển thị web gọn."""
+    import re
+    s = re.sub(r'#{1,6}\s*', '', s)          # heading
+    s = re.sub(r'\*\*(.*?)\*\*', r'\1', s)   # bold
+    s = re.sub(r'__(.*?)__', r'\1', s)       # bold alt
+    s = re.sub(r'\|.*\|', '', s)             # bảng
+    s = re.sub(r'-{3,}', '', s)              # hr
+    s = re.sub(r'^\s*[-*]\s+', '• ', s, flags=re.MULTILINE)
+    s = re.sub(r'\n{3,}', '\n\n', s)
+    return s.strip()
+
 def _fallback(task_id, msg):
     return AdvisorResult(
-        taskId=task_id, status="rejected" if "Lỗi" in msg or "chưa được cài" in msg else "needs_expert",
+        taskId=task_id, status="rejected" if "Lỗi" in msg else "needs_expert",
         shortAnswer=msg,
         risks=[{"level": "medium", "message": "Hệ thống không thể xử lý tự động."}],
         nextActions=["request_expert"]

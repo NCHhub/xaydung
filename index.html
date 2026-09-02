@@ -142,8 +142,24 @@ description: "Công cụ tư vấn xây/sửa nhà cho ACE môi giới. Hỏi Ng
 <!-- ★ JAVASCRIPT — Bridge ↔ Web -->
 <script>
 /* Bridge URL: ưu tiên localStorage (Diamond override), fallback mặc định tunnel hiện tại.
+   Tự động kiểm tra /health: nếu URL stored không sống → fallback về DEFAULT.
    Khi tunnel đổi URL → set localStorage: localStorage.setItem('aladdin-bridge','URL') */
-const BRIDGE = localStorage.getItem('aladdin-bridge') || 'https://muslim-warcraft-discounted-municipality.trycloudflare.com';
+const DEFAULT_BRIDGE = 'https://muslim-warcraft-discounted-municipality.trycloudflare.com';
+let BRIDGE = localStorage.getItem('aladdin-bridge') || DEFAULT_BRIDGE;
+
+/* Health check + tự fallback về URL mặc định nếu url stored chết */
+async function resolveBridge(){
+  const candidates = [...new Set([BRIDGE, DEFAULT_BRIDGE])];
+  for (const url of candidates) {
+    try {
+      const r = await fetch(url + '/health', {signal: AbortSignal.timeout(6000)});
+      if (r.ok) { BRIDGE = url; return; }
+    } catch(e) {}
+  }
+  BRIDGE = candidates[0]; // giữ default dù sao
+}
+resolveBridge();
+if(!localStorage.getItem('aladdin-bridge')) localStorage.setItem('aladdin-bridge', DEFAULT_BRIDGE);
 
 /* Dấu vết người dùng: anonymous id bền trong localStorage
    → mỗi người dùng có 1 hội thoại riêng (liền mạch, có bộ nhớ) trên bridge */

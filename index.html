@@ -5,11 +5,9 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
 ---
 
 <!-- ================================================================
-     ALADDIN — TRỢ LÝ MÔI GIỚI ĐẦU KHÁCH MUA (XOAY TRỤC theo PR/FAQ)
-     "Màn hình đầu tiên" (PR/FAQ Mục 4):
-       1 câu hỏi lớn + ô nhập → 3 hành động: tính tiền / kiểm tra cọc / nhờ kỹ sư
-       KHÔNG hiện dashboard/menu/danh sách công cụ trước khi nhận giá trị.
-     Bộ công cụ tối giản, ưu tiên mobile (môi giới tư vấn khách bằng điện thoại).
+     ALADDIN — TRỢ LÝ MÔI GIỚI THI CÔNG (KIẾN TRÚC "QUY TRÌNH NGẦM")
+     Web = da & giác quan · Máy chủ = thần kinh · OpenCode = bộ não · Dữ liệu = trí nhớ
+     SÓNG NƯỚC: mở nhỏ cốt lõi → hoạt động → mở thêm. Mỗi zone = tế bào riêng biệt.
      ================================================================ -->
 
 <style>
@@ -18,6 +16,25 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
 .tool-section .badge-top{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--teal);background:rgba(15,118,110,.08);border-radius:980px;padding:6px 14px;margin-bottom:16px;}
 .tool-section h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--text);margin:0 0 8px;}
 .tool-section .subtitle{font-size:.92rem;color:var(--text-3);margin:0 0 28px;max-width:460px;margin-left:auto;margin-right:auto;}
+
+/* ★ ZONE ĐĂNG NHẬP — tế bào 1: nhận diện người dùng (tùy chọn) */
+.login-zone{max-width:600px;margin:0 auto 20px;text-align:center;}
+.login-zone .login-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border:1.5px solid rgba(0,0,0,.12);border-radius:14px;background:#fff;cursor:pointer;font-size:.92rem;font-weight:600;color:var(--text);transition:all .15s;}
+.login-zone .login-btn:hover{border-color:var(--teal);box-shadow:0 4px 16px rgba(15,118,110,.10);transform:translateY(-1px);}
+.login-zone .login-hint{font-size:.74rem;color:var(--text-3);margin-top:8px;}
+.login-zone .greeting{padding:14px 18px;background:linear-gradient(135deg,#f0fdfa,#e6f7f0);border-radius:16px;text-align:left;margin-top:14px;border:1px solid rgba(15,118,110,.10);}
+.login-zone .greeting b{color:var(--teal);font-size:1.02rem;}
+.login-zone .greeting p{margin:6px 0 0;font-size:.88rem;color:var(--text-2);line-height:1.55;}
+
+/* ★ FLOW TỰ ĐỘNG — tế bào 2: hiển thị dần dần theo tình huống */
+.flow-hint{max-width:600px;margin:0 auto 20px;text-align:center;display:none;}
+.flow-hint.show{display:block;animation:fadeSlide .4s ease;}
+.flow-hint .flow-card{padding:16px 20px;background:#fff;border:1px solid rgba(15,118,110,.12);border-radius:16px;text-align:left;box-shadow:0 4px 16px rgba(15,118,110,.06);}
+.flow-hint .flow-card h4{margin:0 0 8px;font-size:.95rem;font-weight:800;color:var(--text);}
+.flow-hint .flow-card p{margin:0;font-size:.88rem;color:var(--text-2);line-height:1.6;}
+.flow-hint .flow-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.flow-hint .flow-actions .calc-btn{width:auto;padding:10px 18px;font-size:.85rem;}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* Ô hỏi */
 .input-box{max-width:600px;margin:0 auto 24px;position:relative;}
@@ -108,9 +125,26 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
 <!-- ★ VÙNG NHÌN ĐẦU TIÊN — CÂU HỎI LỚN + 3 HÀNH ĐỘNG -->
 <section class="tool-section">
   <div class="container">
-    <span class="badge-top">Trợ lý môi giới · đầu khách mua</span>
-    <h1>Khách của anh/chị đang cân nhắc căn nhà nào?</h1>
-    <p class="subtitle">Nhập thông tin căn nhà khách đang định mua — nhận ngay ước tính chi phí sửa &amp; checklist trước khi đặt cọc, mang tên anh/chị, gửi khách qua Zalo.</p>
+    <span class="badge-top">Trợ lý môi giới · thi công</span>
+    <h1>Anh/chị đang có căn nhà hay khách hàng nào cần tư vấn?</h1>
+    <p class="subtitle">Dán thông tin căn nhà — hệ thống tự phân tích chi phí, quy trình &amp; những điều cần biết. Kết quả mang tên anh/chị, gửi khách ngay.</p>
+
+    <!-- ★ ZONE ĐĂNG NHẬP — tế bào 1: nhận diện người dùng (tùy chọn) -->
+    <div class="login-zone" id="login-zone">
+      <button class="login-btn" onclick="handleLogin()" id="google-login-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Đăng nhập Google (tùy chọn)
+      </button>
+      <div class="login-hint">Đăng nhập để hệ thống nhớ hồ sơ &amp; gợi ý phù hợp hơn</div>
+    </div>
+
+    <!-- ★ ZONE CHÀO HỎI — tế bào 2: hiển thị渐渐 khi đã nhận diện -->
+    <div class="login-zone" id="greeting-zone" style="display:none;">
+      <div class="greeting">
+        <b id="greeting-name">Xin chào!</b>
+        <p id="greeting-text">Hôm nay anh/chị cần tư vấn gì?</p>
+      </div>
+    </div>
 
     <!-- ★ Ô NHẬP — căn nhà khách đang xem -->
     <div class="input-box">
@@ -118,7 +152,7 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
       <button class="ask-btn" id="tool-ask" onclick="askFromInput()">Hỏi →</button>
     </div>
 
-    <!-- ★ 3 HÀNH ĐỘNG CHÍNH — môi giới đầu khách mua -->
+    <!-- ★ 3 HÀNH ĐỘNG CHÍNH — tế bào 3: hành động theo tình huống -->
     <div class="tool-grid">
       <button class="tool-btn" onclick="goCalc()" id="btn-tinh-tien">
         <span class="t-icon" style="background:#e6f7f0;color:#0f766e;">💰</span>
@@ -132,6 +166,19 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
         <span class="t-icon" style="background:#fff7e6;color:#b45309;">🛠️</span>
         <span class="t-label">Nhờ kỹ sư<br>khảo sát</span>
       </button>
+    </div>
+
+    <!-- ★ FLOW TỰ ĐỘNG — tế bào 2b: hiển thị渐渐 kết quả sau khi nhập -->
+    <div class="flow-hint" id="flow-hint">
+      <div class="flow-card">
+        <h4 id="flow-title">🔮 Phân tích xong — anh/chị muốn xem gì?</h4>
+        <p id="flow-body">Hệ thống đã nhận diện được thông tin căn nhà. Chọn bên dưới để xem chi tiết.</p>
+        <div class="flow-actions">
+          <button class="calc-btn" onclick="goCalc()">💰 Chi phí sửa chữa</button>
+          <button class="calc-btn" onclick="goChecklist()">🔍 Checklist trước cọc</button>
+          <button class="calc-btn" onclick="goQuyTrinh()">📋 Quy trình thi công</button>
+        </div>
+      </div>
     </div>
 
     <!-- ★ FORM TÍNH TỨC THÌ — "Tính tiền cần thêm sau khi mua" (điền thông số → tính ngay, không cần AI) -->
@@ -807,6 +854,75 @@ function qtGuiZalo(){
   window.open(url, '_blank');
 }
 
+/* ===== ZONE ĐĂNG NHẬP — tế bào 1: nhận diện người dùng (tùy chọn) =====
+   Google Sign-In UI placeholder — backend server sẽ xử lý OAuth thật.
+   Hiện tại: toggle login state bằng localStorage (demo UI). */
+function handleLogin(){
+  const zone = document.getElementById('login-zone');
+  const greet = document.getElementById('greeting-zone');
+  const btn = document.getElementById('google-login-btn');
+  const stored = localStorage.getItem('aladdin-user-name');
+  if (stored) {
+    /* Đã đăng nhập → logout */
+    localStorage.removeItem('aladdin-user-name');
+    localStorage.removeItem('aladdin-user-email');
+    zone.innerHTML = `
+      <button class="login-btn" onclick="handleLogin()" id="google-login-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Đăng nhập Google (tùy chọn)
+      </button>
+      <div class="login-hint">Đăng nhập để hệ thống nhớ hồ sơ &amp; gợi ý phù hợp hơn</div>`;
+    greet.style.display = 'none';
+    return;
+  }
+  /* Chưa đăng nhập → hiện dialog nhập tên demo */
+  const name = prompt('Nhập tên anh/chị (demo — server sẽ dùng Google Sign-In thật sau):');
+  if (!name || !name.trim()) return;
+  localStorage.setItem('aladdin-user-name', name.trim());
+  localStorage.setItem('aladdin-user-email', name.trim().toLowerCase().replace(/\s+/g,'.') + '@demo');
+  showGreeting(name.trim());
+}
+
+/* Hiển thị chào hỏi cá nhân hóa */
+function showGreeting(name){
+  const greet = document.getElementById('greeting-zone');
+  const nameEl = document.getElementById('greeting-name');
+  const textEl = document.getElementById('greeting-text');
+  const loginZone = document.getElementById('login-zone');
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Chào buổi sáng' : hour < 18 ? 'Chào buổi chiều' : 'Chào buổi tối';
+  nameEl.textContent = greeting + ', ' + name + '!';
+  textEl.textContent = 'Hôm nay anh/chị cần tư vấn gì? Dán thông tin căn nhà hoặc khách hàng vào ô bên trên.';
+  loginZone.innerHTML = `<div class="greeting" style="cursor:pointer;" onclick="handleLogin()"><b id="greeting-name">${greeting}, ${name}!</b><p id="greeting-text" style="margin-top:4px;">Nhấn để đăng xuất</p></div>`;
+  greet.style.display = 'none';
+}
+
+/* Kiểm tra localStorage khi load trang — nếu đã đăng nhập thì chào hỏi */
+(function checkLogin(){
+  const name = localStorage.getItem('aladdin-user-name');
+  if (name) showGreeting(name);
+})();
+
+/* ===== FLOW TỰ ĐỘNG — hiển thị渐渐 sau khi nhập thông tin =====
+   Sau khi người dùng nhập + có kết quả → hiện flow-hint với gợi ý tiếp theo */
+function showFlowHint(title, body){
+  const el = document.getElementById('flow-hint');
+  if (!el) return;
+  document.getElementById('flow-title').textContent = title || '🔮 Anh/chị muốn xem gì tiếp?';
+  document.getElementById('flow-body').textContent = body || 'Chọn bên dưới để xem chi tiết.';
+  el.classList.add('show');
+}
+function hideFlowHint(){
+  const el = document.getElementById('flow-hint');
+  if (el) el.classList.remove('show');
+}
+
+/* goQuyTrinh: mở box quy trình (shortcut cho flow渐渐) */
+function goQuyTrinh(){
+  document.getElementById('quytrinh-box').style.display='block';
+  document.getElementById('quytrinh-box').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
 /* Dấu vết người dùng: anonymous id bền trong localStorage
    → mỗi người dùng có 1 hội thoại riêng (liền mạch, có bộ nhớ) trên bridge */
 function getUserId(){
@@ -846,7 +962,10 @@ document.addEventListener('click', (e) => {
 function askFromInput() {
   const q = document.getElementById('tool-input').value.trim();
   if (!q || q.length < 5) { document.getElementById('tool-input').focus(); return; }
-  doAsk(q, 'answer_construction_question');
+  doAsk(q, 'answer_construction_question').then(() => {
+    /* ★ Sau khi có kết quả → hiển thị渐渐 gợi ý tiếp theo */
+    showFlowHint('🔮 Anh/chị muốn xem gì tiếp?', 'Đã có kết quả tư vấn. Chọn bên dưới để xem chi tiết hơn.');
+  });
 }
 
 function askTool(intent, fallback) {

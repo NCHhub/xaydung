@@ -13,13 +13,16 @@
 | # | Tính năng gốc | File / vị trí | Vai trò | CẤM |
 |---|---|---|---|---|
 | W1 | **Bridge JS → OpenCode bộ não** | index.html `DEFAULT_BRIDGE`, `resolveBridge()`, `doAsk()`, `render()` | Kết nối web tới OpenCode trên PC để trả lời AI theo user | Xóa / đổi địa chỉ / tắt không thay thế |
-| W2 | **Câu hỏi lớn hero** "Khách của anh/chị đang cân nhắc căn nhà nào?" | index.html tool-section | Đúng PR/FAQ Mục 4, định vị môi giới đầu khách mua | Đổi câu định vị sang generic |
+| W2 | **Câu hỏi lớn hero** "Anh/chị đang có căn nhà hay khách hàng nào cần tư vấn?" | index.html tool-section | Định vị môi giới thi công — thấy câu hỏi = biết ngay công cụ cho mình | Đổi câu định vị sang generic |
 | W3 | **3 hành động chính** (Tính tiền / Kiểm tra cọc / Nhờ kỹ sư) | index.html `.tool-btn` | Lõi nghiệp vụ môi giới đầu khách mua | Xóa / hạ cấp xuống menu phụ |
 | W4 | **Form tính tức thì (client-side <1s)** | index.html `calcNow()`, PRICING | Giá trị nhanh không cần AI, offline vẫn chạy | Xóa logic tính |
 | W5 | **Sửa chữa theo hạng mục checkbox** | index.html `c-sua-wrap`, `hm-*` | Chi tiết hóa việc sửa | Xóa |
 | W6 | **Checklist trước khi đặt cọc** | index.html `checklist-box`, `checklistNow()` | Phân loại bình thường/hỏi thêm/khảo sát | Xóa |
 | W7 | **Báo cáo mang tên môi giới (gửi Zalo)** | index.html `goGuiBaoCao()`, nút "Gửi báo cáo mang tên tôi" | Cộng sinh với môi giới (điểm then chốt) | Xóa / bỏ tên môi giới |
 | W8 | **Beacon dữ liệu người dùng (dấu vết ngầm)** | index.html `beacon()`, `/profile` | Dữ liệu quý giá — thu thập hành vi | Xóa / tắt ghi dấu |
+| W9 | **Zone đăng nhập Google (tùy chọn)** | index.html `login-zone`, `handleLogin()` | Nhận diện người dùng → cá nhân hóa | Xóa / bắt buộc đăng nhập |
+| W10 | **Zone chào hỏi cá nhân hóa** | index.html `greeting-zone`, `showGreeting()` | Hiện khi đã nhận diện, tạo cảm giác thân quen | Xóa |
+| W11 | **Flow渐渐 gợi ý tiếp theo** | index.html `flow-hint`, `showFlowHint()` | Hiển thị dần theo tình huống — KHÔNG mở menu 20 tool | Xóa / thay bằng menu cố định |
 
 ## VÙNG 2 — OPENCODE2 (bộ não, qua bridge) — "TRÍ TUỆ"
 
@@ -67,9 +70,35 @@ RỦI RO:            Web mất kết nối OpenCode → KHÔNG trả lời AI đ
 
 ---
 
+## 🔒 CHỈ THỊ BỔ SUNG (Diamond chốt 03-09 — LÀM RÕ + NHẤN MẠNH)
+
+> **"Đừng thay đổi những tính năng đã có, NHẤT LÀ những tính năng NGẦM. Sau này CHỈ là điều chỉnh GIAO DIỆN, CÁCH TRÌNH BÀY. Nếu xóa tính năng quan trọng → PHẢI CẢNH BÁO Diamond."**
+
+### 1. ƯU TIÊN BẢO TOÀN TÍNH NĂNG NGẦM (cao nhất)
+Tính năng NGẦM (chạy âm thầm phía sau, người dùng không thấy) là **xương sống hệ thống** — BẢO TOÀN TUYỆT ĐỐI:
+- **Bridge ↔ OpenCode** (khuôn mặt ↔ bộ não) — W1/O1.
+- **Beacon dấu vết người dùng + thu thập dữ liệu ngầm** — W8/D2.
+- **Hội thoại riêng theo user + bộ nhớ** — O2.
+- **Knowledge pack (persona Hải + dữ liệu)** — O3.
+- **Data layer ngầm (users.json / events.jsonl / backup)** — D1-D4.
+- Mọi tính năng ngầm sinh ra từ kiến trúc "Quy trình ngầm" (đăng nhập→nhận diện, bộ nhớ trung tâm Aladdin, viên nang trí nhớ, gợi ý chủ động) sau khi triển khai — cũng nằm trong vùng bảo toàn.
+
+### 2. "CHỈ điều chỉnh giao diện + cách trình bày"
+- Chiều được phép thay đổi: **UI, layout, màu sắc, font, vị trí hiển thị, cách bố cục, văn bản trình bày**.
+- ❌ Không được đổi cách tính, logic, luồng ngầm, nguồn dữ liệu, kết nối bridge, thu thập dấu vết, backup.
+- Nếu một thay đổi giao diện VÔ TÌNH kéo theo đụng logic ngầm → dừng + hỏi Diamond trước.
+
+### 3. Xóa tính năng quan trọng → CẢNH BÁO (luật sắt)
+- Trước KHI xóa / vô hiệu / che giấu bất kỳ tính năng (ngầm hay hiện) → **BÁO DIAMOND MẠNH MẼ TRƯỚC**, không làm sau.
+- Dùng format cảnh báo ở trên + gửi qua Telegram/Zalo nếu agent tự chạy.
+- Không xóa im lặng. Không "thu gọn" mà không nói.
+
+---
+
 ## KIỂM TRA NHANH (chạy trước mỗi commit/agent):
 
 ```bash
 # Chạy guard-check: báo nếu thiếu tính năng gốc / có thay đổi vi phạm
 bash /tmp/opencode/xaydung/bridge/guard-check.sh
+# Guard FAIL (exit 1) = DỪNG + BÁO DIAMOND, KHÔNG tự xử lý thêm
 ```

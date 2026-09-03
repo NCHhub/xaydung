@@ -70,12 +70,33 @@ bang-gia:
       "Nhà phố/Nhà ống": 1.0
       "Nhà cấp 4": 0.9
       "Biệt thự": 1.3
-    # Chi phí xin phép + thiết kế tham khảo
+    # Chi phí xin phép + thiết kế + các khoản phụ tham khảo
     phi-xin-phep:
-      "Có": 15000000           # ~15tr (khu vực đô thị, có thay đổi kết cấu)
-      "Không": 0
-    phi-thiet-ke: 30000000      # thiết kế kiến trúc ~30tr (3-5% giá trị, lấy mức thấp)
-    du-phong: 0.12              # +12% dự phòng phát sinh
+      "Nhà ở riêng lẻ (đơn giản)": 15000000    # ~15tr
+      "Nhà thay đổi kết cấu": 50000000         # ~50tr (đơn_PDQ02)
+      "Nhà phố cao tầng/nhà trọ": 100000000   # ~100tr (giấy phép kinh doanh + quy hoạch)
+    phi-thiet-ke:
+      "Thiết kế kiến trúc (phổ thông)": 200000    # ~200k/m² sàn
+      "Thiết kế kiến trúc (trung bình)": 350000   # ~350k/m² sàn
+      "Thiết kế kiến trúc + kết cấu (cao cấp)": 450000  # ~450k/m² sàn
+      "Thiết kế cảnh quan (biệt thự)": 150000     # ~150k/m² đất vườn
+    phi-giam-sat:
+      "Giám sát cơ bản (nhà nhỏ)": 0.03            # 3% giá trị TH
+      "Giám sát kỹ thuật (nhà nhiều tầng)": 0.05   # 5% giá trị TH
+      "Giám sát độc lập (biệt thự)": 0.08          # 8% giá trị TH
+    phi-noi-that:
+      "Nội thất cơ bản": 2000000                   # ~2tr/m² sàn
+      "Nội thất trung bình": 4000000               # ~4tr/m² sàn
+      "Nội thất cao cấp": 8000000                  # ~8tr/m² sàn
+    phi-ha-tang:
+      "Hạ tầng điện nước (đường mới)": 30000000     # ~30tr khi kéo điện/nước mới
+      "Hệ thống năng lượng mặt trời": 50000000     # ~50tr
+      "Hệ thống xử lý nước thải": 40000000         # ~40tr
+    phi-tho-moi:
+      "Phá dỡ nhà cũ (40-80m²)": 30000000          # ~30tr (tùy kết cấu)
+      "Phá dỡ nhà cũ (>80m²)": 50000000            # ~50tr
+    du-phong: 0.12              # +12% dự phòng phát sinh (xây mới)
+    du-phong-nha-cu: 0.25       # +25% dự phòng khi sửa nhà cũ (mở ra mới biết)
 
   sua-chua:
     # Chi phí sửa chữa theo mức độ, đơn giá/m² sàn hiện trạng

@@ -36,6 +36,25 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
 .flow-hint .flow-actions .calc-btn{width:auto;padding:10px 18px;font-size:.85rem;}
 @keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
+/* ★ PREVIEW CARD — tế bào 2c: tự nhận diện trước khi phân tích */
+.preview-wrap{max-width:600px;margin:0 auto 20px;display:none;animation:fadeSlide .35s ease;}
+.preview-wrap.show{display:block;}
+.preview-card{background:linear-gradient(135deg,#f0fdfa,#ecfdf5);border:1.5px solid rgba(15,118,110,.18);border-radius:18px;padding:18px 20px;box-shadow:0 4px 20px rgba(15,118,110,.06);}
+.preview-card .pv-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.preview-card .pv-ico{width:36px;height:36px;border-radius:10px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.preview-card .pv-title{font-size:.95rem;font-weight:800;color:var(--text);}
+.preview-card .pv-sub{font-size:.78rem;color:var(--text-3);}
+.preview-card .pv-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.preview-card .pv-tag{font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:10px;background:rgba(15,118,110,.08);color:var(--teal);}
+.preview-card .pv-tag.warn{background:rgba(234,179,8,.1);color:#92400e;}
+.preview-card .pv-note{font-size:.82rem;color:var(--text-2);line-height:1.6;margin-bottom:14px;padding:10px 14px;background:rgba(255,255,255,.7);border-radius:12px;}
+.preview-card .pv-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.preview-card .pv-btn{flex:1;min-width:120px;padding:12px 16px;border:none;border-radius:12px;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .15s;}
+.preview-card .pv-btn.primary{background:var(--teal);color:#fff;}
+.preview-card .pv-btn.primary:hover{background:var(--teal-hover);transform:translateY(-1px);box-shadow:0 4px 12px rgba(15,118,110,.2);}
+.preview-card .pv-btn.secondary{background:#fff;color:var(--text);border:1.5px solid rgba(0,0,0,.10);}
+.preview-card .pv-btn.secondary:hover{border-color:var(--teal);}
+
 /* Ô hỏi */
 .input-box{max-width:600px;margin:0 auto 24px;position:relative;}
 .input-box input{width:100%;font-size:1rem;padding:16px 18px;border:1.5px solid rgba(0,0,0,.10);border-radius:16px;outline:none;transition:border .2s,box-shadow .2s;font-family:var(--font);background:#fff;}
@@ -150,6 +169,22 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
     <div class="input-box">
       <input type="text" id="tool-input" placeholder="VD: Nhà 42m², 4 tầng, ngõ 1,8m ở Đống Đa; khách muốn sửa để ở" autocomplete="off" maxlength="500">
       <button class="ask-btn" id="tool-ask" onclick="askFromInput()">Hỏi →</button>
+    </div>
+
+    <!-- ★ PREVIEW CARD — tự nhận diện từ mô tả (chạy client-side, 0 token) -->
+    <div class="preview-wrap" id="preview-wrap">
+      <div class="preview-card">
+        <div class="pv-head">
+          <div class="pv-ico">🔍</div>
+          <div><div class="pv-title" id="pv-title">Hệ thống nhận diện được:</div><div class="pv-sub" id="pv-sub">Xác nhận rồi phân tích ngay</div></div>
+        </div>
+        <div class="pv-row" id="pv-tags"></div>
+        <div class="pv-note" id="pv-note" style="display:none;"></div>
+        <div class="pv-actions">
+          <button class="pv-btn primary" onclick="previewConfirm()">✅ Phân tích ngay</button>
+          <button class="pv-btn secondary" onclick="previewCancel()">✏️ Sửa lại</button>
+        </div>
+      </div>
     </div>
 
     <!-- ★ 3 HÀNH ĐỘNG CHÍNH — tế bào 3: hành động theo tình huống -->
@@ -520,14 +555,24 @@ function calcNow(){
 
     const tienTho = phanTho * tongSan;
     const tienHoanThien = phanHoanThien * tongSan;
-    // Phí xin phép + thiết kế
-    const phiXinPhep = parseFloat(document.getElementById('c-xinphep').value);
-    const phiThietKe = P['xay-moi']['phi-thiet-ke'];
+    // Phí xin phép + thiết kế + giám sát
+    const phiXinPhepRaw = P['xay-moi']['phi-xin-phep'];
+    const phiXinPhep = (typeof phiXinPhepRaw === 'object') ? (phiXinPhepRaw['Nhà ở riêng lẻ (đơn giản)'] || 15000000) : (phiXinPhepRaw || 0);
+    const phiThietKeRaw = P['xay-moi']['phi-thiet-ke'];
+    const dongiaThietKe = (typeof phiThietKeRaw === 'object') ? (phiThietKeRaw['Thiết kế kiến trúc (trung bình)'] || 350000) : (phiThietKeRaw || 30000000);
+    const phiThietKe = dongiaThietKe * tongSan;
+    const phiGiamSatRaw = P['xay-moi']['phi-giam-sat'];
+    const tyLeGiamSat = (typeof phiGiamSatRaw === 'object') ? (phiGiamSatRaw['Giám sát kỹ thuật (nhà nhiều tầng)'] || 0.05) : 0.05;
     // Phụ phí tiếp cận
     const phiDieuKien = dieukien; // 0 / 0.12 / 0.08
     const phiDieuKienTien = (tienTho + tienHoanThien) * phiDieuKien;
+    // Tổng trước giám sát + dự phòng
+    const tienXay_raw = tienTho + tienHoanThien + phiXinPhep + phiThietKe + phiDieuKienTien;
+    // Giám sát (3-8% tùy quy mô)
+    const phiGiamSat = tienXay_raw * tyLeGiamSat;
     // Tiền xây trước dự phòng
-    const tienXay = tienTho + tienHoanThien + phiXinPhep + phiThietKe + phiDieuKienTien;
+    const phiGiamSat = tienXay_raw * tyLeGiamSat;  // trước khi cộng dự phòng
+    const tienXay = tienTho + tienHoanThien + phiXinPhep + phiThietKe + phiDieuKienTien + phiGiamSat;
     // Dự phòng
     const duPhong = tienXay * P['xay-moi']['du-phong'];
     const total = tienXay + duPhong;
@@ -545,7 +590,8 @@ function calcNow(){
       <div class="calc-row-result"><span class="k">Chi phí hoàn thiện</span><span class="v">${fmtTrieu(tienHoanThien)} triệu</span></div>
       <div class="calc-result-sec">📋 CÁC KHOẢN PHỤ</div>
       <div class="calc-row-result"><span class="k">Xin phép xây dựng</span><span class="v">${fmtTrieu(phiXinPhep||0)} triệu</span></div>
-      <div class="calc-row-result"><span class="k">Thiết kế kiến trúc</span><span class="v">${fmtTrieu(phiThietKe)} triệu</span></div>
+      <div class="calc-row-result"><span class="k">Thiết kế kiến trúc (${fmt(dongiaThietKe/1000)}k/m²)</span><span class="v">${fmtTrieu(phiThietKe)} triệu</span></div>
+      <div class="calc-row-result"><span class="k">Giám sát kỹ thuật (${Math.round(tyLeGiamSat*100)}%)</span><span class="v">${fmtTrieu(phiGiamSat)} triệu</span></div>
       <div class="calc-row-result"><span class="k">Tiếp cận ${dieukien>0?'(phải khuân tay)':'thuận lợi'}</span><span class="v">${dieukien>0?('+'+Math.round(dieukien*100)+'% · '+fmtTrieu(phiDieuKienTien)+' tr'):'0'}</span></div>
       <div class="calc-row-result"><span class="k">Dự phòng phát sinh (+${Math.round(P['xay-moi']['du-phong']*100)}%)</span><span class="v">${fmtTrieu(duPhong)} triệu</span></div>
       <div class="calc-total"><span>Tổng ước tính</span><span class="amt">${fmtTrieu(total)} triệu</span></div>
@@ -584,7 +630,11 @@ function calcNow(){
     const phiDieuKien = sub * dieukien;
     const duPhong = (sub + phiDieuKien) * duPhongSua;
     const phiXinPhep = parseFloat(document.getElementById('c-xinphep').value);
-    const total = sub + phiDieuKien + duPhong + phiXinPhep;
+    // Thiết kế + giám sát cho sửa chữa lớn (khi đụng kết cấu)
+    const hasStructural = document.getElementById('hm-ketcau') && document.getElementById('hm-ketcau').checked;
+    const phiThietKeSua = hasStructural ? tongSan * 200000 : 0;  // 200k/m² nếu sửa kết cấu
+    const phiGiamSatSua = hasStructural ? sub * 0.05 : 0;        // 5% nếu sửa kết cấu
+    const total = sub + phiDieuKien + duPhong + phiXinPhep + phiThietKeSua + phiGiamSatSua;
     const min = total * 0.85, max = total * 1.15;
 
     html = `
@@ -594,6 +644,8 @@ function calcNow(){
       <div class="calc-result-sec">📋 CÁC KHOẢN PHỤ</div>
       ${dieukien>0?`<div class="calc-row-result"><span class="k">Ngõ xe máy / khuân tay (+${Math.round(dieukien*100)}%)</span><span class="v">${fmtTrieu(phiDieuKien)} tr</span></div>`:''}
       <div class="calc-row-result"><span class="k">Xin phép xây dựng/thay kết cấu</span><span class="v">${fmtTrieu(phiXinPhep||0)} tr</span></div>
+      ${hasStructural?`<div class="calc-row-result"><span class="k">Thiết kế kết cấu (200k/m²)</span><span class="v">${fmtTrieu(phiThietKeSua)} tr</span></div>
+      <div class="calc-row-result"><span class="k">Giám sát kỹ thuật (5%)</span><span class="v">${fmtTrieu(phiGiamSatSua)} tr</span></div>`:''}
       <div class="calc-row-result"><span class="k">Dự phòng phát sinh (+${Math.round(duPhongSua*100)}%)</span><span class="v">${fmtTrieu(duPhong)} tr</span></div>
       <div class="calc-total"><span>Tổng ước tính</span><span class="amt">${fmtTrieu(total)} triệu</span></div>
       <div class="calc-range">Biên độ thực tế: <b>${fmtTrieu(min)} – ${fmtTrieu(max)} triệu</b></div>
@@ -921,6 +973,71 @@ function hideFlowHint(){
 function goQuyTrinh(){
   document.getElementById('quytrinh-box').style.display='block';
   document.getElementById('quytrinh-box').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ===== TỰ NHẬN DIỆN TỪ MÔ TẢ — tế bào 2c: 0 token, client-side =====
+   Chạy trên text tự do từ tool-input → hiển thị preview card → người dùng xác nhận → mới phân tích. */
+let _pendingQuestion = ''; // câu hỏi đang chờ xác nhận
+
+/* Tự nhận diện: gọi nhanDienLoai + nhanBienSo có sẵn trên cùng text */
+function phatHienTuDong(text){
+  if (!text || text.length < 5) return null;
+  const loai = nhanDienLoai(text);
+  const bienSo = nhanBienSo(text);
+  if (!loai && !bienSo.length) return null;
+  return { loai, bienSo, text };
+}
+
+/* Hiển thị preview card */
+function showPreview(text, det){
+  const wrap = document.getElementById('preview-wrap');
+  const titleEl = document.getElementById('pv-title');
+  const subEl = document.getElementById('pv-sub');
+  const tagsEl = document.getElementById('pv-tags');
+  const noteEl = document.getElementById('pv-note');
+  tagsEl.innerHTML = '';
+  noteEl.style.display = 'none';
+
+  if (det.loai){
+    titleEl.textContent = '🏠 Hệ thống nhận diện được:';
+    subEl.textContent = 'Xác nhận rồi phân tích ngay';
+    tagsEl.innerHTML += `<span class="pv-tag">${det.loai}</span>`;
+  } else {
+    titleEl.textContent = '🔍 Đang phân tích mô tả...';
+    subEl.textContent = 'Chưa nhận diện rõ loại → sẽ hỏi AI';
+  }
+
+  det.bienSo.forEach(b => {
+    tagsEl.innerHTML += `<span class="pv-tag">${b.tenGoc}</span>`;
+  });
+
+  if (det.bienSo.length){
+    noteEl.style.display = 'block';
+    noteEl.innerHTML = '🧭 <b>Lưu ý:</b> ' + det.bienSo.map(b=>b.hanhDong).join(' · ');
+  }
+
+  _pendingQuestion = text;
+  wrap.classList.add('show');
+  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* Xác nhận từ preview → gửi phân tích */
+function previewConfirm(){
+  const wrap = document.getElementById('preview-wrap');
+  wrap.classList.remove('show');
+  const q = _pendingQuestion;
+  _pendingQuestion = '';
+  if (!q) return;
+  doAsk(q, 'answer_construction_question').then(() => {
+    showFlowHint('🔮 Anh/chị muốn xem gì tiếp?', 'Đã có kết quả tư vấn. Chọn bên dưới để xem chi tiết hơn.');
+  });
+}
+
+/* Hủy preview → sửa lại */
+function previewCancel(){
+  document.getElementById('preview-wrap').classList.remove('show');
+  _pendingQuestion = '';
+  document.getElementById('tool-input').focus();
 }
 
 /* Dấu vết người dùng: anonymous id bền trong localStorage

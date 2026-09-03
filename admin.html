@@ -1,0 +1,778 @@
+---
+layout: default
+title: "Admin — Aladdin"
+---
+
+<style>
+/* ===== ADMIN PANEL — Apple mobile-first ===== */
+.admin-wrap{display:none;padding:80px 0 40px;min-height:100vh;background:var(--bg-gray);}
+.admin-wrap.active{display:block;}
+
+/* LOGIN SCREEN */
+.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;}
+.login-card{width:100%;max-width:400px;background:#fff;border-radius:var(--radius-lg);padding:48px 36px;box-shadow:var(--shadow-md);text-align:center;}
+.login-card .logo{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#e6f7f0,var(--teal));margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;font-weight:700;}
+.login-card h2{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-.02em;}
+.login-card p{font-size:.88rem;color:var(--text-3);margin-bottom:28px;}
+.login-card .google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px;border:1.5px solid rgba(0,0,0,.12);border-radius:14px;background:#fff;font-size:.92rem;font-weight:600;color:var(--text);cursor:pointer;transition:all .15s;margin-bottom:16px;}
+.login-card .google-btn:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(0,113,227,.10);}
+.login-card .divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text-3);font-size:.78rem;}
+.login-card .divider::before,.login-card .divider::after{content:'';flex:1;height:1px;background:var(--bg-gray2);}
+.login-card .demo-form{display:flex;flex-direction:column;gap:10px;}
+.login-card input{width:100%;padding:12px 14px;border:1.5px solid rgba(0,0,0,.10);border-radius:12px;font-size:.92rem;font-family:var(--font);outline:none;transition:border .15s;}
+.login-card input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.12);}
+.login-card .login-submit{padding:13px;background:var(--teal);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .15s;}
+.login-card .login-submit:hover{background:var(--teal-hover);}
+.login-card .login-hint{font-size:.72rem;color:var(--text-3);margin-top:12px;line-height:1.5;}
+
+/* ADMIN HEADER BAR */
+.admin-bar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(29,29,31,.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(255,255,255,.08);}
+.admin-bar .inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.admin-bar .brand{color:#fff;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:8px;}
+.admin-bar .brand .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#7cffb2,#3cd0a5);box-shadow:0 0 10px rgba(60,208,165,.6);}
+.admin-bar .user-info{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.78);font-size:.82rem;}
+.admin-bar .user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#3cd0a5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;font-weight:700;}
+.admin-bar .logout-btn{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.78);padding:5px 14px;border-radius:var(--radius-pill);font-size:.78rem;cursor:pointer;transition:all .15s;}
+.admin-bar .logout-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
+
+/* ADMIN NAV TABS */
+.admin-nav{max-width:1200px;margin:0 auto;padding:16px 20px 0;display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.admin-nav::-webkit-scrollbar{display:none;}
+.admin-nav .tab{flex-shrink:0;padding:10px 18px;border-radius:12px;font-size:.82rem;font-weight:600;color:var(--text-3);background:transparent;border:none;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.admin-nav .tab.active{background:var(--teal);color:#fff;}
+.admin-nav .tab:not(.active):hover{background:rgba(15,118,110,.08);color:var(--teal);}
+
+/* ADMIN CONTENT */
+.admin-content{max-width:1200px;margin:0 auto;padding:20px;}
+.admin-section{display:none;animation:fadeUp .3s ease;}
+.admin-section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* STAT CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:24px;}
+.stat-card{background:#fff;border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);}
+.stat-card .label{font-size:.72rem;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;}
+.stat-card .value{font-size:1.6rem;font-weight:800;color:var(--text);letter-spacing:-.02em;}
+.stat-card .trend{font-size:.72rem;font-weight:600;margin-top:4px;}
+.stat-card .trend.up{color:#059669;}
+.stat-card .trend.down{color:#dc2626;}
+.stat-card .trend.neutral{color:var(--text-3);}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.sec-head h3{font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-.02em;}
+.sec-head .actions{display:flex;gap:8px;flex-wrap:wrap;}
+.btn-sm{padding:8px 16px;border-radius:10px;font-size:.8rem;font-weight:600;border:none;cursor:pointer;transition:all .15s;}
+.btn-sm.primary{background:var(--teal);color:#fff;}
+.btn-sm.primary:hover{background:var(--teal-hover);}
+.btn-sm.secondary{background:var(--bg-gray);color:var(--text);border:1px solid var(--border);}
+.btn-sm.secondary:hover{background:var(--bg-gray2);}
+.btn-sm.danger{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;}
+.btn-sm.danger:hover{background:#fee2e2;}
+
+/* TABLE */
+.table-wrap{background:#fff;border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden;border:1px solid rgba(0,0,0,.04);}
+.table-search{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.table-search input{flex:1;min-width:160px;padding:9px 14px;border:1.5px solid rgba(0,0,0,.08);border-radius:10px;font-size:.85rem;font-family:var(--font);outline:none;transition:border .15s;}
+.table-search input:focus{border-color:var(--teal);}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+thead{background:var(--bg-gray);}
+th{padding:11px 16px;text-align:left;font-weight:600;color:var(--text-3);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+td{padding:12px 16px;border-top:1px solid var(--border);color:var(--text);vertical-align:middle;}
+tr:hover td{background:rgba(15,118,110,.02);}
+.tag{display:inline-block;padding:3px 10px;border-radius:var(--radius-pill);font-size:.72rem;font-weight:600;}
+.tag.teal{background:rgba(15,118,110,.1);color:var(--teal);}
+.tag.yellow{background:rgba(234,179,8,.1);color:#92400e;}
+.tag.red{background:rgba(239,68,68,.1);color:#dc2626;}
+.tag.green{background:rgba(5,150,105,.1);color:#059669;}
+.tag.gray{background:var(--bg-gray);color:var(--text-3);}
+
+/* CHART BARS */
+.chart-container{background:#fff;border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);margin-bottom:16px;}
+.chart-container h4{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:14px;}
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:120px;padding:0 4px;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--teal),#0d9488);transition:height .4s ease;min-height:4px;}
+.bar-label{font-size:.65rem;color:var(--text-3);white-space:nowrap;}
+.bar-value{font-size:.65rem;font-weight:700;color:var(--text);}
+
+/* CARD PANELS */
+.panel{background:#fff;border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04);margin-bottom:16px;}
+.panel h4{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:12px;}
+.panel-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:.85rem;}
+.panel-row:last-child{border-bottom:none;}
+.panel-row .pk{color:var(--text-3);font-weight:500;}
+.panel-row .pv{font-weight:600;color:var(--text);}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;}
+.status-dot.green{background:#059669;box-shadow:0 0 6px rgba(5,150,105,.4);}
+.status-dot.yellow{background:#d97706;}
+.status-dot.red{background:#dc2626;box-shadow:0 0 6px rgba(220,38,38,.4);}
+
+/* LOG VIEWER */
+.log-box{background:#1a1a2e;border-radius:12px;padding:16px;max-height:300px;overflow-y:auto;font-family:"SF Mono",Menlo,monospace;font-size:.75rem;color:#a1a1a6;line-height:1.7;}
+.log-box .log-line{padding:2px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.log-box .log-ts{color:#6ee7b7;}
+.log-box .log-event{color:#93c5fd;font-weight:600;}
+.log-box .log-msg{color:#d1d5db;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.show{display:flex;}
+.modal{background:#fff;border-radius:var(--radius-lg);padding:28px;width:100%;max-width:440px;box-shadow:var(--shadow-lg);animation:fadeUp .25s ease;}
+.modal h3{font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:16px;}
+.modal .form-group{margin-bottom:12px;}
+.modal label{display:block;font-size:.78rem;font-weight:600;color:var(--text-3);margin-bottom:4px;}
+.modal input,.modal select,.modal textarea{width:100%;padding:10px 14px;border:1.5px solid rgba(0,0,0,.10);border-radius:10px;font-size:.88rem;font-family:var(--font);outline:none;transition:border .15s;}
+.modal input:focus,.modal select:focus,.modal textarea:focus{border-color:var(--teal);}
+.modal textarea{resize:vertical;min-height:80px;}
+.modal .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-3);}
+.empty-state .empty-icon{font-size:2rem;margin-bottom:10px;}
+.empty-state p{font-size:.88rem;}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .login-card{padding:36px 24px;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .stat-card{padding:14px 16px;}
+  .stat-card .value{font-size:1.3rem;}
+  .admin-content{padding:16px 14px;}
+  .sec-head{flex-direction:column;align-items:flex-start;}
+  th,td{padding:9px 10px;font-size:.78rem;}
+  .bar-chart{height:90px;}
+}
+</style>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="logo">✦</div>
+    <h2>Aladdin Admin</h2>
+    <p>Đăng nhập để quản trị hệ thống</p>
+    <button class="google-btn" onclick="demoLogin()">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Đăng nhập bằng Google
+    </button>
+    <div class="divider">hoặc</div>
+    <form class="demo-form" onsubmit="demoLogin(event)">
+      <input type="text" id="loginName" placeholder="Tên hiển thị" value="Diamond">
+      <input type="password" id="loginPass" placeholder="Mật khẩu demo" value="admin">
+      <button type="submit" class="login-submit">Đăng nhập</button>
+    </form>
+    <div class="login-hint">🔑 Demo: tên + bất kỳ mật khẩu nào</div>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div class="admin-wrap" id="adminPanel">
+
+  <!-- Admin Top Bar -->
+  <div class="admin-bar">
+    <div class="inner">
+      <div class="brand"><span class="dot"></span>Aladdin Admin</div>
+      <div class="user-info">
+        <div class="user-avatar" id="userAvatar">D</div>
+        <span id="userName">Diamond</span>
+        <button class="logout-btn" onclick="doLogout()">Đăng xuất</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="admin-nav" id="adminNav">
+    <button class="tab active" data-tab="dashboard">📊 Tổng quan</button>
+    <button class="tab" data-tab="content">📝 Nội dung</button>
+    <button class="tab" data-tab="users">👤 Người dùng</button>
+    <button class="tab" data-tab="reports">📈 Báo cáo</button>
+    <button class="tab" data-tab="logs">📋 Logs</button>
+  </div>
+
+  <div class="admin-content">
+
+    <!-- ========== TAB: DASHBOARD ========== -->
+    <div class="admin-section active" id="sec-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="label">Người dùng hôm nay</div>
+          <div class="value" id="stat-today">12</div>
+          <div class="trend up">↑ 18% so với hôm qua</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Tuần này</div>
+          <div class="value" id="stat-week">67</div>
+          <div class="trend up">↑ 8% so với tuần trước</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Tháng này</div>
+          <div class="value" id="stat-month">243</div>
+          <div class="trend up">↑ 12% so với tháng trước</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Cuộc hội thoại</div>
+          <div class="value" id="stat-convos">89</div>
+          <div class="trend neutral">→ Tương đương</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Câu hỏi</div>
+          <div class="value" id="stat-questions">312</div>
+          <div class="trend up">↑ 22%</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Liên hệ mới</div>
+          <div class="value" id="stat-contacts">8</div>
+          <div class="trend up">↑ 3 người</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Doanh thu (placeholder)</div>
+          <div class="value">—</div>
+          <div class="trend neutral">Sắp ra mắt</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Công cụ yêu thích</div>
+          <div class="value" style="font-size:1rem;">Tính chi phí</div>
+          <div class="trend neutral">42% lượt dùng</div>
+        </div>
+      </div>
+
+      <!-- Tool usage chart -->
+      <div class="chart-container">
+        <h4>🔄 Công cụ được dùng nhiều nhất</h4>
+        <div class="bar-chart" id="toolChart"></div>
+      </div>
+
+      <!-- Recent activity -->
+      <div class="panel">
+        <h4>⚡ Hoạt động gần đây</h4>
+        <div id="recentActivity"></div>
+      </div>
+    </div>
+
+    <!-- ========== TAB: CONTENT ========== -->
+    <div class="admin-section" id="sec-content">
+
+      <!-- Broker Management -->
+      <div style="margin-bottom:24px;">
+        <div class="sec-head">
+          <h3>🏢 Danh sách môi giới</h3>
+          <div class="actions">
+            <button class="btn-sm primary" onclick="openBrokerModal()">+ Thêm môi giới</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-search">
+            <input type="text" placeholder="🔍 Tìm môi giới..." id="brokerSearch" oninput="filterBrokers()">
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr><th>Tên</th><th>Khu vực</th><th>Zalo</th><th>Trạng thái</th><th></th></tr>
+              </thead>
+              <tbody id="brokerTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog Management -->
+      <div style="margin-bottom:24px;">
+        <div class="sec-head">
+          <h3>📰 Bài viết / Blog</h3>
+          <div class="actions">
+            <button class="btn-sm secondary" onclick="alert('Chức năng blog sẽ kết nối backend sau.')">Quản lý bài viết →</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Tiêu đề</th><th>Ngày tạo</th><th>Lượt xem</th><th>Trạng thái</th></tr></thead>
+              <tbody>
+                <tr><td>Báo cáo thi công 2026</td><td>02/09</td><td>156</td><td><span class="tag green">Đã đăng</span></td></tr>
+                <tr><td>5 điều môi giới cần biết</td><td>30/08</td><td>89</td><td><span class="tag green">Đã đăng</span></td></tr>
+                <tr><td>Bảng giá vật liệu Q3</td><td>28/08</td><td>—</td><td><span class="tag yellow">Nháp</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Knowledge Pack -->
+      <div>
+        <div class="sec-head">
+          <h3>📚 Knowledge Pack</h3>
+          <div class="actions">
+            <button class="btn-sm secondary" onclick="alert('Chỉnh sửa knowledge sẽ kết nối backend.')">Sửa kiến thức →</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Gói kiến thức</th><th>Số mục</th><th>Cập nhật</th><th>Phiên bản</th></tr></thead>
+              <tbody>
+                <tr><td>Vật liệu xây dựng</td><td>48</td><td>01/09</td><td><span class="tag teal">v2.1</span></td></tr>
+                <tr><td>Quy trình thi công</td><td>32</td><td>30/08</td><td><span class="tag teal">v1.8</span></td></tr>
+                <tr><td>Giá cả thị trường</td><td>65</td><td>02/09</td><td><span class="tag teal">v3.0</span></td></tr>
+                <tr><td>Pháp lý BĐS</td><td>22</td><td>25/08</td><td><span class="tag gray">v1.2</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== TAB: USERS ========== -->
+    <div class="admin-section" id="sec-users">
+      <div class="sec-head">
+        <h3>👤 Quản lý người dùng</h3>
+        <div class="actions">
+          <button class="btn-sm secondary" onclick="exportUsers()">📥 Xuất JSON</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <div class="table-search">
+          <input type="text" placeholder="🔍 Tìm tên, Zalo, email..." id="userSearch" oninput="filterUsers()">
+          <select id="userTagFilter" onchange="filterUsers()" style="padding:8px 12px;border:1.5px solid rgba(0,0,0,.08);border-radius:10px;font-size:.85rem;font-family:var(--font);background:#fff;">
+            <option value="">Tất cả tag</option>
+            <option value="ưu tiên">Ưu tiên</option>
+            <option value="cảnh báo">Cảnh báo</option>
+            <option value="mới">Mới</option>
+          </select>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Tên</th><th>Zalo</th><th>Email</th><th>Khu vực</th><th>Hoạt động cuối</th><th>Tag</th><th></th></tr></thead>
+            <tbody id="userTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== TAB: REPORTS ========== -->
+    <div class="admin-section" id="sec-reports">
+      <div class="sec-head">
+        <h3>📈 Báo cáo hoạt động</h3>
+        <div class="actions">
+          <button class="btn-sm primary" onclick="exportReport()">📥 Xuất báo cáo</button>
+        </div>
+      </div>
+
+      <!-- Daily chart -->
+      <div class="chart-container">
+        <h4>📊 Lượt truy cập 7 ngày gần nhất</h4>
+        <div class="bar-chart" id="dailyChart"></div>
+      </div>
+
+      <!-- Conversation chart -->
+      <div class="chart-container">
+        <h4>💬 Hội thoại theo ngày</h4>
+        <div class="bar-chart" id="convoChart"></div>
+      </div>
+
+      <!-- Summary panel -->
+      <div class="panel">
+        <h4>📋 Tóm tắt báo cáo</h4>
+        <div class="panel-row"><span class="pk">Tổng người dùng</span><span class="pv">243</span></div>
+        <div class="panel-row"><span class="pk">Tổng câu hỏi</span><span class="pv">1,247</span></div>
+        <div class="panel-row"><span class="pk">Tỷ lệ hài lòng</span><span class="pv" style="color:#059669">92%</span></div>
+        <div class="panel-row"><span class="pk">Thời gian phản hồi TB</span><span class="pv">1.2s</span></div>
+        <div class="panel-row"><span class="pk">Công cụ hot nhất</span><span class="pv">Tính chi phí thi công</span></div>
+      </div>
+    </div>
+
+    <!-- ========== TAB: LOGS ========== -->
+    <div class="admin-section" id="sec-logs">
+      <div class="sec-head">
+        <h3>📋 Logs & Hệ thống</h3>
+        <div class="actions">
+          <button class="btn-sm secondary" onclick="loadLogs()">🔄 Tải lại</button>
+        </div>
+      </div>
+
+      <!-- System Status -->
+      <div class="panel">
+        <h4>🖥️ Hệ thống</h4>
+        <div class="panel-row">
+          <span class="pk">Bridge Status</span>
+          <span class="pv"><span class="status-dot green"></span>Online</span>
+        </div>
+        <div class="panel-row">
+          <span class="pk">Zalo Bridge</span>
+          <span class="pv"><span class="status-dot green"></span>Connected</span>
+        </div>
+        <div class="panel-row">
+          <span class="pk">OpenCode Agent</span>
+          <span class="pv"><span class="status-dot green"></span>Running</span>
+        </div>
+        <div class="panel-row">
+          <span class="pk">Backend API</span>
+          <span class="pv"><span class="status-dot yellow"></span>Demo Mode</span>
+        </div>
+        <div class="panel-row">
+          <span class="pk">Backup mới nhất</span>
+          <span class="pv">02/09/2026 23:30</span>
+        </div>
+        <div class="panel-row">
+          <span class="pk">Sync status</span>
+          <span class="pv"><span class="status-dot green"></span>Đã sync</span>
+        </div>
+      </div>
+
+      <!-- Event Logs -->
+      <div style="margin-bottom:16px;">
+        <div class="sec-head">
+          <h4 style="font-size:.95rem;">📡 Events (events.jsonl)</h4>
+        </div>
+        <div class="log-box" id="logBox">
+          <div class="log-line"><span class="log-ts">09:12:33</span> <span class="log-event">[USER_JOIN]</span> <span class="log-msg">Nguyễn Văn A — Zalo — Hà Nội</span></div>
+          <div class="log-line"><span class="log-ts">09:14:01</span> <span class="log-event">[CALC_COST]</span> <span class="log-msg">Tính chi phí — 80m² — Nhà 2 tầng</span></div>
+          <div class="log-line"><span class="log-ts">09:15:22</span> <span class="log-event">[QUESTION]</span> <span class="log-msg">"Giá thép hôm nay bao nhiêu?"</span></div>
+          <div class="log-line"><span class="log-ts">09:16:45</span> <span class="log-event">[CONTACT]</span> <span class="log-msg">Gửi liên hệ môi giới Trần B</span></div>
+          <div class="log-line"><span class="log-ts">09:18:03</span> <span class="log-event">[BROKER_VIEW]</span> <span class="log-msg">Xem profile môi giới — Phạm C</span></div>
+          <div class="log-line"><span class="log-ts">09:20:11</span> <span class="log-event">[USER_LEAVE]</span> <span class="log-msg">Nguyễn Văn A — Thời gian: 7 phút 38s</span></div>
+          <div class="log-line"><span class="log-ts">09:22:00</span> <span class="log-event">[SYSTEM]</span> <span class="log-msg">Backup hoàn tất — 243 users, 89 convos</span></div>
+          <div class="log-line"><span class="log-ts">09:25:14</span> <span class="log-event">[USER_JOIN]</span> <span class="log-msg">Trần Thị D — Zalo — TP.HCM</span></div>
+          <div class="log-line"><span class="log-ts">09:26:30</span> <span class="log-event">[CALC_COST]</span> <span class="log-msg">Tính chi phí — 120m² — Nhà 3 tầng</span></div>
+          <div class="log-line"><span class="log-ts">09:28:45</span> <span class="log-event">[BRIDGE]</span> <span class="log-msg">Health check — OK — 12ms latency</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /admin-content -->
+</div><!-- /admin-wrap -->
+
+<!-- ===== MODALS ===== -->
+<!-- Broker Modal -->
+<div class="modal-overlay" id="brokerModal">
+  <div class="modal">
+    <h3 id="brokerModalTitle">Thêm môi giới</h3>
+    <input type="hidden" id="brokerEditId">
+    <div class="form-group"><label>Tên môi giới</label><input type="text" id="brokerName" placeholder="Nguyễn Văn A"></div>
+    <div class="form-group"><label>Khu vực</label><input type="text" id="brokerArea" placeholder="Hà Nội"></div>
+    <div class="form-group"><label>Số Zalo</label><input type="text" id="brokerZalo" placeholder="0912..."></div>
+    <div class="form-group">
+      <label>Trạng thái</label>
+      <select id="brokerStatus"><option value="active">Đang hoạt động</option><option value="inactive">Tạm dừng</option></select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-sm secondary" onclick="closeModal('brokerModal')">Hủy</button>
+      <button class="btn-sm primary" onclick="saveBroker()">Lưu</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   ALADDIN ADMIN — Vanilla JS, localStorage demo
+   ============================================================ */
+
+// ===== AUTH =====
+function demoLogin(e){
+  if(e) e.preventDefault();
+  var name = (document.getElementById('loginName').value||'Diamond').trim();
+  if(!name) name='Diamond';
+  localStorage.setItem('aladdin-admin-token','demo-token-'+Date.now());
+  localStorage.setItem('aladdin-admin-name',name);
+  showAdmin(name);
+}
+
+function showAdmin(name){
+  document.getElementById('loginScreen').style.display='none';
+  var panel = document.getElementById('adminPanel');
+  panel.classList.add('active');
+  document.getElementById('userName').textContent=name;
+  document.getElementById('userAvatar').textContent=name.charAt(0).toUpperCase();
+  initDashboard();
+  initBrokers();
+  initUsers();
+  initCharts();
+}
+
+function doLogout(){
+  localStorage.removeItem('aladdin-admin-token');
+  localStorage.removeItem('aladdin-admin-name');
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('adminPanel').classList.remove('active');
+}
+
+// Check existing session
+(function(){
+  var t=localStorage.getItem('aladdin-admin-token');
+  var n=localStorage.getItem('aladdin-admin-name');
+  if(t) showAdmin(n||'Diamond');
+})();
+
+// ===== TAB NAVIGATION =====
+document.getElementById('adminNav').addEventListener('click',function(e){
+  var btn=e.target.closest('.tab');
+  if(!btn) return;
+  document.querySelectorAll('.admin-nav .tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('sec-'+btn.dataset.tab).classList.add('active');
+});
+
+// ===== DASHBOARD =====
+function initDashboard(){
+  // Simulated stats — in production, fetch from API
+  var stats = JSON.parse(localStorage.getItem('aladdin-stats')||'null') || {
+    today: Math.floor(Math.random()*20)+5,
+    week: Math.floor(Math.random()*100)+30,
+    month: Math.floor(Math.random()*400)+100,
+    convos: Math.floor(Math.random()*150)+40,
+    questions: Math.floor(Math.random()*500)+100,
+    contacts: Math.floor(Math.random()*15)+2
+  };
+  document.getElementById('stat-today').textContent=stats.today;
+  document.getElementById('stat-week').textContent=stats.week;
+  document.getElementById('stat-month').textContent=stats.month;
+  document.getElementById('stat-convos').textContent=stats.convos;
+  document.getElementById('stat-questions').textContent=stats.questions;
+  document.getElementById('stat-contacts').textContent=stats.contacts;
+
+  // Recent activity
+  var acts = [
+    {icon:'👤',msg:'Trần Thị D vừa sử dụng "Tính chi phí"',time:'2 phút trước'},
+    {icon:'💬',msg:'Câu hỏi mới: "Giá thép hôm nay?"',time:'5 phút trước'},
+    {icon:'🏢',msg:'Môi giới Phạm C nhận 1 liên hệ mới',time:'12 phút trước'},
+    {icon:'📊',msg:'Báo cáo hàng ngày đã sync',time:'30 phút trước'},
+    {icon:'🔔',msg:'Nguyễn Văn A — lần truy cập thứ 3 trong tuần',time:'1 giờ trước'},
+  ];
+  var actHtml='';
+  acts.forEach(function(a){
+    actHtml+='<div class="panel-row"><span class="pk">'+a.icon+' '+a.msg+'</span><span class="pv" style="font-size:.75rem;color:var(--text-3)">'+a.time+'</span></div>';
+  });
+  document.getElementById('recentActivity').innerHTML=actHtml;
+}
+
+// ===== TOOL CHART =====
+function initToolChart(){
+  var tools=[
+    {name:'Tính chi phí',value:42},
+    {name:'Kiểm tra nhà',value:28},
+    {name:'Tìm môi giới',value:18},
+    {name:'Hỏi đáp',value:35},
+    {name:'Báo cáo',value:12},
+  ];
+  var max=Math.max.apply(null,tools.map(function(t){return t.value;}));
+  var html='';
+  tools.forEach(function(t){
+    var h=Math.round((t.value/max)*100);
+    html+='<div class="bar-col"><div class="bar-value">'+t.value+'%</div><div class="bar" style="height:'+h+'%"></div><div class="bar-label">'+t.name+'</div></div>';
+  });
+  document.getElementById('toolChart').innerHTML=html;
+}
+
+// ===== CHARTS =====
+function initCharts(){
+  initToolChart();
+  buildBarChart('dailyChart',['T2','T3','T4','T5','T6','T7','CN'],[18,24,32,28,35,12,8]);
+  buildBarChart('convoChart',['T2','T3','T4','T5','T6','T7','CN'],[8,12,15,11,18,5,3]);
+}
+
+function buildBarChart(id,labels,values){
+  var max=Math.max.apply(null,values)||1;
+  var html='';
+  for(var i=0;i<labels.length;i++){
+    var h=Math.round((values[i]/max)*100);
+    html+='<div class="bar-col"><div class="bar-value">'+values[i]+'</div><div class="bar" style="height:'+h+'%"></div><div class="bar-label">'+labels[i]+'</div></div>';
+  }
+  document.getElementById(id).innerHTML=html;
+}
+
+// ===== BROKERS =====
+function getBrokers(){
+  return JSON.parse(localStorage.getItem('aladdin-brokers')||'[]');
+}
+function saveBrokers(arr){
+  localStorage.setItem('aladdin-brokers',JSON.stringify(arr));
+}
+function initBrokers(){
+  if(getBrokers().length===0){
+    saveBrokers([
+      {id:1,name:'Nguyễn Cao Hải',area:'Hà Nội',zalo:'0983601366',status:'active'},
+      {id:2,name:'Trần Văn Bình',area:'TP.HCM',zalo:'0912345678',status:'active'},
+      {id:3,name:'Lê Thị Mai',area:'Đà Nẵng',zalo:'0909876543',status:'inactive'},
+      {id:4,name:'Phạm Đức Anh',area:'Hải Phòng',zalo:'0978123456',status:'active'},
+    ]);
+  }
+  renderBrokers();
+}
+function renderBrokers(filter){
+  var brokers=getBrokers();
+  if(filter){
+    var q=filter.toLowerCase();
+    brokers=brokers.filter(function(b){return (b.name+b.area+b.zalo).toLowerCase().indexOf(q)!==-1;});
+  }
+  var html='';
+  if(brokers.length===0){
+    html='<tr><td colspan="5" style="text-align:center;color:var(--text-3);padding:24px;">Chưa có môi giới nào</td></tr>';
+  }
+  brokers.forEach(function(b){
+    var st=b.status==='active'?'<span class="tag green">Đang hoạt động</span>':'<span class="tag gray">Tạm dừng</span>';
+    html+='<tr><td><strong>'+esc(b.name)+'</strong></td><td>'+esc(b.area)+'</td><td>'+esc(b.zalo)+'</td><td>'+st+'</td><td style="white-space:nowrap"><button class="btn-sm secondary" onclick="editBroker('+b.id+')" style="margin-right:4px">✏️</button><button class="btn-sm danger" onclick="deleteBroker('+b.id+')">🗑</button></td></tr>';
+  });
+  document.getElementById('brokerTable').innerHTML=html;
+}
+function filterBrokers(){
+  renderBrokers(document.getElementById('brokerSearch').value);
+}
+function openBrokerModal(id){
+  document.getElementById('brokerEditId').value='';
+  document.getElementById('brokerName').value='';
+  document.getElementById('brokerArea').value='';
+  document.getElementById('brokerZalo').value='';
+  document.getElementById('brokerStatus').value='active';
+  document.getElementById('brokerModalTitle').textContent='Thêm môi giới';
+  document.getElementById('brokerModal').classList.add('show');
+}
+function editBroker(id){
+  var b=getBrokers().find(function(x){return x.id===id;});
+  if(!b) return;
+  document.getElementById('brokerEditId').value=b.id;
+  document.getElementById('brokerName').value=b.name;
+  document.getElementById('brokerArea').value=b.area;
+  document.getElementById('brokerZalo').value=b.zalo;
+  document.getElementById('brokerStatus').value=b.status;
+  document.getElementById('brokerModalTitle').textContent='Sửa môi giới';
+  document.getElementById('brokerModal').classList.add('show');
+}
+function saveBroker(){
+  var brokers=getBrokers();
+  var editId=document.getElementById('brokerEditId').value;
+  var obj={
+    name:document.getElementById('brokerName').value.trim(),
+    area:document.getElementById('brokerArea').value.trim(),
+    zalo:document.getElementById('brokerZalo').value.trim(),
+    status:document.getElementById('brokerStatus').value
+  };
+  if(!obj.name){alert('Nhập tên môi giới');return;}
+  if(editId){
+    var idx=brokers.findIndex(function(b){return b.id==editId;});
+    if(idx>=0){brokers[idx]=Object.assign(brokers[idx],obj);}
+  } else {
+    obj.id=Date.now();
+    brokers.push(obj);
+  }
+  saveBrokers(brokers);
+  renderBrokers();
+  closeModal('brokerModal');
+}
+function deleteBroker(id){
+  if(!confirm('Xóa môi giới này?')) return;
+  var brokers=getBrokers().filter(function(b){return b.id!==id;});
+  saveBrokers(brokers);
+  renderBrokers();
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('show');
+}
+
+// ===== USERS =====
+function getUsers(){
+  return JSON.parse(localStorage.getItem('aladdin-users')||'[]');
+}
+function saveUsers(arr){
+  localStorage.setItem('aladdin-users',JSON.stringify(arr));
+}
+function initUsers(){
+  if(getUsers().length===0){
+    saveUsers([
+      {id:1,name:'Nguyễn Văn A',zalo:'0911111111',email:'nguyenvana@gmail.com',area:'Hà Nội',lastActive:'2 phút trước',tag:''},
+      {id:2,name:'Trần Thị B',zalo:'0922222222',email:'tranthib@gmail.com',area:'TP.HCM',lastActive:'15 phút trước',tag:'ưu tiên'},
+      {id:3,name:'Lê Văn C',zalo:'0933333333',email:'levanc@gmail.com',area:'Đà Nẵng',lastActive:'1 giờ trước',tag:'mới'},
+      {id:4,name:'Phạm Thị D',zalo:'0944444444',email:'phamthid@gmail.com',area:'Hải Phòng',lastActive:'3 giờ trước',tag:'cảnh báo'},
+      {id:5,name:'Hoàng Văn E',zalo:'0955555555',email:'hoangvane@gmail.com',area:'Bắc Ninh',lastActive:'Hôm qua',tag:''},
+      {id:6,name:'Đỗ Thị F',zalo:'0966666666',email:'dothif@gmail.com',area:'Hà Nội',lastActive:'2 ngày trước',tag:'ưu tiên'},
+      {id:7,name:'Bùi Văn G',zalo:'0977777777',email:'buivang@gmail.com',area:'Bình Dương',lastActive:'5 phút trước',tag:'mới'},
+      {id:8,name:'Ngô Thị H',zalo:'0988888888',email:'ngothih@gmail.com',area:'Quảng Ninh',lastActive:'30 phút trước',tag:''},
+    ]);
+  }
+  renderUsers();
+}
+function renderUsers(filter,tagFilter){
+  var users=getUsers();
+  if(filter){
+    var q=filter.toLowerCase();
+    users=users.filter(function(u){return (u.name+u.zalo+u.email+u.area).toLowerCase().indexOf(q)!==-1;});
+  }
+  if(tagFilter){
+    users=users.filter(function(u){return u.tag===tagFilter;});
+  }
+  var html='';
+  users.forEach(function(u){
+    var tagHtml=u.tag?'<span class="tag '+(u.tag==='ưu tiên'?'teal':u.tag==='cảnh báo'?'red':'yellow')+'">'+u.tag+'</span>':'<span class="tag gray">—</span>';
+    html+='<tr><td><strong>'+esc(u.name)+'</strong></td><td>'+esc(u.zalo)+'</td><td style="font-size:.78rem">'+esc(u.email)+'</td><td>'+esc(u.area)+'</td><td style="font-size:.78rem;color:var(--text-3)">'+u.lastActive+'</td><td>'+tagHtml+'</td><td><button class="btn-sm secondary" onclick="cycleUserTag('+u.id+')">🏷</button></td></tr>';
+  });
+  if(!users.length) html='<tr><td colspan="7" style="text-align:center;color:var(--text-3);padding:24px;">Không tìm thấy</td></tr>';
+  document.getElementById('userTable').innerHTML=html;
+}
+function filterUsers(){
+  renderUsers(document.getElementById('userSearch').value,document.getElementById('userTagFilter').value);
+}
+function cycleUserTag(id){
+  var tags=['','ưu tiên','cảnh báo','mới'];
+  var users=getUsers();
+  var u=users.find(function(x){return x.id===id;});
+  if(!u) return;
+  var idx=tags.indexOf(u.tag);
+  u.tag=tags[(idx+1)%tags.length];
+  saveUsers(users);
+  renderUsers(document.getElementById('userSearch').value,document.getElementById('userTagFilter').value);
+}
+
+// ===== EXPORT =====
+function downloadJSON(data,filename){
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url;a.download=filename;
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function exportUsers(){
+  downloadJSON(getUsers(),'aladdin-users-'+new Date().toISOString().slice(0,10)+'.json');
+}
+function exportReport(){
+  var report={
+    generatedAt:new Date().toISOString(),
+    stats:{
+      today:document.getElementById('stat-today').textContent,
+      week:document.getElementById('stat-week').textContent,
+      month:document.getElementById('stat-month').textContent,
+      convos:document.getElementById('stat-convos').textContent,
+      questions:document.getElementById('stat-questions').textContent,
+      contacts:document.getElementById('stat-contacts').textContent
+    },
+    brokers:getBrokers(),
+    users:getUsers()
+  };
+  downloadJSON(report,'aladdin-report-'+new Date().toISOString().slice(0,10)+'.json');
+}
+
+// ===== LOGS =====
+function loadLogs(){
+  // In production: fetch events.jsonl from server
+  var box=document.getElementById('logBox');
+  var now=new Date();
+  var ts=now.toTimeString().slice(0,8);
+  var line=document.createElement('div');
+  line.className='log-line';
+  line.innerHTML='<span class="log-ts">'+ts+'</span> <span class="log-event">[REFRESH]</span> <span class="log-msg">Logs đã được tải lại</span>';
+  box.appendChild(line);
+  box.scrollTop=box.scrollHeight;
+}
+
+// ===== UTILS =====
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(function(o){
+  o.addEventListener('click',function(e){if(e.target===o)o.classList.remove('show');});
+});
+</script>
+
+<!-- Spacer for fixed nav -->
+<div style="height:60px;"></div>

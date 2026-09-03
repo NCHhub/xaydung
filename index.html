@@ -264,23 +264,39 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
       <button class="calc-btn" id="btn-gui-baocao" style="display:none;margin-top:12px;background:#115e59;" onclick="goGuiBaoCao()">📤 Gửi báo cáo mang tên tôi (Zalo)</button>
     </div>
 
-    <!-- ★ QUY TRÌNH CÔNG TRÌNH — checklist + chi phí + thời gian + kinh nghiệm (Diamond 02-09, làm ngay dùng ngay) -->
+    <!-- ★ QUY TRÌNH CÔNG TRÌNH — v2: mô tả tình huống → quy trình ĐÚNG CA (Diamond 03-09, đa dạng tình huống thật) -->
     <div class="calc-box" id="quytrinh-box">
       <div class="calc-head">
         <span class="calc-ico">📋</span>
-        <div class="calc-title">Quy trình công trình chi tiết</div>
-        <div class="calc-sub">Chọn loại công trình + diện tích → nhận <b>checklist từng bước + chi phí + thời gian + kinh nghiệm</b> để nói với khách ngay.</div>
+        <div class="calc-title">Quy trình công trình — theo tình huống của khách</div>
+        <div class="calc-sub">Mô tả ngắn căn nhà của khách → nhận <b>checklist từng bước + chi phí + thời gian + kinh nghiệm</b> đúng ca. Đa dạng tình huống thực tế.</div>
       </div>
       <div class="calc-form">
+        <label class="calc-field">
+          <span class="calc-label">Mô tả tình huống của khách <i style="font-weight:400;color:var(--text-3);">(gõ tự do, VD: "nhà 3 tầng hẻm xe máy muốn thêm 2 phòng ngủ", "đất trống xây cấp 4", "nhà trọ cải tạo 6 phòng")</i></span>
+          <input type="text" id="qt-mota" placeholder="VD: sân thượng bị thấm dột, muốn chống thấm..." 
+                 onkeydown="if(event.key==='Enter'){quyTrinh();return false;}"
+                 style="font-size:1rem;padding:14px 12px;">
+        </label>
         <div class="calc-row">
           <label class="calc-field">
-            <span class="calc-label">Loại công trình</span>
+            <span class="calc-label">Hoặc chọn loại công trình</span>
             <select id="qt-loai">
-              <option value="Xây mới" selected>🏗️ Xây mới</option>
+              <option value="" selected>🤖 Tự nhận diện từ mô tả</option>
+              <option value="Xây mới">🏗️ Xây mới</option>
+              <option value="Nhà cấp 4">🏡 Nhà cấp 4</option>
+              <option value="Nhà ống nhiều tầng">🏢 Nhà ống / nhà phố nhiều tầng</option>
+              <option value="Biệt thự">🌳 Biệt thự / nhà vườn</option>
+              <option value="Nhà trọ cho thuê">🏠 Nhà trọ cho thuê</option>
+              <option value="Thêm tầng">🔼 Thêm tầng</option>
               <option value="Sửa nhẹ">🪄 Sửa nhẹ (sơn, sửa nhỏ)</option>
               <option value="Sửa vừa (cải tạo)">🔧 Sửa vừa (cải tạo)</option>
-              <option value="Sửa lớn (thay kết cấu, nâng tầng)">🏗️ Sửa lớn (nâng tầng, kết cấu)</option>
+              <option value="Sửa lớn (thay kết cấu, nâng tầng)">🏗️ Sửa lớn (kết cấu, toàn bộ)</option>
               <option value="Sơn & chống thấm">🎨 Sơn &amp; chống thấm</option>
+              <option value="Làm mái tôn">🔨 Làm mái tôn</option>
+              <option value="Chống thấm sân thượng">💧 Chống thấm sân thượng</option>
+              <option value="Cải tạo phòng vệ sinh">🚿 Cải tạo phòng vệ sinh</option>
+              <option value="Lắp thang máy gia đình">🛗 Lắp thang máy gia đình</option>
             </select>
           </label>
           <label class="calc-field">
@@ -288,7 +304,7 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
             <input type="number" id="qt-area" inputmode="numeric" placeholder="VD: 80" min="10" max="2000">
           </label>
         </div>
-        <button class="calc-btn" onclick="quyTrinh()">📋 Xem quy trình</button>
+        <button class="calc-btn" onclick="quyTrinh()">📋 Tạo quy trình cho khách</button>
         <div class="calc-result" id="quytrinh-result" style="margin-top:14px;"></div>
       </div>
     </div>
@@ -398,6 +414,8 @@ if(!localStorage.getItem('aladdin-bridge')) localStorage.setItem('aladdin-bridge
    ============================================================ */
 const PRICING = {{ site.data.moi-gioi.bang-gia | jsonify }};
 const QUYTRINH = {{ site.data.moi-gioi.quy-trinh | jsonify }};
+const QUYTRINH_META = {{ site.data.moi-gioi.quy-trinh-meta | jsonify }};
+const QUYTRINH_BIENSO = {{ site.data.moi-gioi.quy-trinh-bien-so | jsonify }};
 
 function fmt(n){ return Math.round(n).toLocaleString('vi-VN'); }
 function fmtTrieu(n){
@@ -615,13 +633,76 @@ function checklistNow(){
   box.classList.add('show');
 }
 
-/* ===== QUY TRÌNH CÔNG TRÌNH CHI TIẾT =====
-   Điền loại công trình + diện tích → sinh checklist từng bước + chi phí + thời gian + kinh nghiệm.
-   Chạy ngay client-side (không chờ AI), dùng knowledge 21 năm của Hải trong _data/moi-gioi.yml. */
+/* ===== QUY TRÌNH CÔNG TRÌNH — V2: mô tả tình huống → quy trình ĐÚNG CA =====
+   Gõ mô tả tự do (hoặc chọn loại) → nhận diện loại + biến số → sinh checklist + chi phí + thời gian + kinh nghiệm.
+   Chạy ngay client-side (không chờ AI), dùng knowledge 21 năm + 14 loại công trình trong _data/moi-gioi.yml. */
+
+/* Nhận diện loại công trình từ mô tả tự do (keyword scoring — rẻ, 0 token, chạy ngay)
+   Bước 1: quét KW QUYẾT ĐỊNH (từ loại RÕ RÀNG: biệt thự, cấp 4, trọ, thang máy...) —
+           khớp là chọn luôn để không bị loại CHUNG (xây mới/sửa nhẹ) "cướp".
+   Bước 2 (fallback): scoring theo độ dài từ khóa, kw dài ≥5 được bonus để loại CỤ THỂ thắng. */
+function nhanDienLoai(mota){
+  if (!mota) return null;
+  const m = mota.toLowerCase();
+  // Bước 1: từ loại rõ ràng
+  const KW_QUYET_DINH = [
+    ['thang máy','Lắp thang máy gia đình'],
+    ['nhà trọ','Nhà trọ cho thuê'],['dãy trọ','Nhà trọ cho thuê'],['phòng trọ','Nhà trọ cho thuê'],
+    ['biệt thự','Biệt thự'],
+    ['mái tôn','Làm mái tôn'],['lợp tôn','Làm mái tôn'],['lợp mái','Làm mái tôn'],
+    ['sân thượng','Chống thấm sân thượng'],['thấm dột','Chống thấm sân thượng'],['trần thấm','Chống thấm sân thượng'],
+    ['thêm tầng','Thêm tầng'],['nâng tầng','Thêm tầng'],['lên tầng','Thêm tầng'],
+    ['nhà vệ sinh','Cải tạo phòng vệ sinh'],['phòng vệ sinh','Cải tạo phòng vệ sinh'],['phòng tắm','Cải tạo phòng vệ sinh'],
+    ['wc','Cải tạo phòng vệ sinh'],['toilet','Cải tạo phòng vệ sinh'],
+    ['nhà cấp 4','Nhà cấp 4'],['cấp 4','Nhà cấp 4'],['cấp bốn','Nhà cấp 4'],
+    ['nhà ống','Nhà ống nhiều tầng'],['nhà phố','Nhà ống nhiều tầng'],
+    ['đập bỏ','Sửa lớn (thay kết cấu, nâng tầng)'],['đập đi','Sửa lớn (thay kết cấu, nâng tầng)'],['xây lại','Sửa lớn (thay kết cấu, nâng tầng)'],['sửa toàn bộ','Sửa lớn (thay kết cấu, nâng tầng)'],
+    ['cải tạo','Sửa vừa (cải tạo)'],
+    ['chống thấm','Sơn & chống thấm'], // chống thấm chung trước khi tới scoring
+  ];
+  for (const [kw, loai] of KW_QUYET_DINH){
+    if (m.includes(kw)) return loai;
+  }
+  // Bước 2: scoring fallback cho các ca không có kw quyết định (sơn, xây mới thuần...)
+  let best = null, bestScore = 0;
+  for (const loai in (QUYTRINH_META || {})){
+    const kws = QUYTRINH_META[loai].keywords || [];
+    let score = 0;
+    for (const kw of kws){
+      if (!kw) continue;
+      if (m.includes(kw.toLowerCase())){
+        score += kw.length + (kw.length >= 5 ? 12 : 0);  // kw dài ≥5 rất đặc trưng → bonus lớn
+      }
+    }
+    if (score > bestScore){ bestScore = score; best = loai; }
+  }
+  return bestScore >= 2 ? best : null;  // ngưỡng thấp để bắt kw ngắn đặc trưng (wc, trọ...)
+}
+
+/* Nhận biến số (hẻm, nhà cũ, cao cấp...) từ mô tả → thêm ghi chú linh hoạt cho đúng ca */
+function nhanBienSo(mota){
+  const notes = [];
+  if (!mota) return notes;
+  const m = mota.toLowerCase();
+  for (const key in (QUYTRINH_BIENSO || {})){
+    const bs = QUYTRINH_BIENSO[key];
+    if (!bs || !bs.keywords) continue;
+    for (const kw of bs.keywords){
+      if (kw && m.includes(kw.toLowerCase())){
+        notes.push({ key, hanhDong: bs["hanh-dong"] || "" });
+        break;
+      }
+    }
+  }
+  return notes;
+}
+
 function quyTrinh(){
   const box = document.getElementById('quytrinh-result');
-  const loai = document.getElementById('qt-loai').value;
+  const mota = (document.getElementById('qt-mota').value || '').trim();
+  let loai = document.getElementById('qt-loai').value;   // "" = tự nhận diện
   let area = parseFloat(document.getElementById('qt-area').value);
+
   // Tự lấy diện tích từ form Tính tiền nếu ô quy trình đang trống (tiết kiệm thao tác, không phá)
   if (!area){
     const c = parseFloat(document.getElementById('c-area').value);
@@ -632,34 +713,66 @@ function quyTrinh(){
   }
   box.classList.add('show');
 
-  if (!area || area < 10 || area > 2000){
-    box.innerHTML = '<div class="calc-warn">⚠️ Vui lòng nhập diện tích sàn hợp lệ (10–2000 m²).</div>';
+  // Nếu chưa chọn loại → tự nhận diện từ mô tả
+  const loaiCu = loai;
+  if (!loai){
+    const nhan = nhanDienLoai(mota);
+    if (nhan) loai = nhan;
+  }
+
+  if (!loai){
+    if (!mota){
+      box.innerHTML = '<div class="calc-warn">⚠️ Mô tả ngắn tình huống của khách (VD: "nhà 3 tầng hẻm xe máy thêm phòng ngủ") hoặc chọn loại công trình.</div>';
+      return;
+    }
+    box.innerHTML = '<div class="calc-warn">⚠️ Chưa nhận diện được loại công trình từ mô tả. Hãy thêm từ như: xây mới, cấp 4, biệt thự, cải tạo, thêm tầng, chống thấm, sơn... hoặc chọn loại ở bên dưới.</div>';
     return;
   }
 
   const q = QUYTRINH[loai];
   if (!q || !q['giai-doan']){ box.innerHTML = '<div class="calc-warn">⚠️ Chưa có quy trình cho loại này.</div>'; return; }
 
+  // --- Ghi chú linh hoạt từ biến số (hẻm, nhà cũ, cao cấp...) ---
+  const bienSoNotes = nhanBienSo(mota);
+  let bienSoHtml = '';
+  if (bienSoNotes.length){
+    bienSoHtml = '<div class="qt-note" style="background:#f0fdf4;color:#166534;">🧭 Lưu ý cho ca này:<br>' +
+      bienSoNotes.map(n=>'• ' + n.hanhDong).join('<br>') + '</div>';
+  }
+  // Ghi chú chuyển thể: người dùng chọn loại cũ trong dropdown nhưng mô tả khác → nhắc nhẹ
+  let chuyenThe = '';
+  if (mota && loaiCu && nhanDienLoai(mota) && nhanDienLoai(mota) !== loai){
+    chuyenThe = '<div class="calc-warn" style="margin-top:8px;">💡 Mô tả "'.concat(mota.slice(0,40), '..." có vẻ thuộc loại khác. Đang hiện cho loại: ', loai, '. Chọn "🤖 Tự nhận diện" ở trên để tự đoán đúng hơn.</div>');
+  }
+
   // --- 1. Ước tính chi phí tham khảo (theo từng loại, dùng bang-gia) ---
   let chiPhi = '';
   const P = PRICING;
   const vung = 'Hà Nội';
-  if (loai === 'Xây mới'){
+  if (loai === 'Xây mới' || loai === 'Nhà cấp 4'){
     const dg = P['xay-moi']['khong-gian'][vung] || 15000000;
     let total = dg * area;
-    chiPhi = `<div class="calc-row-result"><span class="k">Ước xây mới (${fmt(area)} m²)</span><span class="v">${fmtTrieu(total)} tr (1 tầng, chưa hệ số)</span></div>`;
+    chiPhi = `<div class="calc-row-result"><span class="k">Ước ${loai} (${fmt(area)} m²)</span><span class="v">${fmtTrieu(total)} tr (mức tham khảo 1 tầng)</span></div>`;
+  } else if (loai === 'Nhà ống nhiều tầng' || loai === 'Biệt thự'){
+    const dg = P['xay-moi']['khong-gian'][vung] || 15000000;
+    let heSo = loai === 'Biệt thự' ? 1.4 : 1.15;  // biệt thự cao cấp hơn, nhà ống nhiều tầng + hệ số
+    let total = dg * area * heSo;
+    chiPhi = `<div class="calc-row-result"><span class="k">Ước ${loai} (${fmt(area)} m²/tầng)</span><span class="v">${fmtTrieu(total)} tr/tầng (hệ số ${heSo})</span></div>`;
   } else {
     const muc = P['sua-chua']['muc-do'];
     let gia = null;
-    if (loai === 'Sửa nhẹ') gia = muc['Sửa nhẹ (sơn, sửa nhỏ, thay nội thất)'];
-    else if (loai === 'Sửa vừa (cải tạo)') gia = muc['Sửa vừa (cải tạo, chống thấm, điện nước, trát)'];
-    else if (loai === 'Sửa lớn (thay kết cấu, nâng tầng)') gia = muc['Sửa lớn (thay kết cấu, nâng tầng, cải tạo triệt để)'];
+    const mapSua = {
+      'Sửa nhẹ': 'Sửa nhẹ (sơn, sửa nhỏ, thay nội thất)',
+      'Sửa vừa (cải tạo)': 'Sửa vừa (cải tạo, chống thấm, điện nước, trát)',
+      'Sửa lớn (thay kết cấu, nâng tầng)': 'Sửa lớn (thay kết cấu, nâng tầng, cải tạo triệt để)',
+    };
+    if (mapSua[loai]) gia = muc[mapSua[loai]];
     else if (loai === 'Sơn & chống thấm'){
       const dg = P['son']['Trong nhà'] || 35000;
       chiPhi = `<div class="calc-row-result"><span class="k">Sơn tường (~${fmt(area*2.5)} m²)</span><span class="v">${fmtTrieu(dg*area*2.5)} tr</span></div>`;
     }
     if (gia) chiPhi = `<div class="calc-row-result"><span class="k">Ước ${loai} (${fmt(area)} m²)</span><span class="v">${fmtTrieu(gia*area)} tr</span></div>`;
-    if (!chiPhi) chiPhi = `<div class="calc-row-result"><span class="k">Chi phí</span><span class="v">tham khảo bảng giá (khảo sát thực tế)</span></div>`;
+    if (!chiPhi) chiPhi = `<div class="calc-row-result"><span class="k">Chi phí ${loai}</span><span class="v">tham khảo bảng giá / khảo sát thực tế</span></div>`;
   }
 
   // --- 2. Quy trình: lặp từng GIAI ĐOẠN + từng BƯỚC (checklist, thời gian, kinh nghiệm) ---
@@ -678,8 +791,10 @@ function quyTrinh(){
 
   box.innerHTML = `
     <h4>📋 QUY TRÌNH — ${loai}</h4>
+    ${chuyenThe}
     <div class="qt-note">⏱️ Tổng thời gian điển hình: <b>${q['tong-thoi-gian'] || '—'}</b></div>
     ${chiPhi}
+    ${bienSoHtml}
     ${gdHtml}
     <div class="calc-warn">⚠️ Chi phí &amp; thời gian tham khảo thị trường 2026, dựa trên kinh nghiệm 21 năm. Cần khảo sát thực tế để chính xác.</div>
     <button class="btn" style="margin-top:12px;width:100%;background:#115e59;color:#fff;border:none;border-radius:12px;padding:12px;font-weight:700;" onclick="qtGuiZalo()">📤 Gửi quy trình cho khách (Zalo)</button>`;

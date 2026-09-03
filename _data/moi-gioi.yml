@@ -260,3 +260,291 @@ quy-trinh:
           - ten: "Chống thấm (nếu có) + nghiệm thu"
             thoi-gian: "3–5 ngày"
             kinh-nghiem: "Chống thấm test sau mưa mới chắc."
+  "Nhà cấp 4":
+    tong-thoi-gian: "3–6 tháng"
+    chi-phi: "tham-khao bang-gia xay-moi"
+    giai-doan:
+      - ten: "Khảo sát & thủ tục"
+        thoi-gian: "2–4 tuần"
+        buoc:
+          - ten: "Kiểm tra hồ sơ đất, quy hoạch, hiện trạng"
+            thoi-gian: "1 tuần"
+            kinh-nghiem: "Cấp 4 thường đất thổ cư sẵn — kiểm tra sổ, quy hoạch, chỉ giới xây dựng."
+          - ten: "Xin phép xây dựng (hầu hết cấp 4 cần)"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Cấp 4 có móng cột vẫn cần xin phép; thời gian tùy quận/huyện."
+      - ten: "Thi công"
+        thoi-gian: "2–4 tháng"
+        buoc:
+          - ten: "Móng & phần thô (đổ cột, đà, mái)"
+            thoi-gian: "1–2 tháng"
+            kinh-nghiem: "Nghiệm thu móng trước khi lấp; chụp ảnh thép trước khi đổ bê tông."
+          - ten: "Xây tô, mái, điện nước"
+            thoi-gian: "1–1,5 tháng"
+            kinh-nghiem: "Mái tôn chống nóng cần xử lý chống dột kỹ; điện nước chụp ảnh trước khi trát."
+          - ten: "Hoàn thiện: sơn, nền, cửa, vệ sinh"
+            thoi-gian: "1–1,5 tháng"
+            kinh-nghiem: "Nghiệm thu từng phòng trước khi bàn giao."
+    note: "Cấp 4 diện tích nhỏ, thi công nhanh hơn nhà nhiều tầng. Vướng ngõ hẻm → phát sinh khuân tay."
+
+  "Nhà ống nhiều tầng":
+    tong-thoi-gian: "8–14 tháng"
+    chi-phi: "tham-khao bang-gia xay-moi (cao hơn nhà 1 tầng)"
+    giai-doan:
+      - ten: "Khảo sát & thủ tục"
+        thoi-gian: "1–2 tháng"
+        buoc:
+          - ten: "Khảo sát địa chất + thiết kế kiến trúc/kết cấu"
+            thoi-gian: "3–6 tuần"
+            kinh-nghiem: "Nhà cao tầng bắt buộc thiết kế kết cấu của kỹ sư, khảo sát địa chất nếu đất yếu."
+          - ten: "Xin phép xây dựng + giấy phép"
+            thoi-gian: "1–2 tháng"
+            kinh-nghiem: "Nhà ống 3-5 tầng cần đầy đủ hồ sơ, có thể cần chấp thuận quy hoạch."
+      - ten: "Thi công"
+        thoi-gian: "6–10 tháng"
+        buoc:
+          - ten: "Móng & cọc (nếu cần) + phần thô từng tầng"
+            thoi-gian: "3–5 tháng"
+            kinh-nghiem: "Đổ tầng nào nghiệm thu tầng đó; ghi nhận ảnh thép trước đổ bê tông."
+          - ten: "Xây tô, điện nước, thang bộ"
+            thoi-gian: "2–3 tháng"
+            kinh-nghiem: "Điện nước trong tường chụp ảnh trước khi trát; trục thang bộ thi công kỹ."
+          - ten: "Hoàn thiện từng tầng + nghiệm thu"
+            thoi-gian: "2–3 tháng"
+            kinh-nghiem: "Nhà nhiều tầng phức tạp — nên có giám sát kỹ thuật."
+    note: "Nhà ống cao tầng thi công lâu, cần giám sát chặt. Vướng hẻm nhỏ, khuân tay → kéo dài + tốn thêm."
+
+  "Biệt thự":
+    tong-thoi-gian: "1–1,5 năm"
+    chi-phi: "tham-khao bang-gia xay-moi (mức cao — hoàn thiện cao cấp)"
+    giai-doan:
+      - ten: "Khảo sát & thiết kế"
+        thoi-gian: "1–2 tháng"
+        buoc:
+          - ten: "Khảo sát địa chất + lên phối cảnh, thiết kế chi tiết"
+            thoi-gian: "1–2 tháng"
+            kinh-nghiem: "Biệt thự cần thiết kế cảnh quan + kiến trúc + kết cấu bài bản trước khi thi công."
+          - ten: "Xin phép + chốt báo giá theo hạng mục"
+            thoi-gian: "3–6 tuần"
+            kinh-nghiem: "Biệt thự có vườn, tường rào, cổng — so báo giá đủ hạng mục."
+      - ten: "Thi công"
+        thoi-gian: "9–12 tháng"
+        buoc:
+          - ten: "Móng, cọc, khung"
+            thoi-gian: "3–4 tháng"
+            kinh-nghiem: "Thi công móng biệt thự thường nặng nề; nghiệm thu kỹ từng giai đoạn."
+          - ten: "Thô tầng, xây, điện nước, mái"
+            thoi-gian: "3–4 tháng"
+            kinh-nghiem: "Chụp ảnh điện nước trước trát; mái chống thấm kỹ."
+          - ten: "Hoàn thiện cao cấp + cảnh quan + nghiệm thu"
+            thoi-gian: "3–4 tháng"
+            kinh-nghiem: "Cao cấp nên thuê giám sát độc lập; nghiệm thu từng hạng mục."
+    note: "Biệt thự đòi hỏi chuyên môn cao, ngân sách lớn — nên để đội kỹ thuật giám sát chặt."
+
+  "Nhà trọ cho thuê":
+    tong-thoi-gian: "2–4 tháng"
+    chi-phi: "tham-khao bang-gia xay-moi (mức phổ thông, tiết kiệm)"
+    giai-doan:
+      - ten: "Khảo sát & thủ tục"
+        thoi-gian: "2–4 tuần"
+        buoc:
+          - ten: "Khảo sát đất, quy hoạch, vị trí cho thuê"
+            thoi-gian: "1 tuần"
+            kinh-nghiem: "Tính kỹ số phòng tối đa theo diện tích + lối đi riêng cho từng phòng."
+          - ten: "Xin phép xây dựng nhà trọ"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Nhà trọ nhiều phòng cần hồ sơ rõ ràng để sau này xin giấy phép kinh doanh."
+      - ten: "Thi công"
+        thoi-gian: "1,5–3 tháng"
+        buoc:
+          - ten: "Phần thô, tường ngăn phòng, mái"
+            thoi-gian: "1–2 tháng"
+            kinh-nghiem: "Ngăn phòng phải đủ cách âm, chống cháy; vệ sinh chung mỗi tầng."
+          - ten: "Điện nước riêng từng phòng + đồng hồ"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Đồng hồ điện nước riêng từng phòng là tiêu chí chọn trọ."
+          - ten: "Hoàn thiện + nghiệm thu + lắp nội thất cơ bản"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Nghiệm thu trước khi cho thuê; bàn giao bơm nước, bồn chứa."
+    note: "Nhà trọ tiết kiệm hợp lý nhưng phải đủ cách âm, chống cháy, điện nước riêng — kiếm khách dễ."
+
+  "Thêm tầng":
+    tong-thoi-gian: "3–6 tháng"
+    chi-phi: "tham-khao bang-gia sua-chua (mức Sửa lớn)"
+    giai-doan:
+      - ten: "Khảo sát & thủ tục"
+        thoi-gian: "1–2 tháng"
+        buoc:
+          - ten: "Khảo sát kết cấu nhà hiện hữu + địa chất"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Bắt buộc kiểm tra móng, cột, dầm có chịu nổi thêm tầng không — đừng đoán."
+          - ten: "Thiết kế kết cấu + xin phép xây dựng"
+            thoi-gian: "1–2 tháng"
+            kinh-nghiem: "Thêm tầng phải có thiết kế kết cấu của kỹ sư + xin phép, nếu không bị phạt/đình chỉ."
+      - ten: "Thi công"
+        thoi-gian: "2–4 tháng"
+        buoc:
+          - ten: "Gia cố nền móng, cột nếu cần"
+            thoi-gian: "1–2 tháng"
+            kinh-nghiem: "Gia cố phải theo đúng thiết kế; nghiệm thu trước khi đắp tầng."
+          - ten: "Đổ khung tầng mới + xây tô"
+            thoi-gian: "2–3 tháng"
+            kinh-nghiem: "Theo dõi sát kết nối tầng mới với nhà cũ."
+          - ten: "Điện nước, hoàn thiện, nghiệm thu"
+            thoi-gian: "1–1,5 tháng"
+            kinh-nghiem: "Kiểm tra chống thấm tại vị trí chuyển tiếp tầng."
+    note: "Phụ thuộc tình trạng nhà hiện hữu — khảo sát kết cấu là BẮT BUỘC trước, không đoán."
+
+  "Làm mái tôn":
+    tong-thoi-gian: "1–2 tuần"
+    chi-phi: "tham-khao bang-gia xay-moi hoàn thiện (mái)"
+    giai-doan:
+      - ten: "Khảo sát & chuẩn bị"
+        thoi-gian: "2–4 ngày"
+        buoc:
+          - ten: "Đo diện tích mái, chọn loại tôn + xà gồ"
+            thoi-gian: "1–2 ngày"
+            kinh-nghiem: "Chọn tôn dày đủ, xà gồ đúng bước; tính độ dốc mái thoát nước."
+          - ten: "Xin phép nếu thay kết cấu mái (nếu cần)"
+            thoi-gian: "vài ngày"
+            kinh-nghiem: "Chỉ thay tôn thay xà gồ thường không cần; đổi kết cấu mái nặng thì hỏi phường."
+      - ten: "Thi công"
+        thoi-gian: "1 tuần"
+        buoc:
+          - ten: "Tháo mái cũ + thi công xà gồ, chống dột"
+            thoi-gian: "2–3 ngày"
+            kinh-nghiem: "Gia cố lớp chống dột, chống nóng (phủ bạt/phu nhũ) trước khi lợp tôn."
+          - ten: "Lợp tôn + bắn vít + hoàn thiện máng xối"
+            thoi-gian: "2–3 ngày"
+            kinh-nghiem: "Bắn vít đủ, chống dột tại lỗ vít; kiểm tra máng xối hướng thoát."
+          - ten: "Nghiệm thu sau mưa"
+            thoi-gian: "1 ngày"
+            kinh-nghiem: "Chỉ chốt khi qua 1 trận mưa không dột."
+    note: "Làm mái tôn nhanh nhưng phải chống nóng + chống dột kỹ — đừng ham rẻ."
+
+  "Chống thấm sân thượng":
+    tong-thoi-gian: "1–2 tuần"
+    chi-phi: "tham-khao bang-gia son/sua-chua (hạng mục chống thấm)"
+    giai-doan:
+      - ten: "Chuẩn bị"
+        thoi-gian: "3–5 ngày"
+        buoc:
+          - ten: "Khảo sát vị trí thấm, xử lý bề mặt, vệ sinh sạch"
+            thoi-gian: "2–3 ngày"
+            kinh-nghiem: "Chống thấm thất bại do bề mặt không sạch/khô — làm kỹ bước này."
+      - ten: "Thi công"
+        thoi-gian: "5–7 ngày"
+        buoc:
+          - ten: "Quét lớp chống thấm gốc xi măng/bitum đúng kỹ thuật"
+            thoi-gian: "3–4 ngày"
+            kinh-nghiem: "Đủ số lớp, đúng thời gian khô giữa các lớp; xử lý chân tường, khe nứt."
+          - ten: "Lớp bảo vệ + nghiệm thu sau mưa"
+            thoi-gian: "2–3 ngày"
+            kinh-nghiem: "Test nước/mưa vài ngày mới chốt; lên lớp bảo vệ để không bịt hỏng."
+    note: "Tìm đúng vị trí thấm gốc (không chỉ phủ bề mặt), làm đủ lớp, test sau mưa."
+
+  "Cải tạo phòng vệ sinh":
+    tong-thoi-gian: "1–2 tuần"
+    chi-phi: "tham-khao bang-gia sua-chua (hạng mục WC)"
+    giai-doan:
+      - ten: "Khảo sát & chuẩn bị"
+        thoi-gian: "2–3 ngày"
+        buoc:
+          - ten: "Xác định hạng mục: thay thiết bị, chống thấm, thay ống, làm lại nền"
+            thoi-gian: "1 ngày"
+            kinh-nghiem: "Phòng WC hay thấm/chập do ống cũ — kiểm tra trước khi quyết định làm gì."
+      - ten: "Thi công"
+        thoi-gian: "1–2 tuần"
+        buoc:
+          - ten: "Phá dỡ, chống thấm nền + tường"
+            thoi-gian: "3–5 ngày"
+            kinh-nghiem: "Chống thấm sàn WC là quan trọng nhất — thiếu là thấm xuống nhà dưới."
+          - ten: "Thay ống, lát nền, lắp thiết bị vệ sinh"
+            thoi-gian: "4–7 ngày"
+            kinh-nghiem: "Chọn thiết bị bền, kiểm tra độ dốc thoát nước."
+          - ten: "Nghiệm thu, test kín nước"
+            thoi-gian: "1 ngày"
+            kinh-nghiem: "Bơm nước đọng kiểm tra chống thấm trước khi bàn giao."
+    note: "Chống thấm sàn + test kín nước là 2 việc không được bỏ qua."
+
+  "Lắp thang máy gia đình":
+    tong-thoi-gian: "1–2 tháng"
+    chi-phi: "tham-khao riêng (thiết bị + lắp đặt theo hãng)"
+    giai-doan:
+      - ten: "Khảo sát & chuẩn bị"
+        thoi-gian: "2–4 tuần"
+        buoc:
+          - ten: "Khảo sát vị trí hố thang + tải trọng kết cấu"
+            thoi-gian: "1–2 tuần"
+            kinh-nghiem: "Chọn vị trí hố thang + kiểm tra kết cấu chịu lực, đối chiếu kích thước nhà."
+          - ten: "Chọn hãng, báo giá, đặt trước thiết bị"
+            thoi-gian: "1–3 tuần"
+            kinh-nghiem: "Chọn hãng có bảo hành dài + tổng thầu thi công hố thang phối hợp."
+      - ten: "Thi công"
+        thoi-gian: "3–6 tuần"
+        buoc:
+          - ten: "Thi công hố thang, đà kiềng, chống thấm"
+            thoi-gian: "2–4 tuần"
+            kinh-nghiem: "Hố thang phải kín, chống thấm, chống ồn cho các phòng liền kề."
+          - ten: "Lắp ray, cabin, cửa tầng"
+            thoi-gian: "1–2 tuần"
+            kinh-nghiem: "Bắt buộc đơn vị có chứng chỉ lắp đặt + nghiệm thu an toàn."
+          - ten: "Kiểm định an toàn + bàn giao"
+            thoi-gian: "vài ngày"
+            kinh-nghiem: "Kiểm định + hướng dẫn sử dụng bảo trì; lưu hồ sơ bảo hành."
+    note: "Thang máy là thiết bị an toàn — bắt buộc đơn vị uy tín + có nghiệm thu, không tự sửa."
+
+# ============================================================
+# QUY TRÌNH — NHẬN DIỆN TỪ MÔ TẢ TỰ DO (Quy trình v2)
+# Diamond 03-09: công cụ đợi cứng nhắc → cho người dùng GÕ MÔ TẢ tình huống,
+# system tự nhận diện loại + biến số → sinh quy trình ĐÚNG CA. Chạy client-side 0 token.
+# ============================================================
+quy-trinh-meta:
+  "Xây mới":
+    keywords: ["xây mới","xây nhà","làm mới","đất trống","nhà mới","xây từ đầu","nhà đất trống"]
+  "Nhà cấp 4":
+    keywords: ["cấp 4","nhà cấp 4","xây cấp 4","cấp bốn"]
+  "Nhà ống nhiều tầng":
+    keywords: ["nhà ống","nhà phố","nhiều tầng","3 tầng","4 tầng","5 tầng","nhà cao tầng","nhà liền kề","nhà vuông","nhà xây tầng"]
+  "Biệt thự":
+    keywords: ["biệt thự","nhà vườn","biệt thự vườn","nhà sang","biệt thự mini","nhà đẹp cao cấp"]
+  "Nhà trọ cho thuê":
+    keywords: ["nhà trọ","phòng trọ","cho thuê trọ","xây trọ","dãy trọ","phòng cho thuê"]
+  "Thêm tầng":
+    keywords: ["thêm tầng","lên tầng","thêm 1 tầng","chồng tầng","tăng tầng","nâng tầng","đắp thêm tầng","xây thêm tầng"]
+  "Làm mái tôn":
+    keywords: ["mái tôn","lợp tôn","làm mái","lợp mái","mái che","tôn chống nóng","xà gồ"]
+  "Chống thấm sân thượng":
+    keywords: ["chống thấm","sân thượng","thấm dột","dột","mưa dột","chống thấm sân","thấm tầng","trần thấm"]
+  "Cải tạo phòng vệ sinh":
+    keywords: ["nhà vệ sinh","phòng vệ sinh","wc","toilet","nhà tắm","cải tạo wc","sửa vệ sinh","chống thấm wc","phòng tắm"]
+  "Lắp thang máy gia đình":
+    keywords: ["thang máy","thang máy gia đình","lắp thang","thang máy mini","hố thang"]
+  "Sửa nhẹ":
+    keywords: ["sửa nhẹ","sơn lại","sửa chút","sửa nhỏ","sơn sửa","tu sửa nhẹ","thay nội thất","sửa nhà cũ sơn"]
+  "Sửa vừa (cải tạo)":
+    keywords: ["cải tạo","sửa vừa","sửa nhà cũ","cải tạo nhà","sửa lại","nâng cấp","sửa chữa lớn nhẹ","đổi mới nhà"]
+  "Sửa lớn (thay kết cấu, nâng tầng)":
+    keywords: ["sửa lớn","thay kết cấu","sửa toàn bộ","đập đi xây lại","cải tạo lớn","sửa nặng","thay mái","sửa tổng thể"]
+  "Sơn & chống thấm":
+    keywords: ["sơn","sơn tường","sơn lại","sơn nhà","quét sơn","sơn chống thấm"]
+
+# Biến số nhận diện → điều chỉnh quy trình linh hoạt (thêm bước/cảnh báo cho đúng ca)
+quy-trinh-bien-so:
+  ngheo:
+    keywords: ["hẻm","ngõ","ngõ nhỏ","hẻm nhỏ","xe máy","khuân tay","ngõ xe máy","đường nhỏ","ngõ hẹp"]
+    hanh-dong: "Vật liệu phải khuân tay qua ngõ nhỏ → cộng 10–15% chi phí vận chuyển, thời gian kéo dài hơn. Chủ trì vận chuyển theo giờ không cản trở lối đi."
+  dat-cu:
+    keywords: ["nhà cũ","đất cũ","nhà đã có","cải tạo nhà cũ","nhà củ","cải tạo","sửa nhà cũ"]
+    # đã có loại cải tạo — biến số này thêm ghi chú
+    hanh-dong: "Nhà đã có sẵn: bắt buộc khảo sát kết cấu + hiện trạng trước khi quyết hạng mục, tránh phát sinh như vỡ nứt."
+  cao-cap:
+    keywords: ["cao cấp","sang","xịn","đẹp","biệt thự","vip","thượng lưu","nội thất cao cấp"]
+    hanh-dong: "Yêu cầu cao cấp → đơn giá cao hơn (vật tư + nhân công), thời gian hoàn thiện lâu hơn, nên thuê giám sát."
+  dat-trong:
+    keywords: ["đất trống","đất chưa xây","đất trống xây","miếng đất trống","lô đất trống"]
+    hanh-dong: "Đất trống chưa có nhà: làm từ đầu — kiểm tra quy hoạch + xin phép đầy đủ trước, hạ tầng điện nước."
+  ngheo-to:
+    keywords: ["ô tô","ngõ ô tô","đường rộng","thoáng","thuận tiện xe"]
+    hanh-dong: "Ngõ ô tô/đường rộng: vận chuyển thuận lợi, ít phát sinh chi phí vận chuyển."
+# Nếu không khớp biến số nào → không thêm ghi chú (giữ quy trình gốc, tránh nhiễu).

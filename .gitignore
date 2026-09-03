@@ -7,3 +7,7 @@ __pycache__/
 **/data/
 conversations/
 bridge/data/
+# Cào dữ liệu chi phí xây dựng — NỘI BỘ (data + script công cụ), KHÔNG push GitHub công khai
+bridge/data-scrape/
+*.csv
+*.jsonl

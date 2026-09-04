@@ -171,6 +171,20 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
       <button class="ask-btn" id="tool-ask" onclick="askFromInput()">Hỏi →</button>
     </div>
 
+    <div class="flow-hint show">
+      <div class="flow-card">
+        <h4>💡 Tư vấn nhanh — giá xây 2026 (môi giới nói với khách)</h4>
+        <p>Đơn giá TRỌN GÓI (đã gồm thô + hoàn thiện cơ bản), tính theo m² sàn, miền Bắc 2026 — tham khảo từ bảng giá đã kiểm chứng. Giá thực tế phải sau khảo sát đất, thiết kế và báo giá vật liệu.</p>
+        <ul style="padding-left:18px;margin:8px 0;font-size:.88rem;line-height:1.6;">
+          <li><b>Nhà cấp 4 / vườn 1 tầng:</b> ≈ 13,5 triệu/m² (Hà Nội)</li>
+          <li><b>Nhà phố / nhà ống:</b> ≈ 15 triệu/m² (Hà Nội)</li>
+          <li><b>Biệt thự:</b> ≈ 19,5 triệu/m² (Hà Nội)</li>
+          <li><b>Khác vùng:</b> TP.HCM ≈ 15,5 · Đà Nẵng ≈ 13,5 · Tỉnh khác ≈ 12,5 triệu/m²</li>
+        </ul>
+        <p>Trong đó phần thô (móng, khung, mái, tường) chiếm ~60%, phần hoàn thiện ~40%. Chưa gồm đất, xin phép, thiết kế, nội thất rời, dự phòng phát sinh. Bắt buộc khảo sát thực tế.</p>
+      </div>
+    </div>
+
     <!-- ★ PREVIEW CARD — tự nhận diện từ mô tả (chạy client-side, 0 token) -->
     <div class="preview-wrap" id="preview-wrap">
       <div class="preview-card">
@@ -1171,4 +1185,3 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
     </div>
   </div>
 </section>
-

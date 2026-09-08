@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-08",
+  "source": "apify-fb-groups-60d-batch",
+  "topics": [
+    {"chu_de": "Kiểm đếm và thông báo thu hồi đất tại Hà Nội: quy trình và thời gian thực tế",
+     "cau_hoi": "Các bác ở khắp tuyến đều có thông báo thu hồi và lịch kiểm đếm rồi phải không ạ? Em ở Ngọc Hồi vẫn im re."},
+    {"chu_de": "Ước lượng giá đền bù nhà cấp 4, mái tôn, tường 110 sau khi kiểm đếm",
+     "cau_hoi": "Bác nào trong nhóm có thông tin giá đền bù sau kiểm đếm không, ví dụ nhà cấp 4, mái tôn, tường 110?"},
+    {"chu_de": "Hỗ trợ nhà ở khi bị thu hồi đất: bao nhiêu tháng, mỗi hộ bao nhiêu tiền",
+     "cau_hoi": "Nhà nước hỗ trợ nhà ở khi thu hồi đất mấy tháng vậy các bác, mỗi hộ, mỗi người được bao nhiêu ạ?"},
+    {"chu_de": "Tái định cư cho hộ phụ: nộp đơn ở đâu và thủ tục thế nào",
+     "cau_hoi": "Cho em hỏi ở Thường Tín nộp đơn xin thêm tái định cư cho hộ phụ thì nộp ở đâu các bác nhỉ?"},
+    {"chu_de": "Giải phóng mặt bằng theo tuyến: tiến độ 260 Giải Phóng và phường Bạch Mai",
+     "cau_hoi": "Em thấy bảo chỗ mạn 260 Giải Phóng 15/9 trả tiền, phải không các bác? Phường Bạch Mai tháng mấy giao mặt bằng ạ?"},
+    {"chu_de": "Thuê nhà ở tạm chờ bàn giao: kinh nghiệm chọn chỗ và những việc cần chuẩn bị",
+     "cau_hoi": "Sắp tới trả mặt bằng, em định đi thuê nhà ở tạm chờ nhà mới khoảng 1 năm, không biết phải chuẩn bị gì?"}
+  ],
+  "note": "6 chủ đề từ 12 bài hỏi thật (tt >= 9) trong 37 bài FB group BĐS HN 60 ngày. Data thô: bridge/data/fb-groups-60d-*.json (gitignored)."
+}

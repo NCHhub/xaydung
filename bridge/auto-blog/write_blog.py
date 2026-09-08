@@ -144,6 +144,60 @@ Ghi chú lại câu hỏi này vào sổ tay tư vấn của anh/chị. Lần t�
 """
     return {"slug": slug, "title": title, "file": f"{today}-{slug}.md", "body": body}
 
+# Từ khóa chủ đề THU HỒI ĐẤT/ĐỀN BÙ/TDC → dùng template riêng (KHÔNG trích bảng giá xây nhà,
+# tránh hiểu lầm "giá xây" ↔ "giá đền bù"; số đền bù do phương án từng dự án quyết định).
+THUHOI_WORDS = ["thu hồi", "đền bù", "bồi thường", "tái định cư", "giải phóng", "kiểm đếm",
+                "giao mặt bằng", "trả mặt bằng", "mặt bằng"]
+
+def is_thuhoi(topics: list, chu_de: str, cau_hoi: str) -> bool:
+    s = (chu_de + " " + cau_hoi).lower()
+    return any(w in s for w in THUHOI_WORDS)
+
+def build_post_thuhoi(topic: dict) -> dict:
+    """Template bài chủ đề thu hồi đất/đền bù/TDC — tôn vinh môi giới hiểu quy trình,
+    không bịa số liệu, không trích bảng giá xây dựng."""
+    chu_de = topic.get("chu_de", "")
+    cau_hoi = topic.get("cau_hoi", "")
+    slug = slugify(chu_de)
+    today = datetime.date.today().isoformat()
+    title = chu_de
+    desc = (cau_hoi[:140] + "…") if len(cau_hoi) > 140 else cau_hoi
+    body = f"""---
+title: "{title}"
+nhom: "Dành cho Môi giới"
+date: {today}
+description: "{desc}"
+---
+
+Khi anh/chị gặp khách hỏi *“{cau_hoi}”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.
+
+## Vì sao chủ đề này đang nóng
+
+Chủ đề *“{chu_de}”* lặp lại liên tục trong các hội nhóm xây/sửa nhà Hà Nội 60 ngày gần đây — nhiều tuyến đường đang trong giai đoạn thông báo thu hồi và kiểm đếm. Người dân ở đây có chung một nỗi lo: không biết quy trình tới đâu, bao giờ có tiền, và thủ tục làm thế nào.
+
+## Điều môi giới cần nắm vững để tư vấn
+
+Trình tự thu hồi đất thường diễn ra theo các bước: **thông báo thu hồi → kiểm kê, kiểm đếm tài sản → công bố phương án bồi thường, hỗ trợ, tái định cư → chi trả và bàn giao mặt bằng**. Với mỗi bước, anh/chị nên:
+
+- **Hỏi khách đã nhận văn bản gì chưa** (thông báo thu hồi, biên bản kiểm đếm, phương án bồi thường) — từ đó xác định gia đình đang ở bước nào.
+- **Nhắc khách giữ bản gốc giấy tờ nhà đất**, biên bản kiểm kê và mọi văn bản nhà nước gửi — đây là căn cứ khi đối chiếu phương án.
+- **Không hứa con số đền bù** — mức cụ thể do phương án của từng dự án, từng UBND quận/huyện quyết định; hướng khách đối chiếu văn bản chính thức và Ban Quản lý dự án khu vực.
+- **Ghi nhận câu hỏi của khách** và giúp họ sắp xếp hồ sơ để trao đổi đúng bộ phận (Ban Quản lý dự án, UBND phường/xã).
+
+## Câu hỏi thật đang được người dân hỏi nhất
+
+> **{cau_hoi}**
+
+Những câu hỏi kiểu này cho anh/chị một gợi ý lớn: khách vùng thu hồi đang cần môi giới hiểu quy trình, không phải người chỉ biết bán nhà. Anh/chị càng rõ các bước, khách càng tin.
+
+## Hành động nhỏ hôm nay
+
+Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
+
+> 💡 Cập nhật thêm kiến thức về quy trình và giá xây/sửa nhà tại X.aladDin.vn — nơi anh/chị tra nhanh mọi con số khi tư vấn khách.
+"""
+    return {"slug": slug, "title": title, "file": f"{today}-{slug}.md", "body": body}
+
 def main():
     ap = argparse.ArgumentParser(description="Sinh bài viết tự động từ topics + moi-gioi.yml")
     ap.add_argument("--topic", help="sinh bài 1 chủ đề cụ thể (không cần topics/)")
@@ -168,7 +222,11 @@ def main():
 
     made = []
     for t in topics:
-        post = build_post(t, pick_evidence(data, t.get("chu_de", "")))
+        chu_de, cau_hoi = t.get("chu_de", ""), t.get("cau_hoi", "")
+        if is_thuhoi(topics, chu_de, cau_hoi):
+            post = build_post_thuhoi(t)
+        else:
+            post = build_post(t, pick_evidence(data, chu_de))
         if post["slug"] in used_slugs:
             print(f"[write_blog] Slug trùng, bỏ qua: {post['slug']}")
             continue

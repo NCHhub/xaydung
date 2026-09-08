@@ -28,6 +28,7 @@ ALLOWED_KEYS = ["khach-hoi", "bang-gia", "quy-trinh", "quy-trinh-meta", "quy-tri
 
 def slugify(text: str) -> str:
     """'Xây nhà ngoại thành 1.3 tỷ' → 'xay-nha-ngoai-thanh-1-3-ty' (không dấu, nối gạch)."""
+    text = text.replace('đ', 'd').replace('Đ', 'd')  # đ → d (NFKD không tách đ)
     text = unicodedata.normalize("NFKD", text)
     text = "".join(c for c in text if not unicodedata.combining(c))
     text = text.lower()

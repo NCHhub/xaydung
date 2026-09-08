@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-08",
+  "source": "apify-fb-groups-60d",
+  "topics": [
+    {
+      "chu_de": "Thu hồi đất, đền bù và tái định cư tại Hà Nội 2026 — những điều chủ nhà cần biết",
+      "cau_hoi": "Các bác ở khắp tuyến đều có thông báo thu hồi và lich kiểm đếm rui phai ko ak ? Em ở Ngoc hồi vẫn im re"
+    },
+    {
+      "chu_de": "Giải phóng mặt bằng và giá đền bù theo từng tuyến đường Hà Nội",
+      "cau_hoi": "Mọi người ơi , đã có lịch kiểm điểm và chốt phương án bồi thường và bàn giao đến đâu rồi ạ . Giờ như ngồi trên đống lửa sắp tới không biết ở đâu và cuộc sống đả"
+    },
+    {
+      "chu_de": "Đi thuê nhà ở tạm khi bị thu hồi đất — kinh nghiệm người thật",
+      "cau_hoi": "im ắng quá các bác ơi… vậy là em đã thuê nhà để ko được 2 tháng rồi…ko thuê thì lo thiếu chỗ gần hóng Tdc. Thuê thì chưa rõ kế hoạch cụ thể. Phương liệt im re😆…"
+    }
+  ],
+  "note": "Chủ đề từ 37 bài FB group BĐS HN 60 ngày (Apify actor). Data thô: bridge/data/fb-groups-60d-*.json (gitignored)."
+}

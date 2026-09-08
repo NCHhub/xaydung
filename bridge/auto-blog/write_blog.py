@@ -141,6 +141,11 @@ Câu trả lời mà khách cần nghe không phải một con số chẵn — m
 Ghi chú lại câu hỏi này vào sổ tay tư vấn của anh/chị. Lần tới gặp khách hỏi đúng vấn đề, anh/chị đã sẵn câu trả lời — khách tin ngay, tăng khả năng chốt.
 
 > 💡 Anh/chị môi giới cần thêm số liệu chi tiết cho từng khu vực? Mở trang X.aladDin.vn/moi-gioi/ để xem bảng giá đầy đủ và công cụ tính nhanh.
+
+---
+**Hải & Cộng sự — Xây · Sửa nhà**
+
+Anh/chị hoặc khách của anh/chị cần tư vấn thêm theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Công trình thật, hoa hồng rõ ràng, hợp tác lâu dài.
 """
     return {"slug": slug, "title": title, "file": f"{today}-{slug}.md", "body": body}
 
@@ -194,7 +199,12 @@ Những câu hỏi kiểu này cho anh/chị một gợi ý lớn: khách vùng 
 
 Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
 
-> 💡 Cập nhật thêm kiến thức về quy trình và giá xây/sửa nhà tại X.aladDin.vn — nơi anh/chị tra nhanh mọi con số khi tư vấn khách.
+> 💡 Anh/chị cần tra nhanh quy trình và các con số khi tư vấn khách, mở X.aladDin.vn/moi-gioi/ — công cụ tính và bảng giá cập nhật theo từng quận, loại hình.
+
+---
+**Hải & Cộng sự — Xây · Sửa nhà**
+
+Anh/chị hoặc khách của anh/chị cần tư vấn thêm theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Công trình thật, hoa hồng rõ ràng, hợp tác lâu dài.
 """
     return {"slug": slug, "title": title, "file": f"{today}-{slug}.md", "body": body}
 

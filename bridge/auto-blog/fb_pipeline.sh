@@ -82,7 +82,7 @@ python3 bridge/auto-blog/fb_librarian.py 2>&1 || echo "⚠️ fb_librarian gặp
 # ---- 5) Tạo topics mới từ các bài hỏi thật trong kho ----
 echo "🧠 Đang quét chủ đề hỏi thật để sinh blog..."
 python3 - << 'PYEOF'
-import json, re, sys
+import json, re, sys, unicodedata
 from pathlib import Path
 
 SITE = Path("$SITE")
@@ -90,7 +90,23 @@ LIB = SITE / "bridge" / "data" / "library"
 TOPICS_DIR = SITE / "bridge" / "auto-blog" / "topics"
 BLOG_DIR = SITE / "_blog"
 
-# Đọc posts.jsonl
+def slugify(s: str) -> str:
+    """Chuẩn hóa giống write_blog.py: bỏ dấu rồi mới thay khoảng trắng."""
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:90]
+
+# Map mã chu_de (thủ thư đặt) → TỰA ĐỀ đầy đủ, viết hoa, đúng giọng tư vấn.
+# Luật: KHÔNG dùng mã ngắn làm title — bài rác bị quality_gate chặn.
+LABELS = {
+    "thu-hoi-dat": "Thu hồi đất tại Hà Nội — những điều chủ nhà cần biết",
+    "den-bu": "Đền bù sau kiểm đếm — cách đối chiếu phương án chính xác",
+    "gpmb": "Giải phóng mặt bằng theo tuyến đường Hà Nội — tiến độ và thủ tục",
+    "tai-dinh-cu": "Tái định cư — quỹ đất, thủ tục và điều gia đình cần chuẩn bị",
+    "cho-thue": "Đi thuê nhà ở tạm khi chờ bàn giao mặt bằng",
+    "khac": "Kinh nghiệm tư vấn nhà đất thực tế từ hội nhóm Hà Nội",
+}
+
+# Đọc posts.jsonl — ưu tiên bài engagement cao
 posts = []
 try:
     with open(LIB / "posts.jsonl", encoding="utf-8") as f:
@@ -98,6 +114,7 @@ try:
             p = json.loads(line.strip())
             if p.get("loai") == "hoi-that" and p.get("engagement", 0) >= 5:
                 posts.append(p)
+    posts.sort(key=lambda p: p.get("engagement", 0), reverse=True)
 except Exception as e:
     print(f"⚠️ Không đọc được posts.jsonl: {e}")
     posts = []
@@ -106,80 +123,92 @@ if not posts:
     print("📝 Không có bài hỏi thật mới để tạo topics — sẽ chạy lại lần sau.")
     sys.exit(0)
 
-# Đảm bảo topics directory
 TOPICS_DIR.mkdir(parents=True, exist_ok=True)
 
-# Lấy các chủ đề chưa có slug trong topics/
-existing_slugs = set()
+# Slug đã dùng: toàn bộ bài _blog + chủ đề topics cũ
+used_slugs = set()
 for t_file in TOPICS_DIR.glob("*.json"):
     try:
-        data = json.loads(t_file.read_text(encoding="utf-8"))
-        # Lấy các chu_de đã có
-        for t in data.get("topics", []):
+        for t in json.loads(t_file.read_text(encoding="utf-8")).get("topics", []):
             cd = t.get("chu_de", "")
             if cd:
-                sg = re.sub(r"[^a-z0-9]+", "-", cd.lower()).strip("-")[:90].replace("đ", "d").replace("Đ", "d")
-                existing_slugs.add(sg)
+                used_slugs.add(slugify(cd))
     except Exception:
         pass
+for f in BLOG_DIR.glob("*.md"):
+    m = re.match(r"\d{4}-\d{2}-\d{2}-(.+)\.md$", f.name)
+    if m:
+        used_slugs.add(m.group(1))
 
-# Gom các chu_de unique + câu hỏi ngắn (tối đa 8 topics)
-seen_chu_de = []
+# Chọn tối đa 8 chủ đề: mỗi mã chu_de → 1 topic (bài engagement cao nhất)
+topics = []
 for p in posts:
     cd = p.get("chu_de", "")
     if not cd:
         continue
-    sg = re.sub(r"[^a-z0-9]+", "-", cd.lower()).strip("-")[:90].replace("đ", "d").replace("Đ", "d")
-    if sg in existing_slugs or sg in seen_chu_de:
+    chu_de = LABELS.get(cd, cd)
+    sg = slugify(chu_de)
+    if sg in used_slugs:
         continue
-    seen_chu_de.append(sg)
-    if len(seen_chu_de) >= 8:
+    topics.append({"chu_de": chu_de, "cau_hoi": (p.get("text", "") or "")[:400]})
+    used_slugs.add(sg)
+    if len(topics) >= 8:
         break
 
-if len(seen_chu_de) < 2:
-    print(f"⚠️ Chỉ có {len(seen_chu_de)} topic duy nhất (cần >= 2). Để chạy lại lần sau khi có data mới.")
+if len(topics) < 2:
+    print(f"⚠️ Chỉ có {len(topics)} chủ đề mới (cần >= 2) — chờ data mới.")
     sys.exit(0)
 
-# Viết topics JSON mới (date-based, không ghi vào used_topics conflict)
 today = json.loads((LIB / "index.json").read_text(encoding="utf-8")).get("updated", __import__("datetime").date.today().isoformat())
-topics_data = {
-    "date": today,
-    "source": "fb-pipeline-auto",
-    "topics": []
-}
-for i, cd in enumerate(seen_chu_de, 1):
-    # Lấy câu hỏi đầu tiên tương ứng
-    q_text = next((p.get("text", "") for p in posts if re.sub(r"[^a-z0-9]+", "-", p.get("chu_de", "").lower())[:90].replace("đ", "d").replace("Đ", "d") == cd), "")
-    # Rút gọn desc 140 char
-    desc = (q_text[:137] + "…") if len(q_text) > 137 else q_text
-    topics_data["topics"].append({
-        "chu_de": cd,
-        "cau_hoi": q_text
-    })
-
-topics_file = TOPICS_DIR / f"2026-09-08-fb-pipeline-{len(seen_chu_de)}topics.json"
+topics_data = {"date": today, "source": "fb-pipeline-auto", "topics": topics}
+topics_file = TOPICS_DIR / f"{today}-fb-pipeline-{len(topics)}topics.json"
 topics_file.write_text(json.dumps(topics_data, ensure_ascii=False, indent=2), encoding="utf-8")
-print(f"✅ Đã tạo topics: {topics_file.name} ({len(seen_chu_de)} chủ đề)")
+print(f"✅ Đã tạo topics: {topics_file.name} ({len(topics)} chủ đề)")
 PYEOF
 
 # ---- 6) Chạy write_blog.py sinh bài mới ----
 echo "✍️ Đang sinh bài blog..."
 python3 bridge/auto-blog/write_blog.py 2>&1 | grep -E "^\\[write_blog\\]|^\[ ✅\\]|^\[ ❌\\]" || echo "⚠️ write_blog kết quả không rõ"
 
-# ---- 7) Commit + push nếu có bài mới ----
-echo "📦 Đang kiểm tra bài mới..."
-NEW_BLOG=$(ls -t _blog/202*-*.md 2>/dev/null | head -1 | xargs basename 2>/dev/null || true)
-if [ -n "$NEW_BLOG" ]; then
-    git add _blog/"$NEW_BLOG" bridge/auto-blog/write_blog.py bridge/auto-blog/.used_topics.json bridge/auto-blog/topics/ 2>/dev/null || true
+# ---- 7) TƯ PHÁP: quality_gate kiểm tra bài mới → CHỈ push bài PASS ----
+echo "⚖️ Tư pháp kiểm tra chất lượng bài mới (quality_gate)..."
+GATE_JSON=$(python3 bridge/auto-blog/quality_gate.py --json 2>/dev/null || true)
+PASS_LIST=$(echo "$GATE_JSON" | python3 -c "
+import json, sys
+try:
+    data = json.load(sys.stdin)
+    print('\n'.join(r['file'] for r in data.get('results', []) if r.get('verdict') == 'PASS'))
+except Exception:
+    pass
+" 2>/dev/null || true)
+FAIL_LIST=$(echo "$GATE_JSON" | python3 -c "
+import json, sys
+try:
+    data = json.load(sys.stdin)
+    print('\n'.join(r['file'] for r in data.get('results', []) if r.get('verdict') == 'FAIL'))
+except Exception:
+    pass
+" 2>/dev/null || true)
+
+if [ -n "$FAIL_LIST" ]; then
+    echo "❌ Bài FAIL quality_gate (KHÔNG đăng — lưu local, chờ sửa):"
+    echo "$FAIL_LIST" | sed 's/^/   - /'
+fi
+
+if [ -n "$PASS_LIST" ]; then
+    echo "✅ Bài PASS quality_gate → commit + push:"
+    echo "$PASS_LIST" | sed 's/^/   + /'
+    echo "$PASS_LIST" | while read -r f; do git add "$f"; done
+    git add bridge/auto-blog/quality_gate.py bridge/auto-blog/write_blog.py bridge/auto-blog/.used_topics.json bridge/auto-blog/topics/ 2>/dev/null || true
     if git diff --cached --quiet 2>/dev/null; then
-        echo "✅ Không có file thay đổi mới."
+        echo "✅ Không có file PASS mới."
     else
-        git commit -q -m "xaydung: auto-blog pipeline ${TIMESTAMP} — thêm $(echo "$NEW_BLOG" | sed 's/2026-09-08-//' | sed 's/-/ /g' | awk '{print $1,$2}')"
+        git commit -q -m "xaydung: auto-blog pipeline ${TIMESTAMP} — bài PASS quality_gate (Tam quyền: lập pháp=chuẩn bài Hải, hành pháp=pipeline, tư pháp=gate độc lập 0 token)"
         git push origin main 2>&1 | tail -2
-        echo "✅ Đã push live."
+        echo "✅ Đã push live ($(echo "$PASS_LIST" | wc -l) bài)."
     fi
 else
-    echo "✅ Không có bài blog mới trong session hiện tại."
+    echo "✅ Không có bài PASS mới trong session này."
 fi
 
 echo "=== fb_pipeline.sh xong ==="

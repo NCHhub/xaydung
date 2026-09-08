@@ -40,4 +40,9 @@ Số điện thoại Ban Quản lý dự án không niêm yết chung một ch�
 
 Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
 
-> 💡 Cập nhật thêm kiến thức về quy trình và giá xây/sửa nhà tại X.aladDin.vn — nơi anh/chị tra nhanh mọi con số khi tư vấn khách.
+> 💡 Anh/chị cần tra nhanh quy trình và các con số khi tư vấn khách, mở X.aladDin.vn/moi-gioi/ — công cụ tính và bảng giá cập nhật theo từng quận, loại hình.
+
+---
+**Hải & Cộng sự — Xây · Sửa nhà**
+
+Anh/chị hoặc khách của anh/chị cần tư vấn thêm theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Công trình thật, hoa hồng rõ ràng, hợp tác lâu dài.

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # fb_pipeline.sh — Pipeline liên tục cho FB groups scraping + auto-blog
 # Diamond 09-08: khai thác miễn phí (Apify free tier), tái sử dụng data, cộng hưởng.
-# Cron: 2×/tuần (Thứ 2 + Thứ 5, 09:30) — tốn ít credit free tier, tránh repeat.
+# Cron 09-09: HẰNG NGÀY 09:30 với cửa sổ NHỎ (2 ngày, 20 bài/group, ≥5 tương tác)
+#   → ít credit/run, merge cộng dồn, topics + viết bài + gate đều 0 token.
+#   Weekly giữ bản to (60d/50/10) khi cần quét sâu: FB_DAYS=60 FB_POSTS=50 FB_MIN_REACT=10.
+# Toàn pipeline = 0 token LLM (chỉ tốn Apify credit free); Meta AI chỉ dùng khi chạy run.sh thủ công.
 
 set -euo pipefail
 SITE="/home/diamond/empire/xaydung-site"
@@ -11,10 +14,27 @@ cd "$SITE"
 TOKEN_FILE="$HOME/.apify/token"
 [ -f "$TOKEN_FILE" ] && TOKEN=$(cat "$TOKEN_FILE") || { echo "❌ Thiếu $TOKEN_FILE"; exit 1; }
 
-# ---- 2) Chạy Apify actor (postsNewerThan 60 days, highest_engagement) ----
+# ---- 2) Chạy Apify actor — cửa sổ theo cron (daily nhỏ / weekly lớn) ----
+FB_DAYS="${FB_DAYS:-2}"
+FB_POSTS="${FB_POSTS:-20}"
+FB_MIN_REACT="${FB_MIN_REACT:-5}"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 OUTFILE="bridge/data/fb-groups-60d-$TIMESTAMP.json"
-INPUT_JSON='{"groupUrls":["https://www.facebook.com/groups/2702319990143345","https://www.facebook.com/groups/953678636273766"],"postsNewerThan":"60 days","sortBy":"highest_engagement","minReactions":10,"postsPerGroup":50}'
+INPUT_JSON=$(python3 -c "
+import json, sys
+d = {
+    'groupUrls': [
+        'https://www.facebook.com/groups/2702319990143345',
+        'https://www.facebook.com/groups/953678636273766',
+    ],
+    'postsNewerThan': '$FB_DAYS days',
+    'sortBy': 'highest_engagement',
+    'minReactions': int('$FB_MIN_REACT'),
+    'postsPerGroup': int('$FB_POSTS'),
+}
+sys.stdout.write(json.dumps(d, ensure_ascii=False))
+")
+echo "🔭 Cửa sổ scrape: ${FB_DAYS} ngày, ${FB_POSTS} bài/group, ≥${FB_MIN_REACT} react"
 
 echo "🚀 Bắt đầu scrape Apify actor (free tier)..."
 APIFY_RUN=$(apify actors call api-empire/facebook-groups-scraper "$INPUT_JSON" --token "$TOKEN" 2>&1 || true)
@@ -91,8 +111,10 @@ TOPICS_DIR = SITE / "bridge" / "auto-blog" / "topics"
 BLOG_DIR = SITE / "_blog"
 
 def slugify(s: str) -> str:
-    """Chuẩn hóa giống write_blog.py: bỏ dấu rồi mới thay khoảng trắng."""
-    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+    """Đúng chuẩn write_blog.py: đ→d trước (NFKD không tách đ), bỏ dấu kết hợp, nối gạch."""
+    s = s.replace("đ", "d").replace("Đ", "d")
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:90]
 
 # Map mã chu_de (thủ thư đặt) → TỰA ĐỀ đầy đủ, viết hoa, đúng giọng tư vấn.
@@ -165,6 +187,12 @@ topics_file = TOPICS_DIR / f"{today}-fb-pipeline-{len(topics)}topics.json"
 topics_file.write_text(json.dumps(topics_data, ensure_ascii=False, indent=2), encoding="utf-8")
 print(f"✅ Đã tạo topics: {topics_file.name} ({len(topics)} chủ đề)")
 PYEOF
+
+# ---- 5b) PHÂN TÍCH KHÁCH HÀNG + tạo topics GAP (0 token, Diamond 09-09) ----
+# Hiểu khách hơn cả chính họ: nỗi đau thật + lời thật + tuyến nóng + lifecycle
+# → nấc kế tiếp họ chưa nói ra. Chỉ sinh topics nếu hôm nay chưa có (không trùng).
+echo "🧠 Đang phân tích insight khách hàng từ data thật..."
+python3 bridge/auto-blog/audience_insights.py 2>&1 || echo "⚠️ audience_insights gặp lỗi (xem log)"
 
 # ---- 6) Chạy write_blog.py sinh bài mới ----
 echo "✍️ Đang sinh bài blog..."

@@ -1,56 +1,17 @@
 ---
 layout: default
 title: "Cẩm nang xây sửa nhà & thu hồi đền bù Hà Nội"
-description: "Cẩm nang kinh nghiệm thực tế: thu hồi đất, đền bù, tái định cư, xây sửa nhà — dành cho ACE môi giới và chủ nhà."
+description: "Cẩm nang nằm ngay trên trang chủ X.aladDin.vn — kéo xuống mục Cẩm nang."
 ---
-
-<div class="pagehead">
-  <div class="container">
-    <h1>📖 Cẩm nang</h1>
-    <p>Kinh nghiệm thực tế, cập nhật từ câu hỏi của người dân Hà Nội — dành cho ACE môi giới và chủ nhà.</p>
-  </div>
-</div>
-
-<div class="container">
-  <!-- 🔥 Chủ đề khách đang hỏi nhiều nhất (dữ liệu tương tác thật từ các hội nhóm) -->
-  <div class="hotbanner" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid rgba(234,88,12,.2);border-radius:18px;padding:18px 22px;margin:0 0 30px;">
-    <div style="font-weight:800;font-size:1.02rem;color:#c2410c;">🔥 Khách đang hỏi nhiều nhất</div>
-    <p style="margin:6px 0 0;font-size:.9rem;color:#9a3412;line-height:1.6;">
-      <a href="#thu-hoi-den-bu" style="color:inherit;text-decoration:underline;">Thu hồi đất – kiểm đếm – đền bù</a>
-      ·
-      <a href="#tai-dinh-cu-tam-tru" style="color:inherit;text-decoration:underline;">tái định cư & chỗ ở tạm</a>
-      ·
-      <a href="#tai-chinh-xay-nha" style="color:inherit;text-decoration:underline;">tài chính từ đền bù đến nhà mới</a>
-    </p>
-  </div>
-
-  {% for nhom in site.data.camnang %}
-  {% assign bai = site.blog | where: "chu_de", nhom.id | sort: "date" | reverse %}
-  {% if bai.size > 0 %}
-  <section id="{{ nhom.id }}" style="margin:0 0 34px;padding-top:8px;">
-    <h2 style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;">
-      {{ nhom.icon }} {{ nhom.ten }}
-      {% if nhom.hot %}<span style="display:inline-block;font-size:.68rem;font-weight:700;color:#fff;background:#e11d48;border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:2px;">HOT</span>{% endif %}
-    </h2>
-    <p style="font-size:.88rem;color:#57534e;margin:0 0 16px;max-width:640px;">{{ nhom.mota }}</p>
-    <div class="postlist">
-      {% for post in bai %}
-      <div class="postcard" data-nhom="{{ post.nhom | slugify }}">
-        <a href="{{ post.url | relative_url }}">
-          <div class="thumb">
-            {% if post.image %}<img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">{% else %}<div class="ph">🏗️</div>{% endif %}
-          </div>
-        </a>
-        <div class="body">
-          <span class="cat">{{ post.nhom }}</span>
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-          <div class="date">{{ post.date | date: "%d/%m/%Y" }}</div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
-  {% endfor %}
-</div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=/#camnang">
+  <title>Cẩm nang — Xây sửa nhà & thu hồi đền bù Hà Nội</title>
+</head>
+<body>
+  <p>📖 Cẩm nang đã gộp vào <a href="/#camnang">trang chủ — kéo xuống mục Cẩm nang</a>…</p>
+  <script>window.location.replace('/#camnang');</script>
+</body>
+</html>

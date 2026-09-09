@@ -1160,14 +1160,34 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
   </div>
 </section>
 
-<!-- ★ BÀI VIẾT — kiến thức cho môi giới (một phần trên trang duy nhất) -->
-<section class="benefits" style="padding-top:48px;">
+<!-- ★ CẨM NANG — kiến thức nối tiếp trên chính trang chủ (1 trang duy nhất) -->
+<section class="benefits" id="camnang" style="padding-top:48px;">
   <div class="container">
-    <span class="section-tag">Bài viết</span>
-    <h2 class="section-h">Kiến thức xây sửa nhà cho môi giới</h2>
-    <p class="sub">Kinh nghiệm thực tế, cẩm nang và câu hỏi khách hay hỏi.</p>
-    <div class="postlist" style="margin-top:28px;">
-      {% for post in site.blog limit:6 %}
+    <span class="section-tag">📖 Cẩm nang</span>
+    <h2 class="section-h">Kiến thức xây sửa nhà &amp; thu hồi đền bù</h2>
+    <p class="sub">Cập nhật từ câu hỏi thật của người dân Hà Nội — dành cho ACE môi giới và chủ nhà.</p>
+
+    <div style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid rgba(234,88,12,.2);border-radius:18px;padding:16px 20px;margin:0 0 30px;text-align:left;">
+      <div style="font-weight:800;font-size:1rem;color:#c2410c;">🔥 Khách đang hỏi nhiều nhất</div>
+      <p style="margin:6px 0 0;font-size:.9rem;color:#9a3412;line-height:1.6;">
+        <a href="#thu-hoi-den-bu" style="color:inherit;text-decoration:underline;">Thu hồi đất – kiểm đếm – đền bù</a>
+        &nbsp;·&nbsp;
+        <a href="#tai-dinh-cu-tam-tru" style="color:inherit;text-decoration:underline;">tái định cư &amp; chỗ ở tạm</a>
+        &nbsp;·&nbsp;
+        <a href="#tai-chinh-xay-nha" style="color:inherit;text-decoration:underline;">tài chính từ đền bù đến nhà mới</a>
+      </p>
+    </div>
+
+    {% for nhom in site.data.camnang %}
+    {% assign bai = site.blog | where: "chu_de", nhom.id | sort: "date" | reverse %}
+    {% if bai.size > 0 %}
+    <h3 id="{{ nhom.id }}" style="font-size:1.2rem;font-weight:800;letter-spacing:-.02em;margin:34px 0 6px;">
+      {{ nhom.icon }} {{ nhom.ten }}
+      {% if nhom.hot %}<span style="display:inline-block;font-size:.66rem;font-weight:700;color:#fff;background:#e11d48;border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:2px;">HOT</span>{% endif %}
+    </h3>
+    <p style="font-size:.88rem;color:#57534e;margin:0 0 16px;max-width:640px;">{{ nhom.mota }}</p>
+    <div class="postlist" style="margin-top:0;padding-bottom:24px;">
+      {% for post in bai %}
       <div class="postcard">
         <a href="{{ post.url | relative_url }}">
           <div class="thumb">
@@ -1183,5 +1203,7 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
       </div>
       {% endfor %}
     </div>
+    {% endif %}
+    {% endfor %}
   </div>
 </section>

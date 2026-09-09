@@ -4,20 +4,7 @@
     <button class="menu-btn" onclick="document.getElementById('nav-menu').classList.toggle('open')" aria-label="Mở menu">☰</button>
     <ul id="nav-menu">
       <li><a href="{{ '/' | relative_url }}" class="active">Công cụ môi giới</a></li>
-      <li class="has-dd">
-        <button type="button" class="dd-btn" aria-haspopup="true">📖 Cẩm nang ▾</button>
-        <div class="dd" id="nav-camnang">
-          <a href="{{ '/bai-viet/' | relative_url }}" class="dd-head">📖 Toàn bộ cẩm nang</a>
-          <div class="dd-title">🔥 Chủ đề khách đang hỏi</div>
-          <a href="{{ '/bai-viet/#thu-hoi-den-bu' | relative_url }}">⚖️ Thu hồi đất – Đền bù <span class="hot-tag">HOT</span></a>
-          <a href="{{ '/bai-viet/#tai-dinh-cu-tam-tru' | relative_url }}">🏠 Tái định cư &amp; Chỗ ở tạm</a>
-          <a href="{{ '/bai-viet/#tai-chinh-xay-nha' | relative_url }}">💰 Tài chính – nhà mới</a>
-          <div class="dd-title">Cẩm nang khác</div>
-          <a href="{{ '/bai-viet/#quy-trinh-xay-nha' | relative_url }}">🛠️ Xây nhà cho Chủ nhà</a>
-          <a href="{{ '/bai-viet/#bi-kip-moi-gioi' | relative_url }}">📈 Bí kíp Môi giới</a>
-          <a href="{{ '/bai-viet/#tien-ich-ha-noi' | relative_url }}">🧹 Dịch vụ nhà cửa</a>
-        </div>
-      </li>
+      <li><a href="{{ '/#camnang' | relative_url }}">📖 Cẩm nang</a></li>
       <li><a class="cta" href="tel:0983601366">📞 0983.601.366</a></li>
     </ul>
   </div>

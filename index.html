@@ -499,11 +499,11 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
 .mqm-route--orange .mqm-chip:hover,.mqm-route--orange .mqm-chip:focus-visible{border-color:#f97316;background:#f97316;color:#fff}
 @media (min-width:900px){
   .mqm-wrap{padding-right:24px;padding-left:24px}
-  .mqm-routes{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
-  .mqm-route-header{padding:20px 22px}
-  .mqm-steps{flex-direction:row;overflow-x:auto;padding:24px 20px 28px;scrollbar-width:thin}
-  .mqm-step{flex:0 0 190px;display:block;padding:0 18px 0 0!important}
-  .mqm-step:not(:last-child):after{content:"→";left:auto;right:0;top:7px;bottom:auto;font-size:20px}
+  .mqm-routes{grid-template-columns:1fr;align-items:stretch}
+  .mqm-route-header{padding:18px 22px}
+  .mqm-steps{flex-direction:row;flex-wrap:wrap;gap:14px;padding:20px 18px}
+  .mqm-step{flex:1 1 165px;min-width:165px;max-width:230px;display:block;padding:0!important}
+  .mqm-step:not(:last-child):after{content:none}
   .mqm-number{margin-bottom:12px}
   .mqm-step-title{font-size:15px}
 }

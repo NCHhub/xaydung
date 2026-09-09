@@ -37,11 +37,13 @@ defaults:
       type: "blog"
     values:
       layout: "post"
+      image: /assets/img/og-default.png
   - scope:
       path: ""
       type: "portfolio"
     values:
       layout: "post"
+      image: /assets/img/og-default.png
 
 # SEO chuẩn GitHub Pages (0 token — plugins hỗ trợ sẵn, tự sinh sitemap/feed/meta)
 plugins:

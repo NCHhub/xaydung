@@ -37,62 +37,48 @@ sys.stdout.write(json.dumps(d, ensure_ascii=False))
 echo "🔭 Cửa sổ scrape: ${FB_DAYS} ngày, ${FB_POSTS} bài/group, ≥${FB_MIN_REACT} react"
 
 echo "🚀 Bắt đầu scrape Apify actor (free tier)..."
-APIFY_RUN=$(apify actors call api-empire/facebook-groups-scraper "$INPUT_JSON" --token "$TOKEN" 2>&1 || true)
-echo "$APIFY_RUN"
+JSON_TMP="/tmp/fb_pipeline_input_${TIMESTAMP}.json"
+echo "$INPUT_JSON" > "$JSON_TMP"
+# -f <file> cho input (bắt buộc với file — -i chỉ nhận inline JSON), -o in dataset ra stdout → OUTFILE, -s tắt log rác.
+# Auth = apify login (đã login 09-09, token ~/.apify/auth.json).
+APIFY_ERR=$(apify actors call api-empire/facebook-groups-scraper -f "$JSON_TMP" -o -s 2>&1 > "$OUTFILE" || true)
+rm -f "$JSON_TMP"
+if [ -s "$OUTFILE" ] && python3 -c "import json; json.load(open('$OUTFILE'))" 2>/dev/null; then
+    echo "✅ Dataset mới: $(python3 -c "import json; print(len(json.load(open('$OUTFILE'))))" 2>/dev/null || echo 0) posts → $OUTFILE"
+else
+    echo "⚠️ Dataset Apify không tạo ra file hợp lệ — có thể hết credit/hết quota. Dùng dữ liệu cũ..."
+    echo "   $APIFY_ERR" | tail -3
+fi
 
-# ---- 3) Nếu có dataset mới → merge + dedupe vào bridge/data ----
-if [ -f "$OUTFILE" ]; then
-    echo "📦 Đang merge dataset mới..."
-    # Đọc dataset cũ nhất (nếu có)
-    OLDEST=$(ls -t bridge/data/fb-groups-60d-*.json 2>/dev/null | head -1)
-    if [ -n "$OLDEST" ]; then
-        python3 - << 'PYEOF'
-import json, sys
+# ---- 3) Merge MỌI dataset fb-groups-60d-*.json → fb-groups-all.json (dedupe theo legacyId) ----
+# ⚠️ Không dùng heredoc quoted: Path("$OUTFILE") thành literal → merge luôn rỗng (bug 09-09).
+if compgen -G "bridge/data/fb-groups-60d-*.json" > /dev/null; then
+    echo "📦 Đang merge tất cả dataset (dedupe)..."
+    python3 - << 'PYEOF'
+import json, os
 from pathlib import Path
 
-new_path = Path("$OUTFILE")
-old_path = Path("$OLDEST")
-out_dir = Path("bridge/data")
-
-# Load mới
-try:
-    new_data = json.loads(new_path.read_text(encoding="utf-8"))
-except Exception:
-    new_data = []
-
-# Load cũ
-try:
-    old_data = json.loads(old_path.read_text(encoding="utf-8"))
-except Exception:
-    old_data = []
-
-# Dedupe theo legacyId
-seen = set()
-all_posts = []
-for p in old_data:
-    if isinstance(p, dict) and p.get("type") == "post":
-        lid = p.get("legacyId") or p.get("id")
-        if lid and lid not in seen:
-            seen.add(lid)
-            all_posts.append(p)
-
-for p in new_data:
-    if isinstance(p, dict) and p.get("type") == "post":
-        lid = p.get("legacyId") or p.get("id")
-        if lid and lid not in seen:
-            seen.add(lid)
-            all_posts.append(p)
-
-out = out_dir / "fb-groups-all.json"
-out.write_text(json.dumps(all_posts, ensure_ascii=False, indent=2), encoding="utf-8")
-print(f"✅ Merge xong: {len(all_posts)} bài (đã loại {len(old_data) - sum(1 for p in old_data if isinstance(p, dict) and p.get('type') == 'post' and (p.get('legacyId') or p.get('id')) in [q.get('legacyId') or q.get('id') for q in new_data if isinstance(q, dict) and q.get('type') == 'post'])})")
+out_dir = Path("/home/diamond/empire/xaydung-site/bridge/data")
+seen, all_posts = set(), []
+for f in sorted(out_dir.glob("fb-groups-60d-*.json")):
+    if f.stat().st_size == 0:
+        continue
+    try:
+        data = json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        continue
+    for p in data:
+        if isinstance(p, dict) and p.get("type") == "post":
+            lid = p.get("legacyId") or p.get("id")
+            if lid and lid not in seen:
+                seen.add(lid)
+                all_posts.append(p)
+(out_dir / "fb-groups-all.json").write_text(
+    json.dumps(all_posts, ensure_ascii=False, indent=2), encoding="utf-8")
+print(f"✅ Merge xong: {len(all_posts)} bài distinct trong fb-groups-all.json")
 PYEOF
-    else
-        cp "$OUTFILE" bridge/data/fb-groups-all.json
-        echo "✅ Sao chép dataset đơn lẻ"
-    fi
 else
-    echo "⚠️ Dataset Apify không tạo ra file — có thể vẫn trong quá trình crawl. Đang dùng dữ liệu cũ..."
+    echo "⚠️ Chưa có dataset fb-groups-60d-*.json nào — bỏ qua merge."
 fi
 
 # ---- 4) Chạy fb_librarian.py để cập nhật library + thống kê ----
@@ -105,7 +91,7 @@ python3 - << 'PYEOF'
 import json, re, sys, unicodedata
 from pathlib import Path
 
-SITE = Path("$SITE")
+SITE = Path("/home/diamond/empire/xaydung-site")
 LIB = SITE / "bridge" / "data" / "library"
 TOPICS_DIR = SITE / "bridge" / "auto-blog" / "topics"
 BLOG_DIR = SITE / "_blog"

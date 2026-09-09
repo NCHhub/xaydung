@@ -11,3 +11,6 @@ bridge/data/
 bridge/data-scrape/
 *.csv
 *.jsonl
+
+# Bài lệch chủ đề / tạm giữ — không push
+.trash/

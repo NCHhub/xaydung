@@ -1,0 +1,18 @@
+# Hải & Cộng sự — Xây · Sửa nhà Hà Nội
+
+> Nơi cho đi kiến thức, kinh nghiệm và công cụ xây sửa nhà Hà Nội — từ chuyên gia 21 năm.
+> Liên hệ: 0983.601.366 (Zalo) · X.aladDin.vn
+
+## Công cụ
+- [Tính chi phí xây/sửa nhà](/) — form tính nhanh client-side, không cần đăng ký
+- [Kiểm tra checklist trước khi đặt cọc](/) — phân loại bình thường / hỏi thêm / cần khảo sát
+
+## Cẩm nang (blog theo chủ đề)
+- Giá xây nhà 2026 theo m² — /bai-viet/ (xem sitemap.xml đầy đủ)
+- Quy trình thủ tục xây sửa nhà Hà Nội
+- Kinh nghiệm giám sát thi công, chống thấm, nghiệm thu bàn giao
+- Thu hồi đất / đền bù / tái định cư Hà Nội — cập nhật liên tục theo câu hỏi thật hội nhóm
+
+## Index đầy đủ
+- Sitemap: <https://X.aladDin.vn/sitemap.xml>
+- Feed: <https://X.aladDin.vn/feed.xml>

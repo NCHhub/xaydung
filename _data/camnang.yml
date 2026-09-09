@@ -26,6 +26,11 @@
   ten: "Bí kíp Môi giới"
   mota: "Sổ tay giá xây/sửa, kỹ năng tư vấn thực chiến và cách cộng tác tăng thu nhập cho ACE môi giới."
   hot: false
+- id: sua-chua-bao-tri
+  icon: "🔧"
+  ten: "Sửa chữa & Bảo trì nhà cũ"
+  mota: "Chống thấm, xử lý mốc và những hạng mục bảo trì nhà cũ để sống an toàn, bền lâu."
+  hot: false
 - id: tien-ich-ha-noi
   icon: "🧹"
   ten: "Dịch vụ nhà cửa Hà Nội"

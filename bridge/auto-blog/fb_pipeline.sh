@@ -230,4 +230,9 @@ fi
 echo "🔍 SEO engine đang audit toàn bộ bài (chuẩn thế giới)..."
 python3 bridge/auto-blog/seo_engine.py || echo "⚠️ Có bài chưa đạt chuẩn SEO — xem ~/empire/shared/logs/seo_audit.log, ưu tiên xử lý ảnh + title."
 
+# ---- 9) WEB EVOLVE: tự học thành công → tự tiến hóa liên tục (0 token, Diamond 09-09) ----
+# Sense nhu cầu thật → Learn chủ đề nóng → Evolve sinh topics mới + cân bằng đối tượng.
+echo "🧬 Web evolve: tự học nhu cầu → tự tiến hóa (sense/learn/evolve)..."
+python3 bridge/auto-blog/web_evolve.py && echo "→ đủ ≥2 chủ đề mới: write_blog sẽ xử lý trong pipeline kế (xem topics/evolve-*.json)" || echo "→ chưa đủ chủ đề mới — web đã cover nhu cầu, chờ data mới."
+
 echo "=== fb_pipeline.sh xong ==="

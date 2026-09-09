@@ -471,6 +471,198 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
   </div>
 </section>
 
+<style>
+.mqm-wrap{--mqm-text:#111827;--mqm-muted:#6b7280;--mqm-border:#e5e7eb;--mqm-teal:#0d9488;--mqm-teal-dark:#115e59;--mqm-orange:#ea580c;--mqm-orange-dark:#c2410c;max-width:1200px;margin:0 auto;padding:clamp(24px,5vw,56px) 16px;background:#fff;color:var(--mqm-text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.mqm-intro{text-align:center;margin-bottom:24px}
+.mqm-title{margin:0 0 8px;font-size:clamp(20px,4vw,30px);line-height:1.2;font-weight:800}
+.mqm-description{max-width:680px;margin:0 auto;color:var(--mqm-muted);font-size:15px;line-height:1.6}
+.mqm-routes{display:grid;gap:20px}
+.mqm-route{overflow:hidden;border:1px solid var(--mqm-border);border-radius:20px;background:#fff;box-shadow:0 8px 24px rgba(17,24,39,.06)}
+.mqm-route-header{padding:18px 20px;color:#fff;background:linear-gradient(135deg,var(--mqm-teal),var(--mqm-teal-dark))}
+.mqm-route--orange .mqm-route-header{background:linear-gradient(135deg,var(--mqm-orange),var(--mqm-orange-dark))}
+.mqm-route-name{margin:0;font-size:19px;line-height:1.3;font-weight:800}
+.mqm-route-subtitle{margin:5px 0 0;font-size:13px;opacity:.9}
+.mqm-steps{display:flex;flex-direction:column;padding:20px 16px}
+.mqm-step{position:relative;display:grid;grid-template-columns:42px 1fr;gap:12px}
+.mqm-step:not(:last-child){padding-bottom:28px}
+.mqm-step:not(:last-child):after{content:"▼";position:absolute;left:14px;bottom:5px;color:var(--mqm-teal);font-size:17px;font-weight:800}
+.mqm-route--orange .mqm-step:not(:last-child):after{color:var(--mqm-orange)}
+.mqm-number{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;color:#fff;background:linear-gradient(135deg,var(--mqm-teal),var(--mqm-teal-dark));font-size:16px;font-weight:800;box-shadow:0 3px 8px rgba(13,148,136,.25)}
+.mqm-route--orange .mqm-number{background:linear-gradient(135deg,var(--mqm-orange),var(--mqm-orange-dark));box-shadow:0 3px 8px rgba(234,88,12,.25)}
+.mqm-step-content{min-width:0}
+.mqm-step-title{margin:0;font-size:16px;line-height:1.4;font-weight:750}
+.mqm-step-desc{margin:3px 0 9px;color:var(--mqm-muted);font-size:13px;line-height:1.45}
+.mqm-chips{display:flex;flex-wrap:wrap;gap:6px}
+.mqm-chip{display:inline-block;padding:5px 9px;border:1px solid transparent;border-radius:999px;background:#ccfbf1;color:#115e59;font-size:12px;line-height:1.25;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.mqm-chip:hover,.mqm-chip:focus-visible{border-color:#14b8a6;background:#14b8a6;color:#fff}
+.mqm-route--orange .mqm-chip{background:#ffedd5;color:#9a3412}
+.mqm-route--orange .mqm-chip:hover,.mqm-route--orange .mqm-chip:focus-visible{border-color:#f97316;background:#f97316;color:#fff}
+@media (min-width:900px){
+  .mqm-wrap{padding-right:24px;padding-left:24px}
+  .mqm-routes{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .mqm-route-header{padding:20px 22px}
+  .mqm-steps{flex-direction:row;overflow-x:auto;padding:24px 20px 28px;scrollbar-width:thin}
+  .mqm-step{flex:0 0 190px;display:block;padding:0 18px 0 0!important}
+  .mqm-step:not(:last-child):after{content:"→";left:auto;right:0;top:7px;bottom:auto;font-size:20px}
+  .mqm-number{margin-bottom:12px}
+  .mqm-step-title{font-size:15px}
+}
+</style>
+
+<div class="mqm-wrap">
+  <div class="mqm-intro">
+    <h2 class="mqm-title">🧭 SƠ ĐỒ QUY TRÌNH — từ đầu đến cuối</h2>
+    <p class="mqm-description">Hai hành trình thực tế giúp gia chủ Hà Nội chủ động từ bước đầu tiên đến khi có một ngôi nhà an toàn, đúng kế hoạch.</p>
+  </div>
+
+  <div class="mqm-routes">
+    <section class="mqm-route">
+      <header class="mqm-route-header">
+        <h3 class="mqm-route-name">🏗️ XÂY NHÀ MỚI</h3>
+        <p class="mqm-route-subtitle">Từ ý tưởng ban đầu đến ở và bảo trì dài hạn</p>
+      </header>
+      <div class="mqm-steps">
+        <article class="mqm-step">
+          <div class="mqm-number">1</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">📐 Bắt đầu &amp; Chuẩn bị</h4>
+            <p class="mqm-step-desc">Xác định nhu cầu, ngân sách, đất/nhà cũ</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/xay-nha-lan-dau-bat-dau-tu-viec-gi/">Bắt đầu từ việc gì</a>
+              <a class="mqm-chip" href="/bai-viet/chuan-bi-truoc-khi-xay-sua-nha/">Chuẩn bị trước khi xây</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">2</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">🏛️ Thiết kế &amp; Xin phép</h4>
+            <p class="mqm-step-desc">Hồ sơ, bản vẽ, cấp phép đúng quy hoạch</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/quy-trinh-xin-phep-xay-dung-nha-pho-tai-ha-noi-ho-so-nop-o-dau-bao-lau/">Quy trình xin phép</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">3</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">🤝 Chọn thầu &amp; Hợp đồng</h4>
+            <p class="mqm-step-desc">Chọn thầu thật, hợp đồng rõ ràng</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/kinh-nghiem-chon-nha-thau-xay-dung-uy-tin-tai-ha-noi-tranh-thau-co-moi-gioi/">Chọn thầu uy tín</a>
+              <a class="mqm-chip" href="/bai-viet/7-cau-hoi-truoc-khi-ky-hop-dong-xay-nha/">7 câu hỏi hợp đồng</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">4</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">🔨 Thi công &amp; Giám sát</h4>
+            <p class="mqm-step-desc">Kiểm soát vật tư, đúng bản vẽ</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/cach-giam-sat-thi-cong-xay-dung-khi-khong-ranh-ky-thuat-chan-phat-sinh-an-bot-vat-tu/">Giám sát không rành kỹ thuật</a>
+              <a class="mqm-chip" href="/bai-viet/di-lam-ca-ngay-khong-the-trong-tho/">Đi làm không trông thợ</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">5</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">🧾 Nghiệm thu &amp; Bàn giao</h4>
+            <p class="mqm-step-desc">Checklist vàng trước khi nhận nhà</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/quy-trinh-nghiem-thu-va-ban-giao-nha-pho-checklist-vang-truoc-khi-nhan-nha/">Nghiệm thu bàn giao</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">6</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">🔧 Ở &amp; Bảo trì</h4>
+            <p class="mqm-step-desc">Chống thấm, xử lý mốc, bảo trì dài hạn</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/chong-tham-triet-de-cho-nha-cu-tai-ha-noi-dung-chi-son-de-len-vet-moc/">Chống thấm nhà cũ</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mqm-route mqm-route--orange">
+      <header class="mqm-route-header">
+        <h3 class="mqm-route-name">⚖️ THU HỒI ĐẤT → NHÀ MỚI</h3>
+        <p class="mqm-route-subtitle">Từ thông báo thu hồi đến ổn định nơi ở mới</p>
+      </header>
+      <div class="mqm-steps">
+        <article class="mqm-step">
+          <div class="mqm-number">1</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">📢 Nhận thông báo thu hồi</h4>
+            <p class="mqm-step-desc">Biết quyền lợi, giữ giấy tờ gốc</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/thu-hoi-dat-tai-ha-noi-nhung-dieu-chu-nha-can-biet/">Những điều cần biết</a>
+              <a class="mqm-chip" href="/bai-viet/thu-hoi-dat-den-bu-va-tai-dinh-cu-tai-ha-noi-2026-nhung-dieu-chu-nha-can-biet/">2026 cập nhật</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">2</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">📋 Kiểm đếm</h4>
+            <p class="mqm-step-desc">Quy trình, thời gian thực tế</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/kiem-dem-va-thong-bao-thu-hoi-dat-tai-ha-noi-quy-trinh-va-thoi-gian-thuc-te/">Kiểm đếm &amp; thông báo</a>
+              <a class="mqm-chip" href="/bai-viet/uoc-luong-gia-den-bu-nha-cap-4-mai-ton-tuong-110-sau-khi-kiem-dem/">Ước lượng đền bù</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">3</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">⚖️ Đối chiếu phương án</h4>
+            <p class="mqm-step-desc">Kiểm tra sai sót trong phương án</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/den-bu-sau-kiem-dem-cach-doi-chieu-phuong-an-chinh-xac/">Đối chiếu phương án</a>
+              <a class="mqm-chip" href="/bai-viet/xu-ly-khi-sai-sot-trong-kiem-dem-hoac-phuong-an-boi-thuong-khi-bi-thu-hoi-dat/">Xử lý sai sót</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">4</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">💰 Nhận tiền &amp; Chi tiêu</h4>
+            <p class="mqm-step-desc">Quản lý tiền đền bù đến khi có nhà mới</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/quan-ly-tai-chinh-giai-doan-chuyen-tiep-tu-nhan-tien-den-bu-den-khi-co-nha-moi/">Quản lý tài chính</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">5</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">🏠 Tái định cư / Ở tạm</h4>
+            <p class="mqm-step-desc">Quỹ đất TDC, nhà thuê chuyển tiếp</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/tai-dinh-cu-quy-dat-thu-tuc-va-dieu-gia-dinh-can-chuan-bi/">Thủ tục TDC</a>
+              <a class="mqm-chip" href="/bai-viet/di-thue-nha-o-tam-khi-bi-thu-hoi-dat-kinh-nghiem-nguoi-that/">Thuê nhà ở tạm</a>
+            </div>
+          </div>
+        </article>
+        <article class="mqm-step">
+          <div class="mqm-number">6</div>
+          <div class="mqm-step-content">
+            <h4 class="mqm-step-title">🏗️ Xây nhà mới</h4>
+            <p class="mqm-step-desc">Quay lại hành trình Xây nhà</p>
+            <div class="mqm-chips">
+              <a class="mqm-chip" href="/bai-viet/xay-nha-lan-dau-bat-dau-tu-viec-gi/">Bắt đầu xây nhà</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</div>
+
 <!-- ★ CAM KẾT CỘNG SINH — ngắn gọn ngay dưới công cụ -->
 <section style="padding:0 0 40px;">
   <div class="container" style="text-align:center;">
@@ -1167,197 +1359,7 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
     <h2 class="section-h">Kiến thức xây sửa nhà &amp; thu hồi đền bù</h2>
     <p class="sub">Cập nhật từ câu hỏi thật của người dân Hà Nội — dành cho ACE môi giới và chủ nhà.</p>
 
-<style>
-.mqm-wrap{--mqm-text:#111827;--mqm-muted:#6b7280;--mqm-border:#e5e7eb;--mqm-teal:#0d9488;--mqm-teal-dark:#115e59;--mqm-orange:#ea580c;--mqm-orange-dark:#c2410c;max-width:1200px;margin:0 auto;padding:clamp(24px,5vw,56px) 16px;background:#fff;color:var(--mqm-text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-.mqm-intro{text-align:center;margin-bottom:24px}
-.mqm-title{margin:0 0 8px;font-size:clamp(20px,4vw,30px);line-height:1.2;font-weight:800}
-.mqm-description{max-width:680px;margin:0 auto;color:var(--mqm-muted);font-size:15px;line-height:1.6}
-.mqm-routes{display:grid;gap:20px}
-.mqm-route{overflow:hidden;border:1px solid var(--mqm-border);border-radius:20px;background:#fff;box-shadow:0 8px 24px rgba(17,24,39,.06)}
-.mqm-route-header{padding:18px 20px;color:#fff;background:linear-gradient(135deg,var(--mqm-teal),var(--mqm-teal-dark))}
-.mqm-route--orange .mqm-route-header{background:linear-gradient(135deg,var(--mqm-orange),var(--mqm-orange-dark))}
-.mqm-route-name{margin:0;font-size:19px;line-height:1.3;font-weight:800}
-.mqm-route-subtitle{margin:5px 0 0;font-size:13px;opacity:.9}
-.mqm-steps{display:flex;flex-direction:column;padding:20px 16px}
-.mqm-step{position:relative;display:grid;grid-template-columns:42px 1fr;gap:12px}
-.mqm-step:not(:last-child){padding-bottom:28px}
-.mqm-step:not(:last-child):after{content:"▼";position:absolute;left:14px;bottom:5px;color:var(--mqm-teal);font-size:17px;font-weight:800}
-.mqm-route--orange .mqm-step:not(:last-child):after{color:var(--mqm-orange)}
-.mqm-number{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;color:#fff;background:linear-gradient(135deg,var(--mqm-teal),var(--mqm-teal-dark));font-size:16px;font-weight:800;box-shadow:0 3px 8px rgba(13,148,136,.25)}
-.mqm-route--orange .mqm-number{background:linear-gradient(135deg,var(--mqm-orange),var(--mqm-orange-dark));box-shadow:0 3px 8px rgba(234,88,12,.25)}
-.mqm-step-content{min-width:0}
-.mqm-step-title{margin:0;font-size:16px;line-height:1.4;font-weight:750}
-.mqm-step-desc{margin:3px 0 9px;color:var(--mqm-muted);font-size:13px;line-height:1.45}
-.mqm-chips{display:flex;flex-wrap:wrap;gap:6px}
-.mqm-chip{display:inline-block;padding:5px 9px;border:1px solid transparent;border-radius:999px;background:#ccfbf1;color:#115e59;font-size:12px;line-height:1.25;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
-.mqm-chip:hover,.mqm-chip:focus-visible{border-color:#14b8a6;background:#14b8a6;color:#fff}
-.mqm-route--orange .mqm-chip{background:#ffedd5;color:#9a3412}
-.mqm-route--orange .mqm-chip:hover,.mqm-route--orange .mqm-chip:focus-visible{border-color:#f97316;background:#f97316;color:#fff}
-@media (min-width:900px){
-  .mqm-wrap{padding-right:24px;padding-left:24px}
-  .mqm-routes{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
-  .mqm-route-header{padding:20px 22px}
-  .mqm-steps{flex-direction:row;overflow-x:auto;padding:24px 20px 28px;scrollbar-width:thin}
-  .mqm-step{flex:0 0 190px;display:block;padding:0 18px 0 0!important}
-  .mqm-step:not(:last-child):after{content:"→";left:auto;right:0;top:7px;bottom:auto;font-size:20px}
-  .mqm-number{margin-bottom:12px}
-  .mqm-step-title{font-size:15px}
-}
-</style>
 
-<div class="mqm-wrap">
-  <div class="mqm-intro">
-    <h2 class="mqm-title">🧭 SƠ ĐỒ QUY TRÌNH — từ đầu đến cuối</h2>
-    <p class="mqm-description">Hai hành trình thực tế giúp gia chủ Hà Nội chủ động từ bước đầu tiên đến khi có một ngôi nhà an toàn, đúng kế hoạch.</p>
-  </div>
-
-  <div class="mqm-routes">
-    <section class="mqm-route">
-      <header class="mqm-route-header">
-        <h3 class="mqm-route-name">🏗️ XÂY NHÀ MỚI</h3>
-        <p class="mqm-route-subtitle">Từ ý tưởng ban đầu đến ở và bảo trì dài hạn</p>
-      </header>
-      <div class="mqm-steps">
-        <article class="mqm-step">
-          <div class="mqm-number">1</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">📐 Bắt đầu &amp; Chuẩn bị</h4>
-            <p class="mqm-step-desc">Xác định nhu cầu, ngân sách, đất/nhà cũ</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/xay-nha-lan-dau-bat-dau-tu-viec-gi/">Bắt đầu từ việc gì</a>
-              <a class="mqm-chip" href="/bai-viet/chuan-bi-truoc-khi-xay-sua-nha/">Chuẩn bị trước khi xây</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">2</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">🏛️ Thiết kế &amp; Xin phép</h4>
-            <p class="mqm-step-desc">Hồ sơ, bản vẽ, cấp phép đúng quy hoạch</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/quy-trinh-xin-phep-xay-dung-nha-pho-tai-ha-noi-ho-so-nop-o-dau-bao-lau/">Quy trình xin phép</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">3</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">🤝 Chọn thầu &amp; Hợp đồng</h4>
-            <p class="mqm-step-desc">Chọn thầu thật, hợp đồng rõ ràng</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/kinh-nghiem-chon-nha-thau-xay-dung-uy-tin-tai-ha-noi-tranh-thau-co-moi-gioi/">Chọn thầu uy tín</a>
-              <a class="mqm-chip" href="/bai-viet/7-cau-hoi-truoc-khi-ky-hop-dong-xay-nha/">7 câu hỏi hợp đồng</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">4</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">🔨 Thi công &amp; Giám sát</h4>
-            <p class="mqm-step-desc">Kiểm soát vật tư, đúng bản vẽ</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/cach-giam-sat-thi-cong-xay-dung-khi-khong-ranh-ky-thuat-chan-phat-sinh-an-bot-vat-tu/">Giám sát không rành kỹ thuật</a>
-              <a class="mqm-chip" href="/bai-viet/di-lam-ca-ngay-khong-the-trong-tho/">Đi làm không trông thợ</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">5</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">🧾 Nghiệm thu &amp; Bàn giao</h4>
-            <p class="mqm-step-desc">Checklist vàng trước khi nhận nhà</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/quy-trinh-nghiem-thu-va-ban-giao-nha-pho-checklist-vang-truoc-khi-nhan-nha/">Nghiệm thu bàn giao</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">6</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">🔧 Ở &amp; Bảo trì</h4>
-            <p class="mqm-step-desc">Chống thấm, xử lý mốc, bảo trì dài hạn</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/chong-tham-triet-de-cho-nha-cu-tai-ha-noi-dung-chi-son-de-len-vet-moc/">Chống thấm nhà cũ</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="mqm-route mqm-route--orange">
-      <header class="mqm-route-header">
-        <h3 class="mqm-route-name">⚖️ THU HỒI ĐẤT → NHÀ MỚI</h3>
-        <p class="mqm-route-subtitle">Từ thông báo thu hồi đến ổn định nơi ở mới</p>
-      </header>
-      <div class="mqm-steps">
-        <article class="mqm-step">
-          <div class="mqm-number">1</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">📢 Nhận thông báo thu hồi</h4>
-            <p class="mqm-step-desc">Biết quyền lợi, giữ giấy tờ gốc</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/thu-hoi-dat-tai-ha-noi-nhung-dieu-chu-nha-can-biet/">Những điều cần biết</a>
-              <a class="mqm-chip" href="/bai-viet/thu-hoi-dat-den-bu-va-tai-dinh-cu-tai-ha-noi-2026-nhung-dieu-chu-nha-can-biet/">2026 cập nhật</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">2</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">📋 Kiểm đếm</h4>
-            <p class="mqm-step-desc">Quy trình, thời gian thực tế</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/kiem-dem-va-thong-bao-thu-hoi-dat-tai-ha-noi-quy-trinh-va-thoi-gian-thuc-te/">Kiểm đếm &amp; thông báo</a>
-              <a class="mqm-chip" href="/bai-viet/uoc-luong-gia-den-bu-nha-cap-4-mai-ton-tuong-110-sau-khi-kiem-dem/">Ước lượng đền bù</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">3</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">⚖️ Đối chiếu phương án</h4>
-            <p class="mqm-step-desc">Kiểm tra sai sót trong phương án</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/den-bu-sau-kiem-dem-cach-doi-chieu-phuong-an-chinh-xac/">Đối chiếu phương án</a>
-              <a class="mqm-chip" href="/bai-viet/xu-ly-khi-sai-sot-trong-kiem-dem-hoac-phuong-an-boi-thuong-khi-bi-thu-hoi-dat/">Xử lý sai sót</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">4</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">💰 Nhận tiền &amp; Chi tiêu</h4>
-            <p class="mqm-step-desc">Quản lý tiền đền bù đến khi có nhà mới</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/quan-ly-tai-chinh-giai-doan-chuyen-tiep-tu-nhan-tien-den-bu-den-khi-co-nha-moi/">Quản lý tài chính</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">5</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">🏠 Tái định cư / Ở tạm</h4>
-            <p class="mqm-step-desc">Quỹ đất TDC, nhà thuê chuyển tiếp</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/tai-dinh-cu-quy-dat-thu-tuc-va-dieu-gia-dinh-can-chuan-bi/">Thủ tục TDC</a>
-              <a class="mqm-chip" href="/bai-viet/di-thue-nha-o-tam-khi-bi-thu-hoi-dat-kinh-nghiem-nguoi-that/">Thuê nhà ở tạm</a>
-            </div>
-          </div>
-        </article>
-        <article class="mqm-step">
-          <div class="mqm-number">6</div>
-          <div class="mqm-step-content">
-            <h4 class="mqm-step-title">🏗️ Xây nhà mới</h4>
-            <p class="mqm-step-desc">Quay lại hành trình Xây nhà</p>
-            <div class="mqm-chips">
-              <a class="mqm-chip" href="/bai-viet/xay-nha-lan-dau-bat-dau-tu-viec-gi/">Bắt đầu xây nhà</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-  </div>
-</div>
 
     <div style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid rgba(234,88,12,.2);border-radius:18px;padding:16px 20px;margin:0 0 30px;text-align:left;">
       <div style="font-weight:800;font-size:1rem;color:#c2410c;">🔥 Khách đang hỏi nhiều nhất</div>

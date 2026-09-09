@@ -18,9 +18,9 @@ Nhiều chủ nhà ở Hà Nội dễ bị đánh lừa bởi những bộ hồ 
 
 Đừng bao giờ chọn nhà thầu chỉ dựa trên báo giá rẻ nhất, vì tại Hà Nội, "rẻ" thường đi đôi với việc bớt xén vật tư hoặc phát sinh vô tội vạ khi vào việc. Một nhà thầu uy tín sẽ cung cấp bảng dự toán chi tiết đến từng cái đinh, bao xi măng, có ghi rõ chủng loại, nhãn hiệu vật tư và cam kết không phát sinh nếu không thay đổi thiết kế. Hãy đặt những câu hỏi hóc búa về xử lý chống thấm nhà phố hay cách gia cố móng trên nền đất yếu đặc trưng của nhiều khu vực nội thành. Những đơn vị làm thật, ăn thật sẽ tự tin đưa ra giải pháp kỹ thuật cụ thể, có cơ sở khoa học chứ không hứa hẹn suông. Xu hướng giá xây dựng hiện nay biến động theo vật liệu, vì vậy hãy yêu cầu một đơn giá minh bạch và cam kết tiến độ bằng văn bản rõ ràng.
 
-## Việc nhỏ nên làm ngay hôm nay
+## Checklist dùng ngay
 
-Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
+- [ ] Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
 
 ---
 

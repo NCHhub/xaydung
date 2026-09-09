@@ -18,9 +18,9 @@ Nếu anh/chị — hay khách của anh/chị — đang tự hỏi: **Tôi khô
 
 Nhiều gia chủ sợ nhất cảnh thợ "rút ruột" vật tư hoặc dùng đồ kém chất lượng để ăn chênh lệch. Để trị dứt điểm, bạn cần áp dụng nguyên tắc: "Vật tư về đến công trình phải có xác nhận". Thay vì giao khoán toàn bộ, hãy yêu cầu nhà thầu lập bảng kê chi tiết chủng loại, nhãn hiệu và số lượng vật tư nhập về theo từng đợt. Khi thép về, hãy nhìn đúng thương hiệu và đường kính ly; khi xi măng về, kiểm tra hạn sử dụng và số bao. Với những món đồ khó kiểm soát như cát, đá, hãy dùng mẹo đo thể tích thùng xe hoặc yêu cầu đổ đúng vị trí tập kết để dễ theo dõi khối lượng. Hiện nay, chi phí vật liệu biến động theo ngày, vì vậy đừng quá cứng nhắc theo một con số cố định mà hãy tập trung vào chất lượng thực tế tại công trường.
 
-## Việc nhỏ nên làm ngay hôm nay
+## Checklist dùng ngay
 
-Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
+- [ ] Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
 
 ---
 

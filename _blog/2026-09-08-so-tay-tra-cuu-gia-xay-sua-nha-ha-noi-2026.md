@@ -6,6 +6,14 @@ description: "Bảng giá xây/sửa nhà Hà Nội 2026 gọn trong một trang
 chu_de: bi-kip-moi-gioi
 ---
 
+---
+title: "Sổ tay tra cứu giá xây/sửa nhà Hà Nội 2026 — dành cho anh/chị môi giới"
+nhom: "Dành cho Môi giới"
+date: 2026-09-08
+description: "Bảng giá xây/sửa nhà Hà Nội 2026 gọn trong một trang: đơn giá trọn gói theo vùng, hệ số loại hình, các khoản phí ngoài đơn giá và phép tính nhanh khi dẫn khách xem đất. Tra cứu tại chỗ, tự tin tư vấn."
+chu_de: bi-kip-moi-gioi
+---
+
 Khi khách hỏi *"xây nhà này khoảng bao nhiêu?"* — câu trả lời của anh/chị quyết định độ tin cậy. Sổ tay này gom bảng giá đã kiểm chứng thị trường Hà Nội 2026, để anh/chị tra nhanh tại chỗ, nói được con số và không bị khách hỏi lại lần hai.
 
 > **Cách dùng:** giữ trang này trong điện thoại, khi dẫn khách xem đất/nhà chỉ cần chụp sổ + hỏi quy hoạch quận là có ngay khoảng giá để tư vấn.
@@ -102,6 +110,22 @@ Chi phí gần đúng = Sàn × Đơn giá vùng × Hệ số loại hình
 - Nền đất yếu phải xử lý: **+10%**
 - Khu vực xa, khó tiếp cận: **+8%**
 
+## Checklist dùng ngay
+
+- [ ] Khi khách hỏi giá: tra bảng giá/m² theo đúng mức độ xây/sửa của ngôi nhà.
+- [ ] Áp hệ số điều chỉnh theo nhà (ngõ nhỏ, nền yếu, khu vực xa) trước khi đưa con số.
+- [ ] Nhắc khách các khoản phí ngoài đơn giá — khách hay quên nhất.
+- [ ] Khách cần con số chính xác → giới thiệu để bên mình khảo sát — anh/chị hưởng hoa hồng rõ ràng.
+
 ---
 
 > **Lưu ý quan trọng:** đây là giá tham khảo đã kiểm chứng thị trường; giá thực tế phải sau khi khảo sát đất, thiết kế và báo giá vật liệu. Khi khách cần con số chính xác, anh/chị giới thiệu để chúng tôi khảo sát — phần còn lại chúng tôi lo trọn gói, anh/chị yên tâm tư vấn và hưởng hoa hồng rõ ràng. Liên hệ **0983.601.366**.
+
+---
+
+**Hải & Cộng sự — Xây · Sửa nhà Hà Nội**
+
+Chúng tôi là phòng kỹ thuật phía sau của ACE môi giới và là chỗ dựa cho chủ nhà: báo cáo khảo sát rõ ràng về công trình thật, hợp tác lâu dài, minh bạch quyền lợi.
+
+Cần tư vấn theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Tham khảo thêm cẩm nang tại **X.aladDin.vn**.
+

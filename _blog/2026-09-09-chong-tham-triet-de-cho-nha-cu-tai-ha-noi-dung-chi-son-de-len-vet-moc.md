@@ -18,9 +18,9 @@ Nhà xây từ những năm 90 ở Hà Nội đa số dùng gạch đặc, vữa
 
 Với những căn nhà cũ, tôi khuyên các bác không nên quá lạm dụng các loại sơn chống thấm bề mặt rẻ tiền vì chúng dễ bị phồng rộp do áp lực nước từ trong ra. Thay vào đó, nên sử dụng kết hợp: chất chống thấm dạng tinh thể thẩm thấu (đi sâu vào lỗ rỗng của bê tông) cho các khu vực vệ sinh, ban công và sơn chống thấm cao cấp có độ co giãn tốt cho tường ngoài. Nếu tường bị thấm nặng từ chân tường, phương pháp bơm keo epoxy hoặc dùng màng chống thấm chuyên dụng sẽ mang lại hiệu quả bền vững hơn. Chi phí vật liệu hiện nay dao động tùy theo thương hiệu và mức độ hư hại, nhưng quan trọng nhất vẫn là tay nghề thợ thi công phải tỉ mỉ, đúng quy trình. Các bác cứ liên hệ để tôi tư vấn loại vật liệu phù hợp nhất với hiện trạng thực tế của nhà mình.
 
-## Việc nhỏ nên làm ngay hôm nay
+## Checklist dùng ngay
 
-Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
+- [ ] Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
 
 ---
 

@@ -35,4 +35,20 @@ Tiến độ được lập và bám sát theo giai đoạn là một trong nh�
 
 ![Tiến độ được lập theo từng giai đoạn thi công](/assets/img/cong-trinh/tien-do-thi-cong.jpg)
 
+## Checklist dùng ngay
+
+- [ ] Lập cùng một danh sách hạng mục, yêu cầu cả hai bên điền giá — so theo hạng mục, không theo tổng.
+- [ ] Hỏi điều gì nằm ngoài giá trước khi hỏi giá — câu trả lời nói lên sự minh bạch.
+- [ ] Hỏi quy trình kiểm soát: nghiệm thu từng giai đoạn thế nào, ai chịu trách nhiệm phần ẩn.
+- [ ] Đi xem công trình đang làm của từng bên và hỏi chủ nhà đã bàn giao.
+
 > Đang phân vân giữa 2–3 báo giá? Gọi **0983.601.366** — gửi báo giá qua, chúng tôi chỉ bạn cách soi từng hạng mục để không mua nhầm "giá rẻ, giá chát".
+
+---
+
+**Hải & Cộng sự — Xây · Sửa nhà Hà Nội**
+
+Chúng tôi là phòng kỹ thuật phía sau của ACE môi giới và là chỗ dựa cho chủ nhà: báo cáo khảo sát rõ ràng về công trình thật, hợp tác lâu dài, minh bạch quyền lợi.
+
+Cần tư vấn theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Tham khảo thêm cẩm nang tại **X.aladDin.vn**.
+

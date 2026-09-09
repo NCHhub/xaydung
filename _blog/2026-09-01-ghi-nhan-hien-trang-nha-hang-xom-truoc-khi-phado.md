@@ -36,4 +36,19 @@ Làm việc này từ đầu, cả chủ nhà và hàng xóm đều yên tâm �
 
 Biên bản này không phải giấy tờ "cho có" — nó là tấm khiên: bảo vệ chủ nhà khỏi tranh chấp, bảo vệ mối quan hệ với hàng xóm, và nói lên nhà thầu làm việc có quy trình hay không. **Một nhà thầu chủ động lập biên bản nhà liền kề là dấu hiệu họ đã làm nhiều công trình và biết rủi ro nằm ở đâu.**
 
+## Checklist dùng ngay
+
+- [ ] Yêu cầu nhà thầu khảo sát hiện trạng nhà liền kề trước khi phá dỡ hay đào móng.
+- [ ] Ghi nhận tình trạng tường, sàn, vết nứt hiện có (nếu có) vào biên bản.
+- [ ] Ký xác nhận cả hai bên và lưu bản gốc — căn cứ đối chiếu khi có vấn đề.
+
 > Sắp xây nhà phố? Hỏi nhà thầu: *"Anh có khảo sát ghi nhận hiện trạng nhà hàng xóm trước khi làm không?"* — câu trả lời cho bạn biết rất nhiều. Cần tư vấn, gọi **0983.601.366**.
+
+---
+
+**Hải & Cộng sự — Xây · Sửa nhà Hà Nội**
+
+Chúng tôi là phòng kỹ thuật phía sau của ACE môi giới và là chỗ dựa cho chủ nhà: báo cáo khảo sát rõ ràng về công trình thật, hợp tác lâu dài, minh bạch quyền lợi.
+
+Cần tư vấn theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Tham khảo thêm cẩm nang tại **X.aladDin.vn**.
+

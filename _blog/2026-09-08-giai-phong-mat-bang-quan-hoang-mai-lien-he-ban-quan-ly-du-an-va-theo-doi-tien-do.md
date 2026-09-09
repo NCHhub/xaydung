@@ -37,9 +37,9 @@ Số điện thoại Ban Quản lý dự án không niêm yết chung một ch�
 
 **Cách gọi điện đúng để không bị "chuyển lòng vòng"**: khách nói ngay cụm từ *“Tôi ở phường … thuộc dự án … muốn hỏi tiến độ kiểm đếm / phương án”* — bộ phận tiếp nhận sẽ chuyển đúng đầu mối phụ trách. Anh/chị môi giới giúp khách ghi sẵn tên dự án + phường trước khi gọi, cuộc gọi sẽ ngắn và có kết quả.
 
-## Hành động nhỏ hôm nay
+## Checklist dùng ngay
 
-Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
+- [ ] Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
 
 > 💡 Anh/chị cần tra nhanh quy trình và các con số khi tư vấn khách, mở X.aladDin.vn/moi-gioi/ — công cụ tính và bảng giá cập nhật theo từng quận, loại hình.
 

@@ -43,4 +43,11 @@ Khi đã có khung thông tin, bạn so sánh báo giá không chỉ bằng con 
 
 **Bắt đầu từ việc 1, đừng nhảy thẳng vào việc 5** — nhiều rắc rối tốn kém đến từ việc đảo thứ tự này.
 
+## Checklist dùng ngay
+
+- [ ] Kiểm tra hồ sơ đất, quy hoạch, thủ tục — việc 1, đừng nhảy thẳng vào tìm nhà thầu.
+- [ ] Lập kế hoạch và khung ngân sách trước khi liên hệ bất kỳ ai.
+- [ ] Đi xem công trình thật của 1–2 nhà thầu và hỏi chủ nhà đã làm trước đó.
+- [ ] So báo giá theo hạng mục (không theo tổng tiền) rồi mới ký hợp đồng rõ ràng.
+
 > Chuẩn bị xây nhà lần đầu mà chưa rõ bắt đầu từ đâu? Gọi **0983.601.366** — chúng tôi hướng dẫn từng bước, xem công trình thật trước khi bạn quyết định gì.

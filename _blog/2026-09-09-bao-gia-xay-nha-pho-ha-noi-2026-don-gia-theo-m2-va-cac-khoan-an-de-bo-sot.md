@@ -18,9 +18,9 @@ Xây nhà ở phố cổ hay ngõ sâu Hà Nội, nếu chỉ lấy đơn giá n
 
 Tiền vật liệu và nhân công tại Hà Nội luôn biến động theo năm, đặc biệt là phân khúc xây trọn gói "chìa khóa trao tay". Xu hướng năm 2026 hướng tới các vật liệu xanh, bền vững và tối ưu công năng cho nhà phố diện tích nhỏ, điều này có thể đẩy chi phí lên cao nếu không biết cách chọn lựa. Bí quyết để không bị hụt tiền là xác định rõ phong cách thiết kế (hiện đại hay tân cổ điển) và chất lượng hoàn thiện ngay từ đầu. Một đơn vị uy tín sẽ không báo giá "cào bằng" mà sẽ căn cứ vào bản vẽ kỹ thuật để chốt giá, cam kết không phát sinh. Điều này giúp chủ nhà chủ động tài chính, tránh tình trạng xây dở dang vì thiếu vốn.
 
-## Việc nhỏ nên làm ngay hôm nay
+## Checklist dùng ngay
 
-Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
+- [ ] Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
 
 ---
 

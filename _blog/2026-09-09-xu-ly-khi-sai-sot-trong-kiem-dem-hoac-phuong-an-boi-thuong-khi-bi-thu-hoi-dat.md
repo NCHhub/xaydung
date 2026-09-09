@@ -39,9 +39,9 @@ Kiểm đếm xong thấy thiếu mét vuông hoặc áp sai giá nhà, đừng 
 
 Anh/chị giúp khách lập "kịch bản khiếu nại" 1 trang giấy — gia đình nào có kế hoạch trước thường bớt căng thẳng hơn hẳn.
 
-## Hành động nhỏ hôm nay
+## Checklist dùng ngay
 
-Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
+- [ ] Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
 
 > 💡 Anh/chị cần tra nhanh quy trình và các con số khi tư vấn khách, mở X.aladDin.vn/moi-gioi/ — công cụ tính và bảng giá cập nhật theo từng quận, loại hình.
 

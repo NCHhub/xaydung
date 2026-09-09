@@ -43,4 +43,19 @@ Hỏi nhà thầu: *"Những công đoạn bịt kín, anh có ảnh nghiệm th
 - Trả lời **"có, và đây là cách chúng tôi làm"** → người làm việc có quy trình.
 - Trả lời **"yên tâm đi, tôi làm lâu năm rồi"** → bạn dựa vào thiện chí, không dựa vào hệ thống.
 
+## Checklist dùng ngay
+
+- [ ] Hỏi nhà thầu: “Công đoạn bịt kín có ảnh nghiệm thu cho tôi xem lại không?”.
+- [ ] Yêu cầu ghi nhận ảnh/video các điểm: vật tư nhập kho, thép trước khi đổ bê tông, điện nước trước khi trát.
+- [ ] Kiểm tra ảnh nghiệm thu từng giai đoạn trước khi cho đội chuyển bước kế tiếp.
+
 > Muốn danh sách các giai đoạn nhất định phải có ảnh nghiệm thu? Để lại **"Checklist"** hoặc gọi **0983.601.366** — chúng tôi gửi ngay, dùng được với bất kỳ nhà thầu nào.
+
+---
+
+**Hải & Cộng sự — Xây · Sửa nhà Hà Nội**
+
+Chúng tôi là phòng kỹ thuật phía sau của ACE môi giới và là chỗ dựa cho chủ nhà: báo cáo khảo sát rõ ràng về công trình thật, hợp tác lâu dài, minh bạch quyền lợi.
+
+Cần tư vấn theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Tham khảo thêm cẩm nang tại **X.aladDin.vn**.
+

@@ -16,9 +16,9 @@ Xây nhà phố ở những quận lõi như Đống Đa, ngõ ngách chằng ch
 
 Đừng để bị rối giữa các tầng thủ tục hành chính khi xin phép xây dựng tại Thủ đô. Với nhà phố tại Đống Đa, địa điểm nộp hồ sơ chuẩn nhất là Bộ phận Một cửa của UBND Quận Đống Đa. Quy trình hiện nay đã cải thiện nhiều qua cổng dịch vụ công trực tuyến, nhưng thực tế, việc có một đơn vị tư vấn am hiểu "luật chơi" tại địa phương sẽ giúp bác kiểm tra trước các sai sót về quy hoạch, tránh việc bị treo hồ sơ vô thời hạn. Thời gian cấp phép thường theo quy định, nhưng nhanh hay chậm phụ thuộc vào việc bản vẽ có đúng quy chuẩn hay không. Về chi phí dịch vụ và phí cấp phép, hiện nay có xu hướng biến động tùy theo quy mô công trình, bác cứ nhắn trực tiếp để em báo giá chi tiết theo thực tế hiện trạng.
 
-## Việc nhỏ nên làm ngay hôm nay
+## Checklist dùng ngay
 
-Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
+- [ ] Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
 
 ---
 

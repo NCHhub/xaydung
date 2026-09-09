@@ -39,9 +39,9 @@ Câu này nằm lòng ở nhiều gia đình vùng thu hồi — nhiều nhà ch
 
 Khách cần người ngồi nghe chuyện này mà không cười — anh/chị nắm được 5 điều trên là đã khác biệt rất lớn so với môi giới chỉ biết nói giá đất.
 
-## Hành động nhỏ hôm nay
+## Checklist dùng ngay
 
-Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
+- [ ] Ghi câu hỏi này vào sổ tay tư vấn và dành 5 phút tìm số điện thoại Ban Quản lý dự án khu vực khách đang ở — để khi khách hỏi, anh/chị trả lời được ngay “bộ phận nào, gặp ai”.
 
 > 💡 Anh/chị cần tra nhanh quy trình và các con số khi tư vấn khách, mở X.aladDin.vn/moi-gioi/ — công cụ tính và bảng giá cập nhật theo từng quận, loại hình.
 

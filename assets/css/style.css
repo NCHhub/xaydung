@@ -198,6 +198,19 @@ body{padding-bottom:0;}
   .js-anim section,.js-anim .postcard,.js-anim .card,.js-anim .srv{opacity:1;transform:none;transition:none;}
 }
 
+
+/* ===== CHECKLIST — dùng được ngay (Diamond 09-09) ===== */
+.article .checklist, .article ul.task-list{list-style:none;padding-left:0;margin:16px 0;}
+.article .checklist li, .article ul.task-list li{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:1rem;line-height:1.55;}
+.article .checklist li::before, .article ul.task-list li::before{content:"☐";flex:none;font-size:1.15rem;color:var(--teal);margin-top:1px;}
+.article .checklist li.done::before, .article ul.task-list li input:checked+*::before{content:"✅";}
+.article .checklist strong{color:var(--text);}
+.article input[type=checkbox]{accent-color:var(--teal);width:18px;height:18px;flex:none;margin-top:3px;}
+/* Checklist box Apple */
+.clbox{background:var(--bg-gray);border-radius:var(--radius-md);padding:22px 24px;margin:26px 0;border:1px solid var(--border);}
+.clbox h3{margin:0 0 12px;font-size:1.15rem;font-weight:700;}
+.clbox .checklist{margin:0;}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
   body{font-size:16px;}

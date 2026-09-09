@@ -73,8 +73,9 @@ def check_file(path: Path):
     has_q = ("*“" in body and "”*" in body) or ("?" in body) or ("hỏi" in body)
     checks.append(("câu_hỏi_thật", has_q, "có câu hỏi/anh dẫn" if has_q else "thiếu câu hỏi thật"))
 
-    # C4 — Có hướng dẫn hành động (mô phỏng "HÀNH ĐỘNG NHỎ")
-    has_action = ("Hành động" in body) or ("hành động" in body) or ("làm" in body and "nên" in body)
+    # C4 — Có hướng dẫn hành động (mô phỏng "HÀNH ĐỘNG NHỎ" — chuẩn cũ "Hành động nhỏ hôm nay"
+    # hoặc chuẩn mới "Checklist dùng ngay" dạng task list "- [ ]")
+    has_action = ("- [ ]" in body) or ("Hành động" in body) or ("hành động" in body) or ("làm" in body and "nên" in body)
     checks.append(("hành_động_nhỏ", has_action, "có bước hành động" if has_action else "thiếu phần hành động"))
 
     # C5 — Yếu tố cá nhân Hải (ít nhất 1 trong 4; bắt buộc SĐT hoặc tên miền)

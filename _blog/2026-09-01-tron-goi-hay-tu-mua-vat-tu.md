@@ -36,4 +36,19 @@ Hãy hỏi nhà thầu: *vật tư giao về có được kiểm tra và ghi nh�
 2. **Chọn tự mua nếu** bạn thực sự có thời gian và người quen tin cậy cung cấp — nhưng hãy tính cả công sức quản lý của chính bạn.
 3. **Phương án giữa:** bạn duyệt chủng loại vật tư, nhà thầu lo vận hành — nhưng phải có cơ chế ghi nhận khi nhập kho.
 
+## Checklist dùng ngay
+
+- [ ] Nếu chọn trọn gói: yêu cầu ghi ảnh/nhật ký kiểm soát vật tư khi nhập kho vào hợp đồng.
+- [ ] Nếu tự mua: tính cả công sức quản lý số lượng, chủng loại, thời điểm giao hàng của chính bạn.
+- [ ] Phương án giữa: bạn duyệt chủng loại vật tư, nhà thầu lo vận hành — nhưng phải có cơ chế ghi nhận nhập kho.
+
 > Đang phân vân trọn gói hay tự mua? Gọi **0983.601.366** — chúng tôi cho bạn xem cách kiểm soát vật tư thực tế tại công trình trước khi bạn quyết định.
+
+---
+
+**Hải & Cộng sự — Xây · Sửa nhà Hà Nội**
+
+Chúng tôi là phòng kỹ thuật phía sau của ACE môi giới và là chỗ dựa cho chủ nhà: báo cáo khảo sát rõ ràng về công trình thật, hợp tác lâu dài, minh bạch quyền lợi.
+
+Cần tư vấn theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Tham khảo thêm cẩm nang tại **X.aladDin.vn**.
+

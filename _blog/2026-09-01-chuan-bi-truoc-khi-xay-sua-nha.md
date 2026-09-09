@@ -29,4 +29,21 @@ Một nhà thầu có kinh nghiệm sẽ xử lý được những tình huống
 
 Hợp đồng phải ghi rõ hạng mục, tiến độ, chất lượng vật liệu và cách xử lý phát sinh. Cam kết rõ ràng từ đầu giúp cả hai bên yên tâm đến khi bàn giao.
 
+## Checklist dùng ngay
+
+- [ ] Xác định rõ nhu cầu (xây mới / sửa / nâng cấp) và ngân sách dự kiến.
+- [ ] Kiểm tra thủ tục xin phép xây dựng ngay từ đầu — tránh vướng pháp lý.
+- [ ] Trao đổi với hàng xóm trước khi thi công — giảm mâu thuẫn và phát sinh.
+- [ ] Đi xem công trình thực tế của nhà thầu trước khi chọn — đừng chỉ tin lời giới thiệu.
+- [ ] Ký hợp đồng ghi rõ hạng mục, tiến độ, chất lượng vật liệu và cách xử lý phát sinh.
+
 > Bạn đang có nhu cầu? Gọi **0983.601.366** để được tư vấn cụ thể, xem công trình thực tế và nhận báo giá rõ ràng.
+
+---
+
+**Hải & Cộng sự — Xây · Sửa nhà Hà Nội**
+
+Chúng tôi là phòng kỹ thuật phía sau của ACE môi giới và là chỗ dựa cho chủ nhà: báo cáo khảo sát rõ ràng về công trình thật, hợp tác lâu dài, minh bạch quyền lợi.
+
+Cần tư vấn theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Tham khảo thêm cẩm nang tại **X.aladDin.vn**.
+

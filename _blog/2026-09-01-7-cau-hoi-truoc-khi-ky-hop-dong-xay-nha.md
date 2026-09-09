@@ -29,4 +29,20 @@ Khi mọi việc được vận hành qua biểu mẫu, ghi nhận có hệ th�
 
 Đó là lý do chúng tôi quản lý công trình bằng hệ thống biểu mẫu nội bộ — mọi hạng mục có theo dõi, có người chịu trách nhiệm, có ghi nhận để đối chiếu.
 
+## Checklist dùng ngay
+
+- [ ] In/ghi 7 câu hỏi này ra giấy trước khi gặp nhà thầu.
+- [ ] Hỏi lần lượt từng câu và ghi lại câu trả lời vào sổ — không tin lời nói miệng.
+- [ ] Khoanh tròn những câu nhà thầu trả lời mập mờ — đó là rủi ro phát sinh sau này.
+- [ ] Gọi 0983.601.366 nếu cần danh sách hạng mục mẫu để hỏi nhà thầu.
+
 > Muốn có danh sách hạng mục mẫu để hỏi nhà thầu? Để lại **"Checklist"** hoặc gọi **0983.601.366** — chúng tôi gửi checklist các giai đoạn cần nghiệm thu, dùng được với bất kỳ nhà thầu nào.
+
+---
+
+**Hải & Cộng sự — Xây · Sửa nhà Hà Nội**
+
+Chúng tôi là phòng kỹ thuật phía sau của ACE môi giới và là chỗ dựa cho chủ nhà: báo cáo khảo sát rõ ràng về công trình thật, hợp tác lâu dài, minh bạch quyền lợi.
+
+Cần tư vấn theo trường hợp cụ thể, liên hệ trực tiếp: **0983.601.366**. Tham khảo thêm cẩm nang tại **X.aladDin.vn**.
+

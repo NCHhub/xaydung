@@ -18,9 +18,9 @@ Nếu anh/chị — hay khách của anh/chị — đang tự hỏi: **Khi nhậ
 
 Nhận nhà không đơn giản là cầm chìa khóa là xong, mà phải đi kèm một biên bản nghiệm thu chi tiết, ghi rõ từng hạng mục đạt hay chưa đạt. Nhiều chủ nhà thường nể thợ nên ký đại, đến lúc thấm dột hay sụt lún mới cuống cuồng gọi thì thợ thường đùn đẩy hoặc báo chi phí sửa chữa phát sinh. Đúng chuẩn là các bác phải lập danh sách "Pending" (các lỗi cần khắc phục), yêu cầu nhà thầu cam kết thời hạn sửa xong và chỉ ký biên bản bàn giao cuối cùng khi mọi thứ đã hoàn thiện 100%. Đồng thời, hãy yêu cầu bàn giao đầy đủ hồ sơ hoàn công, sơ đồ đường điện, đường nước âm tường để sau này muốn khoan tường hay sửa chữa không bị khoan nhầm vào ống nước. Việc làm chặt chẽ ngay từ đầu chính là cách bảo vệ tài sản và giữ tình cảm tốt nhất giữa chủ nhà và đơn vị thi công.
 
-## Việc nhỏ nên làm ngay hôm nay
+## Checklist dùng ngay
 
-Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
+- [ ] Ghi lại các hạng mục trong bài vào sổ tay, hoặc gọi trực tiếp để được khảo sát hiện trạng và nghe tư vấn cụ thể cho mặt bằng nhà mình — tránh tự đoán rồi phát sinh chi phí về sau.
 
 ---
 

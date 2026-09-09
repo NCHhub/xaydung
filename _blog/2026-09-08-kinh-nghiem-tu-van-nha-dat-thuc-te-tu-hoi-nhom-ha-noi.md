@@ -26,9 +26,10 @@ Câu trả lời mà khách cần nghe không phải một con số chẵn — m
 
 Để tra nhanh tại chỗ, anh/chị dùng công cụ tính giá trên trang X.aladDin.vn — ra con số theo đúng quận, diện tích, loại hình chỉ trong vài giây.
 
-## Hành động nhỏ hôm nay
+## Checklist dùng ngay
 
-Ghi chú lại câu hỏi này vào sổ tay tư vấn của anh/chị. Lần tới gặp khách hỏi đúng vấn đề, anh/chị đã sẵn câu trả lời — khách tin ngay, tăng khả năng chốt.
+- [ ] Ghi chú lại câu hỏi này vào sổ tay tư vấn của anh/chị.
+- [ ] Lần tới gặp khách hỏi đúng vấn đề, anh/chị đã sẵn câu trả lời — khách tin ngay, tăng khả năng chốt.
 
 > 💡 Anh/chị môi giới cần thêm số liệu chi tiết cho từng khu vực? Mở trang X.aladDin.vn/moi-gioi/ để xem bảng giá đầy đủ và công cụ tính nhanh.
 

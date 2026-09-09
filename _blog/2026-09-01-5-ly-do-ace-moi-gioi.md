@@ -7,6 +7,8 @@ image: "/assets/img/cong-trinh/trai-bat-ve-sinh-2.jpg"
 chu_de: bi-kip-moi-gioi
 ---
 
+**Câu hỏi thật trên các hội nhóm môi giới:** *"Khách mua nhà xong quay lại hỏi xây hay sửa thì giới thiệu ai? Mình có được hưởng gì không?"*
+
 Khách hàng của bạn — người mua, người bán nhà — có nhu cầu **xây hoặc sửa nhà** thường xuyên hơn bạn nghĩ. Mỗi nhu cầu đó là một cơ hội thu nhập thêm mà bạn không cần đầu tư gì.
 
 ## 1. Thêm nguồn thu nhập không tốn thời gian bán nhà
@@ -28,5 +30,11 @@ Bên mình có hình ảnh, công trình thi công thực tế để bạn đưa
 ## 5. Chúng tôi lo kỹ từ việc nhỏ đến việc lớn
 
 Từ xin phép xây dựng, làm việc với hàng xóm, xử lý phát sinh, rắc rối trong thi công… đến thiết kế và chất lượng công trình — đều có kinh nghiệm thực tế. Bạn yên tâm giới thiệu, chủ nhà yên tâm xây sửa.
+
+## Checklist dùng ngay
+
+- [ ] Ghi lại danh sách khách cũ có nhu cầu xây/sửa nhà — bắt đầu từ một cuộc gọi giới thiệu.
+- [ ] Giới thiệu khách kèm số điện thoại cho Hải & Cộng sự (0983.601.366) — phần còn lại bên mình lo trọn gói.
+- [ ] Dẫn khách đi xem công trình thi công thực tế — bằng chứng thật hơn lời hứa.
 
 > **Kết luận:** Chỉ cần một cuộc gọi giới thiệu, bạn có thêm cơ hội thu nhập và một đối tác làm ăn lâu dài. Liên hệ **0983.601.366**.

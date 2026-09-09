@@ -3,6 +3,7 @@ title: "Giải phóng mặt bằng theo tuyến đường Hà Nội — tiến �
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Em thấy bảo chỗ mạn 260 giải phóng 15/9 trả tiền phải không các bác."
+chu_de: thu-hoi-den-bu
 ---
 
 Khi anh/chị gặp khách hỏi *“Em thấy bảo chỗ mạn 260 giải phóng 15/9 trả tiền phải không các bác.”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

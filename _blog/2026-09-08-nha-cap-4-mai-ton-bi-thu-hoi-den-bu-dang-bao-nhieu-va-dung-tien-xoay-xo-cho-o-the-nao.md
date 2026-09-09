@@ -3,6 +3,7 @@ title: "Nhà cấp 4 mái tôn bị thu hồi — đền bù đáng bao nhiêu v
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Bác nào trong nhóm có thông tin giá đền bù sau kiểm đếm, ví dụ nhà cấp 4 mái tôn tường gạch được bao nhiêu"
+chu_de: thu-hoi-den-bu
 ---
 
 Khi anh/chị gặp khách hỏi *“Bác nào trong nhóm có thông tin giá đền bù sau kiểm đếm, ví dụ nhà cấp 4 mái tôn tường gạch được bao nhiêu”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

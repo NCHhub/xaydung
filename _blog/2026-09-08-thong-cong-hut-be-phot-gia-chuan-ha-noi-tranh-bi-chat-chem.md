@@ -3,6 +3,7 @@ title: "Thông cống, hút bể phốt giá chuẩn Hà Nội — tránh bị c
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Thông cống, hút bể phốt ở HN giá chuẩn là bao nhiêu? Làm sao để không bị chặt chém?"
+chu_de: tien-ich-ha-noi
 ---
 
 Khi anh/chị gặp khách hỏi *“Thông cống, hút bể phốt ở HN giá chuẩn là bao nhiêu? Làm sao để không bị chặt chém?”* — đừng trả lời qua loa. Dưới đây là cách trả lời có căn cứ, dùng được ngay khi dẫn khách xem đất.

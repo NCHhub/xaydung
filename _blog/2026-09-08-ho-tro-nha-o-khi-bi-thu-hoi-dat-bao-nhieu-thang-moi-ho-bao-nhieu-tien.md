@@ -3,6 +3,7 @@ title: "Hỗ trợ nhà ở khi bị thu hồi đất: bao nhiêu tháng, mỗi 
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Nhà nước hỗ trợ nhà ở khi thu hồi đất mấy tháng vậy các bác, mỗi hộ, mỗi người được bao nhiêu ạ?"
+chu_de: tai-dinh-cu-tam-tru
 ---
 
 Khi anh/chị gặp khách hỏi *“Nhà nước hỗ trợ nhà ở khi thu hồi đất mấy tháng vậy các bác, mỗi hộ, mỗi người được bao nhiêu ạ?”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

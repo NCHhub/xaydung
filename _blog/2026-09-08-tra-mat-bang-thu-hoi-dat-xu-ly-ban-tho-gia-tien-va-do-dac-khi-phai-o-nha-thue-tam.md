@@ -3,6 +3,7 @@ title: "Trả mặt bằng thu hồi đất — xử lý bàn thờ gia tiên v�
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Sắp trả mặt bằng đi thuê nhà ở tạm chờ nhà mới khoảng 1 năm thì bàn thờ gia tiên xử lý thế nào"
+chu_de: tai-dinh-cu-tam-tru
 ---
 
 Khi anh/chị gặp khách hỏi *“Sắp trả mặt bằng đi thuê nhà ở tạm chờ nhà mới khoảng 1 năm thì bàn thờ gia tiên xử lý thế nào”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

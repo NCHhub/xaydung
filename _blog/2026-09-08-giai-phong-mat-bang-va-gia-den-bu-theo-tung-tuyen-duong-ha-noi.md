@@ -3,6 +3,7 @@ title: "Giải phóng mặt bằng và giá đền bù theo từng tuyến đư�
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Mọi người ơi , đã có lịch kiểm điểm và chốt phương án bồi thường và bàn giao đến đâu rồi ạ . Giờ như ngồi trên đống lửa sắp tới không biết ở…"
+chu_de: thu-hoi-den-bu
 ---
 
 Khi anh/chị gặp khách hỏi *“Mọi người ơi , đã có lịch kiểm điểm và chốt phương án bồi thường và bàn giao đến đâu rồi ạ . Giờ như ngồi trên đống lửa sắp tới không biết ở đâu và cuộc sống đả”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

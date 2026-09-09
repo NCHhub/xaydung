@@ -45,6 +45,20 @@ h1,h2,h3,h4{letter-spacing:-.02em;line-height:1.15;font-weight:700;}
 .nav .cta:hover{background:var(--blue-hover);color:#fff;}
 .menu-btn{display:none;background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer;padding:4px 8px;}
 
+/* ===== NAV DROPDOWN — Cẩm nang (menu sổ ra) ===== */
+.nav .has-dd{position:relative;}
+.nav .dd-btn{background:none;border:none;color:rgba(255,255,255,.78);font-weight:500;font-size:.92rem;cursor:pointer;padding:0;font-family:inherit;transition:color .2s;}
+.nav .dd-btn:hover{color:#fff;}
+.nav .has-dd .dd{position:absolute;top:calc(100% + 14px);left:-10px;background:rgba(29,29,31,.97);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;min-width:292px;display:none;box-shadow:0 16px 40px rgba(0,0,0,.55);z-index:200;}
+.nav .has-dd:hover .dd,
+.nav .has-dd:focus-within .dd{display:block;}
+.nav .has-dd .dd a{display:block;padding:9px 14px;border-radius:9px;font-size:.9rem;color:rgba(255,255,255,.82);}
+.nav .has-dd .dd a:hover{background:rgba(255,255,255,.09);color:#fff;}
+.nav .has-dd .dd .dd-head{font-weight:700;color:#fff;}
+.nav .has-dd .dd .dd-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#8e8e93;padding:10px 14px 4px;font-weight:600;}
+.nav .has-dd .dd .hot-tag{display:inline-block;font-size:.62rem;font-weight:700;color:#fff;background:#e11d48;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:1px;}
+section[id]{scroll-margin-top:80px;}
+
 /* ===== HERO — Apple dark hero ===== */
 .hero{background:linear-gradient(180deg,#000000 0%,#1d1d1f 60%,#101013 100%);color:#fff;text-align:center;padding:150px 0 110px;position:relative;overflow:hidden;}
 .hero::before{content:"";position:absolute;top:20%;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(closest-side,rgba(0,113,227,.22),transparent 70%);pointer-events:none;}
@@ -204,6 +218,13 @@ body{padding-bottom:0;}
   .nav ul.open{transform:translateX(0);}
   .nav li{width:100%;text-align:center;}
   .nav a{font-size:1.15rem;padding:12px 8px;display:block;}
+  /* Dropdown mobile: mở thẳng trong menu ☰ */
+  .nav .has-dd{width:100%;}
+  .nav .dd-btn{font-size:1.15rem;padding:12px 8px;display:block;width:100%;color:rgba(255,255,255,.78);}
+  .nav .has-dd .dd{position:static;background:transparent;border:none;border-left:1px solid rgba(255,255,255,.12);margin:0 12px;border-radius:0;box-shadow:none;min-width:0;padding:2px 0 6px;display:block;}
+  .nav .has-dd .dd a{font-size:.98rem;padding:9px 14px;text-align:left;}
+  .nav .has-dd .dd .dd-title{text-align:left;font-size:.66rem;}
+  .nav .has-dd .dd .hot-tag{vertical-align:0;}
   .nav .cta{display:inline-block;margin-top:8px;}
   .menu-btn{display:block;}
   .benefits{margin:0 12px;width:calc(100% - 24px);padding:64px 24px;border-radius:20px;}

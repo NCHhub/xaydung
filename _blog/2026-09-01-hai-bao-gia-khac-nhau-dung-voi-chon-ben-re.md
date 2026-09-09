@@ -4,6 +4,7 @@ nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "So báo giá đơn thuần không hiệu quả vì chất lượng dịch vụ 'thượng vàng hạ cám'. Cách so sánh đúng là so hạng mục, không so tổng tiền."
 image: "/assets/img/cong-trinh/tien-do-thi-cong.jpg"
+chu_de: tai-chinh-xay-nha
 ---
 
 **Câu hỏi thật trên các hội nhóm:** *"Em gọi hai đơn vị báo giá xây nhà, một bên thấp hơn hẳn. Chọn bên nào?"*

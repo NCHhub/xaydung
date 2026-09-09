@@ -4,6 +4,7 @@ nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "Nỗi đau mạnh nhất của chủ nhà có tiền: vẫn phải đi làm mà không thể làm giám sát. Hệ thống kiểm soát phải thay con người — đây là cách."
 image: "/assets/img/cong-trinh/vat-tu-kiem-tra-3.jpg"
+chu_de: quy-trinh-xay-nha
 ---
 
 **Câu hỏi thật trên các hội nhóm:** *"Em xây nhà nhưng đi làm cả ngày, làm sao biết thợ có làm đúng vật tư, đúng kỹ thuật?"*

@@ -3,6 +3,7 @@ title: "Kinh nghiệm tư vấn nhà đất thực tế từ hội nhóm Hà N�
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Bác nào ở phường Hoàng Mai có số điện thoại của Ban Quản lý Dự án cho em xin. Em cảm ơn"
+chu_de: bi-kip-moi-gioi
 ---
 
 Khi anh/chị gặp khách hỏi *“Bác nào ở phường Hoàng Mai có số điện thoại của Ban Quản lý Dự án cho em xin. Em cảm ơn”* — đừng trả lời qua loa. Dưới đây là cách trả lời có căn cứ, dùng được ngay khi dẫn khách xem đất.

@@ -4,6 +4,7 @@ nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "Câu hỏi giúp bạn tránh những khoản 'chưa nghĩ đến' khi xây nhà. Hỏi 7 câu này trước khi ký, đỡ phát sinh về sau."
 image: "/assets/img/cong-trinh/he-thong-bieu-mau-noi-bo.jpg"
+chu_de: quy-trinh-xay-nha
 ---
 
 **Câu hỏi thật trên các hội nhóm:** *"Làm hợp đồng xây nhà thế nào để tránh những khoản 'chưa nghĩ đến'? Có mẹo gì không?"*

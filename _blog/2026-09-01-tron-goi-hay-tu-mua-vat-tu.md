@@ -4,6 +4,7 @@ nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "Giằng co thường gặp: trọn gói sợ bị cắt chất lượng, tự mua vật tư thì phải quản lý vô số thứ. Phân tích thẳng cách nào ít rủi ro hơn."
 image: "/assets/img/cong-trinh/vat-tu-kiem-tra.jpg"
+chu_de: tai-chinh-xay-nha
 ---
 
 **Câu hỏi thật trên các hội nhóm:** *"Thuê trọn gói thì sợ nhà thầu cắt chất lượng, nhưng tự mua vật liệu thì mình không có chuyên môn, lại phải quản lý cả đống thứ. Khó quá."*

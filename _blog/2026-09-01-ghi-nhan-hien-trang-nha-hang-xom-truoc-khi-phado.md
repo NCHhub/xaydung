@@ -4,6 +4,7 @@ nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "Rủi ro nứt nhà hàng xóm khi xây nhà là nỗi lo thật của chủ nhà phố. Biên bản khảo sát liền kề trước khi khởi công là cách phòng tránh."
 image: "/assets/img/cong-trinh/bien-ban-khao-sat-ho-lien-ke.jpg"
+chu_de: quy-trinh-xay-nha
 ---
 
 **Câu hỏi thật trên các hội nhóm:** *"Xây nhà có làm nứt nhà hàng xóm không? Giờ phải làm sao?"*

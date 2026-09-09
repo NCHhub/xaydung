@@ -3,6 +3,7 @@ title: "Xử lý khi sai sót trong kiểm đếm hoặc phương án bồi thư
 nhom: "Dành cho Môi giới"
 date: 2026-09-09
 description: "Kiểm đếm xong thấy thiếu mét vuông hoặc áp sai giá nhà, đừng vội ký biên bản nếu không muốn mất tiền oan"
+chu_de: thu-hoi-den-bu
 ---
 
 Khi anh/chị gặp khách hỏi *“Kiểm đếm xong thấy thiếu mét vuông hoặc áp sai giá nhà, đừng vội ký biên bản nếu không muốn mất tiền oan”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

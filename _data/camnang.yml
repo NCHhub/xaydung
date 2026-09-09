@@ -1,0 +1,33 @@
+# CẨM NANG — nhóm bài viết theo chủ đề người dùng đang tương tác mạnh
+# Dữ liệu tương tác thật (FB groups HN, posts.jsonl): thu-hoi-dat eng 137 · gpmb 120 · tai-dinh-cu 105 · den-bu 47
+# Bài mới chỉ cần gán `chu_de:` trong frontmatter → tự vào đúng nhóm (0 công thêm)
+- id: thu-hoi-den-bu
+  icon: "⚖️"
+  ten: "Thu hồi đất – Kiểm đếm – Đền bù"
+  mota: "Quy trình kiểm đếm, đối chiếu phương án và ước tính tiền đền bù chính xác cho chủ nhà Hà Nội."
+  hot: true
+- id: tai-dinh-cu-tam-tru
+  icon: "🏠"
+  ten: "Tái định cư & Chỗ ở tạm"
+  mota: "Thủ tục nhận đất tái định cư, hỗ trợ nhà ở và kinh nghiệm chọn nhà thuê trong giai đoạn chuyển tiếp."
+  hot: true
+- id: tai-chinh-xay-nha
+  icon: "💰"
+  ten: "Tài chính – Từ đền bù đến nhà mới"
+  mota: "Phân bổ tiền đền bù và kiểm soát chi phí xây nhà để không bị hụt vốn giữa chừng."
+  hot: true
+- id: quy-trinh-xay-nha
+  icon: "🛠️"
+  ten: "Xây nhà cho Chủ nhà"
+  mota: "Từ bước chuẩn bị đầu tiên đến hợp đồng, giám sát thợ và bảo vệ nhà hàng xóm khi phá dỡ."
+  hot: false
+- id: bi-kip-moi-gioi
+  icon: "📈"
+  ten: "Bí kíp Môi giới"
+  mota: "Sổ tay giá xây/sửa, kỹ năng tư vấn thực chiến và cách cộng tác tăng thu nhập cho ACE môi giới."
+  hot: false
+- id: tien-ich-ha-noi
+  icon: "🧹"
+  ten: "Dịch vụ nhà cửa Hà Nội"
+  mota: "Giá chuẩn các dịch vụ bảo trì nhà ở để chủ nhà tránh bị chặt chém."
+  hot: false

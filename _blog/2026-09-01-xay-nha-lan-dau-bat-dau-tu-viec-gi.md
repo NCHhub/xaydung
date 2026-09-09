@@ -4,6 +4,7 @@ nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "Người sắp xây nhà lần đầu thấy hàng trăm hàng ngàn việc, không biết bắt đầu từ đâu. Bài này sắp xếp đúng thứ tự việc cần làm."
 image: "/assets/img/cong-trinh/bien-ban-khao-sat-ho-lien-ke.jpg"
+chu_de: quy-trinh-xay-nha
 ---
 
 **Câu hỏi thật trên các hội nhóm:** *"Em sắp xây nhà, nhìn đi nhìn lại thấy hàng trăm hàng ngàn việc, không biết nên bắt đầu từ đâu."*

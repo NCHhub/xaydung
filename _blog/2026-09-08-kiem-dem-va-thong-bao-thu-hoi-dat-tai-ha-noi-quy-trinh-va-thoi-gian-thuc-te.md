@@ -3,6 +3,7 @@ title: "Kiểm đếm và thông báo thu hồi đất tại Hà Nội: quy trì
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Các bác ở khắp tuyến đều có thông báo thu hồi và lịch kiểm đếm rồi phải không ạ? Em ở Ngọc Hồi vẫn im re."
+chu_de: thu-hoi-den-bu
 ---
 
 Khi anh/chị gặp khách hỏi *“Các bác ở khắp tuyến đều có thông báo thu hồi và lịch kiểm đếm rồi phải không ạ? Em ở Ngọc Hồi vẫn im re.”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

@@ -3,6 +3,7 @@ title: "Sổ tay tra cứu giá xây/sửa nhà Hà Nội 2026 — dành cho anh
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Bảng giá xây/sửa nhà Hà Nội 2026 gọn trong một trang: đơn giá trọn gói theo vùng, hệ số loại hình, các khoản phí ngoài đơn giá và phép tính nhanh khi dẫn khách xem đất. Tra cứu tại chỗ, tự tin tư vấn."
+chu_de: bi-kip-moi-gioi
 ---
 
 Khi khách hỏi *"xây nhà này khoảng bao nhiêu?"* — câu trả lời của anh/chị quyết định độ tin cậy. Sổ tay này gom bảng giá đã kiểm chứng thị trường Hà Nội 2026, để anh/chị tra nhanh tại chỗ, nói được con số và không bị khách hỏi lại lần hai.

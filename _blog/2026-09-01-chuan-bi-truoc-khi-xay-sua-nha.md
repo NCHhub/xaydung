@@ -4,6 +4,7 @@ nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "Những việc một chủ nhà cần chuẩn bị trước khi xây hoặc sửa nhà: thủ tục, ngân sách, chọn nhà thầu, tránh rủi ro."
 image: "/assets/img/cong-trinh/ve-sinh-cuoi-ngay-2.jpg"
+chu_de: quy-trinh-xay-nha
 ---
 
 Xây hoặc sửa nhà là quyết định lớn. Chuẩn bị kỹ từ đầu giúp bạn tránh được những rắc rối, phát sinh tốn kém sau này.

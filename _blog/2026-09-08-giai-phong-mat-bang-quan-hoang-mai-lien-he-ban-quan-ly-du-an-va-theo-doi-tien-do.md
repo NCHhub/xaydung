@@ -3,6 +3,7 @@ title: "Giải phóng mặt bằng quận Hoàng Mai — liên hệ Ban Quản l
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Bác nào ở phường Hoàng Mai có số điện thoại của Ban Quản lý Dự án cho em xin"
+chu_de: thu-hoi-den-bu
 ---
 
 Khi anh/chị gặp khách hỏi *“Bác nào ở phường Hoàng Mai có số điện thoại của Ban Quản lý Dự án cho em xin”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

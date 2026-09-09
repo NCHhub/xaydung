@@ -3,6 +3,7 @@ title: "Thuê nhà ở tạm chờ bàn giao: kinh nghiệm chọn chỗ và nh�
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Sắp tới trả mặt bằng, em định đi thuê nhà ở tạm chờ nhà mới khoảng 1 năm, không biết phải chuẩn bị gì?"
+chu_de: tai-dinh-cu-tam-tru
 ---
 
 Khi anh/chị gặp khách hỏi *“Sắp tới trả mặt bằng, em định đi thuê nhà ở tạm chờ nhà mới khoảng 1 năm, không biết phải chuẩn bị gì?”* — đây là một trong những câu hỏi thật đang nóng nhất trong các hội nhóm nhà đất Hà Nội. Người chủ nhà vùng thu hồi cần một người họ có thể tin, và anh/chị là người họ hỏi đầu tiên.

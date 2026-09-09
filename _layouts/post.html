@@ -12,12 +12,32 @@ layout: default
   {% if page.image %}
     <img class="cover" src="{{ page.image | relative_url }}" alt="{{ page.title }}">
   {% else %}
-    <div class="cover-fallback">🏗️</div>
+    <img class="cover" src="{{ '/assets/img/og-default.png' | relative_url }}" alt="{{ page.title }}" loading="lazy">
   {% endif %}
 
   <div class="content">
     {{ content }}
   </div>
+
+  {% comment %} Bài liên quan — internal linking (yếu tố SEO on-page, chuẩn thế giới) {% endcomment %}
+  {% assign related = "" | split: "," %}
+  {% for p in site.blog %}
+    {% if p.url == page.url %}{% continue %}{% endif %}
+    {% if p.nhom == page.nhom or p.chu_de == page.chu_de %}
+      {% assign related = related | push: p %}
+    {% endif %}
+    {% if related.size >= 3 %}{% break %}{% endif %}
+  {% endfor %}
+  {% if related.size > 0 %}
+  <div class="related">
+    <h3>Bài liên quan</h3>
+    <ul>
+      {% for p in related %}
+      <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
 
   <div class="ctabox">
     <h3>Cần tư vấn xây hoặc sửa nhà?</h3>

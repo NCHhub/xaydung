@@ -1,5 +1,5 @@
 ---
-title: "Tại sao chúng tôi luôn ghi nhận hiện trạng nhà hàng xóm trước khi phá dỡ?"
+title: Tại sao chúng tôi luôn ghi nhận hiện trạng nhà hàng xóm trước khi phá
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "Rủi ro nứt nhà hàng xóm khi xây nhà là nỗi lo thật của chủ nhà phố. Biên bản khảo sát liền kề trước khi khởi công là cách phòng tránh."

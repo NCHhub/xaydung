@@ -1,5 +1,5 @@
 ---
-title: "Hỗ trợ nhà ở khi bị thu hồi đất: bao nhiêu tháng, mỗi hộ bao nhiêu tiền"
+title: "Hỗ trợ nhà ở khi bị thu hồi đất: bao nhiêu tháng, mỗi hộ bao nhiêu"
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Nhà nước hỗ trợ nhà ở khi thu hồi đất mấy tháng vậy các bác, mỗi hộ, mỗi người được bao nhiêu ạ?"

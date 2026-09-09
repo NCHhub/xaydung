@@ -1,9 +1,9 @@
 ---
-title: "Quy trình nghiệm thu và bàn giao nhà phố — checklist vàng trước khi nhận nhà"
+title: Quy trình nghiệm thu và bàn giao nhà phố — checklist vàng trước khi
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-09
 chu_de: quy-trinh-xay-nha
-description: "Quy trình nghiệm thu và bàn giao nhà phố — checklist vàng trước khi nhận nhà"
+description: Quy trình nghiệm thu và bàn giao nhà phố — checklist vàng trước khi nhận nhà Kinh nghiệm thực tế 21 năm từ Hải & Cộng sự — Hà Nội.
 ---
 
 Nếu anh/chị — hay khách của anh/chị — đang tự hỏi: **Khi nhận bàn giao nhà tôi cần kiểm tra những hạng mục nào để tránh hư hỏng sau khi vào ở?** thì bài viết dưới đây chính là câu trả lời thực tế từ công trường Hà Nội, không phải lý thuyết suông.

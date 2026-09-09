@@ -1,9 +1,9 @@
 ---
-title: "Báo giá xây nhà phố Hà Nội 2026 — đơn giá theo m2 và các khoản 'ẩn' dễ bỏ sót"
+title: Báo giá xây nhà phố Hà Nội 2026 — đơn giá theo m2 và các khoản 'ẩn'
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-09
 chu_de: tai-chinh-xay-nha
-description: "Báo giá xây nhà phố Hà Nội 2026 — đơn giá theo m2 và các khoản 'ẩn' dễ bỏ sót"
+description: Báo giá xây nhà phố Hà Nội 2026 — đơn giá theo m2 và các khoản 'ẩn' dễ bỏ sót Kinh nghiệm thực tế 21 năm từ Hải & Cộng sự — Hà Nội.
 ---
 
 Nếu anh/chị — hay khách của anh/chị — đang tự hỏi: **Xây nhà phố tại Hà Nội trọn gói khoảng bao nhiêu tiền một mét vuông?** thì bài viết dưới đây chính là câu trả lời thực tế từ công trường Hà Nội, không phải lý thuyết suông.

@@ -1,5 +1,5 @@
 ---
-title: "Quỹ đất tái định cư cho người dân vùng thu hồi Hà Nội — vì sao khó tìm thông tin và nên hỏi ở đâu"
+title: Quỹ đất tái định cư cho người dân vùng thu hồi Hà Nội — vì sao khó
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "TikTok toàn thấy khu đô thị đa mục tiêu của Vin mà khu đất tái định cư cho dân chẳng thấy có thông tin, khu vực cụ thể nào gì"

@@ -1,5 +1,5 @@
 ---
-title: "Đi làm cả ngày, không thể trông thợ: vậy kiểm soát vật tư và chất lượng kiểu gì?"
+title: "Đi làm cả ngày, không thể trông thợ: vậy kiểm soát vật tư và chất"
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-01
 description: "Nỗi đau mạnh nhất của chủ nhà có tiền: vẫn phải đi làm mà không thể làm giám sát. Hệ thống kiểm soát phải thay con người — đây là cách."

@@ -1,9 +1,9 @@
 ---
-title: "Quy trình xin phép xây dựng nhà phố tại Hà Nội — hồ sơ, nộp ở đâu, bao lâu"
+title: "Quy trình xin phép xây dựng nhà phố tại Hà Nội — hồ sơ, nộp ở đâu"
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-09
 chu_de: quy-trinh-xay-nha
-description: "Quy trình xin phép xây dựng nhà phố tại Hà Nội — hồ sơ, nộp ở đâu, bao lâu"
+description: "Quy trình xin phép xây dựng nhà phố tại Hà Nội — hồ sơ, nộp ở đâu, bao lâu Kinh nghiệm thực tế 21 năm từ Hải & Cộng sự — Hà Nội."
 ---
 
 Nếu anh/chị — hay khách của anh/chị — đang tự hỏi: **Tôi muốn xây nhà tại quận Đống Đa thì cần chuẩn bị hồ sơ gì và xin phép ở đâu cho nhanh?** thì bài viết dưới đây chính là câu trả lời thực tế từ công trường Hà Nội, không phải lý thuyết suông.

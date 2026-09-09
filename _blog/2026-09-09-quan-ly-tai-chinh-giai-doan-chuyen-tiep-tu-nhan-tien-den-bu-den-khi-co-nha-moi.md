@@ -1,5 +1,5 @@
 ---
-title: "Quản lý tài chính giai đoạn chuyển tiếp từ nhận tiền đền bù đến khi có nhà mới"
+title: Quản lý tài chính giai đoạn chuyển tiếp từ nhận tiền đền bù đến khi
 nhom: "Dành cho Môi giới"
 date: 2026-09-09
 description: "Sắp nhận tiền đền bù, chia thế nào để vừa đủ tiền thuê nhà ở tạm, vừa không bị hụt vốn khi khởi công xây nhà mới"

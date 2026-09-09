@@ -1,5 +1,5 @@
 ---
-title: "Thuê nhà ở tạm chờ bàn giao: kinh nghiệm chọn chỗ và những việc cần chuẩn bị"
+title: "Thuê nhà ở tạm chờ bàn giao: kinh nghiệm chọn chỗ và những việc cần"
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Sắp tới trả mặt bằng, em định đi thuê nhà ở tạm chờ nhà mới khoảng 1 năm, không biết phải chuẩn bị gì?"

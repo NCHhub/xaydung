@@ -1,5 +1,5 @@
 ---
-title: "Trả mặt bằng thu hồi đất — xử lý bàn thờ gia tiên và đồ đạc khi phải ở nhà thuê tạm"
+title: Trả mặt bằng thu hồi đất — xử lý bàn thờ gia tiên và đồ đạc khi phải
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Sắp trả mặt bằng đi thuê nhà ở tạm chờ nhà mới khoảng 1 năm thì bàn thờ gia tiên xử lý thế nào"

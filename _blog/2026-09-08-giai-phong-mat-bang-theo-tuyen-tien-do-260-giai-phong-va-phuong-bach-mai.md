@@ -1,5 +1,5 @@
 ---
-title: "Giải phóng mặt bằng theo tuyến: tiến độ 260 Giải Phóng và phường Bạch Mai"
+title: "Giải phóng mặt bằng theo tuyến: tiến độ 260 Giải Phóng và phường Bạch"
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Em thấy bảo chỗ mạn 260 Giải Phóng 15/9 trả tiền, phải không các bác? Phường Bạch Mai tháng mấy giao mặt bằng ạ?"

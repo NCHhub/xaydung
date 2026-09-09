@@ -1,5 +1,5 @@
 ---
-title: "Xử lý khi sai sót trong kiểm đếm hoặc phương án bồi thường khi bị thu hồi đất"
+title: Xử lý khi sai sót trong kiểm đếm hoặc phương án bồi thường khi bị thu
 nhom: "Dành cho Môi giới"
 date: 2026-09-09
 description: "Kiểm đếm xong thấy thiếu mét vuông hoặc áp sai giá nhà, đừng vội ký biên bản nếu không muốn mất tiền oan"

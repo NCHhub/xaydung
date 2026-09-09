@@ -1,9 +1,9 @@
 ---
-title: "Chống thấm triệt để cho nhà cũ tại Hà Nội — đừng chỉ 'sơn đè' lên vết mốc"
+title: Chống thấm triệt để cho nhà cũ tại Hà Nội — đừng chỉ 'sơn đè' lên vết
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-09
 chu_de: sua-chua-bao-tri
-description: "Chống thấm triệt để cho nhà cũ tại Hà Nội — đừng chỉ 'sơn đè' lên vết mốc"
+description: Chống thấm triệt để cho nhà cũ tại Hà Nội — đừng chỉ 'sơn đè' lên vết mốc Kinh nghiệm thực tế 21 năm từ Hải & Cộng sự — Hà Nội.
 ---
 
 Nếu anh/chị — hay khách của anh/chị — đang tự hỏi: **Nhà xây từ những năm 90, tường thấm mốc nặng, nên dùng vật liệu gì để sửa dứt điểm?** thì bài viết dưới đây chính là câu trả lời thực tế từ công trường Hà Nội, không phải lý thuyết suông.

@@ -2,7 +2,7 @@
 title: "Giải phóng mặt bằng theo tuyến đường Hà Nội — tiến độ và thủ tục"
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
-description: "Em thấy bảo chỗ mạn 260 giải phóng 15/9 trả tiền phải không các bác."
+description: Em thấy bảo chỗ mạn 260 giải phóng 15/9 trả tiền phải không các bác Kinh nghiệm thực tế 21 năm từ Hải & Cộng sự — Hà Nội.
 chu_de: thu-hoi-den-bu
 ---
 

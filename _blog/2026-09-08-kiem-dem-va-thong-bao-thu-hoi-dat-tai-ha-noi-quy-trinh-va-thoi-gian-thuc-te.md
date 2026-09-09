@@ -1,5 +1,5 @@
 ---
-title: "Kiểm đếm và thông báo thu hồi đất tại Hà Nội: quy trình và thời gian thực tế"
+title: "Kiểm đếm và thông báo thu hồi đất tại Hà Nội: quy trình và thời gian"
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Các bác ở khắp tuyến đều có thông báo thu hồi và lịch kiểm đếm rồi phải không ạ? Em ở Ngọc Hồi vẫn im re."

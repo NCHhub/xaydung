@@ -1,7 +1,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#115e59">
-<title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-<meta name="description" content="{{ page.description | default: site.description }}">
+{% seo %}
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- JSON-LD LocalBusiness — NAP nhất quán cho Google local search (chuẩn thế giới) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Hải & Cộng sự",
+  "description": "Xây nhà, sửa nhà và tư vấn nhà đất tại Hà Nội — 21 năm kinh nghiệm.",
+  "url": "{{ site.url | absolute_url }}",
+  "telephone": "+84983601366",
+  "email": "{{ site.email }}",
+  "image": "{{ '/assets/img/og-default.png' | absolute_url }}",
+  "priceRange": "Theo khảo sát",
+  "areaServed": ["Hà Nội", "Hà Nội và các vùng lân cận"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hà Nội",
+    "addressCountry": "VN"
+  },
+  "sameAs": [
+    "https://www.facebook.com/NguyenCaoHaiVN/",
+    "https://www.youtube.com/@NguyenCaoHaiChannel",
+    "https://www.facebook.com/groups/NguyenCaoHai"
+  ]
+}
+</script>

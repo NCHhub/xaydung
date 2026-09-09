@@ -1,8 +1,8 @@
 ---
-title: "Giải phóng mặt bằng quận Hoàng Mai — liên hệ Ban Quản lý dự án và theo dõi tiến độ"
+title: Giải phóng mặt bằng quận Hoàng Mai — liên hệ Ban Quản lý dự án và
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
-description: "Bác nào ở phường Hoàng Mai có số điện thoại của Ban Quản lý Dự án cho em xin"
+description: Bác nào ở phường Hoàng Mai có số điện thoại của Ban Quản lý Dự án cho em xin Kinh nghiệm thực tế 21 năm từ Hải & Cộng sự — Hà Nội.
 chu_de: thu-hoi-den-bu
 ---
 

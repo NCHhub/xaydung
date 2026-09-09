@@ -1,9 +1,9 @@
 ---
-title: "Kinh nghiệm chọn nhà thầu xây dựng uy tín tại Hà Nội — tránh thầu 'cò' môi giới"
+title: Kinh nghiệm chọn nhà thầu xây dựng uy tín tại Hà Nội — tránh thầu
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-09
 chu_de: quy-trinh-xay-nha
-description: "Kinh nghiệm chọn nhà thầu xây dựng uy tín tại Hà Nội — tránh thầu 'cò' môi giới"
+description: Kinh nghiệm chọn nhà thầu xây dựng uy tín tại Hà Nội — tránh thầu 'cò' môi giới Kinh nghiệm thực tế 21 năm từ Hải & Cộng sự — Hà Nội.
 ---
 
 Nếu anh/chị — hay khách của anh/chị — đang tự hỏi: **Làm sao biết nhà thầu có năng lực thật hay chỉ là môi giới trung gian?** thì bài viết dưới đây chính là câu trả lời thực tế từ công trường Hà Nội, không phải lý thuyết suông.

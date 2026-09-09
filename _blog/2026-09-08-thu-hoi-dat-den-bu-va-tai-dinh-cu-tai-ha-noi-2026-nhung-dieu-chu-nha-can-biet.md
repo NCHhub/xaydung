@@ -1,5 +1,5 @@
 ---
-title: "Thu hồi đất, đền bù và tái định cư tại Hà Nội 2026 — những điều chủ nhà cần biết"
+title: "Thu hồi đất, đền bù và tái định cư tại Hà Nội 2026 — những điều chủ"
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Các bác ở khắp tuyến đều có thông báo thu hồi và lich kiểm đếm rui phai ko ak ? Em ở Ngoc hồi vẫn im re"

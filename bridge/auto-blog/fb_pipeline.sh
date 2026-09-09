@@ -225,4 +225,9 @@ else
     echo "✅ Không có bài PASS mới trong session này."
 fi
 
+# ---- 8) SEO ENGINE: tự động tối ưu web theo chuẩn thế giới (0 token, Diamond 09-09) ----
+# Audit toàn bộ bài + ghi báo cáo hằng ngày → vòng lặp đo → học → chỉnh.
+echo "🔍 SEO engine đang audit toàn bộ bài (chuẩn thế giới)..."
+python3 bridge/auto-blog/seo_engine.py || echo "⚠️ Có bài chưa đạt chuẩn SEO — xem ~/empire/shared/logs/seo_audit.log, ưu tiên xử lý ảnh + title."
+
 echo "=== fb_pipeline.sh xong ==="

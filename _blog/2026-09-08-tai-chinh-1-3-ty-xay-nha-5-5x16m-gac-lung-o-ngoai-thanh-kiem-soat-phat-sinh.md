@@ -1,5 +1,5 @@
 ---
-title: "Tài chính 1.3 tỷ xây nhà 5.5x16m gác lửng ở ngoại thành — kiểm soát phát sinh"
+title: Tài chính 1.3 tỷ xây nhà 5.5x16m gác lửng ở ngoại thành — kiểm soát
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Tài chính 1.3 tỷ có đủ xây nhà 5.5x16m gác lửng ở ngoại thành không? Làm sao kiểm soát phát sinh?"

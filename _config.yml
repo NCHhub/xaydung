@@ -1,14 +1,26 @@
 # Cấu hình Jekyll — web X.aladDin.vn
 # GitHub Pages tự build Jekyll; không cài máy local.
 
-title: "Hải & Cộng sự — Xây · Sửa nhà"
+title: "Hải & Cộng sự — Xây · Sửa nhà Hà Nội"
 email: nch@aladdin.vn
 description: >-
-  Giới thiệu khách xây, sửa nhà — mở thêm thu nhập cho ACE môi giới.
-  Công trình thật, hoa hồng rõ ràng, hợp tác lâu dài. 0983.601.366.
+  Nơi cho đi kiến thức, kinh nghiệm và công cụ xây sửa nhà Hà Nội.
+  Giá xây nhà 2026, sửa nhà từng hạng mục, quy trình thủ tục, mẹo chọn thầu —
+  từ chuyên gia 21 năm kinh nghiệm. 0983.601.366.
 baseurl: ""
 url: "https://X.aladDin.vn"
 lang: vi
+
+author: "Nguyễn Cao Hải"
+logo: /assets/img/og-default.png
+image: /assets/img/og-default.png
+
+# Mạng xã hội — cho SEO + xác thực Google/Bing
+social:
+  name: Nguyễn Cao Hải
+  links:
+    - https://www.facebook.com/NguyenCaoHaiVN/
+    - https://www.youtube.com/@NguyenCaoHaiChannel
 
 # Collections — 2 loại nội dung chính
 collections:
@@ -31,8 +43,13 @@ defaults:
     values:
       layout: "post"
 
-# Only GitHub-supported settings (no external plugins)
-plugins: []
+# SEO chuẩn GitHub Pages (0 token — plugins hỗ trợ sẵn, tự sinh sitemap/feed/meta)
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+feed:
+  path: feed.xml
 
 # Permalink cho các page thường (index) mặc định theo file
 permalink: pretty

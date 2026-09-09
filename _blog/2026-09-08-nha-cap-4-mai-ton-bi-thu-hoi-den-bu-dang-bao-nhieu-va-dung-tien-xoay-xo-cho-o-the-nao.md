@@ -1,5 +1,5 @@
 ---
-title: "Nhà cấp 4 mái tôn bị thu hồi — đền bù đáng bao nhiêu và dùng tiền xoay xở chỗ ở thế nào"
+title: Nhà cấp 4 mái tôn bị thu hồi — đền bù đáng bao nhiêu và dùng tiền
 nhom: "Dành cho Môi giới"
 date: 2026-09-08
 description: "Bác nào trong nhóm có thông tin giá đền bù sau kiểm đếm, ví dụ nhà cấp 4 mái tôn tường gạch được bao nhiêu"

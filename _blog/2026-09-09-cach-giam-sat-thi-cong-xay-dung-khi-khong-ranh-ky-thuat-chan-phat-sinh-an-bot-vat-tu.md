@@ -1,5 +1,5 @@
 ---
-title: "Cách giám sát thi công xây dựng khi không rành kỹ thuật — chặn phát sinh, ăn bớt vật tư"
+title: Cách giám sát thi công xây dựng khi không rành kỹ thuật — chặn phát
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-09
 chu_de: quy-trinh-xay-nha

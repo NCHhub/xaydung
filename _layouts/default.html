@@ -6,6 +6,42 @@
 <body>
   {% include header.html %}
   {{ content }}
+
+<style>
+/* ===== NÉN SPACING — cắt ~70% khoảng trống dọc, web gọn như Apple (Diamond 09-10) ===== */
+.tool-section{padding:10px 0 6px}
+.tool-section .subtitle{margin:0 0 8px}
+.login-zone{margin:0 auto 6px}
+.flow-hint{margin:0 auto 6px}
+.preview-wrap{margin:0 auto 6px}
+.input-box{margin:0 auto 8px}
+.calc-box{margin:0 auto 8px;padding:12px 14px}
+.tool-grid{margin:0 auto 8px}
+.result-wrap{margin:0 auto 8px}
+.loading-wrap{margin:0 auto 8px;padding:8px 0}
+.offline-wrap{margin:0 auto 8px}
+.mqm-wrap{padding:clamp(6px,1.5vw,12px) 16px}
+.mqm-intro{margin-bottom:6px}
+.mqm-route-header{padding:10px 14px}
+.mqm-steps{padding:10px 12px}
+.mqm-step-desc{margin:2px 0 5px}
+.guest-greet{padding:14px 16px;margin:0 0 12px}
+.guest-greet-head{margin-bottom:10px}
+.guest-greet-card{padding:10px 12px}
+.guest-greet-card b{margin-top:5px}
+.guest-greet-cta{padding:10px 16px}
+.about{padding-top:12px}
+.benefits{padding-top:10px}
+.postlist{padding-bottom:8px}
+@media (max-width:720px){
+  .guest-greet{padding:12px 14px}
+  .guest-greet-grid{gap:10px}
+}
+@media (min-width:900px){
+  .mqm-route-header{padding:12px 18px}
+  .mqm-steps{padding:14px 16px}
+}
+</style>
   {% include footer.html %}
   {% include zalo-button.html %}
 </body>

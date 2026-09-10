@@ -5,6 +5,43 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
 ---
 
 <!-- ================================================================
+     ★ HOOK MÔI GIỚI — "1 BƯỚC CHỐT: GỌI HẢI & CỘNG SỰ" (Diamond 09-10)
+     Mô phỏng landing thành công thế giới: 1 hook + 1 nút gọi + content accordion.
+     ================================================================ -->
+<style>
+/* 1 bước chốt — hook đầu web */
+.hook-zone{padding:24px 16px 6px;text-align:center;}
+.hook-badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--teal,#0f766e);border-radius:980px;padding:5px 14px;margin-bottom:12px;}
+.hook-title{font-size:clamp(1.5rem,4.5vw,2.4rem);font-weight:900;letter-spacing:-.03em;line-height:1.18;color:#0f172a;margin:0 0 10px;max-width:780px;margin-left:auto;margin-right:auto;}
+.hook-title b{color:#c2410c;}
+.hook-sub{font-size:1.02rem;color:#475569;margin:0 auto 6px;max-width:660px;line-height:1.55;}
+.hook-proof{display:inline-flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 2px;font-size:.9rem;font-weight:800;color:#0f766e;}
+.hook-proof span{padding:6px 14px;border-radius:980px;background:rgba(15,118,110,.08);}
+.hook-call{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;background:linear-gradient(135deg,#f59e0b,#ea580c);color:#fff;font-size:clamp(1.05rem,3vw,1.3rem);font-weight:900;text-decoration:none;padding:16px 34px;border-radius:999px;box-shadow:0 10px 28px rgba(234,88,12,.35);transition:transform .15s,box-shadow .15s;}
+.hook-call:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(234,88,12,.45);}
+.hook-own{font-size:.82rem;color:#64748b;margin:10px auto 0;max-width:660px;line-height:1.5;}
+.hook-own b{color:#134e4a;}
+/* Accordion — nội dung thu gọn: chỉ tiêu đề, click mới sổ */
+.ops-acc{max-width:1200px;margin:0 auto 10px;border:1px solid #e2e8f0;border-radius:14px;background:#fff;overflow:hidden;}
+.ops-acc>summary{cursor:pointer;padding:13px 18px;font-weight:800;font-size:1.02rem;color:var(--mqm-teal-dark,#115e59);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#f8fafc;}
+.ops-acc>summary::-webkit-details-marker{display:none}
+.ops-acc>summary::after{content:"▾";transition:transform .2s;font-size:.95rem;color:var(--teal,#0f766e);flex-shrink:0;}
+.ops-acc[open]>summary::after{transform:rotate(180deg)}
+.ops-acc[open]>summary{background:#f0fdfa;}
+.ops-acc .ops-body{padding:14px 16px 18px;}
+@media (max-width:720px){.hook-zone{padding:18px 12px 4px}.hook-call{padding:14px 26px;width:100%;}}
+</style>
+
+<div class="hook-zone">
+  <span class="hook-badge">Môi giới xây · sửa nhà Hà Nội</span>
+  <h1 class="hook-title">Khách có nhu cầu xây/sửa nhà?<br><b>1 bước chốt — Gọi Hải &amp; Cộng sự.</b></h1>
+  <p class="hook-sub">Quy hoạch, thiết kế, thi công, giấy tờ, đền bù — một cú gọi là xong. Phần còn lại, Hải và Cộng sự lo.</p>
+  <div class="hook-proof"><span>100% khách hài lòng</span><span>90% chốt hợp đồng</span></div>
+  <a class="hook-call" href="tel:0983601366">📞 GỌI NGAY 0983.601.366</a>
+  <p class="hook-own">Tự tin tuyên bố với khách: <b>“Tôi có sân sau là Hải và Cộng sự — tôi có cổ phần trong Hải và Cộng sự.”</b></p>
+</div>
+
+<!-- ================================================================
      ALADDIN — TRỢ LÝ MÔI GIỚI THI CÔNG (KIẾN TRÚC "QUY TRÌNH NGẦM")
      Web = da & giác quan · Máy chủ = thần kinh · OpenCode = bộ não · Dữ liệu = trí nhớ
      SÓNG NƯỚC: mở nhỏ cốt lõi → hoạt động → mở thêm. Mỗi zone = tế bào riêng biệt.
@@ -516,6 +553,9 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
   </div>
 
 <!-- ★ ZONE TIẾP ĐÓN KHÁCH XÂY/SỬA NHÀ — bổ sung cho khách tìm thông tin (Diamond 09-10, tư duy Amazon) -->
+  <details class="ops-acc">
+    <summary>🏠 Mới đến? Lộ trình xây/sửa nhà cho Chủ nhà (mở ra)</summary>
+    <div class="ops-body">
     <section class="guest-greet">
       <style>
         .guest-greet{background:#f4f7f6;border-radius:18px;padding:28px 24px;margin:0 0 32px;border:1px solid #e2e8f0}
@@ -555,7 +595,12 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
       </div>
       <a class="guest-greet-cta" href="tel:0983601366">📞 Gọi/Hỏi ngay chuyên gia — 0983.601.366</a>
     </section>
+    </div>
+  </details>
 
+  <details class="ops-acc">
+    <summary>🗺️ Lộ trình chi tiết: Xây nhà mới · Thu hồi đất → Nhà mới (mở ra)</summary>
+    <div class="ops-body">
   <div class="mqm-routes">
 
     <section class="mqm-route">
@@ -703,6 +748,8 @@ description: "Aladdin giúp môi giới đầu khách mua biết căn nhà sẽ 
       </div>
     </section>
   </div>
+  </div>
+</details>
 </div>
 
 <!-- ★ CAM KẾT CỘNG SINH — ngắn gọn ngay dưới công cụ -->
@@ -1395,6 +1442,9 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
 </section>
 
 <!-- ★ CẨM NANG — kiến thức nối tiếp trên chính trang chủ (1 trang duy nhất) -->
+<details class="ops-acc">
+  <summary>📖 Cẩm nang xây · sửa · thu hồi — đầy đủ bài viết (mở ra)</summary>
+  <div class="ops-body">
 <section class="benefits" id="camnang" style="padding-top:28px;">
   <div class="container">
     <span class="section-tag">📖 Cẩm nang</span>
@@ -1470,3 +1520,5 @@ function esc(s){const d=document.createElement('div');d.textContent=s;return d.i
     {% endfor %}
   </div>
 </section>
+  </div>
+</details>

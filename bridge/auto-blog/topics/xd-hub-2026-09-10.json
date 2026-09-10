@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-10",
+  "source": "xd-hub-zalo-730",
+  "topics": [
+    {
+      "chu_de": "Đất bị thu hồi quy hoạch, không sang tên được làm sao?",
+      "cau_hoi": "e đi nộp 1 cửa đó anh, nó trả về bảo đất bị quy hoach thu hồi đền bù, ko sang tên được, giờ làm ầm lên hay như thế nào a nhỉ?"
+    },
+    {
+      "chu_de": "Có thể thu hồi phân lô bán nền không?",
+      "cau_hoi": "Liệu có thu hồi phân lô bán nền?"
+    },
+    {
+      "chu_de": "Quy hoạch 1/500 hay 1/2000, quy hoạch làm gì?",
+      "cau_hoi": "Quy hoach này là 1/500 hay 1/2000 a nhỉ? Quy hoach làm gì mà rộng thế a nhỉ"
+    },
+    {
+      "chu_de": "Mặt tiền 6,3m, diện tích 93m2, tối đa số tầng được phép?",
+      "cau_hoi": "Mặt phố Phương Mai, Đống Đa, 93 m2, 6,3 m mặt tiền. Tối đa bn tầng Duy ơi?"
+    },
+    {
+      "chu_de": "Thiết kế 5 tầng + 3 tầng mái có chắc không?",
+      "cau_hoi": "Bên thiết kế hỏi có chắc chắn được 5 + 3 khôn?"
+    },
+    {
+      "chu_de": "Khai thước 5 tỷ vay, ngân hàng nào hỗ trợ khu này tốt?",
+      "cau_hoi": "Dưới đó khai th.u.ế như nào em? Khách sẽ vay khoảng 5 tỷ, ngân hàng nào hỗ trợ tốt khu này em liên hệ dần luôn."
+    }
+  ],
+  "note": "6 câu hỏi THẬT từ Zalo/XD-HUB, MCP gpt-oss chốt verbatim + tiêu đề chuẩn hóa (tam quyền verify DB)."
+}

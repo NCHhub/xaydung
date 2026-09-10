@@ -1,5 +1,6 @@
 ---
 title: "Có thể thu hồi phân lô bán nền không?"
+chu_de: thu-hoi-den-bu
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-10
 description: "Liệu có thu hồi phân lô bán nền?"

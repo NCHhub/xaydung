@@ -1,5 +1,6 @@
 ---
 title: "Quy hoạch 1/500 hay 1/2000, quy hoạch làm gì?"
+chu_de: thu-hoi-den-bu
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-10
 description: "Quy hoach này là 1/500 hay 1/2000 a nhỉ? Quy hoach làm gì mà rộng thế a nhỉ"

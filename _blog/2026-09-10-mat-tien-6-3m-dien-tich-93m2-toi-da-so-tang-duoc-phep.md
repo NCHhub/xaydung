@@ -1,5 +1,6 @@
 ---
 title: "Mặt tiền 6,3m, diện tích 93m2, tối đa số tầng được phép?"
+chu_de: quy-trinh-xay-nha
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-10
 description: "Mặt phố Phương Mai, Đống Đa, 93 m2, 6,3 m mặt tiền. Tối đa bn tầng Duy ơi?"

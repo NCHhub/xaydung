@@ -1,5 +1,6 @@
 ---
 title: "Thiết kế 5 tầng + 3 tầng mái có chắc không?"
+chu_de: quy-trinh-xay-nha
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-10
 description: "Bên thiết kế hỏi có chắc chắn được 5 + 3 khôn?"

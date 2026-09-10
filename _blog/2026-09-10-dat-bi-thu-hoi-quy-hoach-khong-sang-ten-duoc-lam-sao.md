@@ -1,5 +1,6 @@
 ---
 title: "Đất bị thu hồi quy hoạch, không sang tên được làm sao?"
+chu_de: thu-hoi-den-bu
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-10
 description: "e đi nộp 1 cửa đó anh, nó trả về bảo đất bị quy hoach thu hồi đền bù, ko sang tên được, giờ làm ầm lên hay như thế nào a nhỉ?"

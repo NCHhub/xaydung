@@ -55,6 +55,19 @@ CHUDE_PROGRESS = {
     "mua-ban": "cần bổ sung key mua-ban vào _data/moi-gioi.yml trước khi sinh bài",
 }
 
+# Nguồn SENSE mở rộng: XD-HUB (730 câu hỏi thật Zalo) — demand theo segment.
+# CHỈ BÁO CÁO gap để MCP chốt topics (bài học: heuristic tự sinh câu hỏi rác).
+# Map segment XD-HUB → nhóm cẩm nang blog (id trong _data/camnang.yml).
+XD_HUB_DB = Path.home() / "empire" / "shared" / "bds-xd-hub" / "xd-hub.db"
+XDHUB_SEGMENT_TAXONOMY = {
+    "giay-to-phap-ly": "thu-hoi-den-bu",
+    "xay-moi": "quy-trinh-xay-nha",
+    "tai-chinh": "tai-chinh-xay-nha",
+    "sua-chua": "sua-chua-bao-tri",
+    "noi-that-hoan-thien": "sua-chua-bao-tri",
+    "thau-gia": None,  # chưa có nhóm cẩm nang → gap lớn nhất, MCP chốt
+}
+
 # Map chu_de trong library → HƯỚNG đối tượng bài viết nên phục vụ
 CHUDE_TO_NHOM = {
     "thu-hoi-dat": "Dành cho Chủ nhà",
@@ -95,6 +108,26 @@ def load_blog_topics():
             m2 = re.search(r'^nhom:\s*"([^"]+)"', text, re.M)
             nhom_count[m2.group(1) if m2 else "?"] += 1
     return used, nhom_count
+
+
+def load_xdhub_demand():
+    """XD-HUB: đếm luồng Zalo theo segment (zalo_thread.segments, phân tách phẩy)."""
+    if not XD_HUB_DB.exists():
+        return {}
+    try:
+        import sqlite3
+        con = sqlite3.connect(f"file:{XD_HUB_DB}?mode=ro", uri=True)
+        cur = con.cursor()
+        seg_count = {}
+        for (segs,) in cur.execute("SELECT segments FROM zalo_thread WHERE segments IS NOT NULL"):
+            for s in segs.split(","):
+                s = s.strip()
+                if s:
+                    seg_count[s] = seg_count.get(s, 0) + 1
+        con.close()
+        return seg_count
+    except Exception:
+        return {}
 
 
 def main() -> int:
@@ -173,6 +206,29 @@ def main() -> int:
     for cd, d in sorted(hot.items(), key=lambda kv: -kv[1]["eng"])[:8]:
         tax = CHUDE_TO_TAXONOMY.get(cd, cd)
         lines.append(f"   {cd} (→ bài {tax}): eng={d['eng']} ({d['count']} hỏi) · bài đã có={used.get(tax,0)}")
+    # ── SENSE mở rộng: nhu cầu thật Zalo (XD-HUB) ──────────────────────
+    xdhub = load_xdhub_demand()
+    if xdhub:
+        lines.append("🧭 XD-HUB (Zalo — nhu cầu thật; gap → MCP chốt topics, không auto-sinh):")
+        gaps = []
+        for seg in sorted(xdhub, key=lambda s: -xdhub[s]):
+            tax = XDHUB_SEGMENT_TAXONOMY.get(seg)
+            have = used.get(tax, 0) if tax else 0
+            n = xdhub[seg]
+            if not tax:
+                mark = "⛔ chưa có nhóm"
+            elif have >= 3:
+                mark = "✓ cover"
+            elif have:
+                mark = "⚠ thiếu"
+            else:
+                mark = "⛔ chưa có bài"
+            lines.append(f"   {seg}: {n} luồng → nhóm {tax or '(thiếu)'} ({have} bài) [{mark}]")
+            if have < 3:
+                gaps.append((n, seg, tax))
+        if gaps:
+            n, seg, tax = max(gaps)
+            lines.append(f"   → Gợi ý tiến hóa: '{seg}' ({n} luồng Zalo) chưa đủ bài → giao MCP chốt topics đầu vào thật verbatim.")
     lines.append("🔄 EVOLVE — topics mới sinh:")
     if out:
         lines.extend(f"   + [{t['chu_de']}]" for t in new_topics)

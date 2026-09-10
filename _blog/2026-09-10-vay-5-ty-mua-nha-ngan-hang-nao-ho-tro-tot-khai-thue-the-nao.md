@@ -1,5 +1,6 @@
 ---
 title: "Vay 5 tỷ mua nhà — ngân hàng nào hỗ trợ tốt, khai thuế thế nào?"
+chu_de: tai-chinh-xay-nha
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-10
 description: "Dưới đó khai th.u.ế như nào em? Khách sẽ vay khoảng 5 tỷ, ngân hàng nào hỗ trợ tốt khu này em liên hệ dần luôn."

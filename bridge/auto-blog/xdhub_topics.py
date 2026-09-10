@@ -94,6 +94,11 @@ def main():
             if any(x in q_low for x in ["anh ơi", "shop ơi", "duy ơi", "bạn ơi", "các bác ơi",
                                         "bên mình", "thảo ơi", "vũ ơi", "vinh ơi"]):
                 continue
+            # bỏ chào hàng B2B (xưởng/thi công tự quảng cáo) — không phải nhu cầu Chủ nhà
+            if any(x in q_low for x in ["tên là", "xưởng sản xuất", "gửi em bản vẽ",
+                                        "liên hệ dần", "liên hệ em", "bên em chuyên",
+                                        "mình chuyên", "làm tại xưởng"]):
+                continue
             # ưu tiên câu chuẩn: bắt đầu bằng từ nghi vấn/ngành, không "e","em","tôi" đứng đầu
             first = q_low.strip().split(" ")[0].strip(".,")
             if first not in QUESTION_STARTS and not any(k in q_low for k in SEGMENT_KEYWORDS[seg][:4]):
@@ -122,6 +127,15 @@ def main():
         "note": f"Tự học từ XD-HUB: 730 câu hỏi thật Zalo (segment nóng: pháp lý/đền bù → thầu/báo giá → tài chính...). {len(topics)} chủ đề mới.",
     }
     out = TOPICS_DIR / f"xd-hub-{today}.json"
+    # KHÔNG ghi đè bản đã chốt (MCP chốt = chuẩn, heuristic chỉ đề xuất khi chưa có)
+    if out.exists():
+        try:
+            existing = json.loads(out.read_text(encoding="utf-8"))
+            if existing.get("topics"):
+                print(f"⏭️ {out.name} đã có {len(existing['topics'])} topics (bản MCP chốt) — heuristic không ghi đè.")
+                return
+        except Exception:
+            pass
     out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"✅ topics: {out.relative_to(SITE)} ({len(topics)} chủ đề)")
     for t in payload["topics"]:

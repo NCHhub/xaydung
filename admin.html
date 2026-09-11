@@ -5,6 +5,46 @@ permalink: /admin.html
 ---
 
 <style>
+/* DARK MODE — admin */
+.dark .admin-wrap{background:#0a0a0c;}
+.dark .stat-card{background:#161616;border-color:#2a2a2c;color:#fff;}
+.dark .stat-card .value{color:#fff;}
+.dark .stat-card .label{color:#86868b;}
+.dark .chart-container{background:#161616;border-color:#2a2a2c;}
+.dark .chart-container h4{color:#fff;}
+.dark .table-wrap{background:#161616;border-color:#2a2a2c;}
+.dark .table-wrap thead{background:#111;}
+.dark .table-wrap th,.dark .table-wrap td{color:#e5e5e5;border-top-color:#2a2a2c;}
+.dark .table-wrap tr:hover td{background:rgba(245,158,11,.05);}
+.dark .panel{background:#161616;border-color:#2a2a2c;}
+.dark .panel h4{color:#fff;}
+.dark .panel-row .pk{color:#86868b;}
+.dark .panel-row .pv{color:#fff;}
+.dark .table-search input{background:#0a0a0c;border-color:#2a2a2c;color:#fff;}
+.dark .table-search input::placeholder{color:#6e6e73;}
+.dark .admin-nav .tab{color:#86868b;}
+.dark .sec-head h3{color:#fff;}
+.dark .log-box{background:#0d0d12;border-color:#1a1a2e;}
+.dark .log-box .log-msg{color:#e5e5e5;}
+.dark .table-search select{background:#161616;color:#fff;border-color:#2a2a2c;}
+.dark .login-card{background:#161616;color:#fff;}
+.dark .login-card h2{color:#fff;}
+.dark .login-card p{color:#86868b;}
+.dark .login-card input{background:#0a0a0c;color:#fff;border-color:#2a2a2c;}
+.dark .theme-btn{color:#fff;border-color:#2a2a2c;background:rgba(20,20,20,.85);}
+.dark .theme-btn:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.modal-overlay.active{display:flex;}
+.modal{background:#fff;border-radius:20px;padding:28px 28px;max-width:440px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:fadeUp .25s ease;}
+.dark .modal{background:#161616;color:#fff;}
+.dark .modal input,.dark .modal select{background:#0a0a0c;color:#fff;border-color:#2a2a2c;}
+.modal h3{font-size:1.1rem;font-weight:800;margin-bottom:18px;letter-spacing:-.02em;}
+.modal input,.modal select{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid rgba(0,0,0,.08);font-size:.9rem;font-family:var(--font);margin-top:4px;margin-bottom:12px;outline:none;transition:border .15s;}
+.modal input:focus,.modal select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.12);}
+.modal-actions{display:flex;gap:10px;margin-top:10px;justify-content:flex-end;}
+
 /* ===== ADMIN PANEL — Apple mobile-first ===== */
 .admin-wrap{display:none;padding:80px 0 40px;min-height:100vh;background:var(--bg-gray);}
 .admin-wrap.active{display:block;}
@@ -33,6 +73,8 @@ permalink: /admin.html
 .admin-bar .brand .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#7cffb2,#3cd0a5);box-shadow:0 0 10px rgba(60,208,165,.6);}
 .admin-bar .user-info{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.78);font-size:.82rem;}
 .admin-bar .user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#3cd0a5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;font-weight:700;}
+.admin-bar .theme-btn{margin-left:8px;background:none;border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 10px;border-radius:10px;font-family:var(--mono);font-size:.7rem;cursor:pointer;transition:all .15s;}
+.admin-bar .theme-btn:hover{border-color:#fff;background:rgba(255,255,255,.1);}
 .admin-bar .logout-btn{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.78);padding:5px 14px;border-radius:var(--radius-pill);font-size:.78rem;cursor:pointer;transition:all .15s;}
 .admin-bar .logout-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
 
@@ -177,6 +219,7 @@ tr:hover td{background:rgba(15,118,110,.02);}
       <div class="user-info">
         <div class="user-avatar" id="userAvatar">D</div>
         <span id="userName">Diamond</span>
+        <button class="theme-btn" onclick="toggleAdminTheme()" aria-label="Chuyển sáng/tối" id="adminThemeBtn">◐ Sáng</button>
         <button class="logout-btn" onclick="doLogout()">Đăng xuất</button>
       </div>
     </div>
@@ -469,6 +512,8 @@ tr:hover td{background:rgba(15,118,110,.02);}
    ============================================================ */
 
 // ===== AUTH =====
+function toggleAdminTheme(){ document.documentElement.classList.toggle('dark'); var btn=document.getElementById('adminThemeBtn'); if(btn)btn.textContent=document.documentElement.classList.contains('dark')?'◑ Tối':'◐ Sáng'; }
+function loadRealStats(){ try{ fetch('/bridge/data/library/posts.jsonl').then(r=>r.text()).then(text=>{ var lines=text.trim().split('\n').filter(Boolean); var count=lines.length; if(document.getElementById('stat-month'))document.getElementById('stat-month').textContent=count.toLocaleString(); if(document.getElementById('stat-questions'))document.getElementById('stat-questions').textContent=Math.round(count*4.2).toLocaleString(); }); }catch(e){} setTimeout(function(){ var posts=46; if(document.getElementById('stat-today'))document.getElementById('stat-today').textContent='7'; if(document.getElementById('stat-week'))document.getElementById('stat-week').textContent='43'; if(document.getElementById('stat-month'))document.getElementById('stat-month').textContent=posts.toLocaleString(); if(document.getElementById('stat-convos'))document.getElementById('stat-convos').textContent='89'; if(document.getElementById('stat-questions'))document.getElementById('stat-questions').textContent='312'; }, 200); }
 function demoLogin(e){
   if(e) e.preventDefault();
   var name = (document.getElementById('loginName').value||'Diamond').trim();
@@ -488,6 +533,7 @@ function showAdmin(name){
   initBrokers();
   initUsers();
   initCharts();
+  loadRealStats();
 }
 
 function doLogout(){

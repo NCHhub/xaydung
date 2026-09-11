@@ -1,176 +1,292 @@
 ---
 layout: default
 title: "x.aladdin.vn — CLI Apple Style"
-description: "Giao diện đơn giản: sidebar + nội dung chính, bài viết 02 + công cụ trở lại."
+description: "Giao diện mạnh mẽ: hook mãnh liệt, tin tức chạy, lợi ích môi giới, công cụ đầy đủ."
 ---
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=SF+Mono:wght@400;500;600&display=swap');
-:root{--bg:#f6f6f7;--surface:#fff;--surface-2:#fafafa;--ink:#1d1d1f;--ink-2:#86868b;--ink-3:#6e6e73;--border:#e5e5e7;--border-soft:#f0f0f2;--accent:#0071e3;--shadow:0 12px 32px rgba(0,0,0,.05);--radius:16px;--mono:'SF Mono','Fira Mono',monospace;}
-.dark{--bg:#0a0a0a;--surface:#111;--surface-2:#161616;--ink:#f5f5f7;--ink-2:#86868b;--ink-3:#6e6e73;--border:#2a2a2c;--border-soft:#1c1c1e;--shadow:0 16px 40px rgba(0,0,0,.45);}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+:root{--bg:#0a0a0a;--surface:#111;--surface-2:#161616;--ink:#f5f5f7;--ink-2:#86868b;--ink-3:#6e6e73;--ink-4:#1d1d1f;--border:#2a2a2c;--border-soft:#1c1c1e;--accent:#f59e0b;--accent-2:#0071e3;--shadow:0 16px 40px rgba(0,0,0,.55);--radius:20px;--mono:'JetBrains Mono','Fira Mono',monospace;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;transition:background .35s,color .35s;}
+body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden;}
 
-/* Navbar */
-.cli-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(245,245,247,.8);backdrop-filter:saturate(180%) blur(24px);-webkit-backdrop-filter:saturate(180%) blur(24px);border-bottom:1px solid var(--border-soft);display:flex;align-items:center;padding:0 24px;transition:background .35s,border-color .35s;}
-.dark .cli-nav{background:rgba(10,10,10,.75);border-bottom-color:#1c1c1e;}
-.cli-brand{font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;}
+/* MARQUEE / TIN TỨC CHẠY */
+.ticker{position:fixed;top:0;left:0;right:0;z-index:200;height:36px;background:#b91c1c;color:#fff;display:flex;align-items:center;overflow:hidden;font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;border-bottom:1px solid #991b1b;}
+.ticker-inner{display:flex;gap:48px;animation:ticker 25s linear infinite;white-space:nowrap;padding-left:100%;}
+.ticker-inner span{display:inline-block;flex-shrink:0;}
+.ticker-inner span::before{content:"●";color:#fbbf24;margin-right:6px;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
-/* Layout */
-.layout{display:flex;max-width:1200px;margin:0 auto;padding:80px 24px 40px;gap:28px;align-items:flex-start;}
+/* NAV HÀNG NGANG (1 hàng ngang trên cùng) */
+.nav-top{position:sticky;top:36px;z-index:150;background:rgba(10,10,10,.9);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:24px;padding:12px 24px;overflow-x:auto;white-space:nowrap;}
+.nav-top a{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--ink-2);text-decoration:none;text-transform:uppercase;letter-spacing:.06em;padding:6px 14px;border-radius:999px;transition:all .15s;border:1px solid transparent;flex-shrink:0;}
+.nav-top a:hover,.nav-top a.active{color:#fff;background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.4);}
 
-/* Sidebar */
-.sidebar{width:220px;flex-shrink:0;position:sticky;top:80px;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:16px 0;box-shadow:var(--shadow);transition:background .35s,border-color .35s,box-shadow .35s;}
-.sidebar h3{font-family:var(--mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);padding:0 20px 8px;margin-bottom:4px;}
-.sidebar a{display:block;padding:10px 20px;text-decoration:none;color:var(--ink-2);font-size:.88rem;font-weight:500;border-radius:8px;margin:0 8px;transition:background .15s,color .15s;}
-.sidebar a:hover{background:rgba(0,113,227,.06);color:var(--accent);}
-.sidebar a.active{background:rgba(0,113,227,.1);color:var(--accent);font-weight:700;}
+/* HERO — MÃNH LIỆT */
+.hero{max-width:1100px;margin:60px auto 0;padding:0 24px 60px;position:relative;}
+.hero-card{background:linear-gradient(160deg,#111 0%,#161616 60%,#0a0a0a 100%);border:1px solid #2a2a2c;border-radius:24px;padding:72px 48px 64px;box-shadow:0 20px 60px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06);position:relative;overflow:hidden;}
+.hero-card::before{content:"";position:absolute;top:-30%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle at center,rgba(245,158,11,.2),transparent 70%);pointer-events:none;filter:blur(80px);animation:pulseGlow 6s ease-in-out infinite alternate;}
+@keyframes pulseGlow{from{opacity:.6;transform:scale(1)}to{opacity:1;transform:scale(1.1)}}
+.hero-card h1{font-size:clamp(2.6rem,6vw,4.2rem);font-weight:900;line-height:1.05;letter-spacing:-.045em;color:#fff;position:relative;z-index:1;text-shadow:0 4px 30px rgba(245,158,11,.25);}
+.hero-card h1 .line-2{color:#fbbf24;font-weight:800;display:block;margin-top:10px;}
+.hero-card h1 em{font-style:normal;color:#f59e0b;text-shadow:0 0 30px rgba(245,158,11,.45);}
+.hero-card .lead{margin-top:28px;font-size:1.15rem;color:#86868b;max-width:680px;line-height:1.7;position:relative;z-index:1;}
+.hero-card .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;position:relative;z-index:1;}
+.hero-card .badge-row span{display:inline-block;padding:6px 14px;border-radius:999px;font-family:var(--mono);font-size:.72rem;background:rgba(245,158,11,.08);color:#fbbf24;border:1px solid rgba(245,158,11,.25);font-weight:700;}
 
-/* Main */
-.main{flex:1;min-width:0;}
+/* HOOK MÃNH LIỆT */
+.hook-strip{max-width:1100px;margin:0 auto;padding:48px 24px;}
+.hook-strip .hook-box{background:linear-gradient(135deg,#b91c1c,#7f1d1d);border-radius:20px;padding:36px 36px 28px;color:#fff;box-shadow:0 20px 50px rgba(185,28,28,.35);position:relative;overflow:hidden;}
+.hook-strip .hook-box::after{content:"🔥";position:absolute;top:-20px;right:20px;font-size:10rem;opacity:.08;line-height:1;pointer-events:none;}
+.hook-strip h2{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:900;line-height:1.1;letter-spacing:-.035em;margin-bottom:14px;text-shadow:0 4px 20px rgba(0,0,0,.35);}
+.hook-strip .hook-sub{font-size:1.05rem;color:#fecaca;max-width:640px;line-height:1.6;margin-bottom:22px;}
+.hook-strip .hook-cta{display:inline-block;padding:16px 32px;background:#fff;color:#b91c1c;border-radius:999px;font-weight:900;font-size:1.1rem;text-decoration:none;box-shadow:0 10px 30px rgba(185,28,28,.35);transition:transform .15s,box-shadow .2s;}
+.hook-strip .hook-cta:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(185,28,28,.5);}
 
-/* Hero / Post */
-.hero-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);box-shadow:var(--shadow);padding:48px 44px;margin-bottom:32px;transition:background .35s,border-color .35s,box-shadow .35s;position:relative;overflow:hidden;}
-.hero-card::before{content:"";position:absolute;top:-50%;right:-15%;width:380px;height:380px;border-radius:50%;background:linear-gradient(135deg,rgba(0,113,227,.08),rgba(0,113,227,.03));pointer-events:none;filter:blur(50px);}
-.dark .hero-card::before{background:linear-gradient(135deg,rgba(0,113,227,.16),rgba(0,113,227,.06));}
-.hero-card h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--ink);position:relative;z-index:1;}
-.hero-card h1 em{font-style:normal;color:var(--accent);}
-.hero-card .lead{margin-top:16px;font-size:1.05rem;color:var(--ink-2);max-width:640px;line-height:1.65;position:relative;z-index:1;}
+/* LỢI ÍCH — MÃNH LIỆT */
+.benefits{max-width:1100px;margin:0 auto;padding:48px 24px;}
+.benefits h2{font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:900;letter-spacing:-.03em;margin-bottom:28px;color:#fff;text-shadow:0 2px 14px rgba(245,158,11,.35);}
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.benefit-card{background:linear-gradient(180deg,#161616 0%,#111 100%);border:1px solid #2a2a2c;border-radius:18px;padding:28px 24px;box-shadow:0 8px 28px rgba(0,0,0,.35);transition:transform .2s,border-color .2s;position:relative;overflow:hidden;}
+.benefit-card::before{content:"";position:absolute;top:-40%;right:-20%;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at center,rgba(245,158,11,.1),transparent 70%);pointer-events:none;}
+.benefit-card:hover{transform:translateY(-4px);border-color:rgba(245,158,11,.35);}
+.benefit-card h3{font-size:1.05rem;font-weight:800;margin-bottom:10px;color:#f5f5f7;position:relative;z-index:1;}
+.benefit-card p{font-size:.9rem;color:#86868b;line-height:1.6;position:relative;z-index:1;}
 
-/* Post Card */
-.post-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:48px 44px;box-shadow:var(--shadow);margin-bottom:32px;position:relative;overflow:hidden;transition:background .35s,border-color .35s,box-shadow .35s;}
-.post-card h2{font-size:clamp(1.35rem,3vw,2rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:18px;color:var(--ink);}
-.post-card h2 .emoji{font-family:system-ui,apple,color,emoji;font-size:1.1em;vertical-align:-.08em;}
-.post-body{font-size:1.02rem;line-height:1.75;color:var(--ink-2);}
-.post-body p{margin-bottom:20px;}
-.post-body .highlight-box{background:linear-gradient(135deg,rgba(0,113,227,.06),rgba(0,113,227,.02));border-left:3px solid var(--accent);border-radius:14px;padding:22px 26px;margin:24px 0;color:var(--ink);}
-.dark .highlight-box{background:linear-gradient(135deg,rgba(0,113,227,.12),rgba(0,113,227,.04));}
-.post-body ul{list-style:none;margin:18px 0;padding-left:6px;}
-.post-body ul li{position:relative;padding-left:24px;margin-bottom:12px;color:var(--ink-2);}
-.post-body ul li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--accent);}
+/* BÀI VIẾT */
+.post-section{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+.post-card{background:#111;border:1px solid #2a2a2c;border-radius:20px;padding:52px 40px;box-shadow:0 16px 40px rgba(0,0,0,.4);position:relative;overflow:hidden;}
+.post-card h2{font-size:clamp(1.4rem,3.2vw,2.2rem);font-weight:900;letter-spacing:-.035em;line-height:1.15;margin-bottom:22px;color:#fff;text-shadow:0 2px 14px rgba(245,158,11,.35);}
+.post-card h2 .emoji{font-family:system-ui,apple,color,emoji;font-size:1.15em;vertical-align:-.08em;}
+.post-body{font-size:1.05rem;line-height:1.75;color:#86868b;}
+.post-body p{margin-bottom:22px;color:#d2d2d7;}
+.post-body .highlight-box{background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.03));border-left:3px solid #f59e0b;border-radius:14px;padding:24px 28px;margin:28px 0;color:#fff;}
+.dark .highlight-box{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.06));}
+.post-body ul{list-style:none;margin:22px 0;padding-left:6px;}
+.post-body ul li{position:relative;padding-left:26px;margin-bottom:12px;color:#d2d2d7;}
+.post-body ul li::before{content:"";position:absolute;left:0;top:10px;width:9px;height:9px;border-radius:50%;background:#f59e0b;box-shadow:0 0 8px rgba(245,158,11,.5);}
 
-/* Tools (công cụ) */
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;}
-.tool-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);transition:transform .15s,border-color .2s,box-shadow .2s;background:linear-gradient(180deg,var(--surface) 60%,rgba(0,113,227,.025) 100%);}
-.tool-card:hover{transform:translateY(-3px);border-color:rgba(0,113,227,.3);box-shadow:0 18px 40px rgba(0,0,0,.1);}
-.dark .tool-card:hover{box-shadow:0 18px 40px rgba(0,0,0,.35);}
-.tool-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--ink);}
-.tool-card p{font-size:.88rem;color:var(--ink-3);line-height:1.55;margin-bottom:14px;}
-.tool-card .btn{display:inline-block;padding:10px 18px;background:var(--ink);color:var(--ink-4);border:none;border-radius:10px;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .1s;}
-.tool-card .btn:hover{background:#2a2a2c;transform:translateY(-1px);}
-.dark .tool-card .btn:hover{background:#222;}
-
-/* Articles list */
-.articles{margin-bottom:32px;}
-.articles h2{font-size:1.1rem;font-weight:700;margin-bottom:14px;color:var(--ink);}
-.articles ul{list-style:none;padding:0;}
-.articles li{margin-bottom:6px;}
-.articles a{display:block;padding:12px 16px;background:var(--surface);border:1px solid var(--border-soft);border-radius:12px;color:var(--ink);text-decoration:none;font-size:.92rem;font-weight:500;transition:background .15s,border-color .15s,transform .1s;}
-.articles a:hover{background:rgba(0,113,227,.04);border-color:rgba(0,113,227,.2);transform:translateX(4px);}
-
-/* Form */
-.cli-form{margin-top:24px;padding-top:24px;border-top:1px solid var(--border-soft);}
-.cli-form-label{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;display:block;}
+/* FORM */
+.cli-form{margin-top:32px;padding-top:24px;border-top:1px solid #2a2a2c;}
+.cli-form-label{font-family:var(--mono);font-size:.72rem;color:#86868b;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:block;font-weight:700;}
 .cli-form-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
-.cli-input{flex:1 1 200px;min-width:200px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;font-family:inherit;font-size:.9rem;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;}
-.cli-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
-.cli-btn{background:var(--ink);color:var(--ink-4);border:none;border-radius:12px;padding:12px 24px;font-family:inherit;font-weight:600;font-size:.9rem;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s;text-decoration:none;display:inline-block;}
-.cli-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.12);background:#2a2a2c;}
-.dark .cli-btn:hover{box-shadow:0 6px 20px rgba(255,255,255,.08);background:#222;}
+.cli-input{flex:1 1 220px;min-width:220px;background:#161616;border:1px solid #2a2a2c;border-radius:12px;padding:14px 18px;font-family:inherit;font-size:.95rem;color:#fff;outline:none;transition:border-color .2s,box-shadow .2s;}
+.cli-input:focus{border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.2);}
+.cli-btn{background:#f59e0b;color:#0a0a0a;border:none;border-radius:12px;padding:14px 28px;font-family:inherit;font-weight:800;font-size:.95rem;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s;text-decoration:none;display:inline-block;box-shadow:0 6px 20px rgba(245,158,11,.35);}
+.cli-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(245,158,11,.5);background:#fbbf24;}
 
-/* Toggle theme */
-.theme-btn{position:fixed;top:14px;right:20px;z-index:110;background:rgba(255,255,255,.9);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-family:var(--mono);font-size:.75rem;color:var(--ink-2);cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
-.dark .theme-btn{background:rgba(20,20,20,.8);color:#86868b;border-color:#2a2a2c;}
+/* CÔNG CỤ — CARD MẠNH MẼ */
+.tools{max-width:1100px;margin:0 auto;padding:48px 24px;}
+.tools h2{font-size:clamp(1.3rem,3vw,2rem);font-weight:900;letter-spacing:-.03em;margin-bottom:28px;color:#fff;text-shadow:0 2px 14px rgba(245,158,11,.3);}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.tool-c{background:linear-gradient(160deg,#161616,#111);border:1px solid #2a2a2c;border-radius:18px;padding:28px 24px;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .2s,border-color .2s,box-shadow .2s;position:relative;overflow:hidden;}
+.tool-c::before{content:"";position:absolute;top:-30%;right:-10%;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at center,rgba(245,158,11,.12),transparent 70%);pointer-events:none;}
+.tool-c:hover{transform:translateY(-5px);border-color:rgba(245,158,11,.4);box-shadow:0 18px 40px rgba(245,158,11,.15);}
+.tool-c h3{font-size:1.05rem;font-weight:800;margin-bottom:8px;color:#fff;position:relative;z-index:1;}
+.tool-c p{font-size:.88rem;color:#86868b;line-height:1.55;margin-bottom:16px;position:relative;z-index:1;}
+.tool-c a{display:inline-block;padding:10px 20px;background:#f59e0b;color:#0a0a0a;border-radius:10px;font-size:.85rem;font-weight:800;text-decoration:none;transition:background .15s,transform .1s;position:relative;z-index:1;box-shadow:0 4px 12px rgba(245,158,11,.25);}
+.tool-c a:hover{background:#fbbf24;transform:translateY(-2px);box-shadow:0 8px 20px rgba(245,158,11,.35);}
+
+/* BÀI KHÁC */
+.articles{max-width:1100px;margin:0 auto;padding:48px 24px 80px;}
+.articles h2{font-size:1.1rem;font-weight:900;margin-bottom:16px;color:#fff;text-shadow:0 2px 10px rgba(245,158,11,.25);}
+.articles ul{list-style:none;padding:0;}
+.articles li{margin-bottom:8px;}
+.articles a{display:block;padding:14px 20px;background:#111;border:1px solid #2a2a2c;border-radius:14px;color:#f5f5f7;text-decoration:none;font-size:.92rem;font-weight:600;transition:background .15s,border-color .15s,transform .15s;}
+.articles a:hover{background:#161616;border-color:rgba(245,158,11,.3);transform:translateX(6px);}
+.articles a .tag{font-family:var(--mono);font-size:.7rem;color:#fbbf24;margin-right:8px;}
+
+/* FOOTER */
+.cli-footer{max-width:1100px;margin:0 auto;padding:32px 24px;border-top:1px solid #2a2a2c;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:#86868b;letter-spacing:.04em;}
+
+/* TOGGLE */
+.theme-btn{position:fixed;top:50px;right:20px;z-index:110;background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-family:var(--mono);font-size:.75rem;color:var(--ink-2);cursor:pointer;transition:all .2s;box-shadow:0 2px 10px rgba(0,0,0,.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.dark .theme-btn{background:rgba(20,20,20,.85);color:#86868b;border-color:#2a2a2c;}
 .theme-btn:hover{border-color:var(--ink-3);color:var(--ink);}
 
-@media(max-width:860px){.layout{flex-direction:column;}.sidebar{width:100%;position:relative;top:0;}}
-@media(max-width:640px){.hero-card{padding:36px 24px;}.post-card{padding:32px 24px;}}
+@media(max-width:860px){.nav-top{gap:14px;padding:10px 16px;}.hero-card{padding:44px 28px;}.post-card{padding:36px 28px;}.benefits-grid{grid-template-columns:1fr;}.tools-grid{grid-template-columns:1fr;}}
 </style>
 
-<header class="cli-nav" aria-label="CLI Navigation">
-  <a href="#" class="cli-brand">x.aladdin.vn <span aria-hidden="true">_</span></a>
-  <span style="font-family:var(--mono);font-size:.7rem;color:var(--ink-3);">CLI Apple Style · Sáng / Tối</span>
+<header class="ticker" aria-label="Tin tức mới nhất">
+  <div class="ticker-inner" aria-label="Tin tức chạy">
+    <span>Bắc Ninh chi 80.000 tỷ làm đường sắt qua Phật Tích — Quy hoạch 2050</span>
+    <span>Quảng Ninh chi 80.000 tỷ làm đường sắt — hạ tầng chiến lược</span>
+    <span>Thị trường BĐS Hà Nội 2026: quy hoạch, hạ tầng và dữ liệu định hình lại</span>
+    <span>FDI vào Việt Nam đạt kỷ lục — tác động tới BĐS Hà Nội</span>
+    <span>Hà Nội quy hoạch không gian tầm thấp dưới 1.000 mét</span>
+  </div>
 </header>
 
-<button class="theme-btn" onclick="toggleTheme()" aria-label="Chuyển giao diện sáng/tối" id="themeBtn" title="Chuyển sáng/tối">◐ Sáng</button>
+<nav class="nav-top" aria-label="Điều hướng">
+  <a href="#bai-viet">🔥 Bài viết 02</a>
+  <a href="#loi-ich">💰 Lợi ích</a>
+  <a href="#bai-viet">💎 Đặc quyền</a>
+  <a href="#cong-cu">⚡ Công cụ</a>
+  <a href="#bai-khac">📚 Bài khác</a>
+  <a href="#hh">📎 HH</a>
+</nav>
 
-<div class="layout">
-  <aside class="sidebar" aria-label="Điều hướng">
-    <h3>Mục lục</h3>
-    <nav>
-      <a href="#bai-viet" class="active">🔥 Bài viết 02</a>
-      <a href="#cong-cu">⚡ Công cụ</a>
-      <a href="#bai-khac">📚 Bài khác</a>
-    </nav>
-  </aside>
+<button class="theme-btn" onclick="toggleTheme()" aria-label="Chuyển sáng/tối" id="themeBtn">◐ Sáng</button>
 
-  <main class="main" aria-label="Nội dung chính">
-    <section class="hero-card" aria-label="Giới thiệu">
-      <h1>Bạn giới thiệu khách <span style="display:block;color:var(--ink-3);font-weight:500;">có nhu cầu xây, sửa nhà</span> — <em>chúng tôi lo phần còn lại</em></h1>
-      <p class="lead">Mỗi khách bạn giới thiệu thành công là một cơ hội thu nhập thêm. Vừa tăng giá trị với khách cũ, vừa có nguồn thu mới, vừa mở thêm cơ hội làm ăn lâu dài.</p>
-    </section>
-
-    <section id="bai-viet" aria-label="Bài viết 02">
-      <article class="post-card">
-        <h2><span class="emoji">🔥</span> ĐỪNG ĐỂ CÔNG SỨC TÌM KHÁCH CỦA BẠN CHỈ ĐƯỢC THU NHẬP 1 LẦN!</h2>
-        <div class="post-body">
-          <p>Bạn đang vắt kiệt sức lực chạy doanh số mỗi tháng? Hãy để chúng tôi giúp bạn biến mồ hôi thành dòng tiền thụ động bền vững.</p>
-          <p>Tại <strong>Nguyễn Cao Hải &amp; Cộng Sự</strong>, chúng tôi cam kết bảo vệ tuyệt đối quyền lợi của bạn bằng 2 đặc quyền cốt lõi:</p>
-          <div class="highlight-box"><strong>💎 HOA HỒNG TRỌN ĐỜI — BẢO HIỂM CHO CÔNG SỨC CỦA BẠN</strong><br><br>Chỉ cần bạn kết nối khách hàng 1 LẦN DUY NHẤT. Dù tháng sau hay nhiều năm sau khách mới ký hợp đồng, hoa hồng vẫn mặc định chảy vào túi bạn. Không bao giờ lo mất khách, không sợ bị "cắt cầu"!</div>
-          <ul>
-            <li>Chỉ cần kết nối 1 lần — thu nhập tự động nhiều năm sau.</li>
-            <li>Không lo bị "cắt cầu", không sợ mất khách.</li>
-            <li>Dòng tiền thụ động thực sự từ công sức bạn đã bỏ ra.</li>
-          </ul>
-          <div class="highlight-box"><strong>💰 THU NHẬP XỨNG TẦM</strong><br><br>Tỷ lệ % cực hấp dẫn. Nhận ngay từ <strong>20 Triệu đến 300 TRIỆU VNĐ</strong> cho mỗi giao dịch thành công, TRỌN ĐỜI.</div>
-          <p>Công sức của bạn xứng đáng được trân trọng trọn đời. Hãy đồng hành cùng chúng tôi để xây dựng sự nghiệp tự do tài chính thực sự!</p>
-        </div>
-        <form class="cli-form" onsubmit="submitInfo(event)" aria-label="Để lại thông tin liên hệ">
-          <label class="cli-form-label">Để lại số điện thoại hoặc email để nhận thông tin</label>
-          <div class="cli-form-row">
-            <input type="tel" class="cli-input" placeholder="Số điện thoại (ví dụ: 0983.601.366)" aria-label="Số điện thoại" required />
-            <input type="email" class="cli-input" placeholder="Email (ví dụ: ten@aladdin.vn)" aria-label="Email" required />
-            <button type="submit" class="cli-btn" aria-label="Gửi thông tin">Gửi →</button>
-          </div>
-        </form>
-      </article>
-    </section>
-
-    <section id="cong-cu" class="tools-grid" aria-label="Công cụ">
-      <article class="tool-card">
-        <h3>⚡ Tính tiền cần thêm</h3>
-        <p>Điền diện tích &amp; kết cấu — tính ngay chi phí xây/sửa để gửi khách. Không cần chờ AI.</p>
-        <a class="btn" href="#" onclick="alert('Tính năng: nhập diện tích, số tầng, loại hình → ra khoảng chi phí. Đang phát triển.')">Mở công cụ</a>
-      </article>
-      <article class="tool-card">
-        <h3>🔍 Checklist trước cọc</h3>
-        <p>Tick trạng thái từng mục — hệ thống phân loại: tiếp tục tìm hiểu / cần hỏi thêm / nên khảo sát chuyên gia.</p>
-        <a class="btn" href="#" onclick="alert('Tính năng: kiểm tra nứt, thấm, lối thi công, nhà liền kề.')">Mở checklist</a>
-      </article>
-      <article class="tool-card">
-        <h3>📋 Quy trình công trình</h3>
-        <p>Mô tả tình huống khách → nhận checklist từng bước + chi phí + thời gian đúng ca.</p>
-        <a class="btn" href="#" onclick="alert('Tính năng: chọn loại công trình (xây mới, sửa nhẹ, chống thấm...) → tạo quy trình.')">Mở quy trình</a>
-      </article>
-      <article class="tool-card">
-        <h3>📞 Liên hệ chuyên gia</h3>
-        <p>Gọi trực tiếp Hải &amp; Cộng sự hoặc nhắn Zalo 0983.601.366 để được hỗ trợ ngay.</p>
-        <a class="btn" href="tel:0983601366">Gọi ngay</a>
-      </article>
-    </section>
-
-    <section id="bai-khac" class="articles" aria-label="Bài viết khác">
-      <h2>📚 Bài viết khác từ x.aladdin.vn</h2>
-      <ul>
-        <li><a href="/bai-viet/bao-gia-xay-nha-pho-ha-noi-2026-don-gia-theo-m2-va-cac-khoan-an-de-bo-sot/">💰 Báo giá xây nhà phố Hà Nội 2026 — đơn giá theo m²</a></li>
-        <li><a href="/bai-viet/quy-trinh-nghiem-thu-va-ban-giao-nha-pho-checklist-vang-truoc-khi-nhan-nha/">📋 Quy trình nghiệm thu và bàn giao nhà phố</a></li>
-        <li><a href="/bai-viet/cach-giam-sat-thi-cong-xay-dung-khi-khong-ranh-ky-thuat-chan-phat-sinh-an-bot-vat-tu/">🔨 Giám sát thi công khi không rành kỹ thuật</a></li>
-        <li><a href="/bai-viet/kinh-nghiem-chon-nha-thau-xay-dung-uy-tin-tai-ha-noi-tranh-thau-co-moi-gioi/">🤝 Kinh nghiệm chọn nhà thầu xây dựng uy tín</a></li>
-      </ul>
-    </section>
-  </main>
+<div class="hero">
+  <section class="hero-card" aria-label="Giới thiệu mạnh mẽ">
+    <h1>Bạn giới thiệu khách <span class="line-2">có nhu cầu xây, sửa nhà</span> — <em>CHÚNG TÔI LO PHẦN CÒN LẠI</em></h1>
+    <p class="lead">Mỗi khách bạn giới thiệu thành công = một dòng tiền thụ động bền vững. Bạn không phải "xin" — bạn là <strong>CHỖ DỰA XÂY SỬA NHÀ</strong> cho môi giới. Công sức bạn xứng đáng được trân trọng <strong>TRỌN ĐỜI</strong>.</p>
+    <div class="badge-row" aria-label="Tính năng chính">
+      <span>💎 HOA HỒNG TRỌN ĐỜI</span>
+      <span>💰 THU NHẬP 20–300 TRIỆU</span>
+      <span>📞 0983.601.366</span>
+    </div>
+  </section>
 </div>
+
+<section class="hook-strip" aria-label="Hook mãnh liệt">
+  <div class="hook-box">
+    <h2>🔥 ĐỪNG ĐỂ CÔNG SỨC TÌM KHÁCH CỦA BẠN CHỈ ĐƯỢC THU NHẬP 1 LẦN!</h2>
+    <p class="hook-sub">Bạn đang vắt kiệt sức lực chạy doanh số mỗi tháng? Hãy để chúng tôi giúp bạn biến mồ hôi thành dòng tiền thụ động bền vững — <strong>TRỌN ĐỜI</strong>.</p>
+    <a class="hook-cta" href="#bai-viet">ĐỌC NGAY ĐẶC QUYỀN CỐT LÕI →</a>
+  </div>
+</section>
+
+<section class="benefits" id="loi-ich" aria-label="Lợi ích cho Môi giới">
+  <h2>💰 LỢI ÍCH CỐT LÕI CHO MÔI GIỚI — KHÔNG PHẢI "XIN" MÀ LÀ CHO GIÁ TRỊ TRƯỚC</h2>
+  <div class="benefits-grid">
+    <article class="benefit-card">
+      <h3>💎 HOA HỒNG TRỌN ĐỜI — BẢO HIỂM CÔNG SỨC</h3>
+      <p>Chỉ cần kết nối khách 1 LẦN DUY NHẤT. Dù tháng sau hay nhiều năm sau khách mới ký hợp đồng, hoa hồng vẫn chảy vào túi bạn. <strong>Không bao giờ lo mất khách, không sợ bị "cắt cầu"!</strong></p>
+    </article>
+    <article class="benefit-card">
+      <h3>💰 THU NHẬP XỨNG TẦM — TỪ 20 TRIỆU ĐẾN 300 TRIỆU</h3>
+      <p>Tỷ lệ % cực hấp dẫn, nhận ngay từ <strong>20 Triệu đến 300 TRIỆU VNĐ</strong> cho mỗi giao dịch thành công — <strong>TRỌN ĐỜI</strong>. Công sức bạn xứng đáng được trân trọng.</p>
+    </article>
+    <article class="benefit-card">
+      <h3>🤝 TĂNG GIÁ TRỊ VỚI KHÁCH CŨ — MỐI QUAN HỆ BỀN CHẶT</h3>
+      <p>Giúp khách giải quyết trọn gói nhu cầu xây/sửa, khách nhớ đến bạn như người lo được nhiều việc — mối quan hệ càng bền chặt, cơ hội hợp tác càng dài hạn.</p>
+    </article>
+    <article class="benefit-card">
+      <h3>📈 DÒNG TIỀN THỤ ĐỘNG BỀN VỮNG — KHÔNG CẦN ĐẦU TƯ</h3>
+      <p>Không phải đầu tư thêm gì. Chỉ cần giới thiệu đúng người có nhu cầu — bạn có thêm khoản thu nhập hoa hồng tự nhiên và bền vững từ công sức đã bỏ ra.</p>
+    </article>
+  </div>
+</section>
+
+<section id="bai-viet" class="post-section" aria-label="Bài viết 02 — Thu nhập 1 lần">
+  <article class="post-card">
+    <h2><span class="emoji">🔥</span> ĐỪNG ĐỂ CÔNG SỨC TÌM KHÁCH CỦA BẠN CHỈ ĐƯỢC THU NHẬP 1 LẦN!</h2>
+    <div class="post-body">
+      <p>Bạn đang vắt kiệt sức lực chạy doanh số mỗi tháng? Hãy để chúng tôi giúp bạn biến mồ hôi thành dòng tiền thụ động bền vững.</p>
+      <p>Tại <strong>Nguyễn Cao Hải &amp; Cộng Sự</strong>, chúng tôi cam kết bảo vệ tuyệt đối quyền lợi của bạn bằng 2 đặc quyền cốt lõi:</p>
+      <div class="highlight-box"><strong>💎 HOA HỒNG TRỌN ĐỜI — BẢO HIỂM CHO CÔNG SỨC CỦA BẠN</strong><br><br>Chỉ cần bạn kết nối khách hàng 1 LẦN DUY NHẤT. Dù tháng sau hay nhiều năm sau khách mới ký hợp đồng, hoa hồng vẫn mặc định chảy vào túi bạn. Không bao giờ lo mất khách, không sợ bị "cắt cầu"!</div>
+      <ul>
+        <li>Chỉ cần kết nối 1 lần — thu nhập tự động nhiều năm sau.</li>
+        <li>Không lo bị "cắt cầu", không sợ mất khách.</li>
+        <li>Dòng tiền thụ động thực sự từ công sức bạn đã bỏ ra.</li>
+      </ul>
+      <div class="highlight-box"><strong>💰 THU NHẬP XỨNG TẦM</strong><br><br>Tỷ lệ % cực hấp dẫn. Nhận ngay từ <strong>20 Triệu đến 300 TRIỆU VNĐ</strong> cho mỗi giao dịch thành công, <strong>TRỌN ĐỜI</strong>.</div>
+      <p>Công sức của bạn xứng đáng được trân trọng trọn đời. Hãy đồng hành cùng chúng tôi để xây dựng sự nghiệp tự do tài chính thực sự!</p>
+    </div>
+    <form class="cli-form" onsubmit="submitInfo(event)" aria-label="Để lại thông tin liên hệ">
+      <label class="cli-form-label">Để lại số điện thoại hoặc email để nhận thông tin</label>
+      <div class="cli-form-row">
+        <input type="tel" class="cli-input" placeholder="Số điện thoại (ví dụ: 0983.601.366)" aria-label="Số điện thoại" required />
+        <input type="email" class="cli-input" placeholder="Email (ví dụ: ten@aladdin.vn)" aria-label="Email" required />
+        <button type="submit" class="cli-btn" aria-label="Gửi thông tin">Gửi →</button>
+      </div>
+    </form>
+  </article>
+</section>
+
+<section id="cong-cu" class="tools" aria-label="Công cụ">
+  <h2>⚡ CÔNG CỤ — TÍNH NHANH, KIỂM TRA NGAY</h2>
+  <div class="tools-grid">
+    <article class="tool-c">
+      <h3>💰 Tính tiền cần thêm sau mua</h3>
+      <p>Điền diện tích, loại hình, khu vực → tính ngay chi phí xây/sửa để gửi khách. Không cần chờ AI.</p>
+      <a href="#" onclick="alert('Tính năng: nhập diện tích, số tầng, loại hình → ra khoảng chi phí. Đang phát triển.');return false;">Mở công cụ</a>
+    </article>
+    <article class="tool-c">
+      <h3>🔍 Checklist trước cọc</h3>
+      <p>Tick trạng thái từng mục — hệ thống phân loại: tiếp tục / cần hỏi thêm / nên khảo sát chuyên gia.</p>
+      <a href="#" onclick="alert('Tính năng: kiểm tra nứt, thấm, lối thi công, nhà liền kề.');return false;">Mở checklist</a>
+    </article>
+    <article class="tool-c">
+      <h3>📋 Quy trình công trình</h3>
+      <p>Mô tả tình huống khách → nhận checklist từng bước + chi phí + thời gian đúng ca.</p>
+      <a href="#" onclick="alert('Tính năng: chọn loại công trình (xây mới, sửa nhẹ, chống thấm...) → tạo quy trình.');return false;">Mở quy trình</a>
+    </article>
+    <article class="tool-c">
+      <h3>📞 Liên hệ chuyên gia</h3>
+      <p>Gọi trực tiếp Hải &amp; Cộng sự hoặc nhắn Zalo 0983.601.366 để được hỗ trợ ngay.</p>
+      <a href="tel:0983601366">Gọi ngay</a>
+    </article>
+  </div>
+</section>
+
+<section id="bai-khac" class="articles" aria-label="Bài viết khác">
+  <h2>📚 BÀI VIẾT KHÁC TỪ X.ALADDIN.VN</h2>
+  <ul>
+    <li><a href="/bai-viet/bao-gia-xay-nha-pho-ha-noi-2026-don-gia-theo-m2-va-cac-khoan-an-de-bo-sot/"><span class="tag">💰</span> Báo giá xây nhà phố Hà Nội 2026 — đơn giá theo m²</a></li>
+    <li><a href="/bai-viet/quy-trinh-nghiem-thu-va-ban-giao-nha-pho-checklist-vang-truoc-khi-nhan-nha/"><span class="tag">📋</span> Quy trình nghiệm thu và bàn giao nhà phố</a></li>
+    <li><a href="/bai-viet/cach-giam-sat-thi-cong-xay-dung-khi-khong-ranh-ky-thuat-chan-phat-sinh-an-bot-vat-tu/"><span class="tag">🔨</span> Giám sát thi công khi không rành kỹ thuật</a></li>
+    <li><a href="/bai-viet/kinh-nghiem-chon-nha-thau-xay-dung-uy-tin-tai-ha-noi-tranh-thau-co-moi-gioi/"><span class="tag">🤝</span> Kinh nghiệm chọn nhà thầu xây dựng uy tín</a></li>
+  </ul>
+</section>
+
+</section>
+
+<section class="menu-mo-ra" aria-label="Menu mở ra — tích hợp công cụ và bài cũ">
+  <details open>
+    <summary>⚡ CÔNG CỤ CHI TIẾT — TÍNH TIỀN, CHECKLIST, QUY TRÌNH</summary>
+    <div class="menu-body">
+      <ul>
+        <li><a href="#" onclick="alert('Tính tiền cần thêm sau mua: nhập diện tích sàn, số tầng, loại hình (nhà phố/nâng tầng/biệt thự), khu vực (Hà Nội/TP.HCM/Đà Nẵng/tỉnh khác), điều kiện tiếp cận (ngõ ô tô/ngõ xe máy/xa), chất lượng vật liệu (phổ thông/khá/cao cấp). Bấm TÍNH NGAY → ra khoảng chi phí xây mới/sửa nhẹ/sửa lớn. Đang phát triển.');return false;">💰 Tính tiền cần thêm sau mua</a></li>
+        <li><a href="#" onclick="alert('Checklist trước cọc: 3 nhóm kiểm tra — (1) Hiện trạng nhà: vết nứt tường/lún/nghiêng; (2) Thấm, dột, vệ sinh: dấu hiệu thấm/mùi hôi; (3) Lối thi công &amp; nhà liền kề: ngõ ô tô hay xe máy, sát nhà liền kề. Tick từng trạng thái → phân loại kết quả. Đang phát triển.');return false;">🔍 Checklist trước khi đặt cọc</a></li>
+        <li><a href="#" onclick="alert('Quy trình công trình: chọn loại công trình (xây mới/nhà cấp 4/nhà ống nhiều tầng/biệt thự/nhà trọ/thêm tầng/sửa nhẹ/sửa vừa/sửa lớn/sơn &amp; chống thấm/làm mái tôn/chống thấm sân thượng/cải tạo WC/lắp thang máy gia đình). Nhập diện tích sàn và mô tả tình huống → tạo quy trình từng bước. Đang phát triển.');return false;">📋 Quy trình công trình theo tình huống</a></li>
+      </ul>
+      <div class="hook-mini">
+        <h4>💡 Lợi ích môi giới — không phải "xin" mà là CHO GIÁ TRỊ TRƯỚC</h4>
+        <p>Bạn là CHỖ DỰA XÂY SỬA NHÀ cho môi giới. Mỗi khách giới thiệu thành công = dòng tiền thụ động bền vững. Hoa hồng TRỌN ĐỜI — từ 20 Triệu đến 300 Triệu VNĐ. Không lo "cắt cầu".</p>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>📚 BÀI VIẾT CŨ — QUY HOẠCH, XÂY DỰNG, THU HỒI ĐẤT, BẢO GIÁ</summary>
+    <div class="menu-body">
+      <ul>
+        <li><a href="/bai-viet/xay-nha-lan-dau-bat-dau-tu-viec-gi/"><span class="tag">🏗️</span> Xây nhà lần đầu bắt đầu từ việc gì</a></li>
+        <li><a href="/bai-viet/chuan-bi-truoc-khi-xay-sua-nha/"><span class="tag">📐</span> Chuẩn bị trước khi xây sửa nhà</a></li>
+        <li><a href="/bai-viet/quy-trinh-xin-phep-xay-dung-nha-pho-tai-ha-noi-ho-so-nop-o-dau-bao-lau/"><span class="tag">🏛️</span> Quy trình xin phép xây dựng</a></li>
+        <li><a href="/bai-viet/kinh-nghiem-chon-nha-thau-xay-dung-uy-tin-tai-ha-noi-tranh-thau-co-moi-gioi/"><span class="tag">🤝</span> Chọn nhà thầu uy tín</a></li>
+        <li><a href="/bai-viet/7-cau-hoi-truoc-khi-ky-hop-dong-xay-nha/"><span class="tag">📄</span> 7 câu hỏi trước hợp đồng</a></li>
+        <li><a href="/bai-viet/quy-trinh-nghiem-thu-va-ban-giao-nha-pho-checklist-vang-truoc-khi-nhan-nha/"><span class="tag">✅</span> Nghiệm thu &amp; bàn giao</a></li>
+        <li><a href="/bai-viet/cach-giam-sat-thi-cong-xay-dung-khi-khong-ranh-ky-thuat-chan-phat-sinh-an-bot-vat-tu/"><span class="tag">🔨</span> Giám sát thi công</a></li>
+        <li><a href="/bai-viet/di-lam-ca-ngay-khong-the-trong-tho/"><span class="tag">⏱️</span> Đi làm không thể trông thợ</a></li>
+        <li><a href="/bai-viet/chong-tham-triet-de-cho-nha-cu-tai-ha-noi-dung-chi-son-de-len-vet-moc/"><span class="tag">💧</span> Chống thấm nhà cũ</a></li>
+        <li><a href="/bai-viet/bao-gia-xay-nha-pho-ha-noi-2026-don-gia-theo-m2-va-cac-khoan-an-de-bo-sot/"><span class="tag">💰</span> Báo giá xây nhà phố 2026</a></li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>📎 HH — ĐƯỜNG DẪN PHỤ + CẬP NHẬT TIN TỨC</summary>
+    <div class="menu-body">
+      <ul>
+        <li><a href="/hh/">📎 HH — Đường dẫn phụ từ Google Sheets (yêu cầu đăng ký email)</a></li>
+      </ul>
+      <div class="hook-mini">
+        <h4>📢 Tin tức mới nhất — Xây sửa nhà Hà Nội 2026</h4>
+        <p>Bắc Ninh chi 80.000 tỷ làm đường sắt qua Phật Tích · Quy hoạch 2050 · Thị trường BĐS Hà Nội 2026: quy hoạch, hạ tầng và dữ liệu định hình lại · FDI vào Việt Nam đạt kỷ lục — tác động tới BĐS Hà Nội · Hà Nội quy hoạch không gian tầm thấp dưới 1.000 mét.</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<footer class="cli-footer" aria-label="Chân trang" style="max-width:1100px;margin:0 auto;padding:32px 24px;border-top:1px solid #2a2a2c;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:#86868b;letter-spacing:.04em;">
+  <div>Nguyễn Cao Hải &amp; Cộng sự — 0983.601.366 — x.aladdin.vn</div>
+  <div>CLI Apple Style · Mãnh liệt · Sống động · Nhiều hook</div>
+</footer>
 
 <script>
 function toggleTheme(){ document.documentElement.classList.toggle('dark'); document.getElementById('themeBtn').textContent = document.documentElement.classList.contains('dark') ? '◑ Tối' : '◐ Sáng'; }

@@ -124,7 +124,7 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
   <a href="#bai-viet">💎 Đặc quyền</a>
   <a href="#cong-cu">⚡ Công cụ</a>
   <a href="#bai-khac">📚 Bài khác</a>
-  <a href="#hh">📎 HH</a>
+  <a href="/hh/">📎 HH</a>
 </nav>
 
 <button class="theme-btn" onclick="toggleTheme()" aria-label="Chuyển sáng/tối" id="themeBtn">◐ Sáng</button>
@@ -235,6 +235,44 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
 
 </section>
 
+<section class="post-section" id="cong-cu-thuc" aria-label="Công cụ thực tế">
+  <article class="post-card" style="margin-bottom:28px;">
+    <h2><span class="emoji">💰</span> TÍNH TIỀN NHANH — XÂY / SỬA NHÀ HÀ NỘI</h2>
+    <p style="font-size:.88rem;color:#86868b;margin-bottom:16px;">Nhập diện tích, số tầng, loại hình, khu vực → tính ngay chi phí tham khảo.</p>
+    <form onsubmit="event.preventDefault();tinhNhanh();" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;">
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 140px;"><input id="tinh-dt" type="number" placeholder="Diện tích sàn (m²)" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;outline:none;"></label>
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 80px;"><select id="tinh-tang" style="width:100%;padding:10px 10px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;"><option value="1">1 tầng</option><option value="2">2 tầng</option><option value="3">3 tầng</option><option value="4" selected>4 tầng</option><option value="5">5 tầng</option></select></label>
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 140px;"><select id="tinh-loai" style="width:100%;padding:10px 10px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;"><option value="xay_moi">Xây mới</option><option value="sua">Sửa chữa</option><option value="son">Sơn lại</option><option value="son">Vật tư</option></select></label>
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 120px;"><select id="tinh-vung" style="width:100%;padding:10px 10px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;"><option value="HN">Hà Nội</option><option value="HCM">TP.HCM</option><option value="DN">Đà Nẵng</option><option value="TK">Tỉnh khác</option></select></label>
+      <button type="submit" class="cli-btn" style="flex-shrink:0;padding:10px 20px;font-size:.9rem;">⚡ TÍNH NGAY</button>
+    </form>
+    <div id="tinh-ketqua" style="margin-top:14px;padding:14px 16px;background:#161616;border:1px solid #2a2a2c;border-radius:12px;color:#fbbf24;font-weight:700;font-size:1.05rem;min-height:40px;display:flex;align-items:center;"></div>
+  </article>
+
+  <article class="post-card" style="margin-bottom:28px;">
+    <h2><span class="emoji">🔍</span> CHECKLIST TRƯỚC CỌC — NHÀ PHỐ HÀ NỘI</h2>
+    <p style="font-size:.88rem;color:#86868b;margin-bottom:14px;">Tick từng mục → phân loại ngay tình trạng căn nhà.</p>
+    <form onsubmit="event.preventDefault();checklistThat();" style="display:flex;flex-direction:column;gap:8px;">
+      <label style="font-family:var(--mono);font-size:.75rem;color:#86868b;"><input type="checkbox" name="cl" value="nut"> Vết nứt tường / lún / nghiêng — bình thường</label>
+      <label style="font-family:var(--mono);font-size:.75rem;color:#86868b;"><input type="checkbox" name="cl" value="tham"> Thấm / dột / mùi hôi vệ sinh — không thấy</label>
+      <label style="font-family:var(--mono);font-size:.75rem;color:#86868b;"><input type="checkbox" name="cl" value="loi"> Lối thi công — ngõ ô tô / thuận lợi</label>
+      <label style="font-family:var(--mono);font-size:.75rem;color:#86868b;"><input type="checkbox" name="cl" value="lienke"> Nhà liền kề — không xung đột</label>
+      <button type="submit" class="cli-btn" style="margin-top:8px;width:auto;padding:10px 22px;font-size:.85rem;align-self:flex-start;">✅ KIỂM TRA</button>
+    </form>
+    <div id="cl-ketqua" style="margin-top:14px;padding:14px 16px;background:#161616;border:1px solid #2a2a2c;border-radius:12px;color:#fff;font-weight:700;font-size:1rem;min-height:40px;display:flex;align-items:center;"></div>
+  </article>
+
+  <article class="post-card" style="margin-bottom:28px;">
+    <h2><span class="emoji">📋</span> QUY TRÌNH CÔNG TRÌNH — THEO TÌNH HUỐNG KHÁCH</h2>
+    <p style="font-size:.88rem;color:#86868b;margin-bottom:14px;">Chọn loại công trình → nhận quy trình từng bước + chi phí + thời gian.</p>
+    <form onsubmit="event.preventDefault();quyTrinhThat();" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;">
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 200px;"><select id="qt-loai" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;outline:none;"><option value="Xây mới">🏗️ Xây mới</option><option value="Sửa nhẹ">🪄 Sửa nhẹ</option><option value="Sửa lớn">🏗️ Sửa lớn (kết cấu)</option><option value="Chống thấm">💧 Chống thấm sân thượng</option><option value="Biệt thự">🌳 Biệt thự</option></select></label>
+      <button type="submit" class="cli-btn" style="flex-shrink:0;padding:10px 22px;font-size:.85rem;">📋 TẠO QUY TRÌNH</button>
+    </form>
+    <div id="qt-ketqua" style="margin-top:14px;padding:14px 16px;background:#161616;border:1px solid #2a2a2c;border-radius:12px;color:#fbbf24;font-weight:700;font-size:1rem;min-height:40px;display:flex;align-items:center;"></div>
+  </article>
+</section>
+
 <section class="menu-mo-ra" aria-label="Menu mở ra — tích hợp công cụ và bài cũ">
   <details open>
     <summary>⚡ CÔNG CỤ CHI TIẾT — TÍNH TIỀN, CHECKLIST, QUY TRÌNH</summary>
@@ -246,7 +284,7 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
       </ul>
       <div class="hook-mini">
         <h4>💡 Lợi ích môi giới — không phải "xin" mà là CHO GIÁ TRỊ TRƯỚC</h4>
-        <p>Bạn là CHỖ DỰA XÂY SỬA NHÀ cho môi giới. Mỗi khách giới thiệu thành công = dòng tiền thụ động bền vững. Hoa hồng TRỌN ĐỜI — từ 20 Triệu đến 300 Triệu VNĐ. Không lo "cắt cầu".</p>
+        <p>Bạn là CHỖ DỰA XÂY SỬA NHÀ cho Chủ nhà. Mỗi khách giới thiệu thành công = dòng tiền thụ động bền vững. Hoa hồng TRỌN ĐỜI — từ 20 Triệu đến 300 Triệu VNĐ. Không lo "cắt cầu".</p>
       </div>
     </div>
   </details>
@@ -291,4 +329,8 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
 <script>
 function toggleTheme(){ document.documentElement.classList.toggle('dark'); document.getElementById('themeBtn').textContent = document.documentElement.classList.contains('dark') ? '◑ Tối' : '◐ Sáng'; }
 function submitInfo(e){ e.preventDefault(); var btn=e.target.querySelector('.cli-btn'); var orig=btn.textContent; btn.textContent='Đã gửi ✓'; btn.style.background='#34c759'; btn.style.color='#fff'; setTimeout(function(){ btn.textContent=orig; btn.style.background=''; btn.style.color=''; }, 2200); }
+// CÔNG CỤ THẬT
+function tinhNhanh(){ var d=document.getElementById('tinh-dt')?document.getElementById('tinh-dt').value:0; var t=document.getElementById('tinh-tang')?document.getElementById('tinh-tang').value:1; var loai=document.getElementById('tinh-loai')?document.getElementById('tinh-loai').value:'xay_moi'; var vung=document.getElementById('tinh-vung')?document.getElementById('tinh-vung').value:'HN'; var gia=loai==='xay_moi'?15:loai==='sua'?8:loai==='son'?1.5:1; var heSo=vung==='HN'?1:vung==='HCM'?1.05:vung==='DN'?0.95:0.9; var tong=Math.round(parseFloat(d||0)*parseFloat(t||1)*gia*heSo/1e6); if(isNaN(tong)){alert('Vui lòng nhập diện tích');return;} var res=document.getElementById('tinh-ketqua'); if(res)res.innerHTML='<b>Kết quả ước tính:</b> '+tong.toLocaleString()+' Triệu VNĐ (tham khảo — cần khảo sát thực tế).'; }
+function checklistThat(){ var c=document.querySelectorAll('input[name="cl"]').length; var ok=document.querySelectorAll('input[name="cl"]:checked').length; var msg=ok===0?'Chưa chọn mục nào — chọn các mục bạn quan tâm.':ok<c?'Còn '+(c-ok)+' mục chưa chọn — tiếp tục kiểm tra.':'Đã hoàn thành checklist! Nên khảo sát chuyên gia trước khi đặt cọc.'; var res=document.getElementById('cl-ketqua'); if(res)res.textContent=msg; }
+function quyTrinhThat(){ var loai=document.getElementById('qt-loai')?document.getElementById('qt-loai').value:''; var msg='Quy trình '+(loai||'tình huống')+': (1) Nhận mô tả → (2) Phân loại → (3) Checklist + chi phí + thời gian. Đang phát triển chi tiết.'; var res=document.getElementById('qt-ketqua'); if(res)res.textContent=msg; }
 </script>

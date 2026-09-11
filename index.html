@@ -1,123 +1,178 @@
 ---
 layout: default
 title: "x.aladdin.vn — CLI Apple Style"
-description: "Nguyễn Cao Hải & Cộng sự — CLI Apple Style, giao diện sáng/tối, bài viết thứ 2."
+description: "Giao diện đơn giản: sidebar + nội dung chính, bài viết 02 + công cụ trở lại."
 ---
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=SF+Mono:wght@400;500;600&display=swap');
-:root{--bg:#f5f5f7;--surface:#fff;--surface-2:#fafafa;--ink:#1d1d1f;--ink-2:#86868b;--ink-3:#6e6e73;--ink-4:#f5f5f7;--border:#d2d2d7;--border-soft:#e8e8ed;--accent:#0071e3;--accent-soft:#0071e320;--shadow:0 20px 50px rgba(0,0,0,.08);--radius:22px;--mono:'SF Mono','Fira Mono','JetBrains Mono',monospace;}
-.dark{--bg:#0a0a0a;--surface:#111111;--surface-2:#161616;--ink:#f5f5f7;--ink-2:#86868b;--ink-3:#6e6e73;--ink-4:#1d1d1f;--border:#2a2a2c;--border-soft:#1c1c1e;--shadow:0 20px 60px rgba(0,0,0,.55);}
+:root{--bg:#f6f6f7;--surface:#fff;--surface-2:#fafafa;--ink:#1d1d1f;--ink-2:#86868b;--ink-3:#6e6e73;--border:#e5e5e7;--border-soft:#f0f0f2;--accent:#0071e3;--shadow:0 12px 32px rgba(0,0,0,.05);--radius:16px;--mono:'SF Mono','Fira Mono',monospace;}
+.dark{--bg:#0a0a0a;--surface:#111;--surface-2:#161616;--ink:#f5f5f7;--ink-2:#86868b;--ink-3:#6e6e73;--border:#2a2a2c;--border-soft:#1c1c1e;--shadow:0 16px 40px rgba(0,0,0,.45);}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh;transition:background .35s,color .35s;}
-.cli-nav{max-width:980px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,245,247,.75);backdrop-filter:saturate(180%) blur(30px);-webkit-backdrop-filter:saturate(180%) blur(30px);border-bottom:1px solid var(--border-soft);transition:background .35s,border-color .35s;}
-.dark .cli-nav{background:rgba(10,10,10,.7);border-bottom-color:#1c1c1e;}
-.cli-brand{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;}
-.theme-toggle{background:transparent;border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-family:var(--mono);font-size:.75rem;color:var(--ink-2);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;text-decoration:none;}
-.theme-toggle:hover{border-color:var(--ink-3);color:var(--ink);}
-.dark .theme-toggle{border-color:#2a2a2c;color:#86868b;}
-.dark .theme-toggle:hover{border-color:#555;color:#f5f5f7;}
-.hero-inner{max-width:980px;margin:140px auto 0;padding:0 24px 80px;}
-.hero-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);box-shadow:var(--shadow);padding:64px 48px 56px;position:relative;overflow:hidden;transition:background .35s,border-color .35s,box-shadow .35s;}
-.hero-card::before{content:"";position:absolute;top:-60%;right:-20%;width:420px;height:420px;border-radius:50%;background:linear-gradient(135deg,rgba(0,113,227,.10),rgba(0,113,227,.06));pointer-events:none;filter:blur(60px);}
-.dark .hero-card::before{background:linear-gradient(135deg,rgba(0,113,227,.18),rgba(0,113,227,.08));}
-.prompt-label{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.prompt-label .dot{width:6px;height:6px;border-radius:50%;background:#34c759;}
-.hero-card h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.1;letter-spacing:-.035em;color:var(--ink);}
-.hero-card h1 .line-2{color:var(--ink-3);font-weight:500;}
+body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;transition:background .35s,color .35s;}
+
+/* Navbar */
+.cli-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;background:rgba(245,245,247,.8);backdrop-filter:saturate(180%) blur(24px);-webkit-backdrop-filter:saturate(180%) blur(24px);border-bottom:1px solid var(--border-soft);display:flex;align-items:center;padding:0 24px;transition:background .35s,border-color .35s;}
+.dark .cli-nav{background:rgba(10,10,10,.75);border-bottom-color:#1c1c1e;}
+.cli-brand{font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;}
+
+/* Layout */
+.layout{display:flex;max-width:1200px;margin:0 auto;padding:80px 24px 40px;gap:28px;align-items:flex-start;}
+
+/* Sidebar */
+.sidebar{width:220px;flex-shrink:0;position:sticky;top:80px;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:16px 0;box-shadow:var(--shadow);transition:background .35s,border-color .35s,box-shadow .35s;}
+.sidebar h3{font-family:var(--mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);padding:0 20px 8px;margin-bottom:4px;}
+.sidebar a{display:block;padding:10px 20px;text-decoration:none;color:var(--ink-2);font-size:.88rem;font-weight:500;border-radius:8px;margin:0 8px;transition:background .15s,color .15s;}
+.sidebar a:hover{background:rgba(0,113,227,.06);color:var(--accent);}
+.sidebar a.active{background:rgba(0,113,227,.1);color:var(--accent);font-weight:700;}
+
+/* Main */
+.main{flex:1;min-width:0;}
+
+/* Hero / Post */
+.hero-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);box-shadow:var(--shadow);padding:48px 44px;margin-bottom:32px;transition:background .35s,border-color .35s,box-shadow .35s;position:relative;overflow:hidden;}
+.hero-card::before{content:"";position:absolute;top:-50%;right:-15%;width:380px;height:380px;border-radius:50%;background:linear-gradient(135deg,rgba(0,113,227,.08),rgba(0,113,227,.03));pointer-events:none;filter:blur(50px);}
+.dark .hero-card::before{background:linear-gradient(135deg,rgba(0,113,227,.16),rgba(0,113,227,.06));}
+.hero-card h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--ink);position:relative;z-index:1;}
 .hero-card h1 em{font-style:normal;color:var(--accent);}
-.hero-card .lead{margin-top:22px;font-size:1.05rem;color:var(--ink-2);max-width:640px;line-height:1.65;}
-.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
-.badge-row span{display:inline-block;padding:4px 10px;border-radius:999px;font-family:var(--mono);font-size:.72rem;background:var(--surface-2);border:1px solid var(--border-soft);color:var(--ink-2);}
-.section{max-width:980px;margin:0 auto;padding:64px 24px;}
-.section-header{display:flex;align-items:baseline;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
-.section-num{font-family:var(--mono);font-size:.85rem;color:var(--ink-3);font-weight:600;min-width:36px;}
-.section h2{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;letter-spacing:-.025em;line-height:1.25;}
-.section-desc{color:var(--ink-3);margin-top:10px;max-width:620px;font-size:.95rem;line-height:1.6;}
-.post-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:56px 48px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:background .35s,border-color .35s,box-shadow .35s;}
-.post-card::after{content:"";position:absolute;bottom:0;left:48px;right:48px;height:1px;background:linear-gradient(90deg,transparent,var(--border-soft),transparent);}
-.post-card h3{font-size:clamp(1.4rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:22px;color:var(--ink);}
-.post-card h3 .emoji{font-family:system-ui,apple,color,emoji;font-size:1.1em;vertical-align:-.1em;}
-.post-body{font-size:1.05rem;line-height:1.75;color:var(--ink-2);}
-.post-body p{margin-bottom:22px;}
-.post-body .highlight-box{background:linear-gradient(135deg,rgba(0,113,227,.06),rgba(0,113,227,.03));border-left:3px solid var(--accent);border-radius:14px;padding:24px 28px;margin:28px 0;color:var(--ink);}
-.dark .highlight-box{background:linear-gradient(135deg,rgba(0,113,227,.12),rgba(0,113,227,.05));}
-.post-body ul{list-style:none;margin:22px 0;padding-left:8px;}
-.post-body ul li{position:relative;padding-left:28px;margin-bottom:14px;color:var(--ink-2);}
-.post-body ul li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0;}
-.cli-form{margin-top:36px;padding-top:28px;border-top:1px solid var(--border-soft);}
-.cli-form-label{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;}
-.cli-form-row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;}
-.cli-input{flex:1 1 220px;min-width:220px;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:14px 18px;font-family:inherit;font-size:.95rem;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;}
+.hero-card .lead{margin-top:16px;font-size:1.05rem;color:var(--ink-2);max-width:640px;line-height:1.65;position:relative;z-index:1;}
+
+/* Post Card */
+.post-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:48px 44px;box-shadow:var(--shadow);margin-bottom:32px;position:relative;overflow:hidden;transition:background .35s,border-color .35s,box-shadow .35s;}
+.post-card h2{font-size:clamp(1.35rem,3vw,2rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:18px;color:var(--ink);}
+.post-card h2 .emoji{font-family:system-ui,apple,color,emoji;font-size:1.1em;vertical-align:-.08em;}
+.post-body{font-size:1.02rem;line-height:1.75;color:var(--ink-2);}
+.post-body p{margin-bottom:20px;}
+.post-body .highlight-box{background:linear-gradient(135deg,rgba(0,113,227,.06),rgba(0,113,227,.02));border-left:3px solid var(--accent);border-radius:14px;padding:22px 26px;margin:24px 0;color:var(--ink);}
+.dark .highlight-box{background:linear-gradient(135deg,rgba(0,113,227,.12),rgba(0,113,227,.04));}
+.post-body ul{list-style:none;margin:18px 0;padding-left:6px;}
+.post-body ul li{position:relative;padding-left:24px;margin-bottom:12px;color:var(--ink-2);}
+.post-body ul li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--accent);}
+
+/* Tools (công cụ) */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;}
+.tool-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);transition:transform .15s,border-color .2s,box-shadow .2s;background:linear-gradient(180deg,var(--surface) 60%,rgba(0,113,227,.025) 100%);}
+.tool-card:hover{transform:translateY(-3px);border-color:rgba(0,113,227,.3);box-shadow:0 18px 40px rgba(0,0,0,.1);}
+.dark .tool-card:hover{box-shadow:0 18px 40px rgba(0,0,0,.35);}
+.tool-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--ink);}
+.tool-card p{font-size:.88rem;color:var(--ink-3);line-height:1.55;margin-bottom:14px;}
+.tool-card .btn{display:inline-block;padding:10px 18px;background:var(--ink);color:var(--ink-4);border:none;border-radius:10px;font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .1s;}
+.tool-card .btn:hover{background:#2a2a2c;transform:translateY(-1px);}
+.dark .tool-card .btn:hover{background:#222;}
+
+/* Articles list */
+.articles{margin-bottom:32px;}
+.articles h2{font-size:1.1rem;font-weight:700;margin-bottom:14px;color:var(--ink);}
+.articles ul{list-style:none;padding:0;}
+.articles li{margin-bottom:6px;}
+.articles a{display:block;padding:12px 16px;background:var(--surface);border:1px solid var(--border-soft);border-radius:12px;color:var(--ink);text-decoration:none;font-size:.92rem;font-weight:500;transition:background .15s,border-color .15s,transform .1s;}
+.articles a:hover{background:rgba(0,113,227,.04);border-color:rgba(0,113,227,.2);transform:translateX(4px);}
+
+/* Form */
+.cli-form{margin-top:24px;padding-top:24px;border-top:1px solid var(--border-soft);}
+.cli-form-label{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;display:block;}
+.cli-form-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
+.cli-input{flex:1 1 200px;min-width:200px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;font-family:inherit;font-size:.9rem;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;}
 .cli-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
-.cli-btn{background:var(--ink);color:var(--ink-4);border:none;border-radius:14px;padding:14px 28px;font-family:inherit;font-weight:600;font-size:.95rem;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s;white-space:nowrap;text-decoration:none;display:inline-block;}
-.cli-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.12);background:#2a2a2c;}
-.dark .cli-btn:hover{box-shadow:0 8px 30px rgba(255,255,255,.08);background:#222;}
-.cli-footer{max-width:980px;margin:0 auto;padding:48px 24px 28px;border-top:1px solid var(--border-soft);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.04em;}
-@media(max-width:720px){.hero-inner{padding:48px 28px 44px;}.post-card{padding:36px 28px;}.cli-form-row{flex-direction:column;}}
+.cli-btn{background:var(--ink);color:var(--ink-4);border:none;border-radius:12px;padding:12px 24px;font-family:inherit;font-weight:600;font-size:.9rem;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s;text-decoration:none;display:inline-block;}
+.cli-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.12);background:#2a2a2c;}
+.dark .cli-btn:hover{box-shadow:0 6px 20px rgba(255,255,255,.08);background:#222;}
+
+/* Toggle theme */
+.theme-btn{position:fixed;top:14px;right:20px;z-index:110;background:rgba(255,255,255,.9);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-family:var(--mono);font-size:.75rem;color:var(--ink-2);cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.dark .theme-btn{background:rgba(20,20,20,.8);color:#86868b;border-color:#2a2a2c;}
+.theme-btn:hover{border-color:var(--ink-3);color:var(--ink);}
+
+@media(max-width:860px){.layout{flex-direction:column;}.sidebar{width:100%;position:relative;top:0;}}
+@media(max-width:640px){.hero-card{padding:36px 24px;}.post-card{padding:32px 24px;}}
 </style>
 
 <header class="cli-nav" aria-label="CLI Navigation">
-  <a href="#" class="cli-brand" aria-label="x.aladdin.vn CLI">x.aladdin.vn <span aria-hidden="true">_</span></a>
-  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Chuyển giao diện sáng/tối" id="themeBtn">
-    <span id="themeLabel">Tối</span>
-  </button>
+  <a href="#" class="cli-brand">x.aladdin.vn <span aria-hidden="true">_</span></a>
+  <span style="font-family:var(--mono);font-size:.7rem;color:var(--ink-3);">CLI Apple Style · Sáng / Tối</span>
 </header>
 
-<main>
-<section class="hero-inner" aria-label="Giới thiệu CLI Apple">
-  <p class="prompt-label"><span class="dot"></span> CLI Apple Style · Giao diện sáng / tối</p>
-  <h1>Bạn giới thiệu khách <span class="line-2">có nhu cầu xây, sửa nhà</span> — <em>chúng tôi lo phần còn lại</em></h1>
-  <p class="lead">Mỗi khách bạn giới thiệu thành công là một cơ hội thu nhập thêm. Vừa tăng giá trị với khách cũ, vừa có nguồn thu mới, vừa mở thêm cơ hội làm ăn lâu dài.</p>
-  <div class="badge-row" aria-label="Tính năng chính"><span>Hoa hồng rõ ràng</span><span>Công trình thật</span><span>Quyền lợi lâu dài</span></div>
-</section>
+<button class="theme-btn" onclick="toggleTheme()" aria-label="Chuyển giao diện sáng/tối" id="themeBtn" title="Chuyển sáng/tối">◐ Sáng</button>
 
-<section class="section" aria-label="Bài viết thứ 2">
-  <div class="section-header">
-    <span class="section-num">02</span>
-    <h2>Đừng để công sức tìm khách của bạn chỉ được trả giá 1 lần</h2>
-  </div>
-  <p class="section-desc">Bài viết này dành cho những người đang vắt kiệt sức lực chạy doanh số mỗi tháng — và muốn biến mồ hôi thành dòng tiền thụ động bền vững.</p>
+<div class="layout">
+  <aside class="sidebar" aria-label="Điều hướng">
+    <h3>Mục lục</h3>
+    <nav>
+      <a href="#bai-viet" class="active">🔥 Bài viết 02</a>
+      <a href="#cong-cu">⚡ Công cụ</a>
+      <a href="#bai-khac">📚 Bài khác</a>
+    </nav>
+  </aside>
 
-  <article class="post-card" aria-label="Bài viết">
-    <h3><span class="emoji">🔥</span> ĐỪNG ĐỂ CÔNG SỨC TÌM KHÁCH CỦA BẠN CHỈ ĐƯỢC TRẢ GIÁ 1 LẦN!</h3>
-    <div class="post-body">
-      <p>Bạn đang vắt kiệt sức lực chạy doanh số mỗi tháng? Hãy để chúng tôi giúp bạn biến mồ hôi thành dòng tiền thụ động bền vững.</p>
-      <p>Tại <strong>Nguyễn Cao Hải &amp; Cộng Sự</strong>, chúng tôi cam kết bảo vệ tuyệt đối quyền lợi của bạn bằng 2 đặc quyền cốt lõi:</p>
-      <div class="highlight-box">
-        <strong>💎 HOA HỒNG TRỌN ĐỜI — BẢO HIỂM CHO CÔNG SỨC CỦA BẠN</strong><br><br>
-        Chỉ cần bạn kết nối khách hàng 1 LẦN DUY NHẤT. Dù tháng sau hay nhiều năm sau khách mới ký hợp đồng, hoa hồng vẫn mặc định chảy vào túi bạn. Không bao giờ lo mất khách, không sợ bị "cắt cầu"!
-      </div>
+  <main class="main" aria-label="Nội dung chính">
+    <section class="hero-card" aria-label="Giới thiệu">
+      <h1>Bạn giới thiệu khách <span style="display:block;color:var(--ink-3);font-weight:500;">có nhu cầu xây, sửa nhà</span> — <em>chúng tôi lo phần còn lại</em></h1>
+      <p class="lead">Mỗi khách bạn giới thiệu thành công là một cơ hội thu nhập thêm. Vừa tăng giá trị với khách cũ, vừa có nguồn thu mới, vừa mở thêm cơ hội làm ăn lâu dài.</p>
+    </section>
+
+    <section id="bai-viet" aria-label="Bài viết 02">
+      <article class="post-card">
+        <h2><span class="emoji">🔥</span> ĐỪNG ĐỂ CÔNG SỨC TÌM KHÁCH CỦA BẠN CHỈ ĐƯỢC TRẢ GIÁ 1 LẦN!</h2>
+        <div class="post-body">
+          <p>Bạn đang vắt kiệt sức lực chạy doanh số mỗi tháng? Hãy để chúng tôi giúp bạn biến mồ hôi thành dòng tiền thụ động bền vững.</p>
+          <p>Tại <strong>Nguyễn Cao Hải &amp; Cộng Sự</strong>, chúng tôi cam kết bảo vệ tuyệt đối quyền lợi của bạn bằng 2 đặc quyền cốt lõi:</p>
+          <div class="highlight-box"><strong>💎 HOA HỒNG TRỌN ĐỜI — BẢO HIỂM CHO CÔNG SỨC CỦA BẠN</strong><br><br>Chỉ cần bạn kết nối khách hàng 1 LẦN DUY NHẤT. Dù tháng sau hay nhiều năm sau khách mới ký hợp đồng, hoa hồng vẫn mặc định chảy vào túi bạn. Không bao giờ lo mất khách, không sợ bị "cắt cầu"!</div>
+          <ul>
+            <li>Chỉ cần kết nối 1 lần — thu nhập tự động nhiều năm sau.</li>
+            <li>Không lo bị "cắt cầu", không sợ mất khách.</li>
+            <li>Dòng tiền thụ động thực sự từ công sức bạn đã bỏ ra.</li>
+          </ul>
+          <div class="highlight-box"><strong>💰 THU NHẬP XỨNG TẦM</strong><br><br>Tỷ lệ % cực hấp dẫn. Nhận ngay từ <strong>20 Triệu đến 300 TRIỆU VNĐ</strong> cho mỗi giao dịch thành công, TRỌN ĐỜI.</div>
+          <p>Công sức của bạn xứng đáng được trân trọng trọn đời. Hãy đồng hành cùng chúng tôi để xây dựng sự nghiệp tự do tài chính thực sự!</p>
+        </div>
+        <form class="cli-form" onsubmit="submitInfo(event)" aria-label="Để lại thông tin liên hệ">
+          <label class="cli-form-label">Để lại số điện thoại hoặc email để nhận thông tin</label>
+          <div class="cli-form-row">
+            <input type="tel" class="cli-input" placeholder="Số điện thoại (ví dụ: 0983.601.366)" aria-label="Số điện thoại" required />
+            <input type="email" class="cli-input" placeholder="Email (ví dụ: ten@aladdin.vn)" aria-label="Email" required />
+            <button type="submit" class="cli-btn" aria-label="Gửi thông tin">Gửi →</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <section id="cong-cu" class="tools-grid" aria-label="Công cụ">
+      <article class="tool-card">
+        <h3>⚡ Tính tiền cần thêm</h3>
+        <p>Điền diện tích &amp; kết cấu — tính ngay chi phí xây/sửa để gửi khách. Không cần chờ AI.</p>
+        <a class="btn" href="#" onclick="alert('Tính năng: nhập diện tích, số tầng, loại hình → ra khoảng chi phí. Đang phát triển.')">Mở công cụ</a>
+      </article>
+      <article class="tool-card">
+        <h3>🔍 Checklist trước cọc</h3>
+        <p>Tick trạng thái từng mục — hệ thống phân loại: tiếp tục tìm hiểu / cần hỏi thêm / nên khảo sát chuyên gia.</p>
+        <a class="btn" href="#" onclick="alert('Tính năng: kiểm tra nứt, thấm, lối thi công, nhà liền kề.')">Mở checklist</a>
+      </article>
+      <article class="tool-card">
+        <h3>📋 Quy trình công trình</h3>
+        <p>Mô tả tình huống khách → nhận checklist từng bước + chi phí + thời gian đúng ca.</p>
+        <a class="btn" href="#" onclick="alert('Tính năng: chọn loại công trình (xây mới, sửa nhẹ, chống thấm...) → tạo quy trình.')">Mở quy trình</a>
+      </article>
+      <article class="tool-card">
+        <h3>📞 Liên hệ chuyên gia</h3>
+        <p>Gọi trực tiếp Hải &amp; Cộng sự hoặc nhắn Zalo 0983.601.366 để được hỗ trợ ngay.</p>
+        <a class="btn" href="tel:0983601366">Gọi ngay</a>
+      </article>
+    </section>
+
+    <section id="bai-khac" class="articles" aria-label="Bài viết khác">
+      <h2>📚 Bài viết khác từ x.aladdin.vn</h2>
       <ul>
-        <li>Chỉ cần kết nối 1 lần — thu nhập tự động nhiều năm sau.</li>
-        <li>Không lo bị "cắt cầu", không sợ mất khách.</li>
-        <li>Dòng tiền thụ động thực sự từ công sức bạn đã bỏ ra.</li>
+        <li><a href="/bai-viet/bao-gia-xay-nha-pho-ha-noi-2026-don-gia-theo-m2-va-cac-khoan-an-de-bo-sot/">💰 Báo giá xây nhà phố Hà Nội 2026 — đơn giá theo m²</a></li>
+        <li><a href="/bai-viet/quy-trinh-nghiem-thu-va-ban-giao-nha-pho-checklist-vang-truoc-khi-nhan-nha/">📋 Quy trình nghiệm thu và bàn giao nhà phố</a></li>
+        <li><a href="/bai-viet/cach-giam-sat-thi-cong-xay-dung-khi-khong-ranh-ky-thuat-chan-phat-sinh-an-bot-vat-tu/">🔨 Giám sát thi công khi không rành kỹ thuật</a></li>
+        <li><a href="/bai-viet/kinh-nghiem-chon-nha-thau-xay-dung-uy-tin-tai-ha-noi-tranh-thau-co-moi-gioi/">🤝 Kinh nghiệm chọn nhà thầu xây dựng uy tín</a></li>
       </ul>
-      <div class="highlight-box">
-        <strong>💰 THU NHẬP XỨNG TẦM</strong><br><br>
-        Tỷ lệ % cực hấp dẫn. Nhận ngay từ <strong>20 Triệu đến 300 TRIỆU VNĐ</strong> cho mỗi giao dịch thành công, TRỌN ĐỜI.
-      </div>
-      <p>Công sức của bạn xứng đáng được trân trọng trọn đời. Hãy đồng hành cùng chúng tôi để xây dựng sự nghiệp tự do tài chính thực sự!</p>
-    </div>
-    <form class="cli-form" onsubmit="submitInfo(event)" aria-label="Để lại thông tin liên hệ">
-      <p class="cli-form-label">Để lại số điện thoại hoặc email để nhận thông tin</p>
-      <div class="cli-form-row">
-        <input type="tel" class="cli-input" placeholder="Số điện thoại (ví dụ: 0983.601.366)" aria-label="Số điện thoại" required />
-        <input type="email" class="cli-input" placeholder="Email (ví dụ: ten@aladdin.vn)" aria-label="Email" required />
-        <button type="submit" class="cli-btn" aria-label="Gửi thông tin">Gửi →</button>
-      </div>
-    </form>
-  </article>
-</section>
-</main>
-
-<footer class="cli-footer" aria-label="Chân trang">
-  <div>Nguyễn Cao Hải &amp; Cộng sự — 0983.601.366 — x.aladdin.vn</div>
-  <div>CLI Apple Style · Light / Dark</div>
-</footer>
+    </section>
+  </main>
+</div>
 
 <script>
-function toggleTheme(){ document.documentElement.classList.toggle('dark'); document.getElementById('themeLabel').textContent = document.documentElement.classList.contains('dark') ? 'Sáng' : 'Tối'; }
+function toggleTheme(){ document.documentElement.classList.toggle('dark'); document.getElementById('themeBtn').textContent = document.documentElement.classList.contains('dark') ? '◑ Tối' : '◐ Sáng'; }
 function submitInfo(e){ e.preventDefault(); var btn=e.target.querySelector('.cli-btn'); var orig=btn.textContent; btn.textContent='Đã gửi ✓'; btn.style.background='#34c759'; btn.style.color='#fff'; setTimeout(function(){ btn.textContent=orig; btn.style.background=''; btn.style.color=''; }, 2200); }
 </script>

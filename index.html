@@ -204,7 +204,7 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <article class="tool-c">
       <h3>💰 Tính tiền cần thêm sau mua</h3>
       <p>Điền diện tích, loại hình, khu vực → tính ngay chi phí xây/sửa để gửi khách. Không cần chờ AI.</p>
-      <a href="#" onclick="alert('Tính năng: nhập diện tích, số tầng, loại hình → ra khoảng chi phí. Đang phát triển.');return false;">Mở công cụ</a>
+      <a href="#cong-cu-thuc" class="hook-cta" style="margin-top:8px;display:inline-block;padding:8px 16px;border-radius:10px;background:#f59e0b;color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;">⚡ MỞ CÔNG CỤ THẬT →</a>
     </article>
     <article class="tool-c">
       <h3>🔍 Checklist trước cọc</h3>
@@ -272,6 +272,44 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
     </form>
     <div id="qt-ketqua" style="margin-top:14px;padding:14px 16px;background:#161616;border:1px solid #2a2a2c;border-radius:12px;color:#fbbf24;font-weight:700;font-size:1rem;min-height:40px;display:flex;align-items:center;"></div>
   </article>
+
+  <!-- CÔNG CỤ 4: TÍNH VẬT LIỆU -->
+  <article class="post-card" style="margin-bottom:28px;">
+    <h2><span class="emoji">🧱</span> TÍNH VẬT LIỆU — GẠCH / XI MĂNG / CÁT / ĐÁ</h2>
+    <p style="font-size:.88rem;color:#86868b;margin-bottom:14px;">Nhập diện tích sàn + số tầng + loại hình → ước lượng vật liệu chính cần mua.</p>
+    <form onsubmit="event.preventDefault();tinhVatLieu();" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;">
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 140px;"><input id="vl-dt" type="number" placeholder="Diện tích sàn (m²)" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;outline:none;"></label>
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 80px;"><select id="vl-tang" style="width:100%;padding:10px 10px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;"><option value="1">1 tầng</option><option value="2">2 tầng</option><option value="3">3 tầng</option><option value="4" selected>4 tầng</option></select></label>
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 120px;"><select id="vl-loai" style="width:100%;padding:10px 10px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;"><option value="nha">Nhà phố (m²/sàn)</option><option value="bietthu">Biệt thự</option><option value="sua">Sửa chữa</option></select></label>
+      <button type="submit" class="cli-btn" style="flex-shrink:0;padding:10px 20px;font-size:.9rem;">🧱 TÍNH VẬT LIỆU</button>
+    </form>
+    <div id="vl-ketqua" style="margin-top:14px;padding:14px 16px;background:#161616;border:1px solid #2a2a2c;border-radius:12px;color:#fff;font-weight:700;font-size:.9rem;min-height:40px;display:flex;align-items:flex-start;flex-direction:column;"></div>
+  </article>
+
+  <!-- CÔNG CỤ 5: TÍNH SỬA TỪNG HẠNG MỤC -->
+  <article class="post-card" style="margin-bottom:28px;">
+    <h2><span class="emoji">🔧</span> TÍNH CHI PHÍ SỬA TỪNG HẠNG MỤC</h2>
+    <p style="font-size:.88rem;color:#86868b;margin-bottom:14px;">Chọn hạng mục → nhập diện tích / số lượng → ra chi phí tham khảo.</p>
+    <form onsubmit="event.preventDefault();tinhSuaHangMuc();" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;">
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 160px;"><select id="hm-loai" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;outline:none;"><option value="wc">🚿 Sửa WC</option><option value="bep">🍳 Sửa bếp</option><option value="mai">🏠 Sửa mái / mái tôn</option><option value="san">🪑 Sửa sàn</option><option value="chong-tham">💧 Chống thấm</option></select></label>
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 120px;"><input id="hm-dt" type="number" placeholder="Diện tích / số lượng (m² / cái)" value="5" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;outline:none;"></label>
+      <button type="submit" class="cli-btn" style="flex-shrink:0;padding:10px 20px;font-size:.9rem;">🔧 TÍNH NGAY</button>
+    </form>
+    <div id="hm-ketqua" style="margin-top:14px;padding:14px 16px;background:#161616;border:1px solid #2a2a2c;border-radius:12px;color:#fbbf24;font-weight:700;font-size:1rem;min-height:40px;display:flex;align-items:center;"></div>
+  </article>
+
+  <!-- CÔNG CỤ 6: THỜI GIAN THI CÔNG -->
+  <article class="post-card" style="margin-bottom:28px;">
+    <h2><span class="emoji">⏱️</span> THỜI GIAN THI CÔNG ƯỚC TÍNH</h2>
+    <p style="font-size:.88rem;color:#86868b;margin-bottom:14px;">Chọn loại công trình + diện tích → ước thời gian hoàn thành.</p>
+    <form onsubmit="event.preventDefault();tinhThoiGian();" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;">
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 140px;"><select id="tg-loai" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;outline:none;"><option value="xay">🏗️ Xây mới (nhà phố 4 tầng)</option><option value="sua-nhe">🪄 Sửa nhẹ (1–2 tuần)</option><option value="sua-lon">🏗️ Sửa lớn (2–4 tháng)</option><option value="chong-tham">💧 Chống thấm</option><option value="biet-thu">🌳 Biệt thự</option></select></label>
+      <label style="font-family:var(--mono);font-size:.7rem;color:#86868b;flex:1 1 120px;"><input id="tg-dt" type="number" placeholder="Diện tích sàn (m²)" value="60" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid #2a2a2c;background:#161616;color:#fff;font-size:.9rem;margin-top:4px;outline:none;"></label>
+      <button type="submit" class="cli-btn" style="flex-shrink:0;padding:10px 20px;font-size:.9rem;">⏱️ TÍNH THỜI GIAN</button>
+    </form>
+    <div id="tg-ketqua" style="margin-top:14px;padding:14px 16px;background:#161616;border:1px solid #2a2a2c;border-radius:12px;color:#fbbf24;font-weight:700;font-size:1rem;min-height:40px;display:flex;align-items:center;"></div>
+  </article>
+
 </section>
 
 <section class="menu-mo-ra" aria-label="Menu mở ra — tích hợp công cụ và bài cũ">
@@ -279,9 +317,9 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <summary>⚡ CÔNG CỤ CHI TIẾT — TÍNH TIỀN, CHECKLIST, QUY TRÌNH</summary>
     <div class="menu-body">
       <ul>
-        <li><a href="#" onclick="alert('Tính tiền cần thêm sau mua: nhập diện tích sàn, số tầng, loại hình (nhà phố/nâng tầng/biệt thự), khu vực (Hà Nội/TP.HCM/Đà Nẵng/tỉnh khác), điều kiện tiếp cận (ngõ ô tô/ngõ xe máy/xa), chất lượng vật liệu (phổ thông/khá/cao cấp). Bấm TÍNH NGAY → ra khoảng chi phí xây mới/sửa nhẹ/sửa lớn. Đang phát triển.');return false;">💰 Tính tiền cần thêm sau mua</a></li>
-        <li><a href="#" onclick="alert('Checklist trước cọc: 3 nhóm kiểm tra — (1) Hiện trạng nhà: vết nứt tường/lún/nghiêng; (2) Thấm, dột, vệ sinh: dấu hiệu thấm/mùi hôi; (3) Lối thi công &amp; nhà liền kề: ngõ ô tô hay xe máy, sát nhà liền kề. Tick từng trạng thái → phân loại kết quả. Đang phát triển.');return false;">🔍 Checklist trước khi đặt cọc</a></li>
-        <li><a href="#" onclick="alert('Quy trình công trình: chọn loại công trình (xây mới/nhà cấp 4/nhà ống nhiều tầng/biệt thự/nhà trọ/thêm tầng/sửa nhẹ/sửa vừa/sửa lớn/sơn &amp; chống thấm/làm mái tôn/chống thấm sân thượng/cải tạo WC/lắp thang máy gia đình). Nhập diện tích sàn và mô tả tình huống → tạo quy trình từng bước. Đang phát triển.');return false;">📋 Quy trình công trình theo tình huống</a></li>
+        <li><a href="#cong-cu-thuc"><span class="tag">💰</span> Tính tiền xây / sửa (tính ngay — diện tích, tầng, loại, vùng)</a></li>
+        <li><a href="#cong-cu-thuc"><span class="tag">🔍</span> Checklist trước cọc (tick từng mục → phân loại tình trạng)</a></li>
+        <li><a href="#cong-cu-thuc"><span class="tag">📋</span> Quy trình công trình (chọn loại → chi tiết bước + chi phí + thời gian)</a></li>
       </ul>
       <div class="hook-mini">
         <h4>💡 Lợi ích môi giới — không phải "xin" mà là CHO GIÁ TRỊ TRƯỚC</h4>
@@ -334,4 +372,8 @@ function submitInfo(e){ e.preventDefault(); var btn=e.target.querySelector('.cli
 function tinhNhanh(){ var d=document.getElementById('tinh-dt')?document.getElementById('tinh-dt').value:0; var t=document.getElementById('tinh-tang')?document.getElementById('tinh-tang').value:1; var loai=document.getElementById('tinh-loai')?document.getElementById('tinh-loai').value:'xay_moi'; var vung=document.getElementById('tinh-vung')?document.getElementById('tinh-vung').value:'HN'; var gia=loai==='xay_moi'?15:loai==='sua'?8:loai==='son'?1.5:1; var heSo=vung==='HN'?1:vung==='HCM'?1.05:vung==='DN'?0.95:0.9; var tong=Math.round(parseFloat(d||0)*parseFloat(t||1)*gia*heSo/1e6); if(isNaN(tong)){alert('Vui lòng nhập diện tích');return;} var res=document.getElementById('tinh-ketqua'); if(res)res.innerHTML='<b>Kết quả ước tính:</b> '+tong.toLocaleString()+' Triệu VNĐ (tham khảo — cần khảo sát thực tế).'; }
 function checklistThat(){ var c=document.querySelectorAll('input[name="cl"]').length; var ok=document.querySelectorAll('input[name="cl"]:checked').length; var msg=ok===0?'Chưa chọn mục nào — chọn các mục bạn quan tâm.':ok<c?'Còn '+(c-ok)+' mục chưa chọn — tiếp tục kiểm tra.':'Đã hoàn thành checklist! Nên khảo sát chuyên gia trước khi đặt cọc.'; var res=document.getElementById('cl-ketqua'); if(res)res.textContent=msg; }
 function quyTrinhThat(){ var loai=document.getElementById('qt-loai')?document.getElementById('qt-loai').value:''; var map={'Xây mới':'Bước 1: Chuẩn bị hồ sơ + xin phép → Bước 2: Thiết kế bản vẽ → Bước 3: Chọn thầu → Bước 4: Thi công + giám sát → Bước 5: Nghiệm thu bàn giao. Chi phí: 13,5–19,5 triệu/m². Thời gian: 4–8 tháng.','Sửa nhẹ':'Bước 1: Khảo sát hiện trạng → Bước 2: Lên phương án sửa → Bước 3: Báo giá chi tiết → Bước 4: Thi công 1–3 tuần. Chi phí: 1,5–3 triệu/m².','Sửa lớn':'Bước 1: Phá dỡ + kiểm đếm kết cấu → Bước 2: Gia cố móng/dầm → Bước 3: Xây mới phần thay đổi → Bước 4: Hoàn thiện. Chi phí: 8–15 triệu/m². Thời gian: 2–4 tháng.','Chống thấm':'Bước 1: Tìm nguồn thấm → Bước 2: Xử lý lớp chống thấm → Bước 3: Sơn hoàn thiện. Chi phí: 1–2 triệu/m² sân thượng. Thời gian: 3–7 ngày.','Biệt thự':'Bước 1: Quy hoạch sân vườn → Bước 2: Thiết kế kiến trúc → Bước 3: Thi công phần thô + hoàn thiện cao cấp. Chi phí: 19,5 triệu/m² trở lên. Thời gian: 6–12 tháng.'}; var msg=map[loai]||'Quy trình '+(loai||'tình huống')+': (1) Nhận mô tả khách → (2) Phân loại → (3) Checklist từng bước + chi phí + thời gian. Đang phát triển chi tiết theo từng ca thực tế.'; var res=document.getElementById('qt-ketqua'); if(res)res.innerHTML='<b>Quy trình '+(loai||'tình huống')+'</b><br>'+msg; }
+// CÔNG CỤ THÊM — hoạt động thật
+function tinhVatLieu(){ var dt=document.getElementById('vl-dt')?document.getElementById('vl-dt').value:0; var tang=document.getElementById('vl-tang')?document.getElementById('vl-tang').value:4; var loai=document.getElementById('vl-loai')?document.getElementById('vl-loai').value:'nha'; var s=parseFloat(dt||0); var t=parseFloat(tang||4); var heSo=loai==='bietthu'?1.4:loai==='sua'?0.6:1; var g=Math.round(s*t*52*heSo/1000); var x=Math.round(s*t*2.8*heSo); var c=Math.round(s*t*1.2*heSo); var d=Math.round(s*t*0.05*heSo); var res=document.getElementById('vl-ketqua'); if(res)res.innerHTML='<b>Vật liệu ước tính (tham khảo):</b><br>• Gạch: <b>'+g.toLocaleString()+' viên</b> · Xi măng: <b>'+x.toLocaleString()+' bao</b> (50kg) · Cát: <b>'+c.toLocaleString()+' m³</b> · Đá: <b>'+d.toLocaleString()+' m³</b><br><span style="font-size:.82rem;color:#86868b">Diện tích '+s+'m² × '+t+' tầng · loại '+loai+'</span>'; }
+function tinhSuaHangMuc(){ var loai=document.getElementById('hm-loai')?document.getElementById('hm-loai').value:'wc'; var dt=document.getElementById('hm-dt')?document.getElementById('hm-dt').value:5; var s=parseFloat(dt||5); var map={'wc':['Sửa WC (thay bồn, gạch, ống)', s*1.8+3, 'triệu'] ,'bep':['Sửa bếp (tủ, bồn rửa, bếp, hút)', s*2.2+2.5, 'triệu'],'mai':['Sửa mái / mái tôn', s*1.2+8, 'triệu'],'san':['Sửa sàn (lát gạch/gỗ)', s*1.5+1, 'triệu'],'chong-tham':['Chống thấm', s*1.2+2, 'triệu']}; var r=map[loai]||['Hạng mục',s*1.5,'triệu']; var res=document.getElementById('hm-ketqua'); if(res)res.innerHTML='<b>'+r[0]+'</b> — ước tính <b>'+Math.round(r[1]*10)/10+' '+r[2]+'</b> (diện tích/số lượng '+s+').';}
+function tinhThoiGian(){ var loai=document.getElementById('tg-loai')?document.getElementById('tg-loai').value:'xay'; var dt=document.getElementById('tg-dt')?document.getElementById('tg-dt').value:60; var s=parseFloat(dt||60); var map={'xay':'4–8 tháng (nhà phố ~'+Math.round(s/60)+' tầng)','sua-nhe':'1–3 tuần','sua-lon':'2–4 tháng','chong-tham':'3–10 ngày','biet-thu':'6–12 tháng'}; var msg=map[loai]||'Thời gian phụ thuộc nhiều yếu tố — cần khảo sát thực tế.'; var res=document.getElementById('tg-ketqua'); if(res)res.innerHTML='<b>Thời gian ước tính:</b> '+msg+' · diện tích nhập '+s+' m²';}
 </script>

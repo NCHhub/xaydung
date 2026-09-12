@@ -431,65 +431,19 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
   </div>
 </section>
 
-<!-- TIN TỨC HÀ NỘI — CẬP NHẬT HÀNG GIỜ + HÀNH ĐỘNG MÔI GIỚI -->
+<!-- TIN TỨC HÀ NỘI — CẬP NHẬT THẬT (dữ liệu news.json từ RSS VnExpress BĐS) -->
 <section class="post-section" id="news-live" aria-label="Tin tức thị trường BĐS Hà Nội cập nhật theo giờ">
   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;">
-    <h2 style="margin:0;color:#fff;font-size:1.4rem;font-weight:800;">📢 TIN TỨC HÀ NỘI — LIVE UPDATE MỖI 30 PHÚT</h2>
+    <h2 style="margin:0;color:#fff;font-size:1.4rem;font-weight:800;">📢 TIN TỨC HÀ NỘI — CẬP NHẬT THẬT</h2>
     <button onclick="toggleNewsHistory()" style="padding:6px 12px;border-radius:8px;border:1px solid #2a2a2c;background:#111;color:#f5f5f7;font-size:.75rem;cursor:pointer;">🔍 Xem lịch sử</button>
   </div>
-  
+  <div style="font-size:.75rem;color:#86868b;margin-bottom:12px;font-family:var(--mono);">⏱ Cập nhật: <span id="news-updated">đang tải…</span> · Nguồn: VnExpress BĐS (link gốc từng tin)</div>
   <div id="news-live-container" style="display:flex;flex-direction:column;gap:14px;">
-    <div class="post-card" style="padding:24px 20px;">
-      <div style="display:flex;align-items:flex-start;gap:12px;">
-        <span style="font-size:1.4rem;">🔥</span>
-        <div>
-          <div style="font-weight:700;color:#f59e0b;margin-bottom:4px;">BĐS HÀ NỘI 2026: Giá tăng 35% doanh thu 2024</div>
-          <div style="font-size:.85rem;color:#86868b;margin-bottom:8px;">Cập nhật: <span id="news-time-1">--:--</span></div>
-          <div style="font-size:.82rem;color:#34c759;font-weight:600;">➡️ Hành động môi giới: Gọi khách đang tìm nhà đất tại Ba Vì, Sài Đồn, Sơn Tây — dự án mới đang chào bán. Kết nối sớm trước khi lũ khách tìm thay.</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="post-card" style="padding:24px 20px;">
-      <div style="display:flex;align-items:flex-start;gap:12px;">
-        <span style="font-size:1.4rem;">🏗️</span>
-        <div>
-          <div style="font-weight:700;color:#f59e0b;margin-bottom:4px;">Quy hoạch đô thị mới: 7 dự án chính Hà Nội 2025-2030</div>
-          <div style="font-size:.85rem;color:#86868b;margin-bottom:8px;">Cập nhật: <span id="news-time-2">--:--</span></div>
-          <div style="font-size:.82rem;color:#34c759;font-weight:600;">➡️ Hành động môi giới: Tìm khách đang cần mua đất gần các dự án này. Chuẩn bị hồ sơ chào bán, khuyến khích khách đặt cọc sớm.</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="post-card" style="padding:24px 20px;">
-      <div style="display:flex;align-items:flex-start;gap:12px;">
-        <span style="font-size:1.4rem;">💰</span>
-        <div>
-          <div style="font-weight:700;color:#f59e0b;margin-bottom:4px;">Lãi suất ngân hàng giảm xuống 6.2% — thị trường bất động sản bùng nổ</div>
-          <div style="font-size:.85rem;color:#86868b;margin-bottom:8px;">Cập nhật: <span id="news-time-3">--:--</span></div>
-          <div style="font-size:.82rem;color:#34c759;font-weight:600;">➡️ Hành động môi giới: Gọi khách đang cần vay mua nhà, giải thích lợi thế giá trả góp. Tính chi phí xây dựng giá chạy trước khi vay.</div>
-        </div>
-      </div>
-    </div>
+    <div style="padding:16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;color:#86868b;font-size:.85rem;">Đang tải tin thật…</div>
   </div>
-  
-  <!-- Lịch sử tin tức (ẩn mặc định) -->
   <div id="news-history" style="display:none;margin-top:24px;padding:16px 0;border-top:1px solid #2a2a2c;">
-    <h3 style="margin-bottom:16px;color:#b91c1c;">📚 LỊCH SỬ TIN TỨC (xem lại)</h3>
-    <div style="display:flex;flex-direction:column;gap:10px;">
-      <div style="padding:12px 16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;font-size:.85rem;">
-        <div style="font-weight:600;color:#fff;">28/09: Thị trường nhà đất giá tăng 5% tháng này</div>
-        <div style="color:#86868b;font-size:.78rem;margin-top:4px;">➡️ Môi giới nên khuyến khích khách mua sớm. Tính chi phí xây dựng để đưa ra khách hàng.</div>
-      </div>
-      <div style="padding:12px 16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;font-size:.85rem;">
-        <div style="font-weight:600;color:#fff;">26/09: Chính sách thu hồi đất thay đổi quy định bảo toàn quyền sử dụng</div>
-        <div style="color:#86868b;font-size:.78rem;margin-top:4px;">➡️ Khách mua đất mới cần lưu ý giấy tờ. Kiểm tra hồ sơ trước khi ký hợp đồng.</div>
-      </div>
-      <div style="padding:12px 16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;font-size:.85rem;">
-        <div style="font-weight:600;color:#fff;">24/09: Dự án Green River khai trương bán</div>
-        <div style="color:#86868b;font-size:.78rem;margin-top:4px;">➡️ Tập trung khách hàng đầu tiên. Cung cấp thông tin dự án chính xác, hỗ trợ vay vốn.</div>
-      </div>
-    </div>
+    <h3 style="margin-bottom:16px;color:#b91c1c;">📚 LỊCH SỬ TIN TỨC</h3>
+    <div id="news-history-container" style="display:flex;flex-direction:column;gap:10px;"></div>
   </div>
 </section>
 
@@ -549,12 +503,43 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
 <script>
 function toggleTheme(){ document.documentElement.classList.toggle('light'); document.getElementById('themeBtn').textContent = document.documentElement.classList.contains('light') ? '◑ Tối' : '◐ Sáng'; }
 function toggleNewsHistory(){ var h=document.getElementById('news-history'); h.style.display= h.style.display==='none' ? 'block' : 'none'; }
-function updateNewsTime(){ var now=new Date(); var h=now.getHours().toString().padStart(2,'0'); var m=now.getMinutes().toString().padStart(2,'0'); var t=h+':'+m; document.getElementById('news-time-1').textContent=t; document.getElementById('news-time-2').textContent=t; document.getElementById('news-time-3').textContent=t; }
-setInterval(updateNewsTime, 60000); updateNewsTime();
+function escHtml(s){ var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+function loadNews(){
+  fetch('news.json').then(function(r){ return r.json(); }).then(function(data){
+    var upd=document.getElementById('news-updated');
+    if(upd) upd.textContent=(data.updated||'')+' · '+(data.source||'');
+    var box=document.getElementById('news-live-container');
+    if(!data.items || !data.items.length){ box.innerHTML='<div style="padding:16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;color:#86868b;font-size:.85rem;">Chưa có tin cập nhật.</div>'; return; }
+    box.innerHTML=data.items.map(function(it){
+      return '<div class="post-card" style="padding:24px 20px;">'
+        +'<div style="display:flex;align-items:flex-start;gap:12px;"><span style="font-size:1.4rem;">'+escHtml(it.icon)+'</span><div>'
+        +'<div style="font-weight:700;color:#f59e0b;margin-bottom:4px;">'+escHtml(it.title)+'</div>'
+        +'<div style="font-size:.75rem;color:#86868b;margin-bottom:8px;">'+escHtml(it.time)+' · <a href="'+escHtml(it.link)+'" target="_blank" rel="noopener noreferrer" style="color:#f59e0b;">Nguồn ↗</a></div>'
+        +'<div style="font-size:.85rem;color:#d4d4d8;margin-bottom:8px;">'+escHtml(it.summary)+'</div>'
+        +'<div style="font-size:.82rem;color:#34c759;font-weight:600;">'+escHtml(it.action)+'</div>'
+        +'</div></div></div>';
+    }).join('');
+    var hbox=document.getElementById('news-history-container');
+    if(hbox){
+      if(data.history && data.history.length){
+        hbox.innerHTML=data.history.map(function(h){
+          return '<div style="padding:12px 16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;font-size:.85rem;">'
+            +'<div style="font-weight:600;color:#fff;">'+escHtml(h.time)+': '+escHtml(h.title)+'</div>'
+            +'<div style="color:#86868b;font-size:.78rem;margin-top:4px;">'+escHtml(h.action)+'</div></div>';
+        }).join('');
+      } else {
+        hbox.innerHTML='<div style="padding:12px 16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;font-size:.85rem;color:#86868b;">Chưa có lịch sử — bản tin đầu tiên từ 12/09/2026.</div>';
+      }
+    }
+  }).catch(function(e){
+    var box=document.getElementById('news-live-container');
+    if(box) box.innerHTML='<div style="padding:16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;color:#b91c1c;font-size:.85rem;">Lỗi tải tin thật: '+escHtml(e.message)+'</div>';
+  });
+}
+setInterval(loadNews, 1800000); loadNews();
 function calcBrokerFee(){ var gia=document.getElementById('bf-gia').value||0; var loai=document.getElementById('bf-loai').value||'ban'; var hg=0; if(loai==='ban' || loai==='dat'){ hg=parseFloat(gia)*0.03; } else { hg=parseFloat(gia)*0.08; } var res=document.getElementById('bf-ketqua'); if(res) res.innerHTML='<b>Hoa hồng: </b>'+(hg/1e3).toLocaleString()+' triệu VNĐ'; }
 function calcProfit(){ var dt=parseFloat(document.getElementById('pn-chiphi').value||0); var xx=parseFloat(document.getElementById('pn-chiphixu').value||0); var gb=parseFloat(document.getElementById('pn-giaban').value||0); var n=gb-(dt+xx); var l=xx*0.15+dt*0.02; var r=n-l; var res=document.getElementById('pn-ketqua'); if(res) res.innerHTML='<b>Nhận nghỉ ngạng dự kiến:</b> '+(r/1e3).toLocaleString()+' triệu VNĐ · Chi phí vốn: '+(l/1e3).toLocaleString()+' triệu'; }
 function calcArea(){ var x=parseFloat(document.getElementById('ta-x').value||0); var y=parseFloat(document.getElementById('ta-y').value||0); var h=parseFloat(document.getElementById('ta-h').value||0); var dt=x*y; var vol=x*y*h; var res=document.getElementById('ta-ketqua'); if(res) res.innerHTML='<b>Diện tích sàn: </b>'+dt.toLocaleString()+' m²'+(h>0?' · Thể tích: '+vol.toLocaleString()+' m³':'')+' · Diện tích xây dựng: ~'+(dt*0.8).toLocaleString()+' m²'; }
-updateNewsTime();
 // CÔNG CỤ THẬT
 function tinhNhanh(){ var d=document.getElementById('tinh-dt')?document.getElementById('tinh-dt').value:0; var t=document.getElementById('tinh-tang')?document.getElementById('tinh-tang').value:1; var loai=document.getElementById('tinh-loai')?document.getElementById('tinh-loai').value:'xay_moi'; var vung=document.getElementById('tinh-vung')?document.getElementById('tinh-vung').value:'HN'; var gia=loai==='xay_moi'?15:loai==='sua'?8:loai==='son'?1.5:1; var heSo=vung==='HN'?1:vung==='HCM'?1.05:vung==='DN'?0.95:0.9; var tong=Math.round(parseFloat(d||0)*parseFloat(t||1)*gia*heSo/1e6); if(isNaN(tong)){alert('Vui lòng nhập diện tích');return;} var res=document.getElementById('tinh-ketqua'); if(res)res.innerHTML='<b>Kết quả ước tính:</b> '+tong.toLocaleString()+' Triệu VNĐ (tham khảo — cần khảo sát thực tế).'; }
 function checklistThat(){ var c=document.querySelectorAll('input[name="cl"]').length; var ok=document.querySelectorAll('input[name="cl"]:checked').length; var msg=ok===0?'Chưa chọn mục nào — chọn các mục bạn quan tâm.':ok<c?'Còn '+(c-ok)+' mục chưa chọn — tiếp tục kiểm tra.':'Đã hoàn thành checklist! Nên khảo sát chuyên gia trước khi đặt cọc.'; var res=document.getElementById('cl-ketqua'); if(res)res.textContent=msg; }

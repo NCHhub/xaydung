@@ -108,6 +108,19 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
 /* ===== LIGHT MODE (bật sáng/tối thực sự) ===== */
 .light html{background:#f5f5f7;}
 .light body{background:#f5f5f7;color:#111;}
+.light #videos-blogs h2{color:#111;text-shadow:none;}
+.light #news-live h2{color:#111;text-shadow:none;}
+/* News live — item render từ news.json */
+.nl-title{font-weight:700;color:#f59e0b;margin-bottom:4px;}
+.nl-meta{font-size:.75rem;color:var(--ink-2);margin-bottom:8px;}
+.nl-meta a{color:#f59e0b;}
+.nl-sum{font-size:.85rem;color:#d4d4d8;margin-bottom:8px;}
+.nl-act{font-size:.82rem;color:#34c759;font-weight:600;}
+.nl-box{background:#111;border:1px solid #2a2a2c;border-radius:8px;}
+.light .nl-sum{color:#333;}
+.light .nl-box{background:#f5f5f7;border-color:#ddd;}
+.light .nl-meta{color:#666;}
+.light .nl-act{color:#15803d;}
 .light .hero-card{background:#fff;border-color:#ddd;color:#111;box-shadow:0 20px 60px rgba(0,0,0,.15);}
 .light .hero-card h1,.light .hero-card .lead{color:#111;}
 .light .hero-card h1 em{color:#0071e3;}
@@ -278,8 +291,6 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
   </ul>
 </section>
 
-</section>
-
 <section class="post-section" id="cong-cu-thuc" aria-label="Công cụ thực tế">
   <article class="post-card" style="margin-bottom:28px;">
     <h2><span class="emoji">💰</span> TÍNH TIỀN NHANH — XÂY / SỬA NHÀ HÀ NỘI</h2>
@@ -404,42 +415,71 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
   </details>
 </section>
 
-<!-- VIDEO & BÀI VIẾT TỪ YOUTUBE / FACEBOOK -->
+<!-- VIDEO & BÀI VIẾT TỪ YOUTUBE / FACEBOOK (nguồn thật: kênh Nguyen Cao Hai Channel + page NguyenCaoHaiVN) -->
 <section class="post-section" id="videos-blogs" aria-label="Video và bài viết từ YouTube - Facebook">
-  <h2 style="margin-bottom:24px;text-align:center;color:#fff;">📺 VIDEO & BÀI VIẾT MỚI — CHO MÔI GIỚI THỔ CƯ</h2>
+  <h2 style="margin-bottom:24px;text-align:center;">📺 VIDEO & BÀI VIẾT MỚI — CHO MÔI GIỚI THỔ CƯ</h2>
   <div class="tools-grid">
-    <!-- Video Card 1 -->
-    <article class="post-card" style="padding:32px 24px;">
-      <h3 style="margin-bottom:12px;color:#f59e0b;">🎥 Video: "Dự án Green River nhà ống 3 tầng — giá chào bán bao nhiêu?"</h3>
-      <p style="font-size:.9rem;color:#86868b;margin-bottom:16px;line-height:1.5;">Phân tích mới nhất về vị trí, chi phí sửa chữa và cơ hội đầu tư. Xem ngay để có tư liệu cho khách hàng cần nhà ở chất lượng.</p>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" style="display:inline-block;padding:8px 16px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">▶️ XEM VIDEO</a>
+    <!-- Video 1 (thật): Xây sửa nhà Hà Nội — SÂN SAU -->
+    <article class="post-card" style="padding:24px;">
+      <a href="https://www.youtube.com/watch?v=qZOuKNctIQ0" target="_blank" rel="noopener noreferrer" aria-label="Xem video: Bạn quên nguồn thu nhập này không? Xây sửa nhà Hà Nội khó - Hải và Cộng sự lo">
+        <img src="https://i.ytimg.com/vi/qZOuKNctIQ0/hqdefault.jpg" alt="Video: Bạn quên nguồn thu nhập này không? Xây sửa nhà Hà Nội khó - Hải và Cộng sự lo" loading="lazy" style="width:100%;border-radius:10px;margin-bottom:12px;border:1px solid #2a2a2c;">
+      </a>
+      <h3 style="margin-bottom:8px;color:#f59e0b;font-size:1rem;">🎥 "Bạn quên nguồn thu nhập này không? Xây sửa nhà Hà Nội khó — Hải và Cộng sự lo"</h3>
+      <p style="font-size:.85rem;color:#86868b;margin-bottom:12px;line-height:1.5;">Video chính thức trên kênh Nguyen Cao Hai Channel — môi giới có thêm nguồn thu nhập từ nhu cầu xây sửa nhà của chính khách hàng mình.</p>
+      <a href="https://www.youtube.com/watch?v=qZOuKNctIQ0" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 16px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">▶️ XEM TRÊN YOUTUBE</a>
     </article>
     
-    <!-- Video Card 2 -->
-    <article class="post-card" style="padding:32px 24px;">
-      <h3 style="margin-bottom:12px;color:#f59e0b;">🎬 Bài viết: "Chống thấm sân thượng — công nghệ mới 2024"</h3>
-      <p style="font-size:.9rem;color:#86868b;margin-bottom:16px;line-height:1.5;">So sánh 3 công nghệ chống thấm hiện nay: keo spray, lớp phủ, hệ sinh thái hoàn toàn mới. Tư vấn khách hàng sửa nhà cần biết trước khi thi công.</p>
-      <a href="https://www.facebook.com/watch/embed/?v=1234567890" target="_blank" style="display:inline-block;padding:8px 16px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">📹 XEM FACEBOOK</a>
+    <!-- Video 2 (thật): Thổ cư miễn phí -->
+    <article class="post-card" style="padding:24px;">
+      <a href="https://www.youtube.com/watch?v=x82yU__dIak" target="_blank" rel="noopener noreferrer" aria-label="Xem video: Hướng dẫn Lên thổ cư miễn phí 100% Luật đất đai 2026 - Phần 1">
+        <img src="https://i.ytimg.com/vi/x82yU__dIak/hqdefault.jpg" alt="Video: Hướng dẫn Lên thổ cư miễn phí 100% Luật đất đai 2026 - Phần 1" loading="lazy" style="width:100%;border-radius:10px;margin-bottom:12px;border:1px solid #2a2a2c;">
+      </a>
+      <h3 style="margin-bottom:8px;color:#f59e0b;font-size:1rem;">🏡 "Hướng dẫn Lên thổ cư miễn phí 100% — Luật đất đai 2026 (P1)"</h3>
+      <p style="font-size:.85rem;color:#86868b;margin-bottom:12px;line-height:1.5;">Video chính thức trên kênh Nguyen Cao Hai Channel — chia sẻ đúng quy định Luật Đất đai 2026, môi giới dùng làm tư liệu tư vấn khách mua đất.</p>
+      <a href="https://www.youtube.com/watch?v=x82yU__dIak" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 16px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">▶️ XEM TRÊN YOUTUBE</a>
     </article>
     
-    <!-- Video Card 3 -->
-    <article class="post-card" style="padding:32px 24px;">
-      <h3 style="margin-bottom:12px;color:#f59e0b;">📊 Video: "Kinh tế Việt Nam 2024 — Hệ quả tới nhà đất Hà Nội?"</h3>
-      <p style="font-size:.9rem;color:#86868b;margin-bottom:16px;line-height:1.5;">Phân tích tác động lạc quan của lạm phát, lãi suất và FDI vào thị trường bất động sản. Môi giới cần chuẩn bị tư vấn khách hàng trước khi thị trường điều chỉnh.</p>
-      <a href="https://www.youtube.com/watch?v=video456" target="_blank" style="display:inline-block;padding:8px 16px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">▶️ XEM NGAY</a>
+    <!-- Video 3 (thật): 1/500 an toàn -->
+    <article class="post-card" style="padding:24px;">
+      <a href="https://www.youtube.com/watch?v=mtvUKaO2i80" target="_blank" rel="noopener noreferrer" aria-label="Xem video: Mua bán BĐS có 1/500 An toàn rồi còn rủi ro Lừa không">
+        <img src="https://i.ytimg.com/vi/mtvUKaO2i80/hqdefault.jpg" alt="Video: Mua bán BĐS có 1/500 An toàn rồi còn rủi ro Lừa không" loading="lazy" style="width:100%;border-radius:10px;margin-bottom:12px;border:1px solid #2a2a2c;">
+      </a>
+      <h3 style="margin-bottom:8px;color:#f59e0b;font-size:1rem;">🔎 "Mua bán BĐS có 1/500 — An toàn rồi còn rủi ro Lừa không?"</h3>
+      <p style="font-size:.85rem;color:#86868b;margin-bottom:12px;line-height:1.5;">Video chính thức trên kênh Nguyen Cao Hai Channel — môi giới kiểm tra nhanh rủi ro thửa đất trước khi tư vấn khách đặt cọc.</p>
+      <a href="https://www.youtube.com/watch?v=mtvUKaO2i80" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 16px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">▶️ XEM TRÊN YOUTUBE</a>
     </article>
+    
+    <!-- Video 4 (thật): BDS đóng băng hay cơ hội -->
+    <article class="post-card" style="padding:24px;">
+      <a href="https://www.youtube.com/watch?v=NUhfK76j224" target="_blank" rel="noopener noreferrer" aria-label="Xem video: BDS Thật sự Đóng băng Sập - Vua tiền mặt - Mua bán">
+        <img src="https://i.ytimg.com/vi/NUhfK76j224/hqdefault.jpg" alt="Video: BDS Thật sự Đóng băng Sập - Vua tiền mặt - Mua bán" loading="lazy" style="width:100%;border-radius:10px;margin-bottom:12px;border:1px solid #2a2a2c;">
+      </a>
+      <h3 style="margin-bottom:8px;color:#f59e0b;font-size:1rem;">📉 "BĐS Thật sự Đóng băng Sập? — Vua tiền mặt · Mua bán"</h3>
+      <p style="font-size:.85rem;color:#86868b;margin-bottom:12px;line-height:1.5;">Video chính thức trên kênh Nguyen Cao Hai Channel — góc nhìn thị trường thật để môi giới trả lời khách đang phân vân.</p>
+      <a href="https://www.youtube.com/watch?v=NUhfK76j224" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 16px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">▶️ XEM TRÊN YOUTUBE</a>
+    </article>
+  </div>
+
+  <!-- Video FACEBOOK thật đã đăng trên page NguyenCaoHaiVN -->
+  <div class="post-card" style="padding:24px;margin-top:16px;">
+    <h3 style="margin-bottom:12px;color:#f59e0b;">📹 VIDEO ĐÃ ĐĂNG TRÊN FACEBOOK (page Nguyễn Cao Hải)</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;">
+      <a href="https://www.facebook.com/NguyenCaoHaiVN/videos/1708788557913479" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 14px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">📹 Video: "Sửa nhẹ 2m² = 5 triệu — Tủ giày thành phòng bí mật"</a>
+      <a href="https://www.facebook.com/NguyenCaoHaiVN/videos/942941438867093" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 14px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">📹 Video: "5 thói quen được yêu mến — Người được yêu mến nhất làm gì khác biệt?"</a>
+      <a href="https://www.facebook.com/NguyenCaoHaiVN" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 14px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.8rem;text-decoration:none;">↗ Xem trang Facebook</a>
+    </div>
   </div>
 </section>
 
 <!-- TIN TỨC HÀ NỘI — CẬP NHẬT THẬT (dữ liệu news.json từ RSS VnExpress BĐS) -->
 <section class="post-section" id="news-live" aria-label="Tin tức thị trường BĐS Hà Nội cập nhật theo giờ">
   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;">
-    <h2 style="margin:0;color:#fff;font-size:1.4rem;font-weight:800;">📢 TIN TỨC HÀ NỘI — CẬP NHẬT THẬT</h2>
+    <h2 style="margin:0;font-size:1.4rem;font-weight:800;">📢 TIN TỨC HÀ NỘI — CẬP NHẬT THẬT</h2>
     <button onclick="toggleNewsHistory()" style="padding:6px 12px;border-radius:8px;border:1px solid #2a2a2c;background:#111;color:#f5f5f7;font-size:.75rem;cursor:pointer;">🔍 Xem lịch sử</button>
   </div>
   <div style="font-size:.75rem;color:#86868b;margin-bottom:12px;font-family:var(--mono);">⏱ Cập nhật: <span id="news-updated">đang tải…</span> · Nguồn: VnExpress BĐS (link gốc từng tin)</div>
   <div id="news-live-container" style="display:flex;flex-direction:column;gap:14px;">
-    <div style="padding:16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;color:#86868b;font-size:.85rem;">Đang tải tin thật…</div>
+    <div class="nl-box" style="padding:16px;color:var(--ink-2);font-size:.85rem;">Đang tải tin thật…</div>
   </div>
   <div id="news-history" style="display:none;margin-top:24px;padding:16px 0;border-top:1px solid #2a2a2c;">
     <h3 style="margin-bottom:16px;color:#b91c1c;">📚 LỊCH SỬ TIN TỨC</h3>
@@ -501,7 +541,14 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
 </footer>
 
 <script>
-function toggleTheme(){ document.documentElement.classList.toggle('light'); document.getElementById('themeBtn').textContent = document.documentElement.classList.contains('light') ? '◑ Tối' : '◐ Sáng'; }
+function toggleTheme(){ 
+  var d=document.documentElement; d.classList.toggle('light'); 
+  var b=document.getElementById('themeBtn'); 
+  var isLight=d.classList.contains('light'); 
+  b.textContent = isLight ? '◑ Tối' : '◐ Sáng'; 
+  try{ localStorage.setItem('aladdin-theme', isLight ? 'light' : 'dark'); }catch(e){}
+}
+(function(){ try{ if(localStorage.getItem('aladdin-theme')==='light'){ document.documentElement.classList.add('light'); var b=document.getElementById('themeBtn'); if(b) b.textContent='◑ Tối'; } }catch(e){} })();
 function toggleNewsHistory(){ var h=document.getElementById('news-history'); h.style.display= h.style.display==='none' ? 'block' : 'none'; }
 function escHtml(s){ var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 function loadNews(){
@@ -509,26 +556,26 @@ function loadNews(){
     var upd=document.getElementById('news-updated');
     if(upd) upd.textContent=(data.updated||'')+' · '+(data.source||'');
     var box=document.getElementById('news-live-container');
-    if(!data.items || !data.items.length){ box.innerHTML='<div style="padding:16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;color:#86868b;font-size:.85rem;">Chưa có tin cập nhật.</div>'; return; }
+    if(!data.items || !data.items.length){ box.innerHTML='<div class="nl-box" style="padding:16px;color:var(--ink-2);font-size:.85rem;">Chưa có tin cập nhật.</div>'; return; }
     box.innerHTML=data.items.map(function(it){
       return '<div class="post-card" style="padding:24px 20px;">'
         +'<div style="display:flex;align-items:flex-start;gap:12px;"><span style="font-size:1.4rem;">'+escHtml(it.icon)+'</span><div>'
-        +'<div style="font-weight:700;color:#f59e0b;margin-bottom:4px;">'+escHtml(it.title)+'</div>'
-        +'<div style="font-size:.75rem;color:#86868b;margin-bottom:8px;">'+escHtml(it.time)+' · <a href="'+escHtml(it.link)+'" target="_blank" rel="noopener noreferrer" style="color:#f59e0b;">Nguồn ↗</a></div>'
-        +'<div style="font-size:.85rem;color:#d4d4d8;margin-bottom:8px;">'+escHtml(it.summary)+'</div>'
-        +'<div style="font-size:.82rem;color:#34c759;font-weight:600;">'+escHtml(it.action)+'</div>'
+        +'<div class="nl-title">'+escHtml(it.title)+'</div>'
+        +'<div class="nl-meta">'+escHtml(it.time)+' · <a href="'+escHtml(it.link)+'" target="_blank" rel="noopener noreferrer">Nguồn ↗</a></div>'
+        +'<div class="nl-sum">'+escHtml(it.summary)+'</div>'
+        +'<div class="nl-act">'+escHtml(it.action)+'</div>'
         +'</div></div></div>';
     }).join('');
     var hbox=document.getElementById('news-history-container');
     if(hbox){
       if(data.history && data.history.length){
         hbox.innerHTML=data.history.map(function(h){
-          return '<div style="padding:12px 16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;font-size:.85rem;">'
-            +'<div style="font-weight:600;color:#fff;">'+escHtml(h.time)+': '+escHtml(h.title)+'</div>'
-            +'<div style="color:#86868b;font-size:.78rem;margin-top:4px;">'+escHtml(h.action)+'</div></div>';
+          return '<div class="nl-box" style="padding:12px 16px;font-size:.85rem;">'
+            +'<div style="font-weight:600;">'+escHtml(h.time)+': '+escHtml(h.title)+'</div>'
+            +'<div class="nl-meta" style="margin-top:4px;">'+escHtml(h.action)+'</div></div>';
         }).join('');
       } else {
-        hbox.innerHTML='<div style="padding:12px 16px;background:#111;border:1px solid #2a2a2c;border-radius:8px;font-size:.85rem;color:#86868b;">Chưa có lịch sử — bản tin đầu tiên từ 12/09/2026.</div>';
+        hbox.innerHTML='<div class="nl-box" style="padding:12px 16px;font-size:.85rem;color:var(--ink-2);">Chưa có lịch sử — bản tin đầu tiên từ 12/09/2026.</div>';
       }
     }
   }).catch(function(e){

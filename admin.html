@@ -238,50 +238,6 @@ tr:hover td{background:rgba(15,118,110,.02);}
 
     <!-- ========== TAB: DASHBOARD ========== -->
     <div class="admin-section active" id="sec-dashboard">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="label">Người dùng hôm nay</div>
-          <div class="value" id="stat-today">12</div>
-          <div class="trend up">↑ 18% so với hôm qua</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Tuần này</div>
-          <div class="value" id="stat-week">67</div>
-          <div class="trend up">↑ 8% so với tuần trước</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Tháng này</div>
-          <div class="value" id="stat-month">243</div>
-          <div class="trend up">↑ 12% so với tháng trước</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Cuộc hội thoại</div>
-          <div class="value" id="stat-convos">89</div>
-          <div class="trend neutral">→ Tương đương</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Câu hỏi</div>
-          <div class="value" id="stat-questions">312</div>
-          <div class="trend up">↑ 22%</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Liên hệ mới</div>
-          <div class="value" id="stat-contacts">8</div>
-          <div class="trend up">↑ 3 người</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Doanh thu (placeholder)</div>
-          <div class="value">—</div>
-          <div class="trend neutral">Sắp ra mắt</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Công cụ yêu thích</div>
-          <div class="value" style="font-size:1rem;">Tính chi phí</div>
-          <div class="trend neutral">42% lượt dùng</div>
-        </div>
-      </div>
-
-      <!-- THẬT: Dữ liệu từ web + IP + thói quen -->
       <div class="panel" id="realDataPanel" style="margin-bottom:16px;border-left:3px solid var(--accent);">
         <h4>📡 DỮ LIỆU THẬT TỪ WEB (đồng bộ từng phiên)</h4>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
@@ -309,15 +265,14 @@ tr:hover td{background:rgba(15,118,110,.02);}
       </div>
 
       <!-- Tool usage chart -->
-      <div class="chart-container">
-        <h4>🔄 Công cụ được dùng nhiều nhất</h4>
-        <div class="bar-chart" id="toolChart"></div>
+      <div class="panel" style="border-left:3px solid #34c759;">
+        <h4 style="margin-bottom:8px;color:#fff;">📊 SỐ LIỆU THẬT — CẬP NHẬT MỖI 6H</h4>
+        <p style="font-size:.82rem;color:#86868b;margin-bottom:6px;">Bot đọc GitHub API → analytics.json → hiển thị. Không có sẵn số = 0.</p>
+        <div id="realStatsGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:10px;"></div>
       </div>
-
-      <!-- Recent activity -->
       <div class="panel">
-        <h4>⚡ Hoạt động gần đây</h4>
-        <div id="recentActivity"></div>
+        <h4>📋 HOẠT ĐỘNG GẦN ĐÂY (từ localStorage / session)</h4>
+        <div id="contactHistory"></div>
       </div>
     </div>
 
@@ -540,7 +495,14 @@ tr:hover td{background:rgba(15,118,110,.02);}
 
 // ===== AUTH =====
 function toggleAdminTheme(){ document.documentElement.classList.toggle('dark'); var btn=document.getElementById('adminThemeBtn'); if(btn)btn.textContent=document.documentElement.classList.contains('dark')?'◑ Tối':'◐ Sáng'; }
-function loadRealStats(){ try{ fetch('/bridge/data/library/posts.jsonl').then(r=>r.text()).then(text=>{ var lines=text.trim().split('\n').filter(Boolean); var count=lines.length; if(document.getElementById('stat-month'))document.getElementById('stat-month').textContent=count.toLocaleString(); if(document.getElementById('stat-questions'))document.getElementById('stat-questions').textContent=Math.round(count*4.2).toLocaleString(); }); }catch(e){} setTimeout(function(){ var posts=46; if(document.getElementById('stat-today'))document.getElementById('stat-today').textContent='7'; if(document.getElementById('stat-week'))document.getElementById('stat-week').textContent='43'; if(document.getElementById('stat-month'))document.getElementById('stat-month').textContent=posts.toLocaleString(); if(document.getElementById('stat-convos'))document.getElementById('stat-convos').textContent='89'; if(document.getElementById('stat-questions'))document.getElementById('stat-questions').textContent='312'; }, 200); }
+function loadRealStats(){
+  // Chỉ đọc từ analytics.json + GitHub API + posts.jsonl — KHÔNG bịa số
+  try{
+    fetch('/analytics.json').then(r=>r.json()).then(function(d){
+      // Đã được xử lý trong loadRealDashboard
+    }).catch(function(){});
+  }catch(e){}
+}
 function demoLogin(e){
   if(e) e.preventDefault();
   var name = (document.getElementById('loginName').value||'Diamond').trim();
@@ -588,7 +550,62 @@ document.getElementById('adminNav').addEventListener('click',function(e){
 });
 
 // ===== DASHBOARD =====
+function loadRealDashboard(){
+  // 1. analytics.json (GitHub API, cập nhật 6h)
+  fetch('/analytics.json').then(r=>r.json()).then(function(d){
+    var gh = d.github||{};
+    var traffic = d.github_traffic||{};
+    document.getElementById('ghStars').textContent = (gh.stars||0).toLocaleString() + (gh.forks ? ' ★ / ' + gh.forks.toLocaleString() + ' 🍴' : '');
+    document.getElementById('ghTraffic').textContent = (traffic.count||0).toLocaleString() + ' lượt / ' + (traffic.uniques||0).toLocaleString() + ' unique';
+    document.getElementById('syncTime').textContent = (d.last_updated||'—') + ' · GitHub repo: ' + (gh.default_branch||'main');
+    // Stats grid thật
+    var grid = document.getElementById('realStatsGrid');
+    if(grid){
+      var cards = [
+        {label:'GitHub Stars', value:(gh.stars||0).toLocaleString(), sub:'Thật từ GitHub API'},
+        {label:'Forks', value:(gh.forks||0).toLocaleString(), sub:'Thật'},
+        {label:'Traffic 14d', value:(traffic.count||0).toLocaleString(), sub:'Lượt xem thật'},
+        {label:'Commits', value:(gh.last_commit_sha?'1 mới':'—'), sub: gh.last_commit_date?gh.last_commit_date.slice(0,10):''},
+      ];
+      grid.innerHTML = cards.map(function(c){
+        return '<div style="background:#161616;padding:14px;border-radius:12px;border:1px solid #2a2a2c;"><div style="font-size:.7rem;color:#86868b;text-transform:uppercase;letter-spacing:.04em;font-weight:600;">'+c.label+'</div><div style="font-size:1.3rem;font-weight:800;color:#fff;margin-top:4px;">'+c.value+'</div><div style="font-size:.75rem;color:#555;margin-top:2px;">'+c.sub+'</div></div>';
+      }).join('');
+    }
+  }).catch(function(e){
+    console.log('analytics.json chưa có (bot 6h tạo):', e);
+    document.getElementById('ghStars').textContent = '—';
+    document.getElementById('ghTraffic').textContent = '—';
+  });
+
+  // 2. IP thật
+  fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(function(d){
+    document.getElementById('realIP').textContent = d.ip||'—';
+  }).catch(function(){ document.getElementById('realIP').textContent='—'; });
+
+  // 3. Liên hệ từ localStorage (thật từ trình duyệt người dùng)
+  try{
+    var contacts = JSON.parse(localStorage.getItem('aladdin-contacts')||'[]');
+    document.getElementById('realContacts').textContent = contacts.length;
+    var h = document.getElementById('contactHistory');
+    if(contacts.length>0 && h){
+      h.innerHTML = '<div style="font-size:.78rem;color:#e5e5e5;line-height:1.6;">'
+        + contacts.slice(-5).map(function(c){return '<div>• <b>'+ (c.name||'Khách') +' — '+ (c.time||'vừa') +'</b> — '+ (c.phone||'') +'</div>';}).join('')
+        + '</div>';
+    } else if(h){
+      h.innerHTML = '<div style="font-size:.82rem;color:#86868b;">Chưa có liên hệ từ trình duyệt này (form chưa gửi).</div>';
+    }
+  }catch(e){ document.getElementById('realContacts').textContent='0'; }
+
+  // 4. Habits từ session
+  var habits = '• Form gửi: ' + (JSON.parse(localStorage.getItem('aladdin-contacts')||'[]').length||0) + ' liên hệ thực
+• IP: đang lấy...
+• Công cụ dùng: từ localStorage';
+  // (Không cần hiển thị habits — đã có IP + contacts)
+}
 function initDashboard(){
+  // Gọi hàm thật — không dùng số mẫu
+  loadRealDashboard();
+}
   // === THẬT: đọc từ localStorage + fetch JSON + IP ===
   // Stats từ aladdin-stats hoặc tính từ dữ liệu thật
   var stats = JSON.parse(localStorage.getItem('aladdin-stats')||'null') || {today:7,week:43,month:46,convos:89,questions:312,contacts:8};

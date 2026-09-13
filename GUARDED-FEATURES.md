@@ -1,7 +1,7 @@
 # 🛡️ GUARDED FEATURES — TÍNH NĂNG GỐC BẤT KHẢ XÂM PHẠM
 
 > **LUẬT CỨNG CỦA DIAMOND (chốt 02-09):** Những tính năng gốc, ngầm, quan trọng của
-> **opencode2** và của **web** được **BẢO TOÀN TRONG MỌI TRƯỜNG HỢP**.
+> **opencode** và của **web** được **BẢO TOÀN TRONG MỌI TRƯỜNG HỢP**.
 > Khi có bất kỳ **xóa bỏ / thay đổi / đổi tên / di chuyển / vô hiệu hóa** nào đụng tới
 > chúng → **PHẢI CẢNH BÁO DIAMOND MẠNH MẼ TRƯỚC KHI THỰC HIỆN.**
 > Không tự xóa, không tự sửa im lặng, không "thu gọn" nếu chưa được phép.

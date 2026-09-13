@@ -24,7 +24,7 @@ ok(){ echo "  ✅ $1"; }
 # Giúp đếm linh hoạt (không hardcode số tuyệt đối dễ vỡ; kiểm tra SỰ TỒN TẠI)
 have(){ grep -q "$1" "$2" 2>/dev/null; }
 
-echo "=== 🛡️ GUARD CHECK — tính năng gốc (web + opencode2 + data) ==="
+echo "=== 🛡️ GUARD CHECK — tính năng gốc (web + opencode + data) ==="
 echo ""
 echo "--- VÙNG 1: WEB (index.html) ---"
 have "resolveBridge" "$INDEX" && ok "W1 Bridge JS → OpenCode (resolveBridge)" || warn "W1 THIẾU resolveBridge → web mất kết nối bộ não!"

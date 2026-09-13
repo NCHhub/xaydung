@@ -514,14 +514,10 @@ function demoLogin(e){
 
 function showAdmin(name){
   document.getElementById('loginScreen').style.display='none';
-  var panel = document.getElementById('adminPanel');
-  panel.classList.add('active');
-  document.getElementById('userName').textContent=name;
-  document.getElementById('userAvatar').textContent=name.charAt(0).toUpperCase();
-  try{ loadRealDashboard(); }catch(e){ console.log('loadRealDashboard error:', e); }
-  initBrokers();
-  initUsers();
-  initCharts();
+  document.getElementById('adminPanel').classList.add('active');
+  document.getElementById('userName').textContent=name||'Diamond';
+  document.getElementById('userAvatar').textContent=(name||'D').charAt(0).toUpperCase();
+  setTimeout(function(){ try{ loadRealDashboard(); }catch(e){/* ignore */} }, 300);
 }
 
 function doLogout(){

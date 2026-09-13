@@ -1,9 +1,22 @@
 {
+  "updated": "13/09/2026 15:49",
+  "github": {
+    "stars": 0,
+    "forks": 0,
+    "watchers": 0,
+    "open_issues": 0,
+    "default_branch": "main",
+    "last_commit_sha": "2026-09-13T09:35:13Z"
+  },
+  "github_traffic": {
+    "count": 0,
+    "uniques": 0,
+    "views_14d": []
+  },
   "page_views": 0,
   "unique_visitors": 0,
-  "form_submissions": 0,
-  "last_updated": "13/09/2026 09:00",
   "visitors_7d": [],
+  "form_submissions": 0,
   "sources": {},
-  "ga4_tracking_id": "G-XXXXXXXXXX"
+  "note": "Số từ GitHub API thật — không bịa. Cập nhật mỗi 6h."
 }

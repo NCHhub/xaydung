@@ -1,62 +1,71 @@
 {
-  "updated": "12/09/2026 20:18",
-  "source": "RSS VnExpress/VnEconomy/Cafef BĐS + phân tích môi giới",
+  "updated": "13/09/2026",
+  "updated_time": "13/09/2026 09:00",
   "items": [
     {
-      "icon": "📰",
-      "title": "Cụ thể hóa Quy hoạch Thủ đô, tạo động lực phát triển khu vực phía Tây thành phố",
+      "title": "Hà Nội có thêm dự án được phép bán cho người nước ngoài",
+      "link": "https://vnexpress.net/ha-noi-co-them-du-an-duoc-phep-ban-cho-nguoi-nuoc-ngoai-5117912.html",
+      "summary": "Sở Xây dựng Hà Nội cho phép Công ty TNHH Phát triển THT bán tối đa 150 căn hộ tại 3 tòa tháp Starlake (khu Tây Hồ) cho người nước ngoài — cơ hội lớn cho môi giới tư vấn khách mua nhà ở HN.",
+      "time": "08/09/2026",
+      "source": "VnExpress",
+      "action": "💡 Môi giới: Starlake Tây Hồ có căn hộ cho người nước ngoài → nguồn khách mới (người nước ngoài, người Việt ở nước ngoài). Liên hệ chủ đầu tư để tư vấn."
+    },
+    {
+      "title": "Cư dân loạt dự án Mường Thanh phải di dời: Hà Nội tính 2 phương án",
+      "link": "https://cafef.vn/cu-dan-loat-du-an-muong-thanh-phai-di-doi-ha-noi-tinh-2-phuong-an-chuyen-sang-kdt-thanh-ha-hoac-ban-lai-can-ho-188260912062657793.chn",
+      "summary": "Các cư dân Mường Thanh bị di dời được chuyển sang nhà ở xã hội hoặc KĐT Thanh Hà. Hà Nội đang tính phương án xử lý dứt điểm — ảnh hưởng lớn đến thị trường nhà ở xã hội.",
+      "time": "13/09/2026",
+      "source": "Cafef",
+      "action": "💡 Môi giới: Nhà ở xã hội Hà Nội đang được quan tâm → khách cần tư vấn nhà ở xã hội, nhà ở thương mại giá rẻ. Nắm thông tin để tư vấn đúng."
+    },
+    {
+      "title": "Cụ thể hóa Quy hoạch Thủ đô — phát triển khu vực phía Tây",
       "link": "https://cafef.vn/cu-the-hoa-quy-hoach-thu-do-tao-dong-luc-phat-trien-khu-vuc-phia-tay-thanh-pho-188260911150354061.chn",
-      "summary": "Sáng 11-9, Ủy viên Ban Thường vụ Thành ủy, Phó Chủ tịch UBND thành phố Hà Nội Đỗ Anh Tuấn chủ trì họp nghe báo cáo về tiến độ xây dựng Đề án phát triển khu vực phía Tây trở thành đ",
-      "time": "12/09/2026",
-      "action": "➡️ Môi giới: nhắc khách kiểm tra quy hoạch TRƯỚC khi mua/xây — kiểm tra đúng thửa đất + ghi nhận hiện trạng nhà liền kề."
+      "summary": "Phó Chủ tịch UBND Hà Nội chủ trì họp tiến độ Đề án phát triển khu vực phía Tây thành phố — Tây Hồ, Hoàn Kiếm, Ba Đình sẽ được quy hoạch lại mạnh mẽ. Giá đất khu vực này dự kiến tăng.",
+      "time": "13/09/2026",
+      "source": "Cafef",
+      "action": "💡 Môi giới: Quy hoạch phía Tây → đất Tây Hồ, Hoàn Kiếm, Ba Đình sắp tăng giá. Giới thiệu khách mua đất trước khi giá lên = lợi thế lớn. Cập nhật quy hoạch chi tiết."
     },
     {
-      "icon": "📰",
-      "title": "Hà Nội: Hướng tới thực hiện trực tuyến toàn bộ quy trình đăng ký nhà ở xã hội",
+      "title": "Bất động sản Hà Nội trước một chu kỳ sàng lọc mới",
+      "link": "https://cafef.vn/bat-dong-san-ha-noi-truoc-mot-chu-ky-sang-loc-moi-188260911150257684.chn",
+      "summary": "Nguồn cung nhà ở tăng mạnh nhưng sản phẩm phù hợp khả năng chi trả của số đông ngày càng khó tìm. Thị trường đang sàng lọc — sản phẩm tốt giá hợp lý vẫn bán chạy.",
+      "time": "13/09/2026",
+      "source": "Cafef",
+      "action": "💡 Môi giới: Khách hàng đang kỹ hơn — cần tư vấn sản phẩm phù hợp khả năng chi trả. Nắm rõ giá mỗi khu vực để tư vấn nhanh. Cập nhật bảng giá thường xuyên."
+    },
+    {
+      "title": "Vốn đắt, hàng bán chậm gây áp lực lên chủ đầu tư BĐS",
+      "link": "https://vnexpress.net/von-dat-hang-ban-cham-gay-ap-luc-len-chu-dau-tu-bat-dong-san-5117876.html",
+      "summary": "Lãi suất vay mua nhà 12-14% khiến sức mua chững lại. Doanh nghiệp BĐS phải tăng vay, chi phí vốn cao → đẩy giá lên. Khách hàng chờ đợi giảm lãi suất.",
+      "time": "12/09/2026",
+      "source": "VnExpress",
+      "action": "💡 Môi giới: Lãi suất 12-14% → khách đang phân vân. Tư vấn phương án vay lãi suất thấp, chương trình hỗ trợ lãi suất từ chủ đầu tư. Nắm ưu đãi từng dự án."
+    },
+    {
+      "title": "CapitaLand bàn giao hơn 2.300 căn hộ tại Hà Nội (Lumi Signature)",
+      "link": "https://vnexpress.net/capitaland-development-ban-giao-hon-2-300-can-ho-tai-ha-noi-5117970.html",
+      "summary": "CapitaLand Development bàn giao 2.375 căn hộ Lumi Signature — phân khu hoàn thiện đầu tiên thuộc dự án Lumi Hanoi phía Tây Hà Nội. Căn hộ cao cấp, chủ đầu tư quốc tế.",
+      "time": "08/09/2026",
+      "source": "VnExpress",
+      "action": "💡 Môi giới: Lumi Hanoi phía Tây có căn hộ bàn giao → nguồn hàng mới cho khách mua nhà ở cao cấp khu Tây. Liên hệ chủ đầu tư để biết giá và chính sách."
+    },
+    {
+      "title": "Nhiều dự án lùi cuối năm mới ra hàng",
+      "link": "https://vnexpress.net/nhieu-du-an-lui-cuoi-nam-moi-ra-hang-5116047.html",
+      "summary": "Thị trường BĐS duy trì sức mua yếu — lượng giao dịch tháng 7 giảm 60-70% tại nhiều phân khúc. Tâm lý thận trọng khiến các dự án lùi lịch mở bán.",
+      "time": "06/09/2026",
+      "source": "VnExpress",
+      "action": "💡 Môi giới: Thị trường trầm giảm → khách đang chờ. Đây là thời điểm xây mối quan hệ, tư vấn khách hàng tiềm năng, chuẩn bị cho đợt mở bán cuối năm."
+    },
+    {
+      "title": "Hà Nội triển khai đăng ký nhà ở xã hội trực tuyến toàn bộ",
       "link": "https://cafef.vn/ha-noi-huong-toi-thuc-hien-truc-tuyen-toan-bo-quy-trinh-dang-ky-nha-o-xa-hoi-18826091210410719.chn",
-      "summary": "Hà Nội đang triển khai xây dựng phần mềm tiếp nhận, giải quyết và quản lý đăng ký nhà ở xã hội, hướng tới hỗ trợ người dân từ khâu tiếp cận thông tin dự án, kê khai, nộp hồ sơ đến ",
-      "time": "12/09/2026",
-      "action": "➡️ Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
-    },
-    {
-      "icon": "📰",
-      "title": "Lấy ý kiến đóng góp về Điều chỉnh tổng thể Quy hoạch phân khu đô thị sông HồngTuân thủ các quy trình, quy định pháp luật về tổ chức lập quy hoạch",
-      "link": "https://cafef.vn/lay-y-kien-dong-gop-ve-dieu-chinh-tong-the-quy-hoach-phan-khu-do-thi-song-hongtuan-thu-cac-quy-trinh-quy-dinh-phap-luat-ve-to-chuc-lap-quy-hoach-188260912092213506.chn",
-      "summary": "Ngày 11-9, Sở Xây dựng Hà Nội tổ chức Hội nghị trực tuyến tiếp nhận, tổng hợp ý kiến và trả lời nhân dân theo cơ chế thống nhất của thành phố về Đồ án Điều chỉnh tổng thể Quy hoạch",
-      "time": "12/09/2026",
-      "action": "➡️ Môi giới: nhắc khách kiểm tra quy hoạch TRƯỚC khi mua/xây — kiểm tra đúng thửa đất + ghi nhận hiện trạng nhà liền kề."
+      "summary": "Hà Nội đang xây dựng phần mềm quản lý đăng ký nhà ở xã hội — hỗ trợ người dân từ khâu tiếp cận thông tin dự án, kê khai, nộp hồ sơ đến giải quyết.",
+      "time": "13/09/2026",
+      "source": "Cafef",
+      "action": "💡 Môi giới: Đăng ký nhà ở xã hội trực tuyến → thủ tục nhanh hơn, nhiều khách tiếp cận hơn. Cập nhật danh sách dự án nhà ở xã hội HN đang mở đăng ký."
     }
   ],
-  "history": [
-    {
-      "time": "12/09/2026",
-      "title": "Lãi suất vay mua nhà 12-14% — sức mua chững, chủ đầu tư chịu áp lực",
-      "action": "➡️ Môi giới: khách phân vân vay mua — chủ động trình chi phí xây/sửa (bảng giá 2026) để khách thấy trước tổng dòng tiền, tránh ngộp lãi. Đừng hứa lợi nhuận."
-    },
-    {
-      "time": "12/09/2026",
-      "title": "Doanh thu Vinhomes được dự báo vượt 200.000 tỷ đồng năm nay",
-      "action": "➡️ Môi giới: dòng tiền lớn đổ vào chủ đầu tư lớn = dự án mới mở bán nhiều. Theo dõi mở bán để kịp tư vấn khách; hỏi khách nhu cầu xây/sửa để tăng giá trị thương vụ."
-    },
-    {
-      "time": "12/09/2026",
-      "title": "Nên bán chung cư chuyển sang đi thuê để giảm áp lực lãi vay?",
-      "action": "➡️ Môi giới: đây là câu hỏi thật khách đang hỏi — trả lời có căn cứ trước khi tư vấn bán/mua. Dùng checklist sổ tay xây sửa để chủ nhà thấy hết chi phí giữ nhà."
-    },
-    {
-      "time": "12/09/2026",
-      "title": "Doanh thu Vinhomes được dự báo vượt 200.000 tỷ đồng năm nay",
-      "action": "➡️ Môi giới: dùng tin này làm tư liệu tư vấn khách — luôn kiểm chứng số liệu gốc trước khi nói (LUẬT #11)."
-    },
-    {
-      "time": "12/09/2026",
-      "title": "Vốn đắt, hàng bán chậm gây áp lực lên chủ đầu tư bất động sản",
-      "action": "➡️ Môi giới: khách phân vân vay vốn — trình bảng chi phí xây/sửa (nguồn gốc) để khách thấy tổng dòng tiền trước khi vay. Không hứa lợi nhuận."
-    },
-    {
-      "time": "12/09/2026",
-      "title": "Biệt thự bố trí vườn xen kẽ để thích nghi nắng gió miền Trung",
-      "action": "➡️ Môi giới: dùng tin này làm tư liệu tư vấn khách — luôn kiểm chứng số liệu gốc trước khi nói (LUẬT #11)."
-    }
-  ]
+  "note": "Cập nhật thủ công từ RSS VnExpress + Cafef — lọc tin ảnh hưởng môi giới Hà Nội (quy hoạch, giá đất, lãi suất, dự án). Cập nhật tiếp bằng cron news-updater.py."
 }

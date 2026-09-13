@@ -200,10 +200,10 @@ tr:hover td{background:rgba(15,118,110,.02);}
       Đăng nhập bằng Google
     </button>
     <div class="divider">hoặc</div>
-    <form class="demo-form" onsubmit="demoLogin(event)">
+    <form class="demo-form" onsubmit="event.preventDefault(); showAdmin('Diamond');">
       <input type="text" id="loginName" placeholder="Tên hiển thị" value="Diamond">
       <input type="password" id="loginPass" placeholder="Mật khẩu demo" value="admin">
-      <button type="submit" class="login-submit" onclick="demoLogin(event); event.preventDefault();">Đăng nhập</button>
+      <button type="button" class="login-submit" onclick="showAdmin('Diamond')">Đăng nhập</button>
     </form>
     <div class="login-hint">🔑 Demo: tên + bất kỳ mật khẩu nào</div>
   </div>

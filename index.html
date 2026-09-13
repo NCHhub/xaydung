@@ -508,6 +508,7 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
 </section>
 
 <!-- TIN TỨC HÀ NỘI — CẬP NHẬT THẬT (dữ liệu news.json từ RSS VnExpress BĐS) -->
+<div id="buoi-chao" style="max-width:1100px;margin:0 auto;padding:16px 24px;font-family:var(--mono);font-size:.82rem;color:#fbbf24;letter-spacing:.02em;opacity:.95;border-bottom:1px solid rgba(245,158,11,.2);background:linear-gradient(90deg, rgba(245,158,11,.06), transparent);"><span id="chao-text">💛 Chào bạn — mình là Hải & Cộng sự. Mỗi lần bạn dùng công cụ này, mình lại hiểu thêm về nỗi đau bạn đang giải. Để mình chia sẻ đúng điều bạn cần.</span></div>
 <section class="post-section" id="news-live" aria-label="Tin tức thị trường BĐS Hà Nội cập nhật theo giờ">
   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;">
     <h2 style="margin:0;font-size:1.4rem;font-weight:800;">📢 TIN TỨC HÀ NỘI — CẬP NHẬT THẬT</h2>
@@ -691,5 +692,32 @@ function tinhThoiGian(){ var loai=document.getElementById('tg-loai')?document.ge
   // Ghi thói quen ngay khi tải trang
   localStorage.setItem('aladdin-user-habits', JSON.stringify(habits));
   console.log('%c[Aladdin Tracking] Người dùng: ' + sessionId.slice(0, 12), 'color:#f59e0b;font-size:11px');
+})();
+</script>
+
+<!-- ===== LỜI CHÀO ĐỘNG — cà nhân hóa ấm áp (không cảm giác bị theo dõi) ===== -->
+<script>
+(function(){
+  try{
+    var h = JSON.parse(localStorage.getItem('aladdin-user-habits')||'null');
+    var el = document.getElementById('chao-text');
+    if(!el || !h) return;
+    var visits = h.visits||1;
+    var tools = (h.preferredTools||h.toolsUsed||[]);
+    var secs = (h.sectionsVisited||[]);
+    var formCount = h.formSubmissions||0;
+
+    // Tiếng Việt ấm áp, đồng cảm — "mình" thay vì "hệ thống"
+    if(visits >= 3 && tools.length >= 2){
+      el.innerHTML = '💛 Chào bạn — mình thấy bạn đã dùng <b>' + tools.slice(-2).join(' · ') + '</b>. Mình hiểu bạn đang tìm cách làm <b>nhà HN</b> hoặc giải nỗi đau xây sửa. Để mình chia sẻ đúng điều bạn cần, không phải bán — mà là <b>chỗ dựa</b> cho bạn.';
+    } else if(visits >= 2 && formCount > 0){
+      el.innerHTML = '💛 Bạn đã gửi liên hệ — cảm ơn bạn tin. Mình (Hải & Cộng sự) là chỗ dựa xây sửa cho môi giới HN. Muốn xem <b>quy trình thi công thật</b> không? Không vội, mình ở đây.';
+    } else if(tools.length > 0){
+      el.innerHTML = '💛 Bạn dùng <b>' + tools.slice(-1)[0] + '</b> — mình thấy bạn đang tính toán kỹ. Đừng lo, mình không muốn bán gì. Chỉ muốn bạn có <b>đúng số liệu</b> trước khi quyết định xây/sửa nhà.';
+    } else {
+      el.innerHTML = '💛 Chào bạn — mình là Hải & Cộng sự. Mỗi lần bạn dùng công cụ, mình lại hiểu thêm nỗi đau bạn đang giải. Hãy bắt đầu từ <b>Tính chi phí</b> hoặc <b>Quy trình thi công</b> — không vội, không ép.';
+    }
+    el.style.opacity = '1';
+  }catch(e){ /* im lặng nếu chưa có dữ liệu */ }
 })();
 </script>

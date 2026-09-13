@@ -518,11 +518,10 @@ function showAdmin(name){
   panel.classList.add('active');
   document.getElementById('userName').textContent=name;
   document.getElementById('userAvatar').textContent=name.charAt(0).toUpperCase();
-  initDashboard();
+  loadRealDashboard();
   initBrokers();
   initUsers();
   initCharts();
-  loadRealStats();
 }
 
 function doLogout(){

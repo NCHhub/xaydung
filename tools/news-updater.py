@@ -25,19 +25,19 @@ FEEDS = [
 
 ACTION_MAP = [
     (["lãi suất", "vay", "lãi", "lạm phát"],
-     "➡️ Môi giới: khách phân vân vay vốn — trình bảng chi phí xây/sửa (nguồn gốc) để khách thấy tổng dòng tiền trước khi vay. Không hứa lợi nhuận."),
+     "➡️ ACE Môi giới: khách phân vân vay vốn — trình bảng chi phí xây/sửa (nguồn gốc) để khách thấy tổng dòng tiền trước khi vay. Không hứa lợi nhuận."),
     (["quy hoạch", "quy hoạch đô thị", "thu hồi", "thuế đất"],
-     "➡️ Môi giới: nhắc khách kiểm tra quy hoạch TRƯỚC khi mua/xây — kiểm tra đúng thửa đất + ghi nhận hiện trạng nhà liền kề."),
+     "➡️ ACE Môi giới: nhắc khách kiểm tra quy hoạch TRƯỚC khi mua/xây — kiểm tra đúng thửa đất + ghi nhận hiện trạng nhà liền kề."),
     (["chung cư", "căn hộ"],
-     "➡️ Môi giới: tư vấn có căn cứ trước khi khách bán/thuê — liệt kê đủ chi phí giữ nhà bằng checklist xây sửa, không khuyến khích quyết định vội."),
+     "➡️ ACE Môi giới: tư vấn có căn cứ trước khi khách bán/thuê — liệt kê đủ chi phí giữ nhà bằng checklist xây sửa, không khuyến khích quyết định vội."),
     (["giá", "thị trường", "tăng", "giảm"],
-     "➡️ Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."),
-    (["khởi công", "dự án", "mở bán", "Vinhomes"],
-     "➡️ Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."),
-    (["nhà ở xã hội", "NƠXH"],
-     "➡️ Môi giới: nguồn nhà ở xã hội mới ảnh hưởng vùng lân cận — cập nhật hồ sơ để tư vấn khách đúng nhu cầu."),
+     "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."),
+    (["khởi công", "dự án", "mở bán", "vinhomes"],
+     "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."),
+    (["nhà ở xã hội", "nổxh"],
+     "➡️ ACE Môi giới: nguồn nhà ở xã hội mới ảnh hưởng vùng lân cận — cập nhật hồ sơ để tư vấn khách đúng nhu cầu."),
 ]
-FALLBACK_ACTION = "➡️ Môi giới: dùng tin này làm tư liệu tư vấn khách — luôn kiểm chứng số liệu gốc trước khi nói (LUẬT #11)."
+FALLBACK_ACTION = "➡️ ACE Môi giới: dùng tin này làm tư liệu tư vấn khách — luôn kiểm chứng số liệu gốc trước khi nói (LUẬT #11)."
 
 def pick_action(text):
     t = text.lower()

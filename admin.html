@@ -203,7 +203,7 @@ tr:hover td{background:rgba(15,118,110,.02);}
     <form class="demo-form" onsubmit="demoLogin(event)">
       <input type="text" id="loginName" placeholder="Tên hiển thị" value="Diamond">
       <input type="password" id="loginPass" placeholder="Mật khẩu demo" value="admin">
-      <button type="submit" class="login-submit">Đăng nhập</button>
+      <button type="submit" class="login-submit" onclick="demoLogin(event); event.preventDefault();">Đăng nhập</button>
     </form>
     <div class="login-hint">🔑 Demo: tên + bất kỳ mật khẩu nào</div>
   </div>
@@ -518,7 +518,7 @@ function showAdmin(name){
   panel.classList.add('active');
   document.getElementById('userName').textContent=name;
   document.getElementById('userAvatar').textContent=name.charAt(0).toUpperCase();
-  loadRealDashboard();
+  try{ loadRealDashboard(); }catch(e){ console.log('loadRealDashboard error:', e); }
   initBrokers();
   initUsers();
   initCharts();

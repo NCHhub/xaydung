@@ -112,16 +112,19 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .light #videos-blogs h2{color:#111;text-shadow:none;}
 .light #news-live h2{color:#111;text-shadow:none;}
 /* News live — item render từ news.json */
-.nl-title{font-weight:700;color:#f59e0b;margin-bottom:4px;}
+.nl-title{font-weight:700;color:#f59e0b;margin-bottom:4px;font-size:.92rem;}
 .nl-meta{font-size:.75rem;color:var(--ink-2);margin-bottom:8px;}
 .nl-meta a{color:#f59e0b;}
-.nl-sum{font-size:.85rem;color:#d4d4d8;margin-bottom:8px;}
-.nl-act{font-size:.82rem;color:#34c759;font-weight:600;}
+.nl-sum{font-size:.85rem;color:#d4d4d8;margin-bottom:8px;line-height:1.5;}
+.nl-act{font-size:.82rem;color:#34c759;font-weight:600;background:rgba(52,199,89,.1);padding:8px 12px;border-radius:8px;border-left:3px solid #34c759;margin-top:6px;}
 .nl-box{background:#111;border:1px solid #2a2a2c;border-radius:8px;}
+.nl-badge{display:inline-block;background:#34c759;color:#fff;font-size:.65rem;font-weight:700;padding:2px 6px;border-radius:4px;margin-right:6px;vertical-align:middle;}
 .light .nl-sum{color:#333;}
 .light .nl-box{background:#fff;border-color:#ddd;}
 .light .nl-meta{color:#666;}
-.light .nl-act{color:#15803d;}
+.light .nl-act{color:#15803d;background:rgba(52,199,89,.08);}
+.light .nl-title{color:#b45309;}
+.light .nl-act{border-left-color:#15803d;}
 .light .hero-card{background:#fff;border-color:#ddd;color:#111;box-shadow:0 20px 60px rgba(0,0,0,.15);}
 .light .hero-card h1,.light .hero-card .lead{color:#111;}
 .light .hero-card h1 em{color:#0071e3;}
@@ -587,16 +590,19 @@ function escHtml(s){ var d=document.createElement('div'); d.textContent=s||''; r
 function loadNews(){
   fetch('news.json').then(function(r){ return r.json(); }).then(function(data){
     var upd=document.getElementById('news-updated');
-    if(upd) upd.textContent=(data.updated||'')+' · '+(data.source||'');
+    if(upd) upd.textContent=(data.updated||'')+' · Nguồn: VnExpress BĐS + Cafef (RSS)';
     var box=document.getElementById('news-live-container');
     if(!data.items || !data.items.length){ box.innerHTML='<div class="nl-box" style="padding:16px;color:var(--ink-2);font-size:.85rem;">Chưa có tin cập nhật.</div>'; return; }
     box.innerHTML=data.items.map(function(it){
+      // Badge "MỚI" nếu tin trong 24h
+      var ts = it.time.split('/'); var dtNow = new Date(); var dtItem = new Date(ts[2], parseInt(ts[1])-1, ts[0]); var isNew = dtNow - dtItem <= 86400000; var newBadge = isNew ? '<span class="nl-badge">MỚI</span>' : '';
       return '<div class="post-card" style="padding:24px 20px;">'
-        +'<div style="display:flex;align-items:flex-start;gap:12px;"><span style="font-size:1.4rem;">'+escHtml(it.icon)+'</span><div>'
+        +'<div style="display:flex;align-items:flex-start;gap:12px;">'
+        +'<span style="font-size:1.3rem;">📰</span><div>'
         +'<div class="nl-title">'+escHtml(it.title)+'</div>'
-        +'<div class="nl-meta">'+escHtml(it.time)+' · <a href="'+escHtml(it.link)+'" target="_blank" rel="noopener noreferrer">Nguồn ↗</a></div>'
+        +'<div class="nl-meta">'+newBadge+'<span style="color:#666;margin-left:4px;">'+escHtml(it.time)+'</span> · <a href="'+escHtml(it.link)+'" target="_blank" rel="noopener noreferrer">Nguồn ↗</a></div>'
         +'<div class="nl-sum">'+escHtml(it.summary)+'</div>'
-        +'<div class="nl-act">'+escHtml(it.action)+'</div>'
+        +'<div class="nl-act" style="background:rgba(34,139,34,.12);border-left:3px solid #228b22;color:#228b22;">'+escHtml(it.action)+'</div>'
         +'</div></div></div>';
     }).join('');
     var hbox=document.getElementById('news-history-container');

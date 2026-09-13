@@ -46,11 +46,10 @@ permalink: /admin.html
 .modal-actions{display:flex;gap:10px;margin-top:10px;justify-content:flex-end;}
 
 /* ===== ADMIN PANEL — Apple mobile-first ===== */
-.admin-wrap{display:none;padding:80px 0 40px;min-height:100vh;background:var(--bg-gray);}
-.admin-wrap.active{display:block;}
+.admin-wrap{display:block;padding:80px 0 40px;min-height:100vh;background:var(--bg-gray);}
 
 /* LOGIN SCREEN */
-.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;}
+.login-screen{display:none;align-items:center;justify-content:center;min-height:100vh;padding:24px;}
 .login-card{width:100%;max-width:400px;background:#fff;border-radius:var(--radius-lg);padding:48px 36px;box-shadow:var(--shadow-md);text-align:center;}
 .login-card .logo{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#e6f7f0,var(--teal));margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;font-weight:700;}
 .login-card h2{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-.02em;}
@@ -210,7 +209,7 @@ tr:hover td{background:rgba(15,118,110,.02);}
 </div>
 
 <!-- ===== ADMIN PANEL ===== -->
-<div class="admin-wrap" id="adminPanel">
+<div class="admin-wrap active" id="adminPanel">
 
   <!-- Admin Top Bar -->
   <div class="admin-bar">
@@ -533,6 +532,9 @@ function doLogout(){
   var n=localStorage.getItem('aladdin-admin-name');
   if(t) showAdmin(n||'Diamond');
 })();
+
+// Auto-load real stats on admin visit
+setTimeout(function(){ try{ loadRealDashboard(); }catch(e){} }, 500);
 
 // ===== TAB NAVIGATION =====
 document.getElementById('adminNav').addEventListener('click',function(e){

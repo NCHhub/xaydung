@@ -635,3 +635,61 @@ function tinhVatLieu(){ var dt=document.getElementById('vl-dt')?document.getElem
 function tinhSuaHangMuc(){ var loai=document.getElementById('hm-loai')?document.getElementById('hm-loai').value:'wc'; var dt=document.getElementById('hm-dt')?document.getElementById('hm-dt').value:5; var s=parseFloat(dt||5); var map={'wc':['Sửa WC (thay bồn, gạch, ống)', s*1.8+3, 'triệu'] ,'bep':['Sửa bếp (tủ, bồn rửa, bếp, hút)', s*2.2+2.5, 'triệu'],'mai':['Sửa mái / mái tôn', s*1.2+8, 'triệu'],'san':['Sửa sàn (lát gạch/gỗ)', s*1.5+1, 'triệu'],'chong-tham':['Chống thấm', s*1.2+2, 'triệu']}; var r=map[loai]||['Hạng mục',s*1.5,'triệu']; var res=document.getElementById('hm-ketqua'); if(res)res.innerHTML='<b>'+r[0]+'</b> — ước tính <b>'+Math.round(r[1]*10)/10+' '+r[2]+'</b> (diện tích/số lượng '+s+').';}
 function tinhThoiGian(){ var loai=document.getElementById('tg-loai')?document.getElementById('tg-loai').value:'xay'; var dt=document.getElementById('tg-dt')?document.getElementById('tg-dt').value:60; var s=parseFloat(dt||60); var map={'xay':'4–8 tháng (nhà phố ~'+Math.round(s/60)+' tầng)','sua-nhe':'1–3 tuần','sua-lon':'2–4 tháng','chong-tham':'3–10 ngày','biet-thu':'6–12 tháng'}; var msg=map[loai]||'Thời gian phụ thuộc nhiều yếu tố — cần khảo sát thực tế.'; var res=document.getElementById('tg-ketqua'); if(res)res.innerHTML='<b>Thời gian ước tính:</b> '+msg+' · diện tích nhập '+s+' m²';}
 </script>
+
+<!-- ===== ĐO LƯỜNG NGƯỜI DÙNG + THÓI QUEN ===== -->
+<script>
+(function(){
+  // Tạo fingerprint đơn giản cho phiên người dùng (không lưu dữ liệu cá nhân)
+  var sessionId = 'user_' + Math.random().toString(36).slice(2) + '_' + Date.now();
+  var habits = JSON.parse(localStorage.getItem('aladdin-user-habits') || 'null') || {
+    visits: 0, firstVisit: new Date().toISOString(), lastVisit: '', toolsUsed: [], sectionsVisited: [],
+    formSubmissions: 0, preferredTools: [], timeOnPage: 0, pagesViewed: 1
+  };
+  habits.visits = (habits.visits || 0) + 1;
+  habits.lastVisit = new Date().toISOString();
+  habits.timeOnPage += 5; // ước tính thêm 5 giây mỗi lần tải
+
+  // Ghi nhận công cụ đã dùng (theo click event)
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('button, a');
+    if(!btn) return;
+    var toolName = '';
+    if(btn.textContent.includes('TÍNH')) toolName = 'tinh-toan';
+    else if(btn.textContent.includes('Checklist')) toolName = 'checklist';
+    else if(btn.textContent.includes('Quy trình')) toolName = 'quy-trinh';
+    else if(btn.textContent.includes('Vật liệu')) toolName = 'vat-lieu';
+    else if(btn.textContent.includes('Sửa')) toolName = 'sua-nha';
+    else if(btn.textContent.includes('Thời gian')) toolName = 'thoi-gian';
+    else toolName = btn.textContent.trim().slice(0, 20);
+    if(toolName && !habits.toolsUsed.includes(toolName)){
+      habits.toolsUsed.push(toolName);
+      habits.preferredTools = habits.toolsUsed.slice(-3);
+    }
+    localStorage.setItem('aladdin-user-habits', JSON.stringify(habits));
+  }, true);
+
+  // Ghi nhận form gửi liên hệ
+  document.querySelectorAll('form').forEach(function(form){
+    form.addEventListener('submit', function(){
+      habits.formSubmissions = (habits.formSubmissions || 0) + 1;
+      localStorage.setItem('aladdin-user-habits', JSON.stringify(habits));
+    });
+  });
+
+  // Ghi nhận phần đã xem (scroll tracking đơn giản)
+  var sections = document.querySelectorAll('section[id]');
+  sections.forEach(function(sec){
+    sec.addEventListener('mouseenter', function(){
+      var secName = sec.getAttribute('id');
+      if(secName && !habits.sectionsVisited.includes(secName)){
+        habits.sectionsVisited.push(secName);
+        localStorage.setItem('aladdin-user-habits', JSON.stringify(habits));
+      }
+    });
+  });
+
+  // Ghi thói quen ngay khi tải trang
+  localStorage.setItem('aladdin-user-habits', JSON.stringify(habits));
+  console.log('%c[Aladdin Tracking] Người dùng: ' + sessionId.slice(0, 12), 'color:#f59e0b;font-size:11px');
+})();
+</script>

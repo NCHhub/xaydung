@@ -579,7 +579,7 @@ function loadRealDashboard(){
     document.getElementById('realIP').textContent = d.ip||'—';
   }).catch(function(){ document.getElementById('realIP').textContent='—'; });
 
-  // 3. Liên hệ từ localStorage (thật từ trình duyệt người dùng)
+  // 3. Liên hệ + THÓI QUEN từ localStorage
   try{
     var contacts = JSON.parse(localStorage.getItem('aladdin-contacts')||'[]');
     document.getElementById('realContacts').textContent = contacts.length;
@@ -592,6 +592,20 @@ function loadRealDashboard(){
       h.innerHTML = '<div style="font-size:.82rem;color:#86868b;">Chưa có liên hệ từ trình duyệt này (form chưa gửi).</div>';
     }
   }catch(e){ document.getElementById('realContacts').textContent='0'; }
+
+  // 3b. THÓI QUEN NGƯỜI DÙNG — cá nhân hóa
+  try{
+    var habits = JSON.parse(localStorage.getItem('aladdin-user-habits')||'null');
+    var habitsEl = document.getElementById('userHabits');
+    if(habitsEl && habits){
+      var tools = (habits.preferredTools||habits.toolsUsed||[]).slice(-3).join(' · ') || '—';
+      var secs = (habits.sectionsVisited||[]).slice(-2).join(', ') || '—';
+      habitsEl.innerHTML = '<b>Khách này:</b> ' + (habits.visits||1) + ' lần xem · Công cụ: ' + tools
+        + '<br><b>Phần xem:</b> ' + secs + ' · Form gửi: ' + (habits.formSubmissions||0) + ' lần';
+    } else if(habitsEl){
+      habitsEl.innerHTML = '<b>Bắt đầu:</b> Chưa có dữ liệu — công cụ/tính năng sẽ ghi nhận khi bạn dùng.';
+    }
+  }catch(e){ /* im lặng nếu chưa có */ }
 
   // 4. Habits từ session
   var habits = '• Form gửi: ' + (JSON.parse(localStorage.getItem('aladdin-contacts')||'[]').length||0) + ' liên hệ thực

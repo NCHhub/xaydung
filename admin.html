@@ -605,59 +605,6 @@ function initDashboard(){
   // Gọi hàm thật — không dùng số mẫu
   loadRealDashboard();
 }
-  // === THẬT: đọc từ localStorage + fetch JSON + IP ===
-  // Stats từ aladdin-stats hoặc tính từ dữ liệu thật
-  var stats = JSON.parse(localStorage.getItem('aladdin-stats')||'null') || {today:7,week:43,month:46,convos:89,questions:312,contacts:8};
-  document.getElementById('stat-today').textContent=stats.today;
-  document.getElementById('stat-week').textContent=stats.week;
-  document.getElementById('stat-month').textContent=stats.month;
-  document.getElementById('stat-convos').textContent=stats.convos;
-  document.getElementById('stat-questions').textContent=stats.questions;
-  document.getElementById('stat-contacts').textContent=stats.contacts;
-
-  // Real data panel: contacts từ form web
-  try{
-    var contacts = JSON.parse(localStorage.getItem('aladdin-contacts')||'[]');
-    document.getElementById('realContacts').textContent = contacts.length;
-  }catch(e){ document.getElementById('realContacts').textContent='0'; }
-
-  // Real posts từ JSON
-  try{
-    fetch('/bridge/data/library/posts.jsonl').then(function(r){return r.text();}).then(function(text){
-      var lines = text.trim().split('\n').filter(function(l){return l.trim().length>0;});
-      document.getElementById('realPosts').textContent = lines.length;
-    });
-  }catch(e){ document.getElementById('realPosts').textContent='—'; }
-
-  // IP thật
-  try{
-    fetch('https://api.ipify.org?format=json').then(function(r){return r.json();}).then(function(data){
-      document.getElementById('realIP').textContent = data.ip || '—';
-    }).catch(function(){ document.getElementById('realIP').textContent='—'; });
-  }catch(e){ document.getElementById('realIP').textContent='—'; }
-
-  // User habits từ localStorage + session fingerprint
-  var habits = '• Form gửi: ' + (contacts ? contacts.length : 0) + ' liên hệ\n• Công cụ dùng: Tính chi phí, Vật liệu, Checklist\n• IP: đang lấy...';
-  document.getElementById('userHabits').textContent = habits;
-  document.getElementById('syncTime').textContent = new Date().toLocaleString('vi-VN');
-
-  // Recent activity — thật từ dữ liệu hiện tại
-  var acts = [
-    {icon:'📋',msg:'Bài viết thật từ _blog/ ('+stats.month+' mục)',time:'vừa cập nhật'},
-    {icon:'💬',msg:'Câu hỏi từ hội nhóm: '+stats.questions,time:'hôm nay'},
-    {icon:'📞',msg:'Liên hệ mới từ form: '+stats.contacts,time:'mới nhất'},
-    {icon:'💰',msg:'Tính chi phí thi công được dùng nhiều',time:'tuần này'},
-    {icon:'🧱',msg:'Tính vật liệu — gạch/xi măng/cát',time:'mới'},
-    {icon:'⏱️',msg:'Thời gian thi công ước tính',time:'vừa chạy'},
-  ];
-  var actHtml='';
-  acts.forEach(function(a){
-    actHtml+='<div class="panel-row"><span class="pk">'+a.icon+' '+a.msg+'</span><span class="pv" style="font-size:.75rem;color:var(--text-3)">'+a.time+'</span></div>';
-  });
-  document.getElementById('recentActivity').innerHTML=actHtml;
-}
-
-// ===== TOOL CHART =====
 function initToolChart(){
   var tools=[
     {name:'Tính chi phí',value:42},

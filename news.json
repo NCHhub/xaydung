@@ -1,71 +1,62 @@
 {
-  "updated": "14/09/2026",
-  "updated_time": "14/09/2026 09:00",
+  "updated": "14/09/2026 08:00",
+  "source": "RSS VnExpress/VnEconomy/Cafef BĐS + phân tích môi giới",
   "items": [
     {
-      "title": "Ngay tháng sau sẽ khởi công siêu cảng gần 5 tỷ USD, đủ sức đón được tàu container lớn",
-      "link": "https://vnexpress.net/ngay-thang-sau-se-khoi-cong-sieu-cang-gan-5-ty-usd-5119600.html",
-      "summary": "Cảng Hải Phòng sẽ khởi công dự án siêu cảng vào tháng 10, có thể đón tàu container lớn nhất thế giới, tác động đến logistics và BĐS khu vực.",
+      "icon": "📰",
+      "title": "Hà Nội: Hướng tới thực hiện trực tuyến toàn bộ quy trình đăng ký nhà ở xã hội",
+      "link": "https://cafef.vn/ha-noi-huong-toi-thuc-hien-truc-tuyen-toan-bo-quy-trinh-dang-ky-nha-o-xa-hoi-18826091210410719.chn",
+      "summary": "Hà Nội đang triển khai xây dựng phần mềm tiếp nhận, giải quyết và quản lý đăng ký nhà ở xã hội, hướng tới hỗ trợ người dân từ khâu tiếp cận thông tin dự án, kê khai, nộp hồ sơ đến ",
       "time": "14/09/2026",
-      "source": "VnExpress",
-      "action": "➡️ ACE Môi giới: siêu cảng mới → logistics hiệu quả → tác động đến BĐS khu vực. Khuyến nghị khách đầu tư đất nền quanh cảng."
+      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
     },
     {
-      "title": "Nhà sử dụng sàn kính tạo những khoảng nhìn xuyên suốt giữa các tầng",
-      "link": "https://cafef.vn/nha-su-dung-san-kinh-tao-nhung-khoang-nhin-xuyen-suot-giua-cac-tang-188260908173845.html",
-      "summary": "Thiết kế sử dụng sàn kính giữa các tầng tạo điểm nhấn cho công trình, tăng giá trị BĐS, ứng dụng rộng rãi trong BĐS nhà ở, văn phòng.",
-      "time": "14/09/2026",
-      "source": "Cafef",
-      "action": "➡️ ACE Môi giới: sàn kính đang xu hướng → tăng giá trị căn hộ, văn phòng. Tham khảo để tư vấn khách mua BĐS có điểm nhấn.", "isReal": true
+      "icon": "📰",
+      "title": "Bỏ khái niệm 'chung cư có thời hạn' khi sửa Luật Nhà ở",
+      "link": "https://vnexpress.net/bo-khai-niem-chung-cu-co-thoi-han-khi-sua-luat-nha-o-5118861.html",
+      "summary": "Bộ Xây dựng bỏ khái niệm \"chung cư có thời hạn\" tại dự thảo Luật Nhà ở (sửa đổi) bản mới nhất, nhằm tránh hiểu lầm quyền sở hữu căn hộ của người dân.",
+      "time": "10/09/2026",
+      "action": "➡️ ACE Môi giới: tư vấn có căn cứ trước khi khách bán/thuê — liệt kê đủ chi phí giữ nhà bằng checklist xây sửa, không khuyến khích quyết định vội."
     },
     {
-      "title": "Sắp mở bán hơn 400 căn nhà ở xã hội giá từ 23 triệu đồng/m² nằm trong đại dự án “sống",
-      "link": "https://vnexpress.net/sap-mo-ban-hon-400-can-nha-o-xa-hoi-gia-tu-23-trieu-dong-m2-nam-trong-du-an-song-5119402.html",
-      "summary": "Dự án nhà ở xã hội tại Hoàng Mai có giá hấp dẫn, đáp ứng nhu cầu phân khúc bình dân, tác động đến thị trường BĐS HN.",
+      "icon": "📰",
+      "title": "Chỉ 2 ngày nữa, Vingroup của tỷ phú Phạm Nhật Vượng sẽ khởi công ‘siêu’ dự án 41.000 tỷ tại địa phương giáp Hà Nội",
+      "link": "https://cafef.vn/chi-2-ngay-nua-vingroup-cua-ty-phu-pham-nhat-vuong-se-khoi-cong-sieu-du-an-41000-ty-tai-dia-phuong-giap-ha-noi-188260913234305558.chn",
+      "summary": "Ngày 16/9, Tập đoàn Vingroup sẽ khởi công Khu đô thị mới phía Tây Bắc TP Bắc Ninh - Khu 1, dự án có tổng vốn đầu tư sơ bộ hơn 41.270 tỷ đồng, quy mô gần 269 ha.",
       "time": "14/09/2026",
-      "source": "VnExpress",
-      "action": "➡️ ACE Môi giới: nhà ở xã hội mới mở bán → khách hàng mục tiêu. Cập nhật danh sách dự án để tư vấn nhanh.", "isReal": true
-    },
-    {
-      "title": "Hà Nội sở hữu siêu nút giao 4 tầng đầu tiên thiết kế hiện đại, kết hợp đường sắt đô thị",
-      "link": "https://cafef.vn/ha-noi-so-huu-sieu-not-giao-4-tang-dau-tien-thiet-ke-hien-dai-ket-hop-duong-sat-do-thi-188260907986209.html",
-      "summary": "Siêu nút giao thông 4 tầng tại Hà Nội giúp kết nối giao thông đô thị, tác động tích cực đến giá BĐS khu vực lân cận.",
-      "time": "14/09/2026",
-      "source": "Cafef",
-      "action": "➡️ ACE Môi giới: nút giao 4 tầng → kết nối khu vực → BĐS xung quanh tăng giá. Tham khảo để tư vấn khách mua đất lân cận.", "isReal": true
-    },
-    {
-      "title": "Xã Thiên Lộc đấu giá 105 thửa đất ở tại 3 khu đất",
-      "link": "https://vnexpress.net/xa-thien-loc-dau-gia-105-thua-dat-o-tai-3-khu-dat-5119153.html",
-      "summary": "Thiên Lộc tổ chức đấu giá 105 thửa đất ở, giá khởi điểm thấp, thu hút sự quan tâm của người mua BĐS cá nhân và nhà đầu tư.",
-      "time": "14/09/2026",
-      "source": "VnExpress",
-      "action": "➡️ ACE Môi giới: đấu giá đất nền → cơ hội mua BĐS giá khởi điểm tốt. Cập nhật thông tin đấu giá để tư vấn khách mua đất.", "isReal": true
-    },
-    {
-      "title": "Công trường mở rộng đường phía Nam Hà Nội tăng tốc sau khi 'gỡ' mặt bằng",
-      "link": "https://cafef.vn/cong-truong-mo-rong-duong-phia-nam-ha-noi-tang-toc-sau-khi-go-mat-bang-188260907790588.html",
-      "summary": "Dự án mở rộng đường phía Nam Hà Nội đẩy nhanh tiến độ thi công sau khi thu hồi mặt bằng, tạo xung lực BĐS khu vực.",
-      "time": "14/09/2026",
-      "source": "Cafef",
-      "action": "➡️ ACE Môi giới: mở rộng đường → giao thông cải thiện → BĐS khu vực tăng giá. Khuyến nghị khách mua BĐS gần dự án.", "isReal": true
-    },
-    {
-      "title": "Chủ tịch Hà Nội: Xây thêm công trình quanh hồ Gươm phải được tính toán kỹ lưỡng",
-      "link": "https://cafef.vn/chu-tich-ha-noi-xay-them-cong-trinh-quanh-ho-guom-phai-duoc-tinh-toan-ky-luong-188260907878001.html",
-      "summary": "Chủ tịch Hà Nội chỉ đạo kiểm soát chặt chẽ việc xây dựng công trình quanh hồ Gươm, bảo tồn cảnh quan, tác động đến BĐS lân cận.",
-      "time": "14/09/2026",
-      "source": "Cafef",
-      "action": "➡️ ACE Môi giới: kiểm soát chặt chẽ quanh hồ Gươm → hạn chế BĐS mới, ảnh hưởng đến giá. Cập nhật quy hoạch để tư vấn khách mua nhà khu vực này.", "isReal": true
-    },
-    {
-      "title": "Tân Á Đại Thành đổ bộ đầu tư vào Hưng Yên, khu công nghiệp công nghệ cao gần 200ha gần 200ha",
-      "link": "https://vnexpress.net/tan-a-dai-thanh-do-bo-dau-tu-vao-hung-yen-khu-cong-nghiep-cong-nghe-cao-gan-200ha-5119382.html",
-      "summary": "Tân Á Đại Thành đầu tư khu công nghiệp công nghệ cao Hưng Yên diện tích gần 200ha, tạo xung lực BĐS công nghiệp trong khu vực.",
-      "time": "14/09/2026",
-      "source": "VnExpress",
-      "action": "➡️ ACE Môi giới: khu công nghiệp công nghệ cao → BĐS công nghiệp phát triển → khách hàng mục tiêu là nhà đầu tư BĐS công nghiệp. Tham khảo để tư vấn khách.", "isReal": true
+      "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
     }
   ],
-  "note": "Cập nhật thủ công 14/09/2026 — lọc tin BĐS HN thực tế, gắn hành động môi giới. Bot cron 6h updates tiếp."
+  "history": [
+    {
+      "time": "14/09/2026",
+      "title": "Sắp mở bán hơn 400 căn nhà ở xã hội giá từ 23 triệu đồng/m² nằm trong đại dự án “sống",
+      "action": "➡️ ACE Môi giới: nhà ở xã hội mới mở bán → khách hàng mục tiêu. Cập nhật danh sách dự án để tư vấn nhanh."
+    },
+    {
+      "time": "14/09/2026",
+      "title": "Hà Nội sở hữu siêu nút giao 4 tầng đầu tiên thiết kế hiện đại, kết hợp đường sắt đô thị",
+      "action": "➡️ ACE Môi giới: nút giao 4 tầng → kết nối khu vực → BĐS xung quanh tăng giá. Tham khảo để tư vấn khách mua đất lân cận."
+    },
+    {
+      "time": "14/09/2026",
+      "title": "Xã Thiên Lộc đấu giá 105 thửa đất ở tại 3 khu đất",
+      "action": "➡️ ACE Môi giới: đấu giá đất nền → cơ hội mua BĐS giá khởi điểm tốt. Cập nhật thông tin đấu giá để tư vấn khách mua đất."
+    },
+    {
+      "time": "14/09/2026",
+      "title": "Công trường mở rộng đường phía Nam Hà Nội tăng tốc sau khi 'gỡ' mặt bằng",
+      "action": "➡️ ACE Môi giới: mở rộng đường → giao thông cải thiện → BĐS khu vực tăng giá. Khuyến nghị khách mua BĐS gần dự án."
+    },
+    {
+      "time": "14/09/2026",
+      "title": "Chủ tịch Hà Nội: Xây thêm công trình quanh hồ Gươm phải được tính toán kỹ lưỡng",
+      "action": "➡️ ACE Môi giới: kiểm soát chặt chẽ quanh hồ Gươm → hạn chế BĐS mới, ảnh hưởng đến giá. Cập nhật quy hoạch để tư vấn khách mua nhà khu vực này."
+    },
+    {
+      "time": "14/09/2026",
+      "title": "Tân Á Đại Thành đổ bộ đầu tư vào Hưng Yên, khu công nghiệp công nghệ cao gần 200ha gần 200ha",
+      "action": "➡️ ACE Môi giới: khu công nghiệp công nghệ cao → BĐS công nghiệp phát triển → khách hàng mục tiêu là nhà đầu tư BĐS công nghiệp. Tham khảo để tư vấn khách."
+    }
+  ]
 }

@@ -3,6 +3,7 @@ title: "Thợ xây thế này sau này ở có ổn không?" — cách kiểm tr
 chu_de: kiem-tra-chat-luong
 nhom: Dành cho Chủ nhà
 date: 2026-09-17
+nguon: "CHỜ META AI — draft phụ gpt-oss/RX580, chưa đủ điều kiện LUẬT #11"
 description: "Trả lời câu hỏi thật từ hội nhóm xây/sửa nhà Hà Nội — có căn cứ số liệu, dùng được cho môi giới."
 ---
 

@@ -3,6 +3,7 @@ title: Sao thợ trát nhà "chát" thế này? Nguyên nhân + cách khắc ph�
 chu_de: vua-trat
 nhom: Dành cho Chủ nhà
 date: 2026-09-17
+nguon: "CHỜ META AI — draft phụ gpt-oss/RX580, chưa đủ điều kiện LUẬT #11"
 description: "Trả lời câu hỏi thật từ hội nhóm xây/sửa nhà Hà Nội — có căn cứ số liệu, dùng được cho môi giới."
 ---
 

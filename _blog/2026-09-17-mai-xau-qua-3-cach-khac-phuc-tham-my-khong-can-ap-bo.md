@@ -3,6 +3,7 @@ title: Mái xấu quá — 3 cách khắc phục thẩm mỹ không cần đập
 chu_de: sua-chua-nha
 nhom: Dành cho Chủ nhà
 date: 2026-09-17
+nguon: "CHỜ META AI — draft phụ gpt-oss/RX580, chưa đủ điều kiện LUẬT #11"
 description: "Trả lời câu hỏi thật từ hội nhóm xây/sửa nhà Hà Nội — có căn cứ số liệu, dùng được cho môi giới."
 ---
 

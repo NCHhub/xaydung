@@ -1,11 +1,13 @@
 ---
-title: Xây thêm tầng có cần xin phép không?
-chu_de: phap-ly
-nhom: "Dành cho Chủ nhà"
+title: "Xây thêm tầng ở Hà Nội có phải xin phép không?"
+nhom: "Kiến thức xây nhà"
 date: 2026-09-17
-nguon: "META_AI"
-description: "Trả lời câu hỏi thật từ hội nhóm xây/sửa nhà Hà Nội — có căn cứ số liệu, dùng được cho môi giới."
+description: "Xây thêm tầng ở Hà Nội có phải xin phép không? — kinh nghiệm thực tế từ hội nhóm xây nhà Hà Nội."
+image: "/assets/img/cong-trinh/khung-thep-1.jpg"
+chu_de: kinh-nghiem-xay-nha
 ---
+
+**Câu hỏi thật trên hội nhóm xây nhà:** *"Tôi muốn xây thêm tầng cho ngôi nhà hiện có thì có phải xin giấy phép không? Cần làm gì trước khi thi công?"*
 
 Có, bắt buộc phải xin Giấy phép sửa chữa, cải tạo.
 

@@ -1,11 +1,13 @@
 ---
-title: Thấm tường từ tầng 2: xử lý triệt để như thế nào
-chu_de: sua-chua-nha
-nhom: "Dành cho Chủ nhà"
+title: "Thấm tường từ tầng 2 — nguyên nhân và cách xử lý triệt để"
+nhom: "Kiến thức xây nhà"
 date: 2026-09-17
-nguon: "META_AI"
-description: "Trả lời câu hỏi thật từ hội nhóm xây/sửa nhà Hà Nội — có căn cứ số liệu, dùng được cho môi giới."
+description: "Thấm tường từ tầng 2 — nguyên nhân và cách xử lý triệt để — kinh nghiệm thực tế từ hội nhóm xây nhà Hà Nội."
+image: "/assets/img/cong-trinh/khung-thep-1.jpg"
+chu_de: kinh-nghiem-xay-nha
 ---
+
+**Câu hỏi thật trên hội nhóm xây nhà:** *"Nhà tôi bị thấm tường từ tầng 2, nước chạy dọc theo nhà từ mặt tiền ra phía sau. Xử lý thế nào cho hết và không tái thấm?"*
 
 - 2 nhà sát nhau, cạnh không có tôn che khe, nước mưa đọng ở tầng 2 chảy vào.
 

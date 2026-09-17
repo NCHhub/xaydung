@@ -1,11 +1,13 @@
 ---
-title: Tường 10 hay tường 20 cho nhà 3 tầng?
-chu_de: quy-trinh-xay-nha
-nhom: "Dành cho Chủ nhà"
+title: "Nhà 3 tầng nên xây tường 10 hay tường 20?"
+nhom: "Kiến thức xây nhà"
 date: 2026-09-17
-nguon: "META_AI"
-description: "Trả lời câu hỏi thật từ hội nhóm xây/sửa nhà Hà Nội — có căn cứ số liệu, dùng được cho môi giới."
+description: "Nhà 3 tầng nên xây tường 10 hay tường 20? — kinh nghiệm thực tế từ hội nhóm xây nhà Hà Nội."
+image: "/assets/img/cong-trinh/khung-thep-1.jpg"
+chu_de: kinh-nghiem-xay-nha
 ---
+
+**Câu hỏi thật trên hội nhóm xây nhà:** *"Nhà 3 tầng thì nên xây tường 10 hay tường 20? Dùng loại nào cho tường bao và loại nào cho tường ngăn?"*
 
 Nhà 3 tầng khung bê tông cốt thép chịu lực chính, tường chỉ là bao che, không cần tất cả tường 20.
 

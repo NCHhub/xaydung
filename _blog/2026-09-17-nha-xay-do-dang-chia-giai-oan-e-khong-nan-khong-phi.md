@@ -3,23 +3,23 @@ title: Nhà xây dở dang: chia giai đoạn để không nản, không phí
 chu_de: quy-trinh-xay-nha
 nhom: "Dành cho Chủ nhà"
 date: 2026-09-17
-nguon: "CHỜ META AI — draft phụ gpt-oss/RX580, chưa đủ điều kiện LUẬT #11"
+nguon: "META_AI"
 description: "Trả lời câu hỏi thật từ hội nhóm xây/sửa nhà Hà Nội — có căn cứ số liệu, dùng được cho môi giới."
 ---
 
-Câu hỏi này đang rất nóng trong các hội nhóm xây/sửa nhà Hà Nội. Dưới đây là câu trả lời có căn cứ (nguồn số liệu: `_data/moi-gioi.yml`), dùng được ngay khi tư vấn khách.
+Thép chờ, thép dầm lộ ra: Sau 6 tháng ở Hà Nội là rỉ nặng. Rỉ làm mất tiết diện chịu lực, rỉ lan vào trong bê tông gây nổ bê tông.
 
-> **nha xay do dang, suyt xay luon ca khoang cach**
+Bê tông, gạch chưa trát: Hút nước mưa, nồm ẩm. Bê tông bị carbonat hóa, yếu mặt. Tường gạch mọc rêu mốc, muối hóa, sau này trát hay bị ộp, thấm.
 
-Anh/chị ạ, mình hiểu cảm giác khi nhà còn dở dang, khoảng cách các công trình chưa hoàn thiện khiến lo lắng. Đừng nản lòng, chỉ cần lập kế hoạch chi tiết, chia thành từng phần: nền móng, khung, hệ thống điện-nước, rồi tới hoàn thiện nội thất. Đối với khoảng cách còn lại, mình thường đề xuất dùng giải pháp đóng khung nhanh bằng thép nhẹ, sau đó trát lớp thô, sau này tường sẽ sơn hoặc lát gạch. Nếu chi phí là mối quan tâm, hãy ưu tiên các công trình bảo đảm an toàn như phần thô và hệ thống điện-nước, phần hoàn thiện có thể làm dần. Khi có kế hoạch rõ ràng, sẽ thấy tiến độ tăng lên, nhà sớm hoàn thiện.
+Kết cấu dở dang: Không có mái che, nước đọng trong sàn, hố móng làm thép sàn, dầm bị ăn mòn ngầm.
 
-## Số liệu kiểm chứng (nguồn: _data/moi-gioi.yml)
+Thép rỉ: Đánh sạch bằng bàn chải sắt + máy mài. Rỉ nhẹ thì quét hóa chất tẩy rỉ B05 / Sika. Rỉ nặng mất >15% tiết diện -> phải nối kẹp thêm thép mới. Trước khi đổ bê tông mới phải quét hồ dầu Sika Latex TH.
 
-- Xây mới Hà Nội: 14–16 tr/m² (phổ thông), phần thô ~6.3 tr/m², hoàn thiện ~4.2 tr/m².
-- Sửa kết cấu: 800k/m² sàn.
-- Chống thấm sân thượng: 180k/m².
-- Hạ tầng điện nước đường mới: 30 tr.
+Bê tông cũ: Đục nhám, bỏ hết lớp bê tông yếu, xốp. Vệ sinh sạch, tưới ẩm và quét kết nối SikaDur 732 trước khi đổ tiếp.
 
-> Mọi báo giá cần khảo sát thực tế mới chính xác. Cần tư vấn chi tiết theo diện tích thật.
+Tường gạch để lâu: Phun rửa bằng máy áp lực, cạo rêu. Để khô 2-3 ngày nắng rồi mới trát. Trát phải dùng vữa có phụ gia Sika Latex chống thấm ngược.
 
-— **Hải &amp; Cộng sự** — Sân sau, chỗ dựa xây/sửa nhà cho môi giới BĐS Hà Nội. Hotline: 0983.601.366.
+Để càng lâu hơn 1-2 năm thì chi phí xử lý bằng 10-15% chi phí làm mới phần đó.
+
+---
+*Kinh nghiệm thực tế từ hội nhóm xây nhà Hà Nội — Hải & Cộng sự xây sửa nhà 0983.601.366.*

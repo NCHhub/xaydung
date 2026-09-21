@@ -133,7 +133,12 @@ def main():
         json.dump(data, f, ensure_ascii=False, indent=2)
 
     subprocess.run(["git", "add", "news.json"], cwd=ROOT, check=True)
+    if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT).returncode == 0:
+        print("Không có gì để commit.")
+        return 0
     subprocess.run(["git", "commit", "-m", f"news-updater: cập nhật tin thật {now}"], cwd=ROOT, check=True)
+    # remote có thể đi trước (pipeline/analytics) → rebase rồi push
+    subprocess.run(["git", "pull", "--rebase", "--autostash", "origin", "main"], cwd=ROOT, check=False)
     subprocess.run(["git", "push", "origin", "main"], cwd=ROOT, check=True)
     print(f"Đã cập nhật {len(top)} tin ({now}) + push OK.")
     return 0

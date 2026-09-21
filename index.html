@@ -199,6 +199,7 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
 
 <nav class="nav-top" aria-label="Điều hướng">
   <a href="#news-live" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.4);">📰 TIN TỨC</a>
+  <a href="#page-posts">📝 BÀI PAGE</a>
   <a href="#bai-viet">🔥 Bài viết 02</a>
   <a href="#loi-ich">💰 Lợi ích</a>
   <a href="#bai-viet">💎 Đặc quyền</a>
@@ -525,6 +526,15 @@ body{font-family:'Inter','-apple-system',BlinkMacSystemFont,'Segoe UI',Roboto,sa
   </div>
 </section>
 
+<!-- BÀI ĐÃ ĐĂNG TRÊN FANPAGE XÂY NHÀ HÀ NỘI — đồng bộ tự động (page-posts.json) -->
+<section class="post-section" id="page-posts" aria-label="Bài viết đã đăng trên fanpage xây nhà Hà Nội">
+  <h2 style="margin-bottom:8px;text-align:center;">📝 BÀI VIẾT TRÊN FANPAGE XÂY NHÀ HÀ NỘI</h2>
+  <div style="text-align:center;font-size:.75rem;color:#86868b;margin-bottom:24px;font-family:var(--mono);">Đồng bộ tự động từ page Hải &amp; Cộng sự · Cập nhật: <span id="pp-updated">đang tải…</span></div>
+  <div id="page-posts-container" class="tools-grid">
+    <div class="post-card" style="padding:16px;color:var(--ink-2);font-size:.85rem;">Đang tải bài fanpage…</div>
+  </div>
+</section>
+
 <!-- CÔNG CỤ HÀNG NGÀY — DỄ DÀNG SỬ DỤNG -->
 <section class="post-section" id="tools-daily" aria-label="Công cụ tính toán hằng ngày cho môi giới và người xây sửa nhà">
   <h2 style="margin-bottom:24px;text-align:center;color:#fff;">⚡ CÔNG CỤ TÍNH TOÁN HÀNG NGÀY</h2>
@@ -625,6 +635,30 @@ function loadNews(){
   });
 }
 setInterval(loadNews, 1800000); loadNews();
+function loadPagePosts(){
+  fetch('page-posts.json').then(function(r){ return r.json(); }).then(function(data){
+    var upd=document.getElementById('pp-updated'); if(upd) upd.textContent=data.updated||'';
+    var box=document.getElementById('page-posts-container');
+    if(!data.items || !data.items.length){ box.innerHTML='<div class="post-card" style="padding:16px;color:var(--ink-2);font-size:.85rem;">Chưa có bài fanpage.</div>'; return; }
+    box.innerHTML=data.items.map(function(it){
+      var img = it.image ? '<img src="'+escHtml(it.image)+'" alt="'+escHtml(it.title)+'" loading="lazy" style="width:100%;border-radius:10px;margin-bottom:12px;border:1px solid #2a2a2c;">' : '';
+      var steps = (it.steps && it.steps.length) ? '<ul style="margin:8px 0 0;padding-left:18px;font-size:.82rem;color:#86868b;line-height:1.7;">'+it.steps.map(function(s){return '<li>'+escHtml(s)+'</li>';}).join('')+'</ul>' : '';
+      var body = it.body ? '<div style="font-size:.85rem;color:#c7c7cc;line-height:1.75;margin-top:10px;">'+escHtml(it.body).replace(/([.!?])\s+/g,'$1<br>').replace(/\n+/g,'<br>')+'</div>' : '';
+      return '<article class="post-card" style="padding:24px;display:flex;flex-direction:column;">'
+        + img
+        + '<div style="font-family:var(--mono);font-size:.68rem;color:#fbbf24;margin-bottom:6px;">📄 '+escHtml(it.page_name||it.page)+' · '+escHtml(it.ts||'')+'</div>'
+        + '<h3 style="margin-bottom:8px;color:#f59e0b;font-size:1rem;line-height:1.4;">'+escHtml(it.title)+'</h3>'
+        + (it.hook ? '<p style="font-size:.85rem;color:#86868b;font-style:italic;margin-bottom:4px;">'+escHtml(it.hook)+'</p>' : '')
+        + body + steps
+        + '<div style="margin-top:auto;padding-top:14px;"><a href="'+escHtml(it.post_url)+'" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 14px;border-radius:10px;background:#161616;color:#fff;border:1px solid #2a2a2c;font-size:.78rem;text-decoration:none;">📘 XEM BÀI TRÊN FACEBOOK</a></div>'
+        + '</article>';
+    }).join('');
+  }).catch(function(e){
+    var box=document.getElementById('page-posts-container');
+    if(box) box.innerHTML='<div class="post-card" style="padding:16px;color:#b91c1c;font-size:.85rem;">Lỗi tải bài fanpage: '+escHtml(e.message)+'</div>';
+  });
+}
+loadPagePosts();
 function calcBrokerFee(){ var gia=document.getElementById('bf-gia').value||0; var loai=document.getElementById('bf-loai').value||'ban'; var hg=0; if(loai==='ban' || loai==='dat'){ hg=parseFloat(gia)*0.03; } else { hg=parseFloat(gia)*0.08; } var res=document.getElementById('bf-ketqua'); if(res) res.innerHTML='<b>Hoa hồng: </b>'+(hg/1e3).toLocaleString()+' triệu VNĐ'; }
 function calcProfit(){ var dt=parseFloat(document.getElementById('pn-chiphi').value||0); var xx=parseFloat(document.getElementById('pn-chiphixu').value||0); var gb=parseFloat(document.getElementById('pn-giaban').value||0); var n=gb-(dt+xx); var l=xx*0.15+dt*0.02; var r=n-l; var res=document.getElementById('pn-ketqua'); if(res) res.innerHTML='<b>Nhận nghỉ ngạng dự kiến:</b> '+(r/1e3).toLocaleString()+' triệu VNĐ · Chi phí vốn: '+(l/1e3).toLocaleString()+' triệu'; }
 function calcArea(){ var x=parseFloat(document.getElementById('ta-x').value||0); var y=parseFloat(document.getElementById('ta-y').value||0); var h=parseFloat(document.getElementById('ta-h').value||0); var dt=x*y; var vol=x*y*h; var res=document.getElementById('ta-ketqua'); if(res) res.innerHTML='<b>Diện tích sàn: </b>'+dt.toLocaleString()+' m²'+(h>0?' · Thể tích: '+vol.toLocaleString()+' m³':'')+' · Diện tích xây dựng: ~'+(dt*0.8).toLocaleString()+' m²'; }

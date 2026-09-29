@@ -56,6 +56,10 @@ feed:
 # Permalink cho các page thường (index) mặc định theo file
 permalink: pretty
 
+# Cho phép build bài có date hôm nay VN (UTC+7) dù GitHub Pages build theo UTC —
+# tránh bài mới bị coi là "tương lai" và 404 (2026-09-30).
+future: true
+
 # Build
 markdown: kramdown
 kramdown:

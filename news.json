@@ -1,23 +1,7 @@
 {
-  "updated": "29/09/2026 08:00",
+  "updated": "01/10/2026 08:00",
   "source": "RSS VnExpress/VnEconomy/Cafef BĐS + phân tích môi giới",
   "items": [
-    {
-      "icon": "📰",
-      "title": "Tăng tốc thi công xây dựng tuyến đường kết nối sân bay Gia Bình với Thủ đô Hà Nội",
-      "link": "https://cafef.vn/tang-toc-thi-cong-xay-dung-tuyen-duong-ket-noi-san-bay-gia-binh-voi-thu-do-ha-noi-18826092822015634.chn",
-      "summary": "Trên công trường, tuyến đường kết nối sân bay Gia Bình với Thủ đô Hà Nội đang được các nhà thầu đồng loạt triển khai nhiều mũi thi công, tập trung vào các hạng mục cầu, đường, nút ",
-      "time": "29/09/2026",
-      "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
-    },
-    {
-      "icon": "📰",
-      "title": "Chung cư cũ sẽ có 'mốc tuổi', cư dân được chọn 4 cách bồi thường khi phá dỡ",
-      "link": "https://cafef.vn/chung-cu-cu-se-co-moc-tuoi-cu-dan-duoc-chon-4-cach-boi-thuong-khi-pha-do-188260928121125976.chn",
-      "summary": "Dự thảo Luật Nhà ở (sửa đổi) lần đầu đưa ra khái niệm “nhà chung cư cũ”, xác định là các nhà chung cư được đầu tư xây dựng từ năm 1994 trở về trước. Đây được xem là căn cứ để phân ",
-      "time": "29/09/2026",
-      "action": "➡️ ACE Môi giới: tư vấn có căn cứ trước khi khách bán/thuê — liệt kê đủ chi phí giữ nhà bằng checklist xây sửa, không khuyến khích quyết định vội."
-    },
     {
       "icon": "📰",
       "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
@@ -25,24 +9,25 @@
       "summary": "Công ty Bất động sản Pristie quyết định dừng xưởng may tại phường Vĩnh Tuy để đề xuất xây tổ hợp nhà ở 26 tầng, vốn đầu tư hơn 3.000 tỷ đồng.",
       "time": "25/09/2026",
       "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
-    }
-  ],
-  "history": [
-    {
-      "time": "28/09/2026",
-      "title": "HoREA kiến nghị giảm lãi vay mua nhà ở xã hội xuống 4,8%/năm",
-      "action": "➡️ ACE Môi giới: khách phân vân vay vốn — trình bảng chi phí xây/sửa (nguồn gốc) để khách thấy tổng dòng tiền trước khi vay. Không hứa lợi nhuận."
     },
     {
-      "time": "28/09/2026",
-      "title": "Cấp xã ở TPHCM quyết định giá nhà tái định cư",
+      "icon": "📰",
+      "title": "Khu đô thị hơn 7.100 tỷ đồng ở Bà Nà dự kiến giảm đất ở",
+      "link": "https://vnexpress.net/khu-do-thi-hon-7-100-ty-dong-o-ba-na-du-kien-giam-dat-o-5126561.html",
+      "summary": "Khu đô thị của liên danh Sun Group dự kiến giảm 10 ha đất nhà ở, bỏ loại hình biệt thự nhà vườn để bổ sung công trình tiện ích.",
+      "time": "30/09/2026",
       "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
     },
     {
-      "time": "25/09/2026",
-      "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
+      "icon": "📰",
+      "title": "Hà Nội giao hơn 8 ha đất Đông Anh làm dự án nhà ở cho công an",
+      "link": "https://vnexpress.net/ha-noi-giao-hon-8-ha-dat-dong-anh-lam-du-an-nha-o-cho-cong-an-5125335.html",
+      "summary": "Hơn 8 ha đất tại xã Đông Anh được giao cho công ty Thái Hà để triển khai dự án nhà ở cho cán bộ, chiến sĩ công an.",
+      "time": "27/09/2026",
       "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
-    },
+    }
+  ],
+  "history": [
     {
       "time": "28/09/2026",
       "title": "Chung cư cũ sẽ có 'mốc tuổi', cư dân được chọn 4 cách bồi thường khi phá dỡ",
@@ -57,6 +42,21 @@
       "time": "28/09/2026",
       "title": "Xúc tiến đầu tư 28 dự án đường bộ cao tốc giai đoạn 2026-2030",
       "action": "➡️ ACE Môi giới: nhắc khách kiểm tra quy hoạch TRƯỚC khi mua/xây — kiểm tra đúng thửa đất + ghi nhận hiện trạng nhà liền kề."
+    },
+    {
+      "time": "29/09/2026",
+      "title": "Tăng tốc thi công xây dựng tuyến đường kết nối sân bay Gia Bình với Thủ đô Hà Nội",
+      "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
+    },
+    {
+      "time": "29/09/2026",
+      "title": "Chung cư cũ sẽ có 'mốc tuổi', cư dân được chọn 4 cách bồi thường khi phá dỡ",
+      "action": "➡️ ACE Môi giới: tư vấn có căn cứ trước khi khách bán/thuê — liệt kê đủ chi phí giữ nhà bằng checklist xây sửa, không khuyến khích quyết định vội."
+    },
+    {
+      "time": "25/09/2026",
+      "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
+      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
     }
   ]
 }

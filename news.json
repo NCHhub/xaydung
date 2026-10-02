@@ -1,5 +1,5 @@
 {
-  "updated": "01/10/2026 08:00",
+  "updated": "02/10/2026 08:00",
   "source": "RSS VnExpress/VnEconomy/Cafef BĐS + phân tích môi giới",
   "items": [
     {
@@ -12,37 +12,22 @@
     },
     {
       "icon": "📰",
+      "title": "Hà Nội quy định hạn chế xây dựng công trình, nhà ở tại khu vực có nguy cơ cao xảy ra thiên tai",
+      "link": "https://cafef.vn/ha-noi-quy-dinh-han-che-xay-dung-cong-trinh-nha-o-tai-khu-vuc-co-nguy-co-cao-xay-ra-thien-tai-188261001104710413.chn",
+      "summary": "Phó Chủ tịch UBND thành phố Hà Nội Bùi Duy Cường vừa ký ban hành Quyết định số 132/2026/QĐ-UBND về việc ban hành Quy định tiêu chí bảo đảm yêu cầu phòng, chống thiên tai đối với cô",
+      "time": "02/10/2026",
+      "action": "➡️ ACE Môi giới: dùng tin này làm tư liệu tư vấn khách — luôn kiểm chứng số liệu gốc trước khi nói (LUẬT #11)."
+    },
+    {
+      "icon": "📰",
       "title": "Khu đô thị hơn 7.100 tỷ đồng ở Bà Nà dự kiến giảm đất ở",
       "link": "https://vnexpress.net/khu-do-thi-hon-7-100-ty-dong-o-ba-na-du-kien-giam-dat-o-5126561.html",
       "summary": "Khu đô thị của liên danh Sun Group dự kiến giảm 10 ha đất nhà ở, bỏ loại hình biệt thự nhà vườn để bổ sung công trình tiện ích.",
       "time": "30/09/2026",
       "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
-    },
-    {
-      "icon": "📰",
-      "title": "Hà Nội giao hơn 8 ha đất Đông Anh làm dự án nhà ở cho công an",
-      "link": "https://vnexpress.net/ha-noi-giao-hon-8-ha-dat-dong-anh-lam-du-an-nha-o-cho-cong-an-5125335.html",
-      "summary": "Hơn 8 ha đất tại xã Đông Anh được giao cho công ty Thái Hà để triển khai dự án nhà ở cho cán bộ, chiến sĩ công an.",
-      "time": "27/09/2026",
-      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
     }
   ],
   "history": [
-    {
-      "time": "28/09/2026",
-      "title": "Chung cư cũ sẽ có 'mốc tuổi', cư dân được chọn 4 cách bồi thường khi phá dỡ",
-      "action": "➡️ ACE Môi giới: tư vấn có căn cứ trước khi khách bán/thuê — liệt kê đủ chi phí giữ nhà bằng checklist xây sửa, không khuyến khích quyết định vội."
-    },
-    {
-      "time": "25/09/2026",
-      "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
-      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
-    },
-    {
-      "time": "28/09/2026",
-      "title": "Xúc tiến đầu tư 28 dự án đường bộ cao tốc giai đoạn 2026-2030",
-      "action": "➡️ ACE Môi giới: nhắc khách kiểm tra quy hoạch TRƯỚC khi mua/xây — kiểm tra đúng thửa đất + ghi nhận hiện trạng nhà liền kề."
-    },
     {
       "time": "29/09/2026",
       "title": "Tăng tốc thi công xây dựng tuyến đường kết nối sân bay Gia Bình với Thủ đô Hà Nội",
@@ -56,6 +41,21 @@
     {
       "time": "25/09/2026",
       "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
+      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
+    },
+    {
+      "time": "25/09/2026",
+      "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
+      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
+    },
+    {
+      "time": "30/09/2026",
+      "title": "Khu đô thị hơn 7.100 tỷ đồng ở Bà Nà dự kiến giảm đất ở",
+      "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
+    },
+    {
+      "time": "27/09/2026",
+      "title": "Hà Nội giao hơn 8 ha đất Đông Anh làm dự án nhà ở cho công an",
       "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
     }
   ]

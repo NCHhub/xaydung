@@ -1,15 +1,7 @@
 {
-  "updated": "03/10/2026 08:00",
+  "updated": "04/10/2026 08:00",
   "source": "RSS VnExpress/VnEconomy/Cafef BĐS + phân tích môi giới",
   "items": [
-    {
-      "icon": "📰",
-      "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
-      "link": "https://vnexpress.net/xuong-may-o-dat-vang-ha-noi-co-the-thanh-du-an-nha-o-cao-cap-5124730.html",
-      "summary": "Công ty Bất động sản Pristie quyết định dừng xưởng may tại phường Vĩnh Tuy để đề xuất xây tổ hợp nhà ở 26 tầng, vốn đầu tư hơn 3.000 tỷ đồng.",
-      "time": "25/09/2026",
-      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
-    },
     {
       "icon": "📰",
       "title": "Khu đô thị hơn 7.100 tỷ đồng ở Bà Nà dự kiến giảm đất ở",
@@ -25,24 +17,17 @@
       "summary": "Hơn 8 ha đất tại xã Đông Anh được giao cho công ty Thái Hà để triển khai dự án nhà ở cho cán bộ, chiến sĩ công an.",
       "time": "27/09/2026",
       "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
+    },
+    {
+      "icon": "📰",
+      "title": "Khu Kỳ Hòa được đề xuất quy hoạch thành tổ hợp cao tầng gắn với metro",
+      "link": "https://vnexpress.net/khu-ky-hoa-duoc-de-xuat-quy-hoach-thanh-to-hop-cao-tang-gan-voi-metro-5127956.html",
+      "summary": "Khu đô thị Kỳ Hòa rộng hơn 8,2 ha (phường Hoà Hưng) được Vingroup đề xuất điều chỉnh quy hoạch quỹ đất thương mại - dịch vụ sang tổ hợp nhà ở cao tầng gắn với metro.",
+      "time": "04/10/2026",
+      "action": "➡️ ACE Môi giới: nhắc khách kiểm tra quy hoạch TRƯỚC khi mua/xây — kiểm tra đúng thửa đất + ghi nhận hiện trạng nhà liền kề."
     }
   ],
   "history": [
-    {
-      "time": "25/09/2026",
-      "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
-      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
-    },
-    {
-      "time": "30/09/2026",
-      "title": "Khu đô thị hơn 7.100 tỷ đồng ở Bà Nà dự kiến giảm đất ở",
-      "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
-    },
-    {
-      "time": "27/09/2026",
-      "title": "Hà Nội giao hơn 8 ha đất Đông Anh làm dự án nhà ở cho công an",
-      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
-    },
     {
       "time": "25/09/2026",
       "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
@@ -57,6 +42,21 @@
       "time": "30/09/2026",
       "title": "Khu đô thị hơn 7.100 tỷ đồng ở Bà Nà dự kiến giảm đất ở",
       "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
+    },
+    {
+      "time": "25/09/2026",
+      "title": "Xưởng may ở 'đất vàng' Hà Nội có thể thành dự án nhà ở cao cấp",
+      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
+    },
+    {
+      "time": "30/09/2026",
+      "title": "Khu đô thị hơn 7.100 tỷ đồng ở Bà Nà dự kiến giảm đất ở",
+      "action": "➡️ ACE Môi giới: dùng số liệu gốc khi tư vấn — đừng bịa giá; đối chiếu bảng giá thực tế từng khu trước khi nói với khách."
+    },
+    {
+      "time": "27/09/2026",
+      "title": "Hà Nội giao hơn 8 ha đất Đông Anh làm dự án nhà ở cho công an",
+      "action": "➡️ ACE Môi giới: theo dõi mở bán để kịp tư vấn khách; hỏi nhu cầu xây/sửa nhà để tăng giá trị thương vụ."
     }
   ]
 }
